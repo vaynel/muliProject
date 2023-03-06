@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	<beans:bean
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="10485760" />
+	</beans:bean>
+
+	<beans:bean id="txManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<beans:property name="dataSource" ref="dataSource" />
+	</beans:bean>
+	<!-- 트랜잭션 메서드 네임패턴 및 트랜잭션 정책 -->
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<!-- isolation : 격리레벨 트랜잭션이 진행 중 일때 다른 session에서 작업 중인 테이블에 접근할 경우 어디까지 
+			허용할 것 인가. -->
+
+		<tx:attributes>
+			<!--select로 시작하는 모든 메서드의 트랜잭션 격리 수준을 read-only로 설정 read-only : 읽기 전용, 
+				해당 트랜잭션에서 dml이 발생하면 예외를 발생시킴 -->
+			<tx:method name="select*" read-only="true" />
+			<tx:method name="insert*" isolation="DEFAULT"
+				rollback-for="Exception" propagation="REQUIRED" />
+			<tx:method name="update*" isolation="DEFAULT"
+				rollback-for="Exception" propagation="REQUIRED" />
+			<tx:method name="delete*" isolation="DEFAULT"
+				rollback-for="Exception" propagation="REQUIRED" />
+
+		</tx:attributes>
+	</tx:advice>
+
+	<tx:annotation-driven
+		transaction-manager="txManager" />
+
+	<aop:config>
+		<!-- * *.*ServiceImpl.*(..)) 모든 리턴타입, 모든 패키지, ServiceImpl로 끝나는 클래스의 모든 
+			메서드(매개변수 상관없음) -->
+		<aop:pointcut id="txPointCut"
+			expression="execution(* com.trillon.camp..*.*ServiceImpl.*(..))" />
+		<aop:advisor advice-ref="txAdvice"
+			pointcut-ref="txPointCut" />
+	</aop:config>
+	
+	<context:component-scan base-package="com.trillon.camp" />
+	
+	
+	
+</beans:beans>

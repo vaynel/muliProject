@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Mapper는 "시작하기"에 있었음 -->
+<!-- namespace : 생성 될 프록시 객체의 타입 -->
+<mapper namespace="com.mc.mvc.mybatis.repository.MybatisRepository">
+	<!-- #{} : preparedStatement의 쿼리 템플릿을 완성 시킨 뒤 파라미터 값을 전달받아 쿼리를 완성한다. 문자열 
+		이스케이프처리가 되기 때문에, sqlInjection 공격으로 부터 안전하다. ${} : -->
+
+	<select id="dynamicIf" resultType="Book">
+		select * from book
+		where
+		<if test="filter == 'title'">
+			title like concat('%',#{keyword},'%')
+		</if>
+		<if test="filter == 'author'">
+			author like concat('%',#{keyword},'%')
+		</if>
+	</select>
+
+
+
+	<!-- switch -->
+	<select id="dynamicChoose" resultType="Book">
+		select * from book
+		where
+		<choose>
+			<when test="filter == 'title'">
+				title like concat('%',#{keyword},'%')
+			</when>
+			<otherwise>
+				author like concat('%',#{keyword},'%')
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<update id="dynamicSet">
+		update member
+		<set>
+			<if test="password != null">
+				password = #{password}
+			</if>
+			<if test="tell != null">
+				, tell = #{tell}
+			</if>
+			<if test="email != null">
+				, email = #{email}
+			</if>
+		</set>
+		where user_id = #{userId}
+	</update>
+
+	<insert id="dynamicForEach">
+		insert to ${table}
+		<foreach collection="data" index="key" item="val" open="("
+			separator="," close=")">
+			${key}
+		</foreach>
+		values
+		<foreach collection="data" index="key" item="val" open="("
+			separator="," close=")">
+			${val}
+		</foreach>
+
+
+
+	</insert>
+
+	<select id="dynamicWhere" resultType="Book">
+		select * from book
+		where
+		book_amt > 0
+		<foreach collection="filters" item="filter">
+			<if test="filter == title">
+				title like concat('%',#{keyword},'%')
+			</if>
+			<if test="filter == author">
+				title like concat('%',#{keyword},'%')
+			</if>
+		</foreach>
+
+
+
+	</select>
+
+
+
+
+
+
+
+</mapper>
