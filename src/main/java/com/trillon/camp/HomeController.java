@@ -26,17 +26,17 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
-		
+
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
+
 		String formattedDate = dateFormat.format(date);
-		
+
 		model.addAttribute("serverTime", formattedDate );
-		
+
 		return "home";
 	}
-	
+
 	@GetMapping("/index")
 	public void index() {
 		System.out.println("index.jsp");
@@ -51,5 +51,7 @@ public class HomeController {
 	public void elements() {
 		System.out.println("elements.jsp");
 	}
-	
+
+//	@GetMapping("/board/campingHome")
+//	public void campingHome(){System.out.println("campingHome.jsp");}
 }
