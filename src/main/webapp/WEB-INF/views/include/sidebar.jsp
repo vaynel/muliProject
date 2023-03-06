@@ -16,7 +16,7 @@
 									</header>
 									<ul>
 										<li><a href="index">Homepage</a></li>
-										<li><a href="generic">Generic</a></li>
+										<li><a href="suggest/select">suggest</a></li>
 										<li><a href="elements">Elements</a></li>
 										<li>
 											<span class="opener">Submenu</span>
