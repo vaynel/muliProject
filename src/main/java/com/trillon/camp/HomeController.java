@@ -52,6 +52,4 @@ public class HomeController {
 		System.out.println("elements.jsp");
 	}
 
-//	@GetMapping("/board/campingHome")
-//	public void campingHome(){System.out.println("campingHome.jsp");}
 }
