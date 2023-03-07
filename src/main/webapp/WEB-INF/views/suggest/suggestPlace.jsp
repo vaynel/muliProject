@@ -22,7 +22,55 @@
 									<h2 id="content">봉봉오토캠핑장</h2>
 									<a href="http://www.bongcamp.com/default/">http://www.bongcamp.com/default/</a>
 									<br>
-									<div class="image left fit box alt row gtr-50 gtr-uniform col-4"><img src="${context}/resources/images/suggest/map_ex.png" alt="" /></div>
+									
+									<div class="row">
+										<div class="col-6 col-12-small">
+											<div class="image left fit"><img src="${context}/resources/images/suggest/map_ex.png" alt="" /></div>
+										</div>
+										<div class="col-6 col-12-small left">
+											<h3>여기를 다녀온 사람</h3>
+										<ul>
+											<li>
+											<div class="avatar avatar-online">
+												<img src="https://via.placeholder.com/50x50" alt="..." class="avatar-img rounded-circle">
+											</div>여기 완전 추천 입니다!!<br></li>
+												
+											<li>
+												<div class="avatar avatar-online">
+													<img src="https://via.placeholder.com/50x50" alt="..." class="avatar-img rounded-circle">
+												</div>안오시면 인생 손해 입니다.<br>
+											</li>
+											
+											<li>
+												<div class="avatar avatar-online">
+												<img src="https://via.placeholder.com/50x50" alt="..." class="avatar-img rounded-circle">
+												</div>사장님이 진짜 착해요!^^<br>
+											</li>
+										</ul>
+										</div>	
+									</div>
+									
+									<div>
+										<div class="alert alert-success" role="alert">
+										This is a success alert—check it out!
+										</div>
+										
+										<span class="badge badge-count">Count</span>
+										<span class="badge badge-default">Default</span>
+										<span class="badge badge-primary">Primary</span>
+										<span class="badge badge-info">Info</span>
+										<span class="badge badge-success">Success</span>
+										<span class="badge badge-warning">Warning</span>
+										<span class="badge badge-danger">Danger</span>
+										
+										<div class="loader loader-primary"></div>
+										<div class="loader loader-secondary"></div>
+										<div class="loader loader-info"></div>
+										<div class="loader loader-success"></div>
+										<div class="loader loader-warning"></div>
+										<div class="loader loader-danger"></div>
+									</div>
+									
 									
 									
 									

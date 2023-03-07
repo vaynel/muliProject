@@ -15,9 +15,9 @@
 										<h2>Menu</h2>
 									</header>
 									<ul>
-										<li><a href="index">Homepage</a></li>
-										<li><a href="suggest/select">suggest</a></li>
-										<li><a href="elements">Elements</a></li>
+										<li><a href="/index">Homepage</a></li>
+										<li><a href="/suggest/select">suggest</a></li>
+										<li><a href="/elements">Elements</a></li>
 										<li>
 											<span class="opener">Submenu</span>
 											<ul>
