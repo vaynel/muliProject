@@ -34,7 +34,7 @@
 		<link rel="stylesheet" href="${context}/resources/assets/css/main.css" />
 		
 		<%-- <link href="${context}/resources/assets/styles.css" rel="stylesheet" /> --%>
-		<%-- <link href="${context}/resource/sassets/prism.css" rel="stylesheet" /> --%>
+		<%-- <link href="${context}/resource/assets/prism.css" rel="stylesheet" /> --%>
 		
 		
 </head>
