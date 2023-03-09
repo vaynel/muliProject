@@ -1,4 +1,4 @@
-package com.trillon.camp.common.sercurity;
+package com.trillon.camp.common.code.sercurity;
 
 import java.io.IOException;
 

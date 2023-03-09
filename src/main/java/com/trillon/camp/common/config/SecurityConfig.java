@@ -27,24 +27,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-		.antMatchers(HttpMethod.GET, "/").permitAll()
-		.antMatchers(HttpMethod.GET, "/sample/admin").permitAll()
-		.antMatchers(HttpMethod.GET, "/index").permitAll()
-		.antMatchers(HttpMethod.GET, "/elements").permitAll()
-		.antMatchers(HttpMethod.GET, "/sample/admin").permitAll()
-		.antMatchers(HttpMethod.GET,"/members/signIn1").permitAll()
+		.antMatchers(HttpMethod.GET,  "/").permitAll()
+		.antMatchers(HttpMethod.GET,  "/sample/admin").permitAll()
+		.antMatchers(HttpMethod.GET,  "/index").permitAll()
+		.antMatchers(HttpMethod.GET,  "/elements").permitAll()
+		.antMatchers(HttpMethod.GET,  "/sample/admin").permitAll()
+		.antMatchers(HttpMethod.POST, "/member/signup").permitAll()
 		.antMatchers(HttpMethod.POST, "/mail").permitAll()
-		.antMatchers(HttpMethod.GET,"/board/list", "/board/detail", "/board/download").permitAll()
-		.antMatchers(HttpMethod.GET, "/sample/member").hasAuthority("ROLE_MEMBER")
-		.antMatchers(HttpMethod.GET, "/members/login").permitAll()
+		.antMatchers(HttpMethod.GET, "/comewithme/comeWithMeList", "/comewithme/comeWithMeSelect", "/comewithme/comeWithMeBoard").permitAll()
+		.antMatchers(HttpMethod.GET,  "/members/login").permitAll()
+		.antMatchers(HttpMethod.GET,  "/board/list", "/board/detail", "/board/download").permitAll()
+		.antMatchers(HttpMethod.GET,  "/sample/member").hasAuthority("ROLE_MEMBER")
 		.anyRequest().authenticated();
 		
-
 		
-		  http.formLogin() .loginProcessingUrl("/members/login")
-		  .loginPage("/members/login") .usernameParameter("userId")
-		  //.successHandler(authSuccessHandler) //.failureHandler(authFailureHandler)
-		  .permitAll();
+	  http.formLogin() .loginProcessingUrl("/members/login_logic")
+	  .loginPage("/members/login") .usernameParameter("userId")
+	  //.successHandler(authSuccessHandler) //.failureHandler(authFailureHandler)
+	  // /members/login-> /index로 고쳤음 나중에 다시 로그인으로 해야함
+	  .permitAll();
 		 
 		http.logout()
 			.logoutUrl("/members/logout")
@@ -64,8 +65,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	public void configure(WebSecurity web) {
 		web.ignoring().antMatchers(HttpMethod.GET,"/resources/**");
 	}
-	
-	
 	
 	@Bean
 	public PersistentTokenRepository tokenRepository() {
