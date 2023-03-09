@@ -32,22 +32,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers(HttpMethod.GET, "/index").permitAll()
 		.antMatchers(HttpMethod.GET, "/elements").permitAll()
 		.antMatchers(HttpMethod.GET, "/sample/admin").permitAll()
-		.antMatchers(HttpMethod.POST,"/member/signup").permitAll()
+		.antMatchers(HttpMethod.POST,"/members/signin").permitAll()
 		.antMatchers(HttpMethod.POST, "/mail").permitAll()
 		.antMatchers(HttpMethod.GET,"/board/list", "/board/detail", "/board/download").permitAll()
 		.antMatchers(HttpMethod.GET, "/sample/member").hasAuthority("ROLE_MEMBER")
+		.antMatchers(HttpMethod.GET, "/members/login").permitAll()
 		.anyRequest().authenticated();
 		
 
 		
-		  http.formLogin() .loginProcessingUrl("/member/login")
-		  .loginPage("/member/login") .usernameParameter("userId")
+		  http.formLogin() .loginProcessingUrl("/members/login")
+		  .loginPage("/members/login") .usernameParameter("userId")
 		  //.successHandler(authSuccessHandler) //.failureHandler(authFailureHandler)
 		  .permitAll();
 		 
 		http.logout()
-			.logoutUrl("/member/logout")
-			.logoutSuccessUrl("/member/login");
+			.logoutUrl("/members/logout")
+			.logoutSuccessUrl("/members/login");
 		
 		/*
 		 * http.rememberMe() .userDetailsService(userDetailsService)
