@@ -65,7 +65,7 @@
 										 </select>
 										 <br>
 										 
-										 <li>원하는 지역은?하하하</li>
+										 <li>원하는 지역은?</li>
 										 <select>
 										 	<option selected></option>
 										 	<option value="M">남</option>

@@ -26,21 +26,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-<<<<<<< HEAD
-				http.authorizeRequests()
-		.antMatchers(HttpMethod.GET, "/").permitAll()
-		.antMatchers(HttpMethod.GET, "/sample/admin").permitAll()
-		.antMatchers(HttpMethod.GET, "/index").permitAll()
-		.antMatchers(HttpMethod.GET, "/elements").permitAll()
-		.antMatchers(HttpMethod.GET, "/sample/admin").permitAll()
-		.antMatchers(HttpMethod.POST,"/member/signup").permitAll()
-		.antMatchers(HttpMethod.POST, "/mail").permitAll()
-		.antMatchers(HttpMethod.GET,"/board/list", "/board/detail", "/board/download").permitAll()
-		.antMatchers(HttpMethod.GET, "/sample/member").hasAuthority("ROLE_MEMBER")
-				.antMatchers(HttpMethod.GET,"/campingHome/**").permitAll()
-						.antMatchers(HttpMethod.GET,"/members/**").permitAll()
-						.anyRequest().authenticated();
-=======
 		http.authorizeRequests()
 		.antMatchers(HttpMethod.GET,  "/").permitAll()
 		.antMatchers(HttpMethod.GET,  "/sample/admin").permitAll()
@@ -54,7 +39,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers(HttpMethod.GET,  "/board/list", "/board/detail", "/board/download").permitAll()
 		.antMatchers(HttpMethod.GET,  "/sample/member").hasAuthority("ROLE_MEMBER")
 		.anyRequest().authenticated();
->>>>>>> 8a14df44f584564bd5eff3e980697548840257ac
 		
 		
 	  http.formLogin() .loginProcessingUrl("/members/login_logic")
@@ -76,8 +60,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		//http.csrf().disable();
 		http.csrf().ignoringAntMatchers("/mail");
 	}
-	
-	
 	
 	@Override
 	public void configure(WebSecurity web) {
