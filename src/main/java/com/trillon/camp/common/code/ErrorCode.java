@@ -6,8 +6,7 @@ public enum ErrorCode {
 	
 	public String msg;
 	public String redirect;
-	
-	
+
 	private ErrorCode(String msg, String redirect) {
 		this.msg = msg;
 		this.redirect = redirect;

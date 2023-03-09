@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("suggest")
-public class suggestController {
+public class SuggestController {
 	
 	@GetMapping("select")
 	public void select() {
