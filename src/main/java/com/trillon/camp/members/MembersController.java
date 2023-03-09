@@ -10,6 +10,6 @@ public class MembersController {
 	@GetMapping("/login")
 	public void login() { System.out.println("login.jsp"); }
 	
-	@GetMapping("/signin")
+	@GetMapping("/signIn1")
 	public void signIn() { System.out.println("signIn.jsp"); }
 }

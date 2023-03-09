@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers(HttpMethod.GET, "/index").permitAll()
 		.antMatchers(HttpMethod.GET, "/elements").permitAll()
 		.antMatchers(HttpMethod.GET, "/sample/admin").permitAll()
-		.antMatchers(HttpMethod.POST,"/members/signin").permitAll()
+		.antMatchers(HttpMethod.GET,"/members/signIn1").permitAll()
 		.antMatchers(HttpMethod.POST, "/mail").permitAll()
 		.antMatchers(HttpMethod.GET,"/board/list", "/board/detail", "/board/download").permitAll()
 		.antMatchers(HttpMethod.GET, "/sample/member").hasAuthority("ROLE_MEMBER")
