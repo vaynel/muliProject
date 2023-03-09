@@ -16,18 +16,10 @@
 							<!-- Content -->
 								<section>
 									<header class="main">
-										<h1>장소추천</h1>
+										<h1>매칭</h1>
 									</header>
 									
-									<ul>
-										<li><a href="suggestPlace" class ="button primary small fit">장소추천1 </a></li>
-										<br>
-										<li><a href="suggestPlace" class ="button primary small fit">장소추천2 </a></li>
-										<br>
-										<li><a href="suggestPlace" class ="button primary small fit">장소추천3 </a></li>
-										<br>
-										<li><a href="suggestPlace" class ="button primary small fit">장소추천4 </a></li>
-									</ul>
+									
 									
 									
 								</section>
@@ -45,6 +37,3 @@
 
 	</body>
 </html>
-
-
-

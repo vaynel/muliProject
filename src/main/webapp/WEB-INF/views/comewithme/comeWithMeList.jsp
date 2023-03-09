@@ -16,20 +16,12 @@
 							<!-- Content -->
 								<section>
 									<header class="main">
-										<h1>장소추천</h1>
+										<h1>같이갈래 목록</h1>
 									</header>
 									
-									<ul>
-										<li><a href="suggestPlace" class ="button primary small fit">장소추천1 </a></li>
-										<br>
-										<li><a href="suggestPlace" class ="button primary small fit">장소추천2 </a></li>
-										<br>
-										<li><a href="suggestPlace" class ="button primary small fit">장소추천3 </a></li>
-										<br>
-										<li><a href="suggestPlace" class ="button primary small fit">장소추천4 </a></li>
-									</ul>
 									
 									
+									<li><a href="/comewithme/comeWithMeSelect">매칭하러가기</a></li>
 								</section>
 
 						</div>
@@ -45,6 +37,3 @@
 
 	</body>
 </html>
-
-
-
