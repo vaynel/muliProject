@@ -1,13 +1,21 @@
 package com.trillon.camp.members;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping ("/members")
+@Controller
+@RequestMapping("/members")
 public class MembersController {
+
 	@GetMapping("/login")
-	public void login() { System.out.println("login.jsp"); }
-	
+	public void login() {
+		System.out.println("login.jsp");
+	}
+
 	@GetMapping("/signIn")
-	public void signIn() { System.out.println("signin.jsp"); }
+	public void signIn() {
+		System.out.println("signin.jsp");
+	}
+
 }

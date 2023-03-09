@@ -18,4 +18,9 @@ public class ComeWithMeController {
 		System.out.println("comeWihMeSelect");
 	}
 	
+	@GetMapping("comeWithMeBoard")
+	public void comeWithMeBoard() {
+		System.out.println("comeWithMeBoard");
+	}
+	
 }

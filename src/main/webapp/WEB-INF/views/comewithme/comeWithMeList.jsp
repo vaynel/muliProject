@@ -17,11 +17,13 @@
 								<section>
 									<header class="main">
 										<h1>같이갈래 목록</h1>
+										<hr>
 									</header>
 									
 									
 									
 									<li><a href="/comewithme/comeWithMeSelect">매칭하러가기</a></li>
+									<li><a href="/comewithme/comeWithMeBoard">게시글 작성하러 가기</a></li>
 								</section>
 
 						</div>
