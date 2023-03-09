@@ -48,8 +48,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	  .permitAll();
 		 
 		http.logout()
-			.logoutUrl("/member/logout")
-			.logoutSuccessUrl("/member/login");
+			.logoutUrl("/members/logout")
+			.logoutSuccessUrl("/members/login");
 		
 		/*
 		 * http.rememberMe() .userDetailsService(userDetailsService)

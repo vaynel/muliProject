@@ -1,7 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <!doctype html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -149,27 +147,23 @@
 </head>
 <body>
     <div class="container">
-        <div class="card card-container" >
+        <div class="card card-container">
             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
             <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
             <p id="profile-name" class="profile-name-card"></p>
-            
-            
-            <form class="form-signin" action="/members/login_logic"  method="POST" >
+            <form class="form-signin">
                 <span id="reauth-email" class="reauth-email"></span>
-                <input type="text" id="userId" name="userId" class="form-control" placeholder="UserId" required autofocus>
+                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
                 <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
                 <div id="remember" class="checkbox">
                     <label>
-                        <input type="checkbox" value="remember-me"> remember-me
+                        <input type="checkbox" value="remember-me"> 기억하세요.
                     </label>
                 </div>
                 <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
             </form><!-- /form -->
-            
-            
             <a href="#" class="forgot-password">
-             forgot-password
+                비밀번호를 잊으셨나요?
             </a>
         </div><!-- /card-container -->
     </div><!-- /container -->
@@ -221,7 +215,7 @@
     function testLocalStorageData() {
         if(!supportsHTML5Storage()) { return false; }
         localStorage.setItem("PROFILE_IMG_SRC", "//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" );
-        localStorage.setItem("PROFILE_NAME", "CÃ©sar Izquierdo Tello");
+        localStorage.setItem("PROFILE_NAME", "César Izquierdo Tello");
         localStorage.setItem("PROFILE_REAUTH_EMAIL", "oneaccount@gmail.com");
     }
     </script>    
