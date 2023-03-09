@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
+				http.authorizeRequests()
 		.antMatchers(HttpMethod.GET, "/").permitAll()
 		.antMatchers(HttpMethod.GET, "/sample/admin").permitAll()
 		.antMatchers(HttpMethod.GET, "/index").permitAll()
@@ -36,7 +36,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers(HttpMethod.POST, "/mail").permitAll()
 		.antMatchers(HttpMethod.GET,"/board/list", "/board/detail", "/board/download").permitAll()
 		.antMatchers(HttpMethod.GET, "/sample/member").hasAuthority("ROLE_MEMBER")
-		.anyRequest().authenticated();
+				.antMatchers(HttpMethod.GET,"/campingHome/**").permitAll()
+						.antMatchers(HttpMethod.GET,"/members/**").permitAll()
+						.anyRequest().authenticated();
 		
 
 		
