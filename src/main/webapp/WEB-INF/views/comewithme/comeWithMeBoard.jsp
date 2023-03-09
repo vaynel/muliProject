@@ -51,9 +51,27 @@
 										 	<option selected></option>
 										 	<option value="M">남</option>
 										 	<option value="F">여</option>
+										 	<option value="both">다 좋아</option>
 										 </select>
 										 <br>
 										 
+										 <li>원하는 연령층은?</li>
+										 <select>
+										 	<option selected></option>
+										 	<option value="twenty">20대</option>
+										 	<option value="thirty">30대</option>
+										 	<option value="fourty">40대</option>
+										 	<option value="allGood">다 좋아</option>
+										 </select>
+										 <br>
+										 
+										 <li>원하는 지역은?하하하</li>
+										 <select>
+										 	<option selected></option>
+										 	<option value="M">남</option>
+										 	<option value="F">여</option>
+										 </select>
+										 <br>
 										
 									
 									
