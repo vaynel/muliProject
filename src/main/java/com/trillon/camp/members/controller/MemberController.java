@@ -44,10 +44,8 @@ public class MemberController {
 		
 		session.setAttribute("auth", auth);
 		return "redirect:/index";
-		
 	}
-	
-	
+
 	@GetMapping("/signIn")
 	public void signIn() { System.out.println("signin.jsp"); }
 }

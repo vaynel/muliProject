@@ -40,7 +40,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers(HttpMethod.GET,  "/sample/member").hasAuthority("ROLE_MEMBER")
 		.anyRequest().authenticated();
 		
-		
 	  http.formLogin() .loginProcessingUrl("/members/login_logic")
 	  .loginPage("/members/login") .usernameParameter("userId")
 	  //.successHandler(authSuccessHandler) //.failureHandler(authFailureHandler)
