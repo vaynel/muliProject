@@ -24,7 +24,7 @@
 								<section id="banner">
 									<div class="content">
 										<header>
-											<h1>Hi, Iâm Editorial<br />
+											<h1>Hi..., Iâm Editorial<br />
 											by HTML5 UP</h1>
 											<p>99.9.9999 free and fully responsive site template</p>
 										</header>
