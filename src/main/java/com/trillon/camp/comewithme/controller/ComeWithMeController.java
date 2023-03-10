@@ -1,10 +1,13 @@
-package com.trillon.camp.comewithme;
+package com.trillon.camp.comewithme.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import lombok.RequiredArgsConstructor;
+
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("comewithme")
 public class ComeWithMeController {
 
@@ -18,9 +21,10 @@ public class ComeWithMeController {
 		System.out.println("comeWihMeSelect");
 	}
 	
-	@GetMapping("comeWithMeBoard")
+	@GetMapping("comeWithMeBoard") // 게시판 생성
 	public void comeWithMeBoard() {
 		System.out.println("comeWithMeBoard");
 	}
+	
 	
 }
