@@ -155,7 +155,7 @@
             <p id="profile-name" class="profile-name-card"></p>
             
             
-            <form class="form-signin" action="/members/login_logic"  method="POST" >
+            <form class="form-signin" action="/members/login"  method="POST" >
                 <span id="reauth-email" class="reauth-email"></span>
                 <input type="text" id="userId" name="userId" class="form-control" placeholder="UserId" required autofocus>
                 <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
