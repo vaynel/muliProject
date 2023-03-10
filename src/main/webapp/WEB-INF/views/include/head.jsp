@@ -33,6 +33,8 @@
 		<!--용구형님 css  -->
 		<link rel="stylesheet" href="${context}/resources/assets/css/main.css" />
 		
+		<script src="${context}/resources/assets/js/common.js"></script>
+		
 		<%-- <link href="${context}/resources/assets/styles.css" rel="stylesheet" /> --%>
 		<%-- <link href="${context}/resource/assets/prism.css" rel="stylesheet" /> --%>
 		

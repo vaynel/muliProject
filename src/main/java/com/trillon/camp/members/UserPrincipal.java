@@ -13,6 +13,7 @@ import lombok.Getter;
 @Getter
 public class UserPrincipal extends User{
 	
+
 	private static final long serialVersionUID = 1L;
 	
 	private final Principal principal;

@@ -1,5 +1,6 @@
 package com.trillon.camp.common.config;
 
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 /*import org.springframework.boot.autoconfigure.security.servlet.PathRequest;*/
@@ -31,6 +32,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers(HttpMethod.GET,  "/sample/admin").permitAll()
 		.antMatchers(HttpMethod.GET,  "/index").permitAll()
 		.antMatchers(HttpMethod.GET,  "/elements").permitAll()
+		
+		.antMatchers(HttpMethod.GET,  "/suggest/**").permitAll() 
+		.antMatchers(HttpMethod.POST, "/suggest/**").permitAll()
+				
 		.antMatchers(HttpMethod.GET,  "/sample/admin").permitAll()
 		.antMatchers(HttpMethod.POST, "/member/signup").permitAll()
 		.antMatchers(HttpMethod.POST, "/mail").permitAll()
@@ -40,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers(HttpMethod.GET,  "/sample/member").hasAuthority("ROLE_MEMBER")
 		.anyRequest().authenticated();
 		
-	  http.formLogin() .loginProcessingUrl("/members/login_logic")
+	  http.formLogin() .loginProcessingUrl("/members/login")
 	  .loginPage("/members/login") .usernameParameter("userId")
 	  //.successHandler(authSuccessHandler) //.failureHandler(authFailureHandler)
 	  // /members/login-> /index로 고쳤음 나중에 다시 로그인으로 해야함

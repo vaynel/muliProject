@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+button.small, .button.small {
+	font-size: 1em;
+}
+
+li {
+	text-align: -webkit-match-parent;
+}

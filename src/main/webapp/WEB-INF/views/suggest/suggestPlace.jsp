@@ -50,31 +50,6 @@
 										</div>	
 									</div>
 									
-									<div>
-										<div class="alert alert-success" role="alert">
-										This is a success alert—check it out!
-										</div>
-										
-										<span class="badge badge-count">Count</span>
-										<span class="badge badge-default">Default</span>
-										<span class="badge badge-primary">Primary</span>
-										<span class="badge badge-info">Info</span>
-										<span class="badge badge-success">Success</span>
-										<span class="badge badge-warning">Warning</span>
-										<span class="badge badge-danger">Danger</span>
-										
-										<div class="loader loader-primary"></div>
-										<div class="loader loader-secondary"></div>
-										<div class="loader loader-info"></div>
-										<div class="loader loader-success"></div>
-										<div class="loader loader-warning"></div>
-										<div class="loader loader-danger"></div>
-									</div>
-									
-									
-									
-									
-									
 									
 								</section>
 
