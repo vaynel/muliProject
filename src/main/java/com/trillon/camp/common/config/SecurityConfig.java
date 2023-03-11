@@ -45,7 +45,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers(HttpMethod.GET, "/comewithme/comeWithMeList", "/comewithme/comeWithMeSelect", "/comewithme/comeWithMeBoard").permitAll()
 		.antMatchers(HttpMethod.GET,  "/members/login").permitAll()
 		.antMatchers(HttpMethod.GET,  "/board/list", "/board/detail", "/board/download").permitAll()
+
 		.antMatchers(HttpMethod.GET,  "/sample/member").hasAuthority("ROLE_MEMBER")
+
 		.anyRequest().authenticated();
 		
 	  http.formLogin() .loginProcessingUrl("/members/login")

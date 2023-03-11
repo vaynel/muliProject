@@ -20,7 +20,7 @@ public class CampingHomeController {
     @GetMapping("/boardDetail")
     public void boardDetail(){System.out.println("boardDetail.jsp");
     }
-    @GetMapping("/createBoard")
+    //@GetMapping("/board-form")
     public void createBoard(){System.out.println("createBoard");
     }
 }
