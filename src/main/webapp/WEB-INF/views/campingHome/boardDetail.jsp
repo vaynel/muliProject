@@ -23,17 +23,21 @@
 
                     <div class="row">
                         <div class="col-6 col-12-large">
-                            <img src="/resources/images/campingHome01.png" width="400px" height="300px" alt="캠핑의집" >
+                            <img src="/resources/images/campingHome01.png" width="400px" height="300px" alt="캠핑의집">
                         </div>
                         <div class="col-6 col-12-large" border="1px solid black">
 
                             <div>
-                                <p>해시태그 작성란입니다.
+                                <p>
+                                    <input type="text" name="text" value='${board.hashtag}' readonly>
+                                    해시태그 작성란입니다.
                                     #캠핑 #차박 #캠핑장비
                                 </p>
                             </div>
 
-                            <div> 캠핑의집 디테일 페이지 게시글 작성 테스트 중입니다
+                            <div>
+                                <input type="text" name="text" value='${board.text}' readonly>
+                                캠핑의집 디테일 페이지 게시글 작성 테스트 중입니다
                                 111111111111111111111111111111111111111111
                                 22222222222222222222222222222222222
                                 3333333333333333333333333333333333

@@ -1,6 +1,9 @@
+<%@ taglib prefix="s" uri="http://www.springframework.org/security/tags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
+<meta id="_csrf" name="_csrf" content="${_csrf.token}"></meta>
+<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"></meta>
 <!-- head 설정 -->
 <body class="is-preload">
 
@@ -20,8 +23,8 @@
                 </header>
 
                 <!-- form -->
-                <form method ="post" action="/campingHome/boardDetail">
-
+                <form method ="post" action="/campingHome/boardDetail" enctype="multipart/form-data">
+                <s:csrfInput/>
                 <div calss="row gtr-uniform">
                     <div class="col-12">
                         <textarea name="board" placeholder="게시글 내용을 입력해주세요" rows="6"></textarea>
@@ -41,6 +44,10 @@
                 </div>
                 </form>
 
+                <form >
+
+                </form>
+
             </section>
 
         </div>
@@ -53,6 +60,8 @@
 
 <!-- Scripts -->
 <%@ include file="/WEB-INF/views/include/commonScripts.jsp" %>
+
+<script src="${context}/resources/assets/js/campingHome/boardForm.js"></script>
 
 </body>
 </html>

@@ -18,7 +18,7 @@
                 <header class="main">
                     <h1> My PAGE</h1>
                     <div class="actions small">
-                        <a href="/campingHome/createBoard" class="button primary small">게시글 작성</a>
+                        <a href="/campingHome/boards/new" class="button primary small">게시글 작성</a>
                     </div>
                 </header>
 
