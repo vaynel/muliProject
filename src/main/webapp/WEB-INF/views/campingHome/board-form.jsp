@@ -23,11 +23,14 @@
                 </header>
 
                 <!-- form -->
-                <form method ="post" action="/campingHome/boardDetail" enctype="multipart/form-data">
-                <s:csrfInput/>
-                <div calss="row gtr-uniform">
+                <form id="form" enctype="multipart/form-data">
+
+                    <div calss="row gtr-uniform">
+                    <strong>제목</strong>
+                    <input type="text" id="title" value="crossfit[title]">
+
                     <div class="col-12">
-                        <textarea name="board" placeholder="게시글 내용을 입력해주세요" rows="6"></textarea>
+                        <input type="text" id="content" value="wod[content]" rows="6"></input>
                     </div>
 
                     <div class="col-12">
