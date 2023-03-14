@@ -31,7 +31,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers(HttpMethod.GET,  "/**").permitAll()
 		.antMatchers(HttpMethod.POST,  "/**").permitAll()
 		
-		
 		.antMatchers(HttpMethod.GET,  "/sample/admin").permitAll()
 		.antMatchers(HttpMethod.GET,  "/index").permitAll()
 		.antMatchers(HttpMethod.GET,  "/elements").permitAll()
@@ -50,8 +49,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		
 	  http.formLogin() .loginProcessingUrl("/members/login")
 	  .loginPage("/members/login") .usernameParameter("userId")
-	  //.successHandler(authSuccessHandler) //.failureHandler(authFailureHandler)
-	  // /members/login-> /index로 고쳤음 나중에 다시 로그인으로 해야함
+	  //.successHandler(authSuccessHandler) //.failureHandler(authFa ilureHandler)
+	 
 	  .permitAll();
 		 
 		http.logout()
