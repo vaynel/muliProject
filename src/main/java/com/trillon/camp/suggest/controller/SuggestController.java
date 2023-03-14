@@ -22,6 +22,15 @@ public class SuggestController {
 		System.out.println("select.jsp");
 	}
 	
+	
+	@PostMapping("select")
+	@ResponseBody
+	public void receiveDate(@RequestBody String data) {
+		System.out.println(data);
+	}
+	
+	
+	
 	@GetMapping("suggestPlace")
 	public void suggestPlace(Model model, Answer data) {
 		System.out.println("suggsetPlace");			
@@ -30,7 +39,7 @@ public class SuggestController {
 	
 	@PostMapping("suggestPlace")
 	@ResponseBody
-	public void suggestPlace(@RequestBody Answer data,HttpSession session) {
+	public void suggestPlace(@RequestBody String data,HttpSession session) {
 		System.out.println("receiveData"+ data);
 	}
 }
