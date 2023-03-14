@@ -17,7 +17,7 @@ import org.springframework.security.web.authentication.rememberme.PersistentToke
 import lombok.RequiredArgsConstructor;
 
 @Configuration
-@EnableWebSecurity // Spring Security의 기본 설정 대신 사용자가 커스터마이징한 설정을 시큐리티에 적용
+@EnableWebSecurity // Spring Security�� 湲곕낯 �ㅼ�� ���� �ъ�⑹��媛� 而ㅼ�ㅽ�곕��댁��� �ㅼ���� ����由ы�곗�� ����
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers(HttpMethod.POST, "/suggest/**").permitAll()
 				
 		.antMatchers(HttpMethod.GET,  "/sample/admin").permitAll()
-		.antMatchers(HttpMethod.POST, "/member/signup").permitAll()
+		.antMatchers(HttpMethod.GET, "/members/signin").permitAll()
 		.antMatchers(HttpMethod.POST, "/mail").permitAll()
 		.antMatchers(HttpMethod.GET, "/comewithme/comeWithMeList", "/comewithme/comeWithMeSelect", "/comewithme/comeWithMeBoard").permitAll()
 		.antMatchers(HttpMethod.GET,  "/members/login").permitAll()
@@ -62,7 +62,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		 * .tokenRepository(tokenRepository());
 		 */
 		
-		// csrf : post요청일 때 수행해야 하는 csrf 토큰 검증을 끔
+		// csrf : post��泥��� �� �����댁�� ���� csrf ���� 寃�利��� ��
 		//http.csrf().disable();
 		http.csrf().ignoringAntMatchers("/mail");
 	}
