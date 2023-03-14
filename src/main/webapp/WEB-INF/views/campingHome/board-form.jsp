@@ -27,10 +27,10 @@
 
                     <div calss="row gtr-uniform">
                     <strong>제목</strong>
-                    <input type="text" id="title" value="crossfit[title]">
+                    <input type="text" id="title" value="제목을 입력하세요">
 
                     <div class="col-12">
-                        <input type="text" id="content" value="wod[content]" rows="6"></input>
+                        <input type="text" id="text" value="텍스트를 입력하세요" rows="6"></input>
                     </div>
 
                     <div class="col-12">
