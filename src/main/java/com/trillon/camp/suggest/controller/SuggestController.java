@@ -32,8 +32,5 @@ public class SuggestController {
 	@ResponseBody
 	public void suggestPlace(@RequestBody Answer data,HttpSession session) {
 		System.out.println("receiveData"+ data);
-		
 	}
-	
-	
 }
