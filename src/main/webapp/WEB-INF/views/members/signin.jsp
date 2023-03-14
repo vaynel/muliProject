@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/include/head.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +12,7 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 
   <style>
     body {
@@ -24,6 +26,10 @@
     }
 
     .input-form {
+    position: fixed; top: 0; right: 0;
+    margin: 0 auto;
+   	left: 0;
+   	right: 0;
       max-width: 680px;
 
       margin-top: 80px;
@@ -40,6 +46,13 @@
   </style>
 </head>
 <body>
+
+	<!-- Sidebar -->
+			<%@ include file="/WEB-INF/views/include/sidebar.jsp" %>
+
+		<!-- Scripts -->
+			<%@ include file="/WEB-INF/views/include/commonScripts.jsp" %>
+		
 	 <div class="container">
     <div class="input-form-backgroud row">
       <div class="input-form col-md-12 mx-auto">
@@ -97,21 +110,15 @@
             <div class="invalid-feedback">
               카카오톡 아이디를 입력해주세요.
             </div>
-          </div>
-            
-            <div class="col-md-4 mb-3">
-              <label for="code">추천인 코드</label>
-              <input type="text" class="form-control" id="code" placeholder="" required>
-              <div class="invalid-feedback">
-                추천인 코드를 입력해주세요.
-              </div>
-            </div>
-          </div>
+          </div>          
+
+          
           <hr class="mb-4">
           <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" id="aggrement" required>
             <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
           </div>
+          
           <div class="mb-4"></div>
           <button class="btn btn-primary btn-lg btn-block" type="submit">가입 완료</button>
         </form>

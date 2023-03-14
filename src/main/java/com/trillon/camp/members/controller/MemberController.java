@@ -45,7 +45,13 @@ public class MemberController {
 		session.setAttribute("auth", auth);
 		return "redirect:/index";
 	}
+<<<<<<< Updated upstream
 
 	@GetMapping("/signIn")
+=======
+	
+	
+	@GetMapping("/signin")
+>>>>>>> Stashed changes
 	public void signIn() { System.out.println("signin.jsp"); }
 }

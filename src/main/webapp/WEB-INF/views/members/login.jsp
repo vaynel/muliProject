@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/include/head.jsp" %>
 <!doctype html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -10,10 +11,13 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <title>Login</title>
     <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&family=Noto+Serif+JP:wght@200&display=swap');
     	body, html {
-    height: 100%;
+    height: 80%;
     background-repeat: no-repeat;
-    background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
+    background-image: url(https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);
+	background-size : cover;
+	opacity : 0.9;
 }
 
 .card-container.card {
@@ -35,17 +39,21 @@
  */
 .card {
     background-color: #F7F7F7;
-    
+    /* just in case there no content*/
     padding: 20px 25px 30px;
-    margin: 0 auto 25px;
-    margin-top: 50px;
-    
+    position : absolute;
+    left : 50%;
+    top : 50%;
+    margin-left : -150px;
+    margin-top: -150px;
+    /* shadows and rounded borders */
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
     border-radius: 2px;
     -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+
 }
 
 .profile-img-card {
@@ -103,6 +111,9 @@
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
+    font-family: 'Nanum Gothic Coding', monospace;
+	
+    
 }
 
 .form-signin .form-control:focus {
@@ -145,42 +156,62 @@
 .forgot-password:focus{
     color: rgb(12, 97, 33);
 }
+	
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="card card-container" >
+        <div class="container">
+        <div class="card card-container">
             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
             <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
             <p id="profile-name" class="profile-name-card"></p>
+<<<<<<< Updated upstream
             
             
             <form class="form-signin" action="/members/login"  method="POST" >
+=======
+            <form class="form-signin">
+>>>>>>> Stashed changes
                 <span id="reauth-email" class="reauth-email"></span>
-                <input type="text" id="userId" name="userId" class="form-control" placeholder="UserId" required autofocus>
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                <input type="email" id="inputEmail" class="form-control" placeholder="아이디" required autofocus>
+                <input type="password" id="inputPassword" class="form-control" placeholder="비밀번호" required>
                 <div id="remember" class="checkbox">
                     <label>
-                        <input type="checkbox" value="remember-me"> remember-me
+                        <input type="checkbox" value="remember-me"> 아이디 기억하기
                     </label>
                 </div>
-                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">로그인</button>
             </form><!-- /form -->
-            
-            
             <a href="#" class="forgot-password">
-             forgot-password
+                비밀번호를 잊으셨나요?
             </a>
         </div><!-- /card-container -->
     </div><!-- /container -->
        
     <script>
     $( document ).ready(function() {
-        
+        // DOM ready
+
+        // Test data
+        /*
+         * To test the script you should discomment the function
+         * testLocalStorageData and refresh the page. The function
+         * will load some test data and the loadProfile
+         * will do the changes in the UI
+         */
+        // testLocalStorageData();
+        // Load profile if it exits
         loadProfile();
     });
 
-    
+    /**
+     * Function that gets the data of the profile in case
+     * thar it has already saved in localstorage. Only the
+     * UI will be update in case that all data is available
+     *
+     * A not existing key in localstorage return null
+     *
+     */
     function getLocalProfile(callback){
         var profileImgSrc      = localStorage.getItem("PROFILE_IMG_SRC");
         var profileName        = localStorage.getItem("PROFILE_NAME");
@@ -193,7 +224,10 @@
         }
     }
 
-    
+    /**
+     * Main function that load the profile if exists
+     * in localstorage
+     */
     function loadProfile() {
         if(!supportsHTML5Storage()) { return false; }
         // we have to provide to the callback the basic
@@ -208,7 +242,12 @@
         });
     }
 
-    
+    /**
+     * function that checks if the browser supports HTML5
+     * local storage
+     *
+     * @returns {boolean}
+     */
     function supportsHTML5Storage() {
         try {
             return 'localStorage' in window && window['localStorage'] !== null;
@@ -217,11 +256,18 @@
         }
     }
 
-    
+    /**
+     * Test data. This data will be safe by the web app
+     * in the first successful login of a auth user.
+     * To Test the scripts, delete the localstorage data
+     * and comment this call.
+     *
+     * @returns {boolean}
+     */
     function testLocalStorageData() {
         if(!supportsHTML5Storage()) { return false; }
         localStorage.setItem("PROFILE_IMG_SRC", "//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" );
-        localStorage.setItem("PROFILE_NAME", "CÃ©sar Izquierdo Tello");
+        localStorage.setItem("PROFILE_NAME", "César Izquierdo Tello");
         localStorage.setItem("PROFILE_REAUTH_EMAIL", "oneaccount@gmail.com");
     }
     </script>    
