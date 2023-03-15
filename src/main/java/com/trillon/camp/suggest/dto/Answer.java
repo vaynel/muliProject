@@ -5,7 +5,8 @@ import lombok.Data;
 @Data
 public class Answer {
 	
-	private String who;
-	private String location;
-	private String terrain;
+	private String howManyPeople;
+	private String doNm;
+	private String sigunguNm;
+	private String lctCl;
 }

@@ -37,6 +37,9 @@
 										<br>
 										<li><a href="#" class ="button primary small fit option">모임 </a></li> -->
 										
+										
+										
+										
 									</ul>
 									
 									<a id="APITest" class="btn">APITest</a>

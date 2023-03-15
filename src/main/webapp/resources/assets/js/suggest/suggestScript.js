@@ -16,7 +16,7 @@ let selectList = [
     ["혼자","2인 ~ 3인","4인 ~ 5인","6인 이상"],
     ["경기도","강원도","충청남도", "충청북도","전라남도", "전라북도","경상남도", "경상북도","제주특별자치도"],
     [],
-    ["바다","산","무관"]
+    ["해변","산","계곡","도심","무관"]
 ]
 
 let 경기도 = ["수원시", "성남시", "고양시", "용인시", "부천시", "안산시", "안양시", "남양주시", "화성시", "평택시", "의정부시", "시흥시", "파주시", "광명시", "김포시", "군포시", "광주시", "이천시", "양주시", "오산시", "구리시", "안성시", "포천시", "의왕시", "하남시", "여주시", "여주군", "양평군", "동두천시", "과천시", "가평군", "연천군"]
@@ -39,24 +39,44 @@ let header = document.querySelector("meta[name='_csrf_header']").content;
 let CampingInformation;
 
 
-let suggestPlaceURL=(CampingData)=>{
-    CampingData.then(result=>{
-        console.dir(result.response.body.items.item);
-    });
 
-    console.dir("서버로 보내자");
+let suggestPlace=async (answer)=>{
+    let data={
+        howManyPeople : answer[0],
+        doNm:answer[1],
+        sigunguNm:answer[2],
+        lctCl:answer[3]
+
+    };
+
+    let sendData = await fetch("http://localhost:8081/suggest/select", {
+        method : 'post',
+        headers: {
+            'header': header,
+            'X-CSRF-Token': token,
+            'Content-Type': 'application/json',
+        },
+        redirect: 'follow',
+        body: JSON.stringify(data)
+
+    }).then((response)=>{
+        let testjson = response.text();
+        console.dir(testjson);
+        window.location.href = "http://localhost:8081/suggest/suggestPlace";
+    }).catch((err)=>{
+        console.log("err",err);
+    })
     
 }
 
 
+
 let changeSelectQuestion= ()=>{
     
-    // if(selectIndex==4){
-    //     CampingData = GoCampingAPI();
-    //     suggestPlaceURL(CampingData);
-    //     // DataToServer(CampingData);
-    //     return;
-    // }
+    if(selectIndex==4){
+        suggestPlace(answer);
+        return;
+    }
 
     questionnaire.replaceChildren();
     if(selectIndex==2){
@@ -116,7 +136,7 @@ let CampingData;
 // server에 데이터를 업데이트,추가 하는 것이 아니고 서버에 있는 데이터를 불러오기만하기 때문에 get으로 하는 것이 옳은 방식임
 
 async function GoCampingAPI(){
-    let response = await fetch("http://apis.data.go.kr/B551011/GoCamping/basedList?serviceKey="+ MYKEY+"&MobileOS=ETC&MobileApp=AppTest&pageNo=1&numOfRows=5000"+_type,{
+    let response = await fetch("http://apis.data.go.kr/B551011/GoCamping/basedList?serviceKey="+ MYKEY+"&MobileOS=ETC&MobileApp=AppTest&pageNo=3&numOfRows=1000"+_type,{
         method:'get'
     }).then((response)=>response.json())
     .then((data)=>{
@@ -125,12 +145,13 @@ async function GoCampingAPI(){
     }).catch((error) =>{
         console.log('failed', error)
     });
+   
     return response;
 }
 
 async function DataToServer(CampingData){
     
-    let sendData = await fetch("http://localhost8081/suggest/select", {
+    let sendData = await fetch("http://localhost:8081/suggest/select", {
         method : 'post',
         headers: {
             'header': header,
@@ -145,5 +166,19 @@ async function DataToServer(CampingData){
 }
 
 
-CampingData = GoCampingAPI();
-suggestPlaceURL(CampingData);
+// CampingData = GoCampingAPI();
+// suggestPlaceURL(CampingData);
+
+// let suggestPlaceURL=(CampingData)=>{
+//     let data;
+//     let dataJson={};
+//     CampingData.then(result=>{
+//         data = result.response.body.items.item;
+//         console.dir(data);
+//         data.forEach((element,index) => {
+//             dataJson[index]= element;
+//         });
+//         console.dir(dataJson);
+//         DataToServer(dataJson);
+//     });
+// }
