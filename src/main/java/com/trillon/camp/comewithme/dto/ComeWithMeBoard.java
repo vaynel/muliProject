@@ -8,18 +8,19 @@ import lombok.Data;
 @Data
 public class ComeWithMeBoard {
 
-	private Integer comeSeq;
-	private String userId;
-	private LocalDateTime regDate;
+	private Integer bdIdx;
 	private String title;
 	private String content;
-	private Integer count;
+	private Integer likeCount;
+	private LocalDateTime createDate;
+	private Integer numOfPerson ;
+	private Integer isDel;
 	
 	public String getRegDateAsDate() {
-		return regDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		return createDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 	}
 	
 	public String getRegDateAsTime() {
-		return regDate.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+		return createDate.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
 	}
 }

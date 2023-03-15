@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace : 생성 될 프록시 객체의 타입 -->
+<mapper namespace="com.trillon.camp.comeWithMe.repository.ComeWithmeRepository">
+
+	
+
+
+
+</mapper>
