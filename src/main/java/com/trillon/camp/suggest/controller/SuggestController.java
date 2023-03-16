@@ -5,12 +5,12 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.trillon.camp.suggest.dto.Answer;
 import com.trillon.camp.suggest.dto.Campsite;
@@ -47,9 +47,10 @@ public class SuggestController {
 	
 	
 	@GetMapping("suggestPlace")
-	public void suggestPlace(HttpSession session) {
+	public void suggestPlace(HttpSession session,Model model) {
 		System.out.println("suggsetPlace");
 		List<Campsite> campsites = (List<Campsite>) session.getAttribute("campsites");
+		model.addAttribute("campsites", campsites);
 		for (Campsite campsite : campsites) {
 			System.out.println(campsite);
 		}

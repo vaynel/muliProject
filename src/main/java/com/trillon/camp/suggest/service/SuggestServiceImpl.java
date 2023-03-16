@@ -28,7 +28,14 @@ public class SuggestServiceImpl  implements SuggestSerivce{
 	@Override
 	public List<Campsite> findCampingByAnswer(Answer answer) {
 		List<Campsite> campsites;
-		campsites = suggestRepository.findCampingByAnswer(answer);
+		answer.setInduty("%"+answer.getInduty()+"%");
+		if(!answer.getLctCl().equals("무관")) {
+			answer.setLctCl("%"+answer.getLctCl()+"%");
+			System.out.println("1");
+			campsites = suggestRepository.findCampingByAnswer(answer);
+			return campsites;
+		}
+		campsites = suggestRepository.findCampingByAnswerWithoutInduty(answer);
 		return campsites;
 	}
 
