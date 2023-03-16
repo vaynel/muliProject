@@ -7,6 +7,10 @@
 <link href='${pageContext.request.contextPath}/resources/fullcalendar/lib/main.css' rel='stylesheet' />
 <script src='${pageContext.request.contextPath}/resources/fullcalendar/lib/main.js'></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<meta name="_csrf" th:content="${_csrf.token}">
+<meta name="_csrf_header" th:content="${_csrf.headerName}">
+
 <script>
 
 $.ajax({
@@ -20,12 +24,38 @@ $.ajax({
 		var calendarEl = document.getElementById('calendar');
 		
 		var events = list.map(function(item) {
+			
+			if(item.startTime!="00:00:00"){	
+				return {
+				title : item.title,
+				start : item.date + "T" + item.startTime,
+				end	  : item.dateEnd + "T24:00:00"
+			}}
+			
+			else if(item.date==item.dateEnd){
 			return {
-				title : item.reservationTitle,
-				start : item.reservationDate + "T" + item.reservationTime,
-				end	  : item.reservationDateEnd + "T24:00:00"
+				title : item.title,
+				start : item.date + "T" + item.startTime,
+				end	  : item.dateEnd + "T24:00:00",
+				allDay:true
 			}
+			
+		}
+			else{
+				return {
+					title : item.title,
+					start : item.date ,
+					end	  : item.dateEnd+"T24:00:00",
+					allDay:true
+					
+				}	
+				
+			}
+			
 		});
+		
+		
+	
 		
 		var calendar = new FullCalendar.Calendar(calendarEl, {
 			headerToolbar: {
@@ -42,9 +72,28 @@ $.ajax({
 			  },
 			eventClick : function(info){
 				if(confirm("일정 '"+info.event.title +"' 을 삭제하시겠습니까?")){
-					console.dir(info.event.start);
 					console.dir(info.event.title);
+					console.dir(info.event.startStr);
+					//
+					
+					
+					$.ajax({
+						url:"deleteTodo",
+						type:'get',
+						data:{
+							title : info.event.title,
+							date : info.event.startStr
+							
+						}
+					
+						
+						
+					});
 					info.event.remove();
+				
+					
+					
+					
 				}
 				
 			}  

@@ -9,7 +9,7 @@ public class Schedule {
 	private String title;
 	private String date;
 	private String dateEnd;
-	//private boolean allday;
+	private boolean allDay;
 	private String startTime;
 	//private boolean madeByGroup;
 	//private String groupName;

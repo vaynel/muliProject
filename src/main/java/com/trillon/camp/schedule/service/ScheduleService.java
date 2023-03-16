@@ -1,10 +1,12 @@
 package com.trillon.camp.schedule.service;
 
+import java.util.List;
+
 import com.trillon.camp.schedule.dto.Schedule;
 
 public interface ScheduleService {
 
-	void selectTodo(Schedule schedule);
+	public List selectTodo();
 	
 	void insertNewTodo(Schedule schedule);
 

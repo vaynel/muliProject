@@ -13,7 +13,7 @@
     let header = document.querySelector("meta[name='_csrf_header']").content;
     
     async function PostTest(){
-        let data = {title : title.value};
+        let data = {title : title.value, date : date.value, dateEnd : dateEnd.value, startTime: startTime.value};
         let response = await fetch("http://localhost:8080/schedule/addTodo",{
             method : 'post',
             headers: {

@@ -52,72 +52,74 @@ public class ScheduleController {
 //		data.put("reservationDetail","test");
 //		
 //		list.add(data);
-		Map data;
+		
+		
+//		Map data;
+//
+//		List<Object> list = new ArrayList<Object>();
+//
+//		data = new HashMap();
+//		data.put("title", "camping");
+//		data.put("date", "2023-03-23");
+//		data.put("dateEnd", "2023-03-24");
+//		data.put("startTime", "13:30:00");
+//		list.add(data);
+//
+//		data = new HashMap();
+//		data.put("title", "study");
+//		data.put("date", "2023-03-27");
+//		data.put("dateEnd", "2023-03-28");
+//		data.put("startTime", "13:30:00");
+//		list.add(data);
 
-		List<Object> list = new ArrayList<Object>();
-
-		data = new HashMap();
-		data.put("reservationTitle", "camping");
-		data.put("reservationDate", "2023-03-23");
-		data.put("reservationDateEnd", "2023-03-24");
-		data.put("reservationTime", "13:30:00");
-		data.put("reservationIdx", "1");
-		data.put("reservationDetail", "test");
-		list.add(data);
-
-		data = new HashMap();
-		data.put("reservationTitle", "study");
-		data.put("reservationDate", "2023-03-27");
-		data.put("reservationDateEnd", "2023-03-28");
-		data.put("reservationTime", "13:30:00");
-		data.put("reservationIdx", "2");
-		data.put("reservationDetail", "test2");
-		list.add(data);
-
-		data = new HashMap();
-		data.put("reservationTitle", "안뇽");
-		data.put("reservationDate", "2023-03-15");
-		data.put("reservationDateEnd", "2023-03-15");
-		data.put("reservationTime", "18:00:00");
-		data.put("reservationIdx", "3");
-		data.put("reservationDetail", "test3");
-		list.add(data);
-
-		System.out.println("실행되나요");
+		List<Object> list=scheduleService.selectTodo();
+		
+		
+	
 		return list;
 
 	}
 
 	@ResponseBody
 	@PostMapping("/addTodo")
-	public String addTodo(@RequestBody String title) {
-		System.out.println("dhosdfihjosdfjkh");
-		System.out.println(title);
+	public String addTodo(@RequestBody Map<String, String> data) {
+		System.out.println("addTodo page");
+		
+		Schedule schedule = new Schedule();
+		
+		schedule.setUserId("hi"); 
+		schedule.setTitle(data.get("title"));
+		schedule.setDate(data.get("date")); 
+		schedule.setDateEnd(data.get("dateEnd"));
+		schedule.setStartTime(data.get("startTime"));
+		
 
-		/*
-		 * @RequestParam("title") String title,@RequestParam("dateStart") String
-		 * dateStart,
-		 * 
-		 * @RequestParam("dateEnd") String dateEnd,
-		 * 
-		 * @RequestParam("timeStart") String timeStart
-		 */
+		scheduleService.insertNewTodo(schedule);
+
+		
 		return "redirect:/schedule/calendar";
+		
+	}
+	
+	
+	@GetMapping("/deleteTodo")
+	public void deleteTodo(String title, String date) {
+		Schedule schedule = new Schedule();
+		schedule.setTitle(title);
+		schedule.setDate(date);
+		
+		
+		System.out.println("삭제");
+		scheduleService.deleteTodo(schedule);
 	}
 
 
 	  @RequestMapping("/testPage") public void testPage() {
 	  System.out.println("test");
 	  
-	  Schedule schedule = new Schedule();
-	  
-	  schedule.setUserId("hi"); schedule.setTitle("hello");
-	  schedule.setDate("2023-03-28"); schedule.setDateEnd("2023-03-29");
-	  schedule.setStartTime("12:00:00");
-	  
-	  
-	  scheduleService.insertNewTodo(schedule);
-	  
+	 
+	  List<Object> list=scheduleService.selectTodo();
+	  System.out.println(list);
 	  
 	  }
 	
