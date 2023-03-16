@@ -40,7 +40,7 @@ public class ScheduleController {
 	@RequestMapping(value = "/get.do")
 	public List ajax() {
 
-		// Å×½ºÆ® µ¥ÀÌÅÍ
+		// ï¿½×½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //		HashMap<String, String> data = new HashMap<String, String>();
 //		List<HashMap<String,String>> list = new ArrayList<HashMap<String, String>>();
 //
@@ -109,8 +109,8 @@ public class ScheduleController {
 		schedule.setDate(date.substring(0,10));
 		System.out.println(schedule);
 		
-		
-		System.out.println("»èÁ¦");
+		System.out.println(schedule);
+		System.out.println("ì‚­ì œì¤‘");
 		scheduleService.deleteTodo(schedule);
 	}
 
