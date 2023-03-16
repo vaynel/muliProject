@@ -24,10 +24,7 @@ public class ComeWithMeController {
 	public String comeWithMeList(Model model, @RequestParam(required = false, defaultValue="1")int page) {
 		System.out.println("comeWithMeList1");
 		model.addAllAttributes(comeWithMeService.selectBoardList(page));
-		List<ComeWithMeBoard> test = comeWithMeService.selectBoardAll();
-		for (ComeWithMeBoard comeWithMeBoard : test) {
-			System.out.println(comeWithMeBoard);
-		}
+		
 		
 		return "/comewithme/comeWithMeList";
 	}
