@@ -106,7 +106,8 @@ public class ScheduleController {
 	public void deleteTodo(String title, String date) {
 		Schedule schedule = new Schedule();
 		schedule.setTitle(title);
-		schedule.setDate(date);
+		schedule.setDate(date.substring(0,10));
+		System.out.println(schedule);
 		
 		
 		System.out.println("ªË¡¶");

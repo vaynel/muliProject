@@ -59,7 +59,7 @@ public class SuggestController {
 	
 	@PostMapping("select")
 	@ResponseBody
-	public void PostSelect(@RequestBody Answer answer,HttpSession session) {
+	public void PostSelect(@RequestBody Answer answer,HttpSession session) {		
 		
 		List<Campsite> campsites;
 		campsites=suggestService.findCampingByAnswer(answer);
@@ -70,8 +70,6 @@ public class SuggestController {
 		else {
 			System.out.println("캠핑장 검색 실패");
 		}
-		
-		
 	}
 	
 	
