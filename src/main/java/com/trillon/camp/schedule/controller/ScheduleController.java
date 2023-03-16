@@ -97,7 +97,7 @@ public class ScheduleController {
 		scheduleService.insertNewTodo(schedule);
 
 		
-		return "redirect:/schedule/calendar";
+		return "ha";
 		
 	}
 	
