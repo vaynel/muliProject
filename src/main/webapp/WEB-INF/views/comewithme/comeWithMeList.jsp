@@ -30,20 +30,18 @@
 						<th style="width: 10%;"><span> 모집 인원 수 |</span></th>
 						<br>
 					</tr>
-					
 					<c:forEach items="${boardList}" var="boardList">
-						<tr>
-							<td>${boardList.bdIdx}</td>
-							<td>${boardList.title}</td>
-							<td>${boardList.content}</td>
-							<td>${boardList.likeCount}</td>
-							<td>${boardList.createDate}</td>
-							<td>${boardList.numOfPerson}</td>
-							<br>
-						</tr>
+								<tr>
+									<td>${boardList.bdIdx}</td>
+									<td>${boardList.title}</td>
+									<td>${boardList.content}</td>
+									<td>${boardList.likeCount}</td>
+									<td>${boardList.createDate}</td>
+									<td>${boardList.numOfPerson}</td>
+									<br>
+								</tr>
 					
 					</c:forEach>
-					
 					
 					<div class="row mt-3">
 		<nav aria-label="Page navigation example">

@@ -20,7 +20,11 @@ public interface SuggestRepository {
 
 	
 	
-	@Select("select * from campingData where doNm=#{doNm} and sigunguNm=#{sigunguNm} ")
+	@Select("select * from campingData where (doNm=#{doNm} and sigunguNm=#{sigunguNm}) and (lctCl like #{lctCl}) and (induty like #{induty})")
 	List<Campsite> findCampingByAnswer(Answer answer);
+
+
+	@Select("select * from campingData where (doNm=#{doNm} and sigunguNm=#{sigunguNm}) and (induty like #{induty})")
+	List<Campsite> findCampingByAnswerWithoutInduty(Answer answer);
 
 }

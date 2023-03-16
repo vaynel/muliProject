@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class Answer {
 	
-	private String howManyPeople;
+	private String induty;
 	private String doNm;
 	private String sigunguNm;
 	private String lctCl;
