@@ -1,72 +1,54 @@
 package com.trillon.camp.campingHome.board.controller;
-
-import com.trillon.camp.campingHome.board.FileStore;
-import com.trillon.camp.campingHome.board.dto.Board;
 import com.trillon.camp.campingHome.board.dto.BoardForm;
-import com.trillon.camp.campingHome.board.dto.UploadFile;
-import com.trillon.camp.campingHome.board.repository.BoardRepository;
+import com.trillon.camp.campingHome.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/campingHome")
+@Slf4j
 public class BoardController {
 
-    private final BoardRepository boardRepository;
-    private final FileStore fileStore;
-
-//    @GetMapping("/boards/new") // 게시판 등록 폼
-//    public String newFile(@ModelAttribute BoardForm Form){
-//        System.out.println("Get mapping 실행");
-//        return "/campingHome/board-form";
-//    }
+    private final BoardService boardService;
 
     @GetMapping("/boards/new") // 게시판 등록 폼
     public String newFile(){
-        System.out.println("Get mapping");
         return "/campingHome/board-form";
     }
 
     @PostMapping("boards/new")// 게시판 등록 버튼을 눌렀을 때 실행되는 메서드
-    public String saveFile(@ModelAttribute BoardForm form, RedirectAttributes redirectAttributes,@RequestBody BoardForm boardForm) throws IOException {
-        //List<UploadFile> storeImageFiles = fileStore.storeFiles(form.getImageFiles());
+    public String saveFile(@RequestBody BoardForm boardForm, HttpSession session ) throws IOException {
 
-        System.out.println("Post mapping");
-        System.out.println(boardForm);
+        int bd_idx = boardService.insertBoard(boardForm);
+        log.info("post ={}", bd_idx);
 
-    // 데이터베이스에 저장
-    Board board = new Board();
-    board.setBd_idk(form.getBd_idk());
-    board.setId(form.getId());
-    board.setTitle(form.getTitle());
-    board.setText(form.getText());
-    //board.setImageFiles(storeImageFiles);
-    boardRepository.save(board);
+        session.setAttribute("bd_idx",bd_idx);
 
-    redirectAttributes.addAttribute("bd_idk",board.getBd_idk());
-        return "redirect:/campingHome/boards/{bd_idk}";
-        //return "/campingHome/boardDetail";
+        log.info("post ={}", boardForm);
+
+        return "redirect:/campingHome/boardDetail";
     }
 
-    //@PostMapping("/board/new")
-    public String saveFile(@RequestBody BoardForm form){
-        System.out.println("postMapping 실행");
-        System.out.println("넘어온 값" + form);
-        return "/campingHome/boards/{bd_idk}";
-    }
+    @GetMapping("/boardDetail") // 게시판 조회
+    public String boardDetail(@SessionAttribute("bd_idx") int bd_idx) {
+        BoardForm boardForm = boardService.selectBoardByBd_idx(bd_idx);
 
-    @GetMapping("/boards/{bd_idk}") // 게시판 조회
-    public String boardDetail(@PathVariable long bd_idk, Model model) {
-        Board board = boardRepository.findByBd_idk(bd_idk);
-        model.addAttribute("board",board);
+        log.info("get ={}", boardForm);
+
         return "/campingHome/boardDetail";
     }
+
+
+
 }
