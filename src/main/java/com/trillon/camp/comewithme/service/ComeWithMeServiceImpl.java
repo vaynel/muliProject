@@ -35,10 +35,4 @@ public class ComeWithMeServiceImpl implements ComeWithMeService{
 		
 	}
 
-	@Override
-	public List<ComeWithMeBoard> selectBoardAll() {
-		return comeWithMeRepository.selectBoardAll();
-		
-		
-	}
 }

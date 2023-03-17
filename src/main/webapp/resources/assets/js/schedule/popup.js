@@ -12,31 +12,37 @@
 	let token = document.querySelector("meta[name='_csrf']").content;
     let header = document.querySelector("meta[name='_csrf_header']").content;
     
-    async function PostTest(){
+    function PostTest(){
+    	
         let data = {title : title.value, date : date.value, dateEnd : dateEnd.value, startTime: startTime.value};
-        let response = await fetch("http://localhost:8080/schedule/addTodo",{
+        
+        let response = fetch("http://localhost:8080/schedule/addTodo",{
             method : 'post',
             headers: {
                 'header': header,
                 'X-CSRF-Token': token,
                 'Content-Type': 'application/json',
             },
-            
-            redirect:'follow',
-            
+                      //redirect:'follow',            
             body: JSON.stringify(data)
-        }).then((result)=>{
-            return result;
-        } ).then((response)=>{
-        	
-        	window.location.href="http://localhost:8080/schedule/calendar";
-	
-        })
-   
-        console.dir(response);
+        }).then((response)=>{        	
+        	console.dir(response);
+        	window.location.href="http://localhost:8080/schedule/calendar";	
+        })      
     }
 
-    form.addEventListener('submit',e=>{
+    function canPage(){
+    	window.location.href="http://localhost:8080/schedule/calendar";	
+    }
+    
+    
+    btnClick.addEventListener('click',e=>{
         PostTest();
         
         });
+    
+    btnCan.addEventListener('click',e=>{
+    	canPage();
+        
+        });
+    

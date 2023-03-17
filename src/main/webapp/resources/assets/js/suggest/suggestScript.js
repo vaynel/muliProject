@@ -7,9 +7,9 @@ let classAddEventListener= function(cssSelector,ev){
 }
 
 let questionList =[
-    "몇 명이서 캠핑을 가시나요?",
+    "가고싶은 캠핑의 종류?",
     "어디로 가고 싶나요(지역)?",
-    "어디로 가고 싶나요(산/바다)?"
+    "어디로 가고 싶나요(지형)?"
 ]
 
 let selectList = [
@@ -38,8 +38,6 @@ let token = document.querySelector("meta[name='_csrf']").content;
 let header = document.querySelector("meta[name='_csrf_header']").content;
 let CampingInformation;
 
-
-
 let suggestPlace=async (answer)=>{
     let data={
         induty : answer[0],
@@ -60,8 +58,8 @@ let suggestPlace=async (answer)=>{
         body: JSON.stringify(data)
 
     }).then((response)=>{
-        let testjson = response.text();
-        console.dir(testjson);
+         let testjson = response.text();
+        console.dir(response);
         window.location.href = "http://localhost:8081/suggest/suggestPlace";
     }).catch((err)=>{
         console.log("err",err);
@@ -81,7 +79,7 @@ let changeSelectQuestion= ()=>{
     questionnaire.replaceChildren();
     if(selectIndex==2){
         for(let i=0; i<eval(answer[1]).length;i++){
-            question.innerText=questionList[selectIndex];
+            question.innerText=questionList[selectIndex-1];
             let option = createElement('li', {prop:{className:'option', style:'float:left; margin-right:20px'}});
             let a = createElement('a',{prop:{ className:"button primary small", innerText:eval(answer[1])[i],id:option}})
             let br= createElement('br');
@@ -102,7 +100,7 @@ let changeSelectQuestion= ()=>{
 
     //selectIndex = 0,1,3
     let selectIdx=selectIndex;
-    if(selectIndex==3){selectIdx==selectIndex-1; console.dir(selectIdx);} 
+    if(selectIndex==3){selectIdx=selectIndex-1;} 
     for(let i=0; i<selectList[selectIndex].length;i++){
         question.innerText=questionList[selectIdx];
         let option = createElement('li', {prop:{className:'option'}});
@@ -168,6 +166,7 @@ async function DataToServer(CampingData){
 
 // CampingData = GoCampingAPI();
 // suggestPlaceURL(CampingData);
+
 
 // let suggestPlaceURL=(CampingData)=>{
 //     let data;

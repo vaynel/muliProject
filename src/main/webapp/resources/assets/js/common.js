@@ -1,4 +1,4 @@
-let $ = function(cssSelector, message){
+/*let $ = function(cssSelector, message){
     let htmlElements = this.document.querySelectorAll(cssSelector);
 
     if(message){
@@ -7,7 +7,7 @@ let $ = function(cssSelector, message){
 
     if(htmlElements.length == 1) return htmlElements[0];
     return htmlElements;
-}
+}*/
 
 
 let createElement = (tag, props) => {

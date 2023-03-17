@@ -8,6 +8,8 @@
 <script src='${pageContext.request.contextPath}/resources/fullcalendar/lib/main.js'></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+<link rel="stylesheet" href="${context}/resources/assets/css/main.css" />
+
 <meta name="_csrf" th:content="${_csrf.token}">
 <meta name="_csrf_header" th:content="${_csrf.headerName}">
 
@@ -29,7 +31,10 @@ $.ajax({
 				return {
 				title : item.title,
 				start : item.date + "T" + item.startTime,
-				end	  : item.dateEnd + "T24:00:00"
+				end	  : item.dateEnd + "T24:00:00",
+				backgroundColor : "rgba(222, 118, 119, 50)",
+				borderColor : "rgba(222, 118, 119, 50)",
+				textColor : "#ffffff"
 			}}
 			
 			else if(item.date==item.dateEnd){
@@ -37,7 +42,10 @@ $.ajax({
 				title : item.title,
 				start : item.date + "T" + item.startTime,
 				end	  : item.dateEnd + "T24:00:00",
-				allDay:true
+				allDay:true,
+				backgroundColor : "rgba(222, 118, 119, 50)",
+				borderColor : "rgba(222, 118, 119, 50)",
+				textColor : "#ffffff"
 			}
 			
 		}
@@ -46,7 +54,10 @@ $.ajax({
 					title : item.title,
 					start : item.date ,
 					end	  : item.dateEnd+"T24:00:00",
-					allDay:true
+					allDay:true,
+					backgroundColor : "rgba(222, 118, 119, 50)",
+					borderColor : "rgba(222, 118, 119, 50)",
+					textColor : "#ffffff"
 					
 				}	
 				
@@ -64,6 +75,8 @@ $.ajax({
 		          right: 'dayGridMonth,timeGridWeek'
 		        },
 		        //locale: 'ko',
+		        expandRows : true,
+				fixedWeekCount : false,
 			events : events,
 			eventTimeFormat: { // like '14:30:00'
 			    hour: '2-digit',
@@ -108,20 +121,45 @@ $.ajax({
       
 </script>
 
-
+<style>
+	#btnBox{
+	padding-top:3px;
+	padding-bottom:5px;
+	}
+</style>
 
 </head>
 <body>
+<!-- Wrapper -->
+			<div id="wrapper">
 
-	<input type="button" value="일정 추가" onclick="location.href='/schedule/schedulePopUp'">
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
 
-	<div id='calendar'></div>
-	
-	<script>
-		
-		
-	</script>
-	
+							<%@ include file="/WEB-INF/views/include/header.jsp" %>
+
+					<!-- Content -->
+					
+									
+					<div id='btnBox'>
+					<input type="button" value="일정 추가"
+						onclick="location.href='/schedule/schedulePopUp'">
+					</div>
+					<div id='calendar'></div>
+								
+							
+									
+					
+
+					</div>
+					</div>
+
+				<!-- Sidebar -->
+					<%@ include file="/WEB-INF/views/include/sidebar.jsp" %>
+
+			</div>
+		<%@ include file="/WEB-INF/views/include/commonScripts.jsp" %>
 	
 </body>
 </html>

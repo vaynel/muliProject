@@ -2,38 +2,35 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
 <!-- head 설정 -->
-	<body class="is-preload">
+<body class="is-preload">
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+	<!-- Wrapper -->
+		<div id="wrapper">
+			<!-- Main -->
+			<div id="main">
+				<div class="inner">
 
-				<!-- Main -->
-					<div id="main">
-						<div class="inner">
+					<%@ include file="/WEB-INF/views/include/header.jsp" %>
 
-							<%@ include file="/WEB-INF/views/include/header.jsp" %>
+					<!-- Content -->
+						<section>
+							<header class="main">
+								<h1>매칭</h1>
+							</header>
+							
+							
+							
+							
+						</section>
 
-							<!-- Content -->
-								<section>
-									<header class="main">
-										<h1>매칭</h1>
-									</header>
-									
-									
-									
-									
-								</section>
-
-						</div>
-					</div>
-
-				<!-- Sidebar -->
-					<%@ include file="/WEB-INF/views/include/sidebar.jsp" %>
-
+				</div>
 			</div>
+			<!-- Sidebar -->
+			<%@ include file="/WEB-INF/views/include/sidebar.jsp" %>
 
-		<!-- Scripts -->
-			<%@ include file="/WEB-INF/views/include/commonScripts.jsp" %>
+		</div>
+	<!-- Scripts -->
+		<%@ include file="/WEB-INF/views/include/commonScripts.jsp" %>
 
-	</body>
+</body>
 </html>

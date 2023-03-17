@@ -17,7 +17,5 @@ public interface ComeWithMeRepository {
 	@Select("select * from comewithme_board where is_del = 0 order by ${sortColumn} ${sortDirection} limit #{start}, #{cntPerPage}")
 	List<ComeWithMeBoard> selectBoardList(Paging paging);
 
-	@Select("select * from comewithme_board")
-	public List<ComeWithMeBoard> selectBoardAll();
 
 }
