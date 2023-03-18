@@ -28,27 +28,25 @@ public class BoardController {
     }
 
     @PostMapping("boards/new")// 게시판 등록 버튼을 눌렀을 때 실행되는 메서드
-    public String saveFile(@RequestBody BoardForm boardForm, HttpSession session ) throws IOException {
-
+    public String saveFile(@RequestBody BoardForm boardForm, RedirectAttributes redirectAttributes, Model model) throws IOException {
         int bd_idx = boardService.insertBoard(boardForm);
-        log.info("post ={}", bd_idx);
+        redirectAttributes.addAttribute("bd_idx",bd_idx);
+        model.addAttribute("bd_idx",bd_idx);
 
-        session.setAttribute("bd_idx",bd_idx);
+        return "redirect:/campingHome/boardDetail/{bd_idx}";
 
-        log.info("post ={}", boardForm);
 
-        return "redirect:/campingHome/boardDetail";
     }
 
-    @GetMapping("/boardDetail") // 게시판 조회
-    public String boardDetail(@SessionAttribute("bd_idx") int bd_idx) {
+    @GetMapping("/boardDetail/{bd_idx}") // 게시판 작성 후 해당 게시판 상세페이지
+    public String boardDetail(@PathVariable("bd_idx") int bd_idx,Model model) {
+        System.out.println("getMapping");
         BoardForm boardForm = boardService.selectBoardByBd_idx(bd_idx);
-
         log.info("get ={}", boardForm);
+        model.addAttribute("board",boardForm);
 
         return "/campingHome/boardDetail";
+
     }
-
-
 
 }

@@ -1,3 +1,4 @@
+
 <%@ taglib prefix="s" uri="http://www.springframework.org/security/tags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
@@ -18,6 +19,9 @@
 
             <!-- Content -->
             <section>
+
+                <input type="hidden" id="aaa" value='${bd_idx}'/>
+
                 <header class="main">
                     <h1>게시글 작성</h1>
                 </header>

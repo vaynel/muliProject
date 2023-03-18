@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
 
 import java.util.HashMap;
 import java.util.List;
@@ -39,7 +40,6 @@ public interface BoardRepository {
      * 특정 게시글 조회
      */
     @Select("select * from test where bd_idx = #{bd_idx}")
-    @Options(useGeneratedKeys = true, keyProperty = "bd_idx")
     BoardForm selectBoardByBdIdx(long bd_idx);
 
 }

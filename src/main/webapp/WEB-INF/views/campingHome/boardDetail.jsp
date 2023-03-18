@@ -17,8 +17,9 @@
 
             <!-- Content -->
             <section>
+
                 <header class="main">
-                    <h1>캠핑의 집</h1>
+                    <h1>${board.title}</h1>
                 </header>
 
 
@@ -33,24 +34,17 @@
 
                             <div>
                                 <p>
-                                    <input type="text" name="text" value='${boardForm.hashtag}' readonly>
                                     해시태그 작성란입니다.
-                                    #캠핑 #차박 #캠핑장비
-                                    <div class="hashtag">
-                                        <span> 해시태그 : ${boardForm.hashtag}</span>
+                                    <input type="text" name="text" value='${board.hashtag}' readonly>
+                                    <input type="text" name="text" value='${bd_idx}' readonly>  <!-- 여기에는 model에 담은 bd_idx 잘넘어옴-->
+                                <div class="hashtag">
                                     </div>
 
                                 </p>
                             </div>
 
                             <div>
-                                <input type="text" name="text" value='${boardForm.text}' readonly>
-                                캠핑의집 디테일 페이지 게시글 작성 테스트 중입니다
-                                111111111111111111111111111111111111111111
-                                22222222222222222222222222222222222
-                                3333333333333333333333333333333333
-                                44444444444444444444444444444444444
-                                <span> 해시태그 : ${boardForm.text}</span>
+                                <input type="text" name="text" value='${board.text}' readonly>
                             </div>
                         </div>
 
