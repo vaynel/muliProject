@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!-- Sidebar -->
 					<div id="sidebar">
 						<div class="inner">
@@ -15,9 +17,12 @@
 										<h2>Menu</h2>
 									</header>
 									<ul>
-										<li><a href="/index">Homepage</a></li>
-										<li><a href="/suggest/select">suggest</a></li>
-										<li><a href="/comewithme/comeWithMeList">ComeWithMe</a></li>
+										<li><a href="/index">index</a></li>
+										<li><a href="/campingHome/board">캠핑의집</a></li>
+										<li><a href="/comewithme/comeWithMeList">같이갈래</a></li>
+										<li><a href="/suggest/select">장소추천</a></li>
+										<li><a href="/schedule/calendar">일정</a></li>
+										<li><a href="/groupChat/groupChatList">채팅</a></li>
 										<li><a href="/elements">Elements</a></li>
 										<li>
 											<span class="opener">Submenu</span>

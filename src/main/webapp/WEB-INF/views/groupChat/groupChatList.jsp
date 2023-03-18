@@ -18,8 +18,24 @@
 						<div class="inner">
 							<%@ include file="/WEB-INF/views/include/header.jsp" %>
 						<!-- Content -->
-							
-							
+							<div>채팅리스트</div>
+									<tr>
+									<td>그룹		</td>
+									<td>방주인</td>
+									<td>현재인원</td>
+									<td>최대인원</td>
+									<br>
+								</tr>
+							<c:forEach items="${MyGroupChatList}" var="MyGroupChatList">
+								<tr>
+									<td>${MyGroupChatList.groupName}</td>
+									<td>${MyGroupChatList.roomMaster}</td>
+									<td>${MyGroupChatList.currentMember}</td>
+									<td>${MyGroupChatList.maxMember}</td>
+									<br>
+								</tr>
+					
+					</c:forEach>
 							
 							
 						</div>
