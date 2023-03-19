@@ -36,14 +36,11 @@
                                 <p>
                                     해시태그 작성란입니다.
                                     <input type="text" name="text" value='${board.hashtag}' readonly>
-                                    <input type="text" name="text" value='${bd_idx}' readonly>  <!-- 여기에는 model에 담은 bd_idx 잘넘어옴-->
-                                <div class="hashtag">
-                                    </div>
-
                                 </p>
                             </div>
 
                             <div>
+                                <p>텍스트 작성란 입니다.</p>
                                 <input type="text" name="text" value='${board.text}' readonly>
                             </div>
                         </div>
@@ -69,8 +66,6 @@
 
 
                     </div>
-
-
 
 
             </section>

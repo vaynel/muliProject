@@ -2,7 +2,6 @@ let token = document.querySelector("meta[name='_csrf']").content;
 let header = document.querySelector("meta[name='_csrf_header']").content;
 
 const form = document.getElementById('form');
-let bd_idx = console.log(document.getElementById('aaa').value); // model에 저장한 bd_idx값 받아오기
 
 form.addEventListener('submit', async (e)=>{
     e.preventDefault();
@@ -12,7 +11,7 @@ form.addEventListener('submit', async (e)=>{
         text: text.value,
         hashtag:hashtag.value
     }
-    await fetch("http://localhost:8080/campingHome/boards/new",{
+    await fetch("http://localhost:8080/campingHome/board/new",{
         method : 'post',
         //redirect: 'follow',
         headers: {
@@ -23,8 +22,7 @@ form.addEventListener('submit', async (e)=>{
         body: JSON.stringify(data)
     })
         .then((response)=>{
-            window.location.href = "http://localhost:8080/campingHome/boardDetail/" + 1;
-            //window.location.href = "http://localhost:8080/campingHome/boardDetail/" + bd_idx;   // redirect 보낼 주소
+            window.location.href = "http://localhost:8080/campingHome/boards";
         }).catch((err)=>{
             console.log("err",err);
         })

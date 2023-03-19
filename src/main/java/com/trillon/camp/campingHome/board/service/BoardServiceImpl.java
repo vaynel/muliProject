@@ -21,8 +21,8 @@ public class BoardServiceImpl implements BoardService{
     @Override
     public int insertBoard(BoardForm boardForm){
         boardRepository.insertBoard(boardForm);
-        int bd_idx = boardForm.getBd_idx();  // 해당 insert의 bd_idx값
-        return bd_idx;
+        int bdIdx = boardForm.getBdIdx();  // 해당 insert의 bd_idx값
+        return bdIdx;
     }
 
     /**
@@ -37,8 +37,8 @@ public class BoardServiceImpl implements BoardService{
      *  특정 게시글 조회
      */
     @Override
-    public BoardForm selectBoardByBd_idx(int bd_idx) {
-        BoardForm boardForm = boardRepository.selectBoardByBdIdx(bd_idx);
+    public BoardForm selectBoardByBdIdx(int bdIdx) {
+        BoardForm boardForm = boardRepository.selectBoardByBdIdx(bdIdx);
         return boardForm;
     }
 

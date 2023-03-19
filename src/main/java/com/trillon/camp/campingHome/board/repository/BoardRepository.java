@@ -23,23 +23,23 @@ public interface BoardRepository {
      */
 
     @Insert("insert into test(title, text, hashtag) values(#{title}, #{text}, #{hashtag})")
-    @Options(useGeneratedKeys = true, keyProperty = "bd_idx")  // DB에서 증가되는 bd_idx값을 dto에 bd_idx로 넣어준다.
+    @Options(useGeneratedKeys = true, keyProperty = "bdIdx")  // DB에서 증가되는 bd_idx값을 dto에 bd_idx로 넣어준다.
     Integer insertBoard(BoardForm boardForm); //앞에 데이터 형태 질문
 
     //@Select("select * from campinghome_board where")
 
     /**
-     * 전체 게시글 조회
+     * 전체 게시글 조회(역순으로 최신게시물이 위에 오게하기 위함)
      */
-    @Select("select * from campinghome_board")
-    public List<BoardForm> selectBoardAll();
+    //@Select("select * from campinghome_board")
+    @Select("select * from test order by bd_idx desc")
+    List<BoardForm> selectBoardAll();
 
-    //@Select("select * from campinghome_board where bd_idx = {bd_idx}")
 
     /**
      * 특정 게시글 조회
      */
-    @Select("select * from test where bd_idx = #{bd_idx}")
+    @Select("select * from test where bd_idx = #{bdIdx}")
     BoardForm selectBoardByBdIdx(long bd_idx);
 
 }

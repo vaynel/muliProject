@@ -9,5 +9,5 @@ import java.util.List;
 public interface BoardService {
     int insertBoard(BoardForm boardForm);
     List<BoardForm> selectBoardAll();
-    BoardForm selectBoardByBd_idx(int bd_idx);
+    BoardForm selectBoardByBdIdx(int bdIdx);
 }

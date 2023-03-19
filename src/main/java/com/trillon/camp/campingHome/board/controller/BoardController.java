@@ -6,12 +6,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.support.RequestContextUtils;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+
+
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -22,31 +21,34 @@ public class BoardController {
 
     private final BoardService boardService;
 
-    @GetMapping("/boards/new") // 게시판 등록 폼
+    @GetMapping("board/new") // 게시판 등록 폼
     public String newFile(){
         return "/campingHome/board-form";
     }
 
-    @PostMapping("boards/new")// 게시판 등록 버튼을 눌렀을 때 실행되는 메서드
-    public String saveFile(@RequestBody BoardForm boardForm, RedirectAttributes redirectAttributes, Model model) throws IOException {
-        int bd_idx = boardService.insertBoard(boardForm);
-        redirectAttributes.addAttribute("bd_idx",bd_idx);
-        model.addAttribute("bd_idx",bd_idx);
-
-        return "redirect:/campingHome/boardDetail/{bd_idx}";
-
-
+    @PostMapping("board/new")// 게시판 등록 버튼을 눌렀을 때 실행되는 메서드
+    public void saveFile(@RequestBody BoardForm boardForm, Model model) throws IOException {
+        int bdIdx = boardService.insertBoard(boardForm);
+        //redirectAttributes.addAttribute("bdIdx",bdIdx);  // 확인이 안되는 이유는 무엇인가???
+        //return "redirect:/campingHome/boards";
     }
 
-    @GetMapping("/boardDetail/{bd_idx}") // 게시판 작성 후 해당 게시판 상세페이지
-    public String boardDetail(@PathVariable("bd_idx") int bd_idx,Model model) {
+    @GetMapping("/board/{bdIdx}") // 게시판 상세페이지 접속
+    public String boardDetail(@PathVariable("bdIdx") int bdIdx,Model model) {
         System.out.println("getMapping");
-        BoardForm boardForm = boardService.selectBoardByBd_idx(bd_idx);
-        log.info("get ={}", boardForm);
+        BoardForm boardForm = boardService.selectBoardByBdIdx(bdIdx);
         model.addAttribute("board",boardForm);
-
         return "/campingHome/boardDetail";
+    }
+
+    @GetMapping("boards") // 게시판 목록페이지 접속
+    public void boards(Model model){
+        List<BoardForm> boards =boardService.selectBoardAll();
+        log.info("boards={}",boards);
+        model.addAttribute("boards",boards);
 
     }
 
 }
+
+

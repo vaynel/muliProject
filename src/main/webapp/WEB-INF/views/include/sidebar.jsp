@@ -18,7 +18,7 @@
 									</header>
 									<ul>
 										<li><a href="/index">index</a></li>
-										<li><a href="/campingHome/board">캠핑의집</a></li>
+										<li><a href="/campingHome/boards">캠핑의집</a></li>
 										<li><a href="/comewithme/comeWithMeList">같이갈래</a></li>
 										<li><a href="/suggest/select">장소추천</a></li>
 										<li><a href="/schedule/calendar">일정</a></li>

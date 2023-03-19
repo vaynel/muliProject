@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/campingHome")
 public class CampingHomeController {
 
-    @GetMapping("/board")
-    public void campingHome(){System.out.println("board.jsp");}
+    //@GetMapping("/boards")
+    public void campingHome(){System.out.println("boards.jsp");}
 
     @GetMapping("/myPage")
     public void myPage(){System.out.println("myPage.jsp");}

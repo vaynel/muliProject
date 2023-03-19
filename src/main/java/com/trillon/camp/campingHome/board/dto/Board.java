@@ -7,7 +7,7 @@ import java.util.List;
 @Data
 public class Board {
 
-    private long bd_idx;
+    private Integer bdIdx;
     private String id;
     private String title;
     private String text;

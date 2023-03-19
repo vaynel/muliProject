@@ -20,8 +20,6 @@
             <!-- Content -->
             <section>
 
-                <input type="hidden" id="aaa" value='${bd_idx}'/>
-
                 <header class="main">
                     <h1>게시글 작성</h1>
                 </header>
