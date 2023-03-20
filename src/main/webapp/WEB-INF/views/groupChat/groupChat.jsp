@@ -23,8 +23,10 @@
 					<!-- Content -->
 			
 					
+					
+					
 
-					</div>
+						</div>
 					</div>
 
 				<!-- Sidebar -->

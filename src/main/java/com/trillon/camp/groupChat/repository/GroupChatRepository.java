@@ -20,10 +20,10 @@ public interface GroupChatRepository {
 	@Select("select a.*, b.id"
 			+ " from  group_chat a left join  chat_member b"
 			+ " on a.chat_idx= b.chat_idx "
-			+ "where b.chat_idx is not null and b.id = #{id}")
+			+ "where b.chat_idx is not null and b.id = #{Id}")
 	List<GroupChat> myGroupChatList(String id);
 
-	@Insert("insert into chat_member(chat_idx,id) values(#{ChatIdx},#{id})")
+	@Insert("insert into chat_member(chat_idx,id) values(#{ChatIdx},#{Id})")
 	void myGroup(ChatMember chatMember);
 	
 	

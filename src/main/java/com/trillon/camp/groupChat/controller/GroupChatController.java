@@ -17,12 +17,12 @@ public class GroupChatController {
 	private final GroupChatService groupChatService;
 	
 	@GetMapping("/groupChatList")
-	public void groupChatList(Model model) {
-		String id = "member1";
+	public void groupChatList(Model model,String Id) {
+	
 		System.out.println("groupChatList");
-		System.out.println(groupChatService.selectAllMygroupChatList(id));
+		System.out.println(groupChatService.selectAllMygroupChatList(Id));
 		
-		model.addAttribute("MyGroupChatList", groupChatService.selectAllMygroupChatList(id));		
+		model.addAttribute("MyGroupChatList", groupChatService.selectAllMygroupChatList(Id));		
 	}
 	
 	@GetMapping("/groupChat")

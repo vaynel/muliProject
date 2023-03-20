@@ -1,6 +1,5 @@
 package com.trillon.camp.common.config;
 
-import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 /*import org.springframework.boot.autoconfigure.security.servlet.PathRequest;*/
@@ -17,7 +16,7 @@ import org.springframework.security.web.authentication.rememberme.PersistentToke
 import lombok.RequiredArgsConstructor;
 
 @Configuration
-@EnableWebSecurity // Spring Security�� 湲곕낯 �ㅼ�� ���� �ъ�⑹��媛� 而ㅼ�ㅽ�곕��댁��� �ㅼ���� ����由ы�곗�� ����
+@EnableWebSecurity // 
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
@@ -27,6 +26,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
+		
+		http.headers().frameOptions().sameOrigin();
+		
 		http.authorizeRequests()
 		.antMatchers(HttpMethod.GET,  "/**").permitAll()
 		.antMatchers(HttpMethod.POST,  "/**").permitAll()
@@ -49,6 +51,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 		.anyRequest().authenticated();
 		
+		
+		
 	  http.formLogin() .loginProcessingUrl("/members/login")
 	  .loginPage("/members/login") .usernameParameter("userId")
 	  //.successHandler(authSuccessHandler) //.failureHandler(authFa ilureHandler)
@@ -64,9 +68,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		 * .tokenRepository(tokenRepository());
 		 */
 		
-		// csrf : post��泥��� �� �����댁�� ���� csrf ���� 寃�利��� ��
+		
 		//http.csrf().disable();
 		http.csrf().ignoringAntMatchers("/mail");
+//		http.csrf().ignoringAntMatchers("/chat");
+//		
+//		http.headers().frameOptions().sameOrigin();
 	}
 	
 	@Override

@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class GroupChat {
 
+	private Integer chatIdx;
 	private String groupName;
 	private Integer currentMember;
 	private Integer maxMember;
