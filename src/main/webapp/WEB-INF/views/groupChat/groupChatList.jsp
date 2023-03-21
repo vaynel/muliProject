@@ -6,8 +6,8 @@
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
 <link rel="stylesheet" href="${context}/resources/assets/css/main.css" />
 
-<meta name="_csrf" th:content="${_csrf.token}">
-<meta name="_csrf_header" th:content="${_csrf.headerName}">
+<meta id="_csrf" name="_csrf" content="${_csrf.token}"></meta>
+<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"></meta>
 
 </head>
 <body>
@@ -18,6 +18,14 @@
 						<div class="inner">
 							<%@ include file="/WEB-INF/views/include/header.jsp" %>
 						<!-- Content -->
+						<form id="createRoom">
+							<label>myUserId : <input id="userId" text="JaeHyun"> </label>
+							<label>groupName : <input id="groupName"> </label>
+							<label>maxMember : <input id="maxMember"> </label>
+							<label>roomMaster : <input id="roomMaster"> </label>
+							<button>방생성하기</button>
+						</form>
+						
 							<div>채팅리스트</div>
 									<tr>
 									<td>그룹		</td>
@@ -28,22 +36,24 @@
 								</tr>
 							<c:forEach items="${MyGroupChatList}" var="MyGroupChatList">
 								<tr>
-									<td>${MyGroupChatList.groupName}</td>
+									<td><a href="/groupChat/chatRoom?roomId=${MyGroupChatList.roomId}&userId=">${MyGroupChatList.groupName}</a></td>
 									<td>${MyGroupChatList.roomMaster}</td>
 									<td>${MyGroupChatList.currentMember}</td>
 									<td>${MyGroupChatList.maxMember}</td>
 									<br>
 								</tr>
-					
-					</c:forEach>
-							
-							
+							</c:forEach>	
+							</div>
 						</div>
-					</div>
 				<!-- Sidebar -->
 					<%@ include file="/WEB-INF/views/include/sidebar.jsp" %>
 			</div>
 		<%@ include file="/WEB-INF/views/include/commonScripts.jsp" %>
+		<script src="${context}/resources/assets/js/chat/createRoom.js"></script>
+		<script type="text/javascript">
+		
+		
+		</script>
 	
 </body>
 </html>

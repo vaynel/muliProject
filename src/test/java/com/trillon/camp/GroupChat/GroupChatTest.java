@@ -8,6 +8,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.trillon.camp.groupChat.dto.ChatMember;
+import com.trillon.camp.groupChat.dto.ChatRoom;
 import com.trillon.camp.groupChat.dto.GroupChat;
 import com.trillon.camp.groupChat.repository.GroupChatRepository;
 
@@ -27,11 +28,12 @@ public class GroupChatTest {
 	public void testGroupChatList() {
 		
 		GroupChat groupChat = new GroupChat();
-		for (int i = 0; i < 10; i++) {
+		for (int i = 1; i < 6; i++) {
 			groupChat.setRoomMaster("master"+i);
-			groupChat.setGroupName("groupChat"+i);
-			groupChat.setCurrentMember(3);
+			groupChat.setGroupName("chat"+i);
+			groupChat.setCurrentMember(1);
 			groupChat.setMaxMember(5);
+			
 			groupChatRepository.insertNewGroup(groupChat);
 		}
 		
@@ -43,11 +45,36 @@ public class GroupChatTest {
 		ChatMember chatMember = new ChatMember();
 		
 		for (int i = 1; i < 4; i++) {
-			chatMember.setChatIdx(3);
-			chatMember.setId("member"+i);
+			chatMember.setUserId("member"+i);
 			groupChatRepository.myGroup(chatMember);
 		}
+	}
+	
+	@Test
+	public void testCreateNewChatRoomDummy() {
 		
+		ChatRoom chatRoom = new ChatRoom();
+		ChatMember chatMember = new ChatMember();
+		
+		for (int i = 1; i < 6; i++) {
+			chatRoom.setRoomId();
+			chatRoom.setRoomMaster("master"+i);
+			chatRoom.setGroupName("chat"+i);
+			chatRoom.setCurrentMember(1);
+			chatRoom.setMaxMember(5);
+			groupChatRepository.insertNewChatRoom(chatRoom);
+			
+			chatMember.setRoomId(chatRoom.getRoomId());
+			for(int j=1; j<4;j++) {
+				chatMember.setUserId("member"+j);
+				groupChatRepository.insertUserToChatRoomByChatMember(chatMember);
+			}
+		}
+	}
+	
+	@Test
+	public void testChatList() {
+		System.out.println(groupChatRepository.myGroupChatList("member1"));
 		
 	}
 	

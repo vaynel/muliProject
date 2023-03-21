@@ -9,7 +9,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import com.trillon.camp.util.chat.dto.ChatRoom;
+import com.trillon.camp.util.chat.dto.ChatRoomDto;
 import com.trillon.camp.util.chat.repository.ChatRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -19,27 +19,27 @@ import lombok.RequiredArgsConstructor;
 public class ChatRoomServiceImpl implements ChatRoomService {
 
 	private final ChatRepository chatRepository;
-	private Map<String, ChatRoom> chatRoomMap = new LinkedHashMap<String, ChatRoom>();
+	private Map<String, ChatRoomDto> chatRoomMap = new LinkedHashMap<String, ChatRoomDto>();
 	
 
 	@Override
-	public List<ChatRoom> findAllRooms() {
+	public List<ChatRoomDto> findAllRooms() {
 //		chatRoomMap = chatRepository.findAllRooms();
-		List<ChatRoom> result = new ArrayList<>(chatRoomMap.values());
+		List<ChatRoomDto> result = new ArrayList<>(chatRoomMap.values());
 		Collections.reverse(result);
 
 		return result;
 	}
 
 	@Override
-	public ChatRoom findRoomById(String Id) {
+	public ChatRoomDto findRoomById(String Id) {
 		
 		return chatRoomMap.get(Id);
 	}
 
 	@Override
-	public ChatRoom createChatRoom(String name) {
-		ChatRoom room = ChatRoom.create(name);
+	public ChatRoomDto createChatRoom(String name) {
+		ChatRoomDto room = ChatRoomDto.create(name);
 		chatRoomMap.put(room.getRoomId(), room);
 
 		return room;
