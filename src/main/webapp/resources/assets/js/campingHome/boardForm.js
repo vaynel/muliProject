@@ -22,7 +22,8 @@ form.addEventListener('submit', async (e)=>{
         body: JSON.stringify(data)
     })
         .then((response)=>{
-            window.location.href = "http://localhost:8080/campingHome/boards";
+            let num = response.text();
+            window.location.href = "http://localhost:8080/campingHome/boards?page=1";
         }).catch((err)=>{
             console.log("err",err);
         })

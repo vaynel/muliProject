@@ -26,6 +26,14 @@
                     <c:forEach items="${boards}" var="boards">
                         <div class="col-6 col-12-large">
                             <ul>
+                                <tr>
+                                    <td><a href="/campingHome/board/${boards.bdIdx}" class="button primary small">${boards.bdIdx}</a></td>
+                                    <td>${boards.title}</td>
+                                    <td>${boards.text}</td>
+                                    <td>${boards.hashtag}</td>
+                                    <br>
+                                 </tr>
+
                                 <div class="image object">
                                     <a href="/campingHome/boardDetail">
                                         <img src="/resources/images/campingHome01.png"  width="400px" height="300px" alt="캠핑의집" >
@@ -45,14 +53,28 @@
                             </ul>
 
                         </div>
-                        <tr>
-                            <td><a href="/campingHome/board/${boards.bdIdx}" class="button primary small">상세페이지</a></td>
-                            <td>${boards.title}</td>
-                            <td>${boards.text}</td>
-                            <td>${boards.hashtag}</td>
-                        <br>
-                        </tr>
+
                     </c:forEach>
+                </div>
+
+                <div class="row mt-3">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+
+                            <li class="page-item">
+                                <a class="page-link" href="/campingHome/boards?page=${paging.prevPage}">Previous</a>
+                            </li>
+
+                            <c:forEach begin="${paging.blockStart}" end="${paging.blockEnd}" var="page">
+                                <li class="page-item"><a class="page-link" href="/campingHome/boards?page=${page}">${page}</a></li>
+                            </c:forEach>
+
+                            <li class="page-item">
+                                <a class="page-link" href="/campingHome/boards?page=${paging.nextPage}">Next</a>
+                            </li>
+
+                        </ul>
+                    </nav>
                 </div>
 
 
@@ -60,6 +82,8 @@
 
         </div>
     </div>
+
+
 
     <!-- Sidebar -->
     <%@ include file="/WEB-INF/views/include/sidebar.jsp" %>
