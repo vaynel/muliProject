@@ -2,14 +2,14 @@ package com.trillon.camp.util.chat.service;
 
 import java.util.List;
 
-import com.trillon.camp.util.chat.dto.ChatRoom;
+import com.trillon.camp.util.chat.dto.ChatRoomDto;
 
 public interface ChatRoomService {
 
-	List<ChatRoom> findAllRooms();
+	List<ChatRoomDto> findAllRooms();
 
-	ChatRoom createChatRoom(String name);
+	ChatRoomDto createChatRoom(String name);
 
-	ChatRoom findRoomById(String roomId);
+	ChatRoomDto findRoomById(String roomId);
 
 }
