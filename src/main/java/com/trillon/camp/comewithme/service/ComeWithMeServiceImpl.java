@@ -41,9 +41,6 @@ public class ComeWithMeServiceImpl implements ComeWithMeService{
 		System.out.println(answer); // 산, 20대, 차박
 		List<ComeWithMeBoard> boardList;
 		
-		answer.setPlace("산");
-		answer.setCampingWay("차박");
-		answer.setAgeAverage("20대");
 		
 		boardList = comeWithMeRepository.selectMatchList(answer);
 		System.out.println(comeWithMeRepository.selectMatchList(answer) + "dlrasdf");
