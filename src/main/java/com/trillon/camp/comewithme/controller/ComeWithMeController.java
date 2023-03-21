@@ -3,6 +3,8 @@ package com.trillon.camp.comewithme.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,17 +46,26 @@ public class ComeWithMeController {
 	
 	@PostMapping("comeWithMeMatch")
 	@ResponseBody // 비동기 응답
-	public void matchFinish(@RequestBody Answer answer, Model model, @RequestParam(required = false, defaultValue="1")int page) {
-		Map<String, Object> comeWithMeBoard;
-		comeWithMeBoard = comeWithMeService.selectMatchList(answer);
-		model.addAllAttributes(comeWithMeService.selectMatchList(answer));
+	public void matchFinish(@RequestBody Answer answer,HttpSession session) {
+		List<ComeWithMeBoard> boardList;
+		boardList = comeWithMeService.selectMatchList(answer);
+		if(boardList != null) {
+			System.out.println("success");
+			session.setAttribute("comeWithMeBoard", boardList);
+		}else {
+			System.out.println("fail");
+		}
 		System.out.println("Post : Match");
 	}
 	
-	@GetMapping("matchFinish")
-	public void matchFinish(Model model, @RequestParam(required = false, defaultValue="1")int page, Answer answer) {
+	@GetMapping("matchFinish") // 매칭 결과
+	public void matchFinish(Model model, HttpSession session, Answer answer) {
 		System.out.println("matchFinish");
-		model.addAllAttributes(comeWithMeService.selectMatchList(answer));
+		List<ComeWithMeBoard> boardList = (List<ComeWithMeBoard>) session.getAttribute("comeWithMeBoard");
+		model.addAttribute("boardList", boardList);
+		
+		System.out.println("matchFinish: " + boardList);
+		System.out.println("matchFinish: " + session.getAttribute("boardList"));
 	}
 	
 

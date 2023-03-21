@@ -35,16 +35,20 @@ public class ComeWithMeServiceImpl implements ComeWithMeService{
 	}
 
 	@Override
-	public Map<String, Object> selectMatchList(Answer answer) {
+	public List<ComeWithMeBoard> selectMatchList(Answer answer) {
 		
 		
-		System.out.println(answer); // 산, 20대, 차박
+		System.out.println("serviceimpl 41" + answer); // 산, 20대, 차박
 		List<ComeWithMeBoard> boardList;
 		
+//		answer.setPlace("산");
+//		answer.setCampingWay("차박");
+//		answer.setAgeAverage("20대");
 		
 		boardList = comeWithMeRepository.selectMatchList(answer);
-		System.out.println(comeWithMeRepository.selectMatchList(answer) + "dlrasdf");
-		return Map.of("boardList", comeWithMeRepository.selectMatchList(answer));
+		System.out.println("serviceimpl 49" + comeWithMeRepository.selectMatchList(answer));
+		
+		return boardList;
 
 	}
 

@@ -22,7 +22,7 @@ public interface ComeWithMeRepository {
 
 //	@Select("select * from comewithme_board where place = #{answer.place} and camping_way = #{answer.campingWay} and age_average = #{answer.ageAverage} "
 //			+ "order by #{paging.sortColumn} #{paging.sortDirection} limit #{paging.start}, #{paging.cntPerPage}")
-//	List<ComeWithMeBoard> selectMatchList(Answer answer, Paging paging);
+//	List<ComeWithMeBoard> selectMatchList(Answer answer);
 	
 	@Select("select * from comewithme_board where place = #{place} and camping_way = #{campingWay} and age_average = #{ageAverage} ")
 	List<ComeWithMeBoard> selectMatchList(Answer answer);

@@ -16,7 +16,7 @@
 				<!-- Content -->
 				<section>
 					<header class="main">
-						<h1>.시발 매칭 갯새키</h1>
+						<h1>매칭결과</h1>
 						<hr>
 						<li><a href="/comewithme/comeWithMeCreateBoard">게시글 작성하러 가기</a></li>
 					</header>
