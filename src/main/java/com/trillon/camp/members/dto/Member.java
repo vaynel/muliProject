@@ -6,10 +6,11 @@ import lombok.Data;
 public class Member {
 	
 	private String userId;
+	private String name;
 	private String password;
-	private String email;
-	private String grade;
 	private String tell;
+	private String gender;
+	private String birth;
 	private boolean isLeave;
 
 }
