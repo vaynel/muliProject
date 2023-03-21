@@ -2,15 +2,14 @@ package com.trillon.camp.campingHome.board.repository;
 
 import com.trillon.camp.campingHome.board.dto.Board;
 import com.trillon.camp.campingHome.board.dto.BoardForm;
+import com.trillon.camp.campingHome.board.dto.Paging;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
-import org.springframework.ui.Model;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 @Repository
 public interface BoardRepository {
@@ -31,8 +30,7 @@ public interface BoardRepository {
     /**
      * 전체 게시글 조회(역순으로 최신게시물이 위에 오게하기 위함)
      */
-    //@Select("select * from campinghome_board")
-    @Select("select * from test order by bd_idx desc")
+    //@Select("select * from test order by bd_idx desc")
     List<BoardForm> selectBoardAll();
 
 
@@ -42,5 +40,16 @@ public interface BoardRepository {
     @Select("select * from test where bd_idx = #{bdIdx}")
     BoardForm selectBoardByBdIdx(long bd_idx);
 
+    /**
+     * 페이징 처리를 위한 젠체 게시글 조회
+     */
+    @Select("select * from test order by bd_idx desc limit #{start}, #{cntPerPage}")
+    List<Board> selectBoardList(Paging paging);
+
+    /**
+     * 전체 게시글 갯수 조회
+     */
+    @Select("select count(1) from test")
+    int countAllBoard();
 }
 

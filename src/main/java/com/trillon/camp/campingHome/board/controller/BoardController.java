@@ -35,7 +35,7 @@ public class BoardController {
 
     @GetMapping("boards") // 게시판 목록페이지 접속
     public String boards(Model model,@RequestParam(required = false,defaultValue = "1") int page){
-      //  model.addAllAttributes(boardService.selectBoardList(page));
+        model.addAllAttributes(boardService.selectBoardList(page));
         return "/campingHome/boards";
     }
 
@@ -50,3 +50,4 @@ public class BoardController {
 
 
 }
+
