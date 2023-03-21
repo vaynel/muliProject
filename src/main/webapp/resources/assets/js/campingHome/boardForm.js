@@ -11,7 +11,7 @@ form.addEventListener('submit', async (e)=>{
         text: text.value,
         hashtag:hashtag.value
     }
-    await fetch("http://localhost:8080/campingHome/board/new",{
+    await fetch("http://localhost:8081/campingHome/board/new",{
         method : 'post',
         //redirect: 'follow',
         headers: {
@@ -22,7 +22,9 @@ form.addEventListener('submit', async (e)=>{
         body: JSON.stringify(data)
     })
         .then((response)=>{
-            window.location.href = "http://localhost:8080/campingHome/boards";
+            let bdidx = response.text();
+            console.dir(bdidx);
+            //window.location.href = "http://localhost:8080/campingHome/boards";
         }).catch((err)=>{
             console.log("err",err);
         })

@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
+
 
 @Controller
 @RequiredArgsConstructor
@@ -27,10 +26,17 @@ public class BoardController {
     }
 
     @PostMapping("board/new")// 게시판 등록 버튼을 눌렀을 때 실행되는 메서드
-    public void saveFile(@RequestBody BoardForm boardForm, Model model) throws IOException {
-        int bdIdx = boardService.insertBoard(boardForm);
-        //redirectAttributes.addAttribute("bdIdx",bdIdx);  // 확인이 안되는 이유는 무엇인가???
-        //return "redirect:/campingHome/boards";
+    @ResponseBody
+    public void saveFile(@RequestBody BoardForm boardForm) throws IOException {
+        boardService.insertBoard(boardForm);
+
+
+    }
+
+    @GetMapping("boards") // 게시판 목록페이지 접속
+    public String boards(Model model,@RequestParam(required = false,defaultValue = "1") int page){
+      //  model.addAllAttributes(boardService.selectBoardList(page));
+        return "/campingHome/boards";
     }
 
     @GetMapping("/board/{bdIdx}") // 게시판 상세페이지 접속
@@ -41,14 +47,6 @@ public class BoardController {
         return "/campingHome/boardDetail";
     }
 
-    @GetMapping("boards") // 게시판 목록페이지 접속
-    public void boards(Model model){
-        List<BoardForm> boards =boardService.selectBoardAll();
-        log.info("boards={}",boards);
-        model.addAttribute("boards",boards);
 
-    }
 
 }
-
-
