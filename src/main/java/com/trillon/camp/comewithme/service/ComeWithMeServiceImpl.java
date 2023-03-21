@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.trillon.camp.comewithme.common.Paging;
+import com.trillon.camp.comewithme.dto.Answer;
 import com.trillon.camp.comewithme.dto.ComeWithMeBoard;
 import com.trillon.camp.comewithme.repository.ComeWithMeRepository;
 
@@ -31,8 +32,23 @@ public class ComeWithMeServiceImpl implements ComeWithMeService{
 							  .build();
 		
 		return Map.of("boardList", comeWithMeRepository.selectBoardList(paging), "paging",paging);
+	}
+
+	@Override
+	public Map<String, Object> selectMatchList(Answer answer) {
 		
 		
+		System.out.println(answer); // 산, 20대, 차박
+		List<ComeWithMeBoard> boardList;
+		
+		answer.setPlace("산");
+		answer.setCampingWay("차박");
+		answer.setAgeAverage("20대");
+		
+		boardList = comeWithMeRepository.selectMatchList(answer);
+		System.out.println(comeWithMeRepository.selectMatchList(answer) + "dlrasdf");
+		return Map.of("boardList", comeWithMeRepository.selectMatchList(answer));
+
 	}
 
 }
