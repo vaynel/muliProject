@@ -1,5 +1,6 @@
 package com.trillon.camp.comewithme.controller;
 
+<<<<<<< Updated upstream
 import java.util.List;
 import java.util.Map;
 
@@ -18,6 +19,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.trillon.camp.comewithme.dto.Answer;
 import com.trillon.camp.comewithme.dto.ComeWithMeBoard;
 import com.trillon.camp.comewithme.service.ComeWithMeService;
+=======
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+>>>>>>> Stashed changes
 
 import lombok.RequiredArgsConstructor;
 
@@ -25,6 +31,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RequestMapping("comewithme")
 public class ComeWithMeController {
+<<<<<<< Updated upstream
 	
 	private final ComeWithMeService comeWithMeService;
 
@@ -78,5 +85,23 @@ public class ComeWithMeController {
 	}
 	
 
+=======
+
+	@GetMapping("comeWithMeList") // 동행인 구인 게시글 목록
+	public void comeWithMeList() {
+		System.out.println("comeWithMeList");
+	}
+	
+	@GetMapping("comeWithMeSelect") // 동행인 신청
+	public void comeWihMeSelect() {
+		System.out.println("comeWihMeSelect");
+	}
+	
+	@GetMapping("comeWithMeBoard") // 게시판 생성
+	public void comeWithMeBoard() {
+		System.out.println("comeWithMeBoard");
+	}
+	
+>>>>>>> Stashed changes
 	
 }

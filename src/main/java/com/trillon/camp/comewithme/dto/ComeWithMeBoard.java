@@ -8,6 +8,7 @@ import lombok.Data;
 @Data
 public class ComeWithMeBoard {
 
+<<<<<<< Updated upstream
 	private Integer bdIdx;
 	private String title;
 	private String content;
@@ -25,5 +26,20 @@ public class ComeWithMeBoard {
 	
 	public String getRegDateAsTime() {
 		return createDate.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+=======
+	private Integer comeSeq;
+	private String userId;
+	private LocalDateTime regDate;
+	private String title;
+	private String content;
+	private Integer count;
+	
+	public String getRegDateAsDate() {
+		return regDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+	}
+	
+	public String getRegDateAsTime() {
+		return regDate.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+>>>>>>> Stashed changes
 	}
 }

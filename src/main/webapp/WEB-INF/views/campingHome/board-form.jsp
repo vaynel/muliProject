@@ -1,4 +1,7 @@
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 <%@ taglib prefix="s" uri="http://www.springframework.org/security/tags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
@@ -19,7 +22,10 @@
 
             <!-- Content -->
             <section>
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
                 <header class="main">
                     <h1>게시글 작성</h1>
                 </header>
@@ -32,6 +38,7 @@
                     <input type="text" id="title" value="제목을 입력하세요">
 
                     <div class="col-12">
+<<<<<<< Updated upstream
                         <strong>텍스트</strong>
                         <input type="text" id="text" value="텍스트를 입력하세요" rows="6"></input>
                     </div>
@@ -41,6 +48,11 @@
                             <input type="text" id="hashtag" value="해시태그를 입력하세요" rows="6"></input>
                         </div>
 
+=======
+                        <input type="text" id="text" value="텍스트를 입력하세요" rows="6"></input>
+                    </div>
+
+>>>>>>> Stashed changes
                     <div class="col-12">
                         <ul class="actions">
                             <li>

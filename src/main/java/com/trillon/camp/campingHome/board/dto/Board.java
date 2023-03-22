@@ -7,7 +7,11 @@ import java.util.List;
 @Data
 public class Board {
 
+<<<<<<< Updated upstream
     private Integer bdIdx;
+=======
+    private long bd_idk;
+>>>>>>> Stashed changes
     private String id;
     private String title;
     private String text;

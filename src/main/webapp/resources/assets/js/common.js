@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 /*let $ = function(cssSelector, message){
+=======
+let $ = function(cssSelector, message){
+>>>>>>> Stashed changes
     let htmlElements = this.document.querySelectorAll(cssSelector);
 
     if(message){
@@ -7,7 +11,11 @@
 
     if(htmlElements.length == 1) return htmlElements[0];
     return htmlElements;
+<<<<<<< Updated upstream
 }*/
+=======
+}
+>>>>>>> Stashed changes
 
 
 let createElement = (tag, props) => {

@@ -1,7 +1,10 @@
 package com.trillon.camp.suggest.controller;
 
+<<<<<<< Updated upstream
 import java.util.List;
 
+=======
+>>>>>>> Stashed changes
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -13,14 +16,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.trillon.camp.suggest.dto.Answer;
+<<<<<<< Updated upstream
 import com.trillon.camp.suggest.dto.Campsite;
 import com.trillon.camp.suggest.service.SuggestSerivce;
 
 import lombok.RequiredArgsConstructor;
+=======
+>>>>>>> Stashed changes
 
 
 @Controller
 @RequestMapping("suggest")
+<<<<<<< Updated upstream
 @RequiredArgsConstructor
 public class SuggestController {
 	
@@ -28,10 +35,17 @@ public class SuggestController {
 	
 	@GetMapping("select")
 	public void select() { 
+=======
+public class SuggestController {
+	
+	@GetMapping("select")
+	public void select() {
+>>>>>>> Stashed changes
 		System.out.println("select.jsp");
 	}
 	
 	
+<<<<<<< Updated upstream
 	/*
 	 * @PostMapping("select")
 	 * 
@@ -43,10 +57,18 @@ public class SuggestController {
 	 * for (Map.Entry<Integer, APIParsing> entry : data.entrySet()) { testData =
 	 * entry.getValue(); suggestService.updateCampingData(testData); } }
 	 */
+=======
+	@PostMapping("select")
+	@ResponseBody
+	public void receiveDate(@RequestBody String data) {
+		System.out.println(data);
+	}
+>>>>>>> Stashed changes
 	
 	
 	
 	@GetMapping("suggestPlace")
+<<<<<<< Updated upstream
 	public void suggestPlace(HttpSession session,Model model) {
 		System.out.println("suggsetPlace");
 		List<Campsite> campsites = (List<Campsite>) session.getAttribute("campsites");
@@ -98,4 +120,16 @@ public class SuggestController {
 	
 	
 	
+=======
+	public void suggestPlace(Model model, Answer data) {
+		System.out.println("suggsetPlace");			
+		
+	}
+	
+	@PostMapping("suggestPlace")
+	@ResponseBody
+	public void suggestPlace(@RequestBody String data,HttpSession session) {
+		System.out.println("receiveData"+ data);
+	}
+>>>>>>> Stashed changes
 }
