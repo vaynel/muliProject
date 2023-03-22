@@ -33,11 +33,16 @@
 									<td>현재인원</td>
 									<td>최대인원</td>
 									<br>
+									</tr>
+									
+								<tr>
+							<c:forEach items="${MyGroupChatRoomList}" var="MyGroupChatRoomList">
+								<td><a href="/groupChat/chatRoom?roomId=${MyGroupChatRoomList.roomId}&userId=">${MyGroupChatRoomList.groupIdx}</a></td>
+							</c:forEach>
 								</tr>
 							<c:forEach items="${MyGroupChatList}" var="MyGroupChatList">
 								<tr>
-									<td><a href="/groupChat/chatRoom?roomId=${MyGroupChatList.roomId}&userId=">${MyGroupChatList.groupName}</a></td>
-									<td>${MyGroupChatList.roomMaster}</td>
+									<td>${MyGroupChatList.groupMaster}</td>
 									<td>${MyGroupChatList.currentMember}</td>
 									<td>${MyGroupChatList.maxMember}</td>
 									<br>
