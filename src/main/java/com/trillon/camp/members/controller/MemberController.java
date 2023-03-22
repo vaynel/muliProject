@@ -53,12 +53,12 @@ public class MemberController {
 		} 
 		
 		Member auth = memberService.authenticateUser(member);
-		System.out.println("되나요" + auth);
+		System.out.println("확인" + auth);
 		
 		
 		if (auth == null) {
 			redirectAttr.addFlashAttribute("msg", "아이디나 비밀번호가 틀렸습니다.");
-			System.out.println(" 아니면 이거가 auth = null");
+			System.out.println(" 아니면 auth = null");
 			return "redirect:/members/login";
 		}
 

@@ -19,9 +19,7 @@
                 </div>
                 <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">로그인</button>
             </form>
-            <a href="#" class="forgot-password">
-                비밀번호 찾기
-            </a>
+           
 
 </body>
 </html>
