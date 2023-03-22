@@ -27,7 +27,7 @@ public interface GroupChatRepository {
 	@Insert("insert into chat_member(chat_idx,id) values(#{ChatIdx},#{Id})")
 	void myGroup(ChatMember chatMember);
 
-	@Insert("insert into group_chat(room_id,group_name, room_master, current_member, max_member)"
+	@Insert("insert into camping_group(room_id,group_name, room_master, current_member, max_member)"
 			+ " values(#{roomId},#{groupName},#{roomMaster},#{currentMember},#{maxMember}) ")
 	void insertNewChatRoom(ChatRoom newChatRoom);
 
@@ -45,7 +45,4 @@ public interface GroupChatRepository {
 			+" on a.room_id = b.room_id"
 			+" where b.room_id=#{roomId}")
 	List<ChatRoom> findRoomById(String roomId);
-	
-	
-
 }
