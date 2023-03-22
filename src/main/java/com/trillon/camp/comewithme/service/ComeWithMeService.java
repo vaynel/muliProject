@@ -14,5 +14,7 @@ public interface ComeWithMeService {
 
 	List<ComeWithMeBoard> selectMatchList(Answer answer);
 
+	Map<String, Object> selectBoardContentByBdIdx(int bdIdx);
+
 
 }

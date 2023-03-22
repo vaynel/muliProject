@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +33,14 @@ public class ComeWithMeController {
 		System.out.println("comeWithMeList1");
 		model.addAllAttributes(comeWithMeService.selectBoardList(page));
 		return "/comewithme/comeWithMeList";
+	}
+	
+	@GetMapping("detail") // 상세보기
+	public String boardContent(int bdIdx, Model model) {
+		System.out.println("detail get mapping");
+		Map<String, Object> commandMap = comeWithMeService.selectBoardContentByBdIdx(bdIdx);
+		model.addAllAttributes(commandMap);
+		return "comewithme/detail";
 	}
 	
 	@GetMapping("comeWithMeCreateBoard") // 같이갈래 게시판 생성
