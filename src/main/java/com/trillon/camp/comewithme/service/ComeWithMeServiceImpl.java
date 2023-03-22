@@ -52,4 +52,10 @@ public class ComeWithMeServiceImpl implements ComeWithMeService{
 
 	}
 
+	@Override
+	public Map<String, Object> selectBoardContentByBdIdx(int bdIdx) {
+		ComeWithMeBoard boardList = comeWithMeRepository.selectBoardByBdIdx(bdIdx);
+		return Map.of("boardList", boardList);
+	}
+
 }

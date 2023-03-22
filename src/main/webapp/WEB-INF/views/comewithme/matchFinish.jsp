@@ -32,7 +32,7 @@
 					<c:forEach items="${boardList}" var="boardList">
 								<tr>
 									<td>${boardList.bdIdx}</td>
-									<td>${boardList.title}</td>
+									<td><a href="${context}/comewithme/detail?bdIdx=${boardList.bdIdx}">${boardList.title}</a></td>
 									<td>${boardList.content}</td>
 									<td>${boardList.likeCount}</td>
 									<td>${boardList.createDate}</td>
