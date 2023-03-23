@@ -1,5 +1,8 @@
 package com.trillon.camp.group.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.stereotype.Service;
 
 import com.trillon.camp.group.repository.GroupRepository;
@@ -19,7 +22,7 @@ public class GroupServiceImpi implements GroupSerivce{
 	}
 
 	@Override
-	public void insertNewGroupTodo(Schedule schedule) {
+	public void insertNewGroupTodo(Schedule schedule,String groupIdx) {
 		
 		if(schedule.getDateEnd()=="")
 			schedule.setDateEnd(schedule.getDate());
@@ -30,8 +33,14 @@ public class GroupServiceImpi implements GroupSerivce{
 		}
 		else
 			schedule.setAllDay(false);
+		Map<String,Object> command = new HashMap<>();
+		command.put("CampingGroup", groupRepository.findCampingGroupByGroupIdx(groupIdx));
+		System.out.println(command.get("CampingGroup"));
 		
-		groupRepository.inserNewGroupTodo(schedule);
+		command.put("schedule", schedule);
+		command.put("groupIdx",groupIdx);
+		
+		groupRepository.inserNewGroupTodo(command);
 		
 	}
 

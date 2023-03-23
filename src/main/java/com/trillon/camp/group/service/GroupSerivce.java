@@ -6,6 +6,6 @@ public interface GroupSerivce {
 
 	Integer selectNewGampingGroupIdx();
 
-	void insertNewGroupTodo(Schedule schedule);
+	void insertNewGroupTodo(Schedule schedule, String groupIdx);
 
 }

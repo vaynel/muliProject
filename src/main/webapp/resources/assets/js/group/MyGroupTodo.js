@@ -14,13 +14,16 @@
     
     function PostTest(){
     	
-        let data = {title : title.value, 
+        let data = {
+                groupIdx: groupIdx.innerHTML,
+                title : title.value, 
         		date : date.value, 
         		dateEnd : dateEnd.value, 
-        		startTime: startTime.value
-        		groupIdx: groupIdx.value};
+        	       		
+            };
+        console.dir(groupIdx.value);
         
-        let response = fetch("http://localhost:8080/group/addGroupTodo",{
+        let response = fetch("http://localhost:8080/group/newGroupTodo",{
             method : 'post',
             headers: {
                 'header': header,
@@ -31,7 +34,7 @@
             body: JSON.stringify(data)
         }).then((response)=>{        	
         	console.dir(response);
-        	window.location.href="http://localhost:8080/groupChat/groupChatList";	
+            window.location.href="http://localhost:8080/groupChat/groupChatList";	
         })      
     }
 

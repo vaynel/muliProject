@@ -1,5 +1,6 @@
 package com.trillon.camp.group.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -10,9 +11,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.trillon.camp.group.service.GroupSerivce;
 import com.trillon.camp.schedule.dto.Schedule;
+import com.trillon.camp.schedule.service.ScheduleService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -24,29 +27,56 @@ public class GroupController {
 	Logger log = LoggerFactory.getLogger(this.getClass());
 	
 	private final GroupSerivce groupService;
+	private final ScheduleService scheduleService;
 
 	
-	@GetMapping("/addGroupTodo")
+	@GetMapping("/newGroupTodo")
 	public void MyGroupTodo(Model model,String groupIdx) {
 		model.addAttribute("groupIdx", groupIdx);
-		log.info("get : addGroupTodo");
+		log.info("get : newGroupTodo");
+		log.info("groupIdx : "+groupIdx);
+		
+	} 
+	
+	@PostMapping("/newGroupTodo")
+	public void newGroupTodo(@RequestBody Map<String, Object> data) {
+		log.info("post : newGroupTodo");
+		log.info("data : "+data);
 		
 	}
+	
+	
 	
 	@PostMapping("/addGroupTodo")
 	public void addMyGroupTodo(@RequestBody Map<String, String> data) {
 		log.info("post : addGroupTodo");
-		
+		log.info("data : " +data);
 		Schedule schedule = new Schedule();
+		String groupIdx = data.get("groupIdx");
 		
 		schedule.setUserId("hi"); 
-		schedule.setTitle(data.get("title"));
-		schedule.setDate(data.get("date")); 
-		schedule.setDateEnd(data.get("dateEnd"));
-		schedule.setStartTime(data.get("startTime"));
+		schedule.setTitle( data.get("title"));
+		schedule.setDate( data.get("date")); 
+		schedule.setDateEnd( data.get("dateEnd"));
+		schedule.setStartTime( data.get("startTime"));
 		
 
-		groupService.insertNewGroupTodo(schedule);
+		groupService.insertNewGroupTodo(schedule,groupIdx);
 		
 	}
+	
+	@GetMapping("/recommendDate")
+	public void recommendDate() {
+		log.info("get : recommendDate");
+		
+	}
+	@ResponseBody
+	@RequestMapping(value = "/get.do")
+	public List ajax() {
+		List<Object> list=scheduleService.selectTodo();
+	
+		return list;
+
+	}
+	
 }
