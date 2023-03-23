@@ -14,9 +14,9 @@
 
 	<div class="container">
 		<div class="col-6">
-			
+			<h1 id="roomNamea">[${room.groupName}]</h1>
 			<h2 id="roomIda">${room.roomId}</h2>
-			
+			<h2 id="roomMaster">${room.roomMaster}</h2>
 		</div>
 		<div>
 			<div id="msgArea" class="col"></div>

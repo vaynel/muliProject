@@ -2,20 +2,15 @@ package com.trillon.camp.groupChat.service;
 
 import java.util.List;
 
-import com.trillon.camp.group.dto.CampingGroup;
-import com.trillon.camp.group.dto.GroupMember;
 import com.trillon.camp.groupChat.dto.ChatRoom;
+import com.trillon.camp.groupChat.dto.GroupChat;
 
 public interface GroupChatService {
 
-	List<CampingGroup> selectAllMygroupChatList(String id);
-	
-	List<GroupMember> selectAllChatRoomList(String userId);
+	List<ChatRoom> selectAllMygroupChatList(String id);
 
 	void createNewChatRoom(ChatRoom newChatRoom);
 
 	List<ChatRoom> findRoomById(String roomId);
-
-	
 
 }

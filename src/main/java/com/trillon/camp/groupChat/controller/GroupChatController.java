@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.trillon.camp.groupChat.dto.ChatMember;
 import com.trillon.camp.groupChat.dto.ChatRoom;
 import com.trillon.camp.groupChat.service.GroupChatService;
 
@@ -30,9 +31,9 @@ public class GroupChatController {
 	public void groupChatList(Model model,String userId) {
 	
 		System.out.println("groupChatList");
-		userId="user4";
-		System.out.println(groupChatService.selectAllMygroupChatList(userId));
-		model.addAttribute("MyGroupChatRoomList", groupChatService.selectAllChatRoomList(userId));
+		userId="member1";
+		//System.out.println(groupChatService.selectAllMygroupChatList(userId));
+		
 		model.addAttribute("MyGroupChatList", groupChatService.selectAllMygroupChatList(userId));		
 	}
 	
@@ -59,12 +60,13 @@ public class GroupChatController {
 		
         log.info("# get Chat Room, roomID : " + roomId);
         List<ChatRoom> chatRooms = groupChatService.findRoomById(roomId);
-        for (ChatRoom Room : chatRooms) {
-			System.out.println(Room);
-		}
         ChatRoom chatRoom  = new ChatRoom();
         chatRoom.setRoomId(chatRooms.get(0).getRoomId());
-        
+        chatRoom.setGroupName(chatRooms.get(0).getGroupName());
+        chatRoom.setRoomMaster(chatRooms.get(0).getRoomMaster());
+        chatRoom.setMaxMember(chatRooms.get(0).getMaxMember());
+        chatRoom.setCurrentMember(chatRooms.get(0).getCurrentMember());
+      
         model.addAttribute("room", chatRoom);
     }
 	

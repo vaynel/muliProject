@@ -1,5 +1,22 @@
+ insert into member(user_id,email,grade,password,tell) values('jpa','jpa@jpa.com','일반','1234','010-0112-0119');
+ insert into member(user_id,email,grade,password,tell) values('test1','jpa@jpa.com','일반','1234','010-0112-0119');
+ select * from member;
+ 
+ 
+ create table camping_place_list(
+    camp_idx int NOT NULL PRIMARY KEY COMMENT'캠핑장 인덱스',
+    campsite VARCHAR(70) NOT NULL COMMENT'캠핑장',
+    tell VARCHAR(15) NOT NULL COMMENT '캠핑장 전화번호',
+    url VARCHAR(255) not null COMMENT '캠핑장 URL',
+    location VARCHAR(255) NULL COMMENT '캠핑장 위치',
+    latitude double not null comment '캠핑장 위도',
+    longitude double not null comment '캠핑장 경도'
+);
+
+select * from camping_place_list;
+
  create table member(
-    ID VARCHAR(100) NOT NULL PRIMARY KEY ,
+    ID VARCHAR(70) NOT NULL PRIMARY KEY ,
     Name VARCHAR(70) NOT NULL ,
     password VARCHAR(100) NOT NULL,
     tell VARCHAR(13) not null ,
@@ -8,6 +25,34 @@
     role_grad varchar(20) not null default 'user'
 );
 
+create table CampingData(
+	campingIdx int not null auto_increment primary key,
+    addr1 VARCHAR(100) NOT NULL ,
+    doNm VARCHAR(10) NOT NULL ,
+    facltDivNm varchar(10) not null,
+    facltNm varchar(20) not null,
+    featureNm varchar(255) not null,
+    intro varchar(255) not null,
+    lctcl varchar(20) not null,
+    lineIntro varchar(100) not null,
+    mapX double ,
+    mapY double,
+    resveUrl varchar(100),
+    tel varchar(15),
+    firstImageUrl varchar(100),
+    homepage varchar(150),
+    induty varchar(10),
+    tooltip varchar(100)
+);
+select count(*) from campingdata;
+select * from campingdata;
+commit;
+rollback;
+
+select distinct induty from campingdata;
+
+select * from campingData where (doNm='경기도' and sigunguNm='고양시') ;
+
 CREATE TABLE comewithme_board (
   BD_IDX INT AUTO_INCREMENT,
   TITLE VARCHAR(100) NOT NULL,
@@ -15,7 +60,7 @@ CREATE TABLE comewithme_board (
   LIKE_COUNT INT NULL DEFAULT 0,
   CREATE_DATE DATE NOT NULL default (current_date),
   NUM_OF_PERSON INT NOT NULL,
-  is_del int default 0,
+  is_del int default 0, 
   PRIMARY KEY (BD_IDX));
 
 
@@ -32,6 +77,12 @@ CREATE TABLE TODO_MANAGER (
     GROUP_NAME varchar(20)    NULL
 
 );
+select * from todo_manager;
+commit;
+
+
+insert into comewithme_board(title, content, like_count, num_of_person, place, camping_way, age_average)
+values('더미12', '더미12', 9, 9, '바다', '차박', '20대');
 
 CREATE TABLE camp.comewithme_board (
   BD_IDX INT AUTO_INCREMENT primary key,
@@ -57,30 +108,33 @@ CREATE TABLE group_TODO_MANAGER (
     chat_id int
 );
 
-CREATE TABLE camping_group (
-    group_idx INT NOT NULL auto_increment PRIMARY KEY,
+CREATE TABLE group_chat (
+    chat_idx INT NOT NULL auto_increment PRIMARY KEY,
     group_name varchar(100) NOT NULL, 
-    group_master varchar(100),
     current_member    int    NULL,
-    max_member int NULL
-    
+    max_member int NULL,
+    room_master varchar(100)
 );
 
-
-
-CREATE TABLE group_chat_room (
-    room_id varchar(100) primary key,
-    group_idx int,
-    foreign key(group_idx) references camping_group(group_idx)
+CREATE TABLE chat_member (
+    chat_idx int,
+    id varchar(100)
 );
 
-CREATE TABLE group_member (
-    group_idx int,
-    user_Id varchar(100),
-    room_Id varchar(100),
-    foreign key(group_idx) references camping_group(group_idx),
-    -- foreign key(user_id) references member(id),
-    foreign key(room_id) references group_chat_room(room_id)
+select * from group_chat;
+select * from chat_member;
+
+select a.*, b.id 
+from  group_chat a left join  chat_member b 
+on a.chat_idx= b.chat_idx
+where b.chat_idx is not null and b.id = 'member1';
+
+CREATE TABLE chat_room (
+    chat_idx INT NOT NULL auto_increment PRIMARY KEY,
+    group_name varchar(100) NOT NULL, 
+    current_member    int    NULL,
+    max_member int NULL,
+    room_master varchar(100)
 );
 
 
@@ -92,8 +146,8 @@ CREATE TABLE test (
   PRIMARY KEY (bd_idx)
 );
 
+select * from test;
 commit;
-
 
 
 

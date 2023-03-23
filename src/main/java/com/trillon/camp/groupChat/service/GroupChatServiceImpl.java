@@ -4,9 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.trillon.camp.group.dto.CampingGroup;
-import com.trillon.camp.group.dto.GroupMember;
 import com.trillon.camp.groupChat.dto.ChatRoom;
+import com.trillon.camp.groupChat.dto.GroupChat;
 import com.trillon.camp.groupChat.repository.GroupChatRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -19,8 +18,8 @@ public class GroupChatServiceImpl implements GroupChatService{
 
 
 	@Override
-	public List<CampingGroup> selectAllMygroupChatList(String userId) {
-		return  groupChatRepository.myGroupChatList(userId);
+	public List<ChatRoom> selectAllMygroupChatList(String id) {
+		return  groupChatRepository.myGroupChatList(id);
 	}
 
 
@@ -36,13 +35,6 @@ public class GroupChatServiceImpl implements GroupChatService{
 	@Override
 	public List<ChatRoom> findRoomById(String roomId) {
 		return groupChatRepository.findRoomById(roomId);
-	}
-
-
-	@Override
-	public List<GroupMember> selectAllChatRoomList(String userId) {
-		
-		return groupChatRepository.selectAllChatRoomList(userId);
 	}
 
 }

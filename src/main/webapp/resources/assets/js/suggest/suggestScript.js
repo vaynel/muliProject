@@ -61,7 +61,7 @@ let suggestPlace=async (answer)=>{
 
     };
 
-    let sendData = await fetch("http://localhost:8080/suggest/select", {
+    let sendData = await fetch("http://localhost:8081/suggest/select", {
         method : 'post',
         headers: {
             'header': header,
@@ -74,7 +74,7 @@ let suggestPlace=async (answer)=>{
     }).then((response)=>{
          let testjson = response.text();
         console.dir(response);
-        window.location.href = "http://localhost:8080/suggest/suggestPlace";
+        window.location.href = "http://localhost:8081/suggest/suggestPlace";
     }).catch((err)=>{
         console.log("err",err);
     })

@@ -1,11 +1,11 @@
   $(document).ready(function(){
 
                 
-             	// var roomName = [roomNamea.innerHTML];
+             	var roomName = [roomNamea.innerHTML];
                 var roomId = roomIda.innerHTML;
                 var username = userNamea.value;
 
-                // console.log(roomName + ", " + roomId + ", " + username);
+                console.log(roomName + ", " + roomId + ", " + username);
 
                 var sockJs = new SockJS("/stomp/chat");
                 //1. SockJS를 내부에 들고있는 stomp를 내어줌
