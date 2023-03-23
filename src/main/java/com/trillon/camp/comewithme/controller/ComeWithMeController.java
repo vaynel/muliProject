@@ -48,6 +48,12 @@ public class ComeWithMeController {
 		System.out.println("comeWithMeCreateBoard");
 	}
 	
+	@PostMapping("upload")
+	public String upload(ComeWithMeBoard board) {
+		comeWithMeService.insertBoard(board);
+		return "redirect:/comewithme/comeWithMeList";
+	}
+	
 	@GetMapping("comeWithMeMatch") // 매칭 시작
 	public void comeWihMeSelect() {
 		System.out.println("Get : comeWithMeMatch");
@@ -59,12 +65,12 @@ public class ComeWithMeController {
 		List<ComeWithMeBoard> boardList;
 		boardList = comeWithMeService.selectMatchList(answer);
 		if(boardList != null) {
-			System.out.println("success");
+			//System.out.println("success");
 			session.setAttribute("comeWithMeBoard", boardList);
 		}else {
 			System.out.println("fail");
 		}
-		System.out.println("Post : Match");
+		//System.out.println("Post : Match");
 	}
 	
 	@GetMapping("matchFinish") // 매칭 결과
@@ -73,9 +79,11 @@ public class ComeWithMeController {
 		List<ComeWithMeBoard> boardList = (List<ComeWithMeBoard>) session.getAttribute("comeWithMeBoard");
 		model.addAttribute("boardList", boardList);
 		
-		System.out.println("matchFinish: " + boardList);
-		System.out.println("matchFinish: " + session.getAttribute("boardList"));
+		//System.out.println("matchFinish: " + boardList);
+		//System.out.println("matchFinish: " + session.getAttribute("boardList"));
 	}
+	
+	
 	
 
 	

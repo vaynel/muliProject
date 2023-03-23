@@ -41,7 +41,7 @@
 		</div>
 	<!-- Scripts -->
 			<%@ include file="/WEB-INF/views/include/commonScripts.jsp" %>
-			<script defer src="${context}/resources/assets/js/comeWithMe/comeWithMeScript.js"></script>
+			<script defer src="${context}/resources/assets/js/comeWithMe/matchJavaScript.js"></script>
 			
 
 </body>

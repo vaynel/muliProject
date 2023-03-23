@@ -10,11 +10,15 @@ import com.trillon.camp.comewithme.dto.ComeWithMeBoard;
 
 public interface ComeWithMeService {
 
-	Map<String, Object> selectBoardList(int page);
+	void insertBoard(ComeWithMeBoard board);
+
+	Map<String, Object> selectBoardList(int page); // 목록전체보기
+
+	Map<String, Object> selectBoardContentByBdIdx(int bdIdx); // 상세보기
 
 	List<ComeWithMeBoard> selectMatchList(Answer answer);
 
-	Map<String, Object> selectBoardContentByBdIdx(int bdIdx);
-
+	
+	
 
 }

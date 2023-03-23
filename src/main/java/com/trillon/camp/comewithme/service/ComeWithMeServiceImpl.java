@@ -58,4 +58,11 @@ public class ComeWithMeServiceImpl implements ComeWithMeService{
 		return Map.of("boardList", boardList);
 	}
 
+	@Override
+	public void insertBoard(ComeWithMeBoard board) {
+
+		comeWithMeRepository.insertBoard(board);
+		
+	}
+
 }
