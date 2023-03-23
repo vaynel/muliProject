@@ -1,15 +1,19 @@
 package com.trillon.camp.campingHome.board.controller;
 import com.trillon.camp.campingHome.board.dto.BoardForm;
+
 import com.trillon.camp.campingHome.board.service.BoardService;
+
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.multipart.MultipartFile;
 
 
 import java.io.IOException;
+import java.util.List;
 
 
 @Controller
@@ -18,6 +22,7 @@ import java.io.IOException;
 @Slf4j
 public class BoardController {
 
+
     private final BoardService boardService;
 
     @GetMapping("board/new") // 게시판 등록 폼
@@ -25,12 +30,15 @@ public class BoardController {
         return "/campingHome/board-form";
     }
 
+
     @PostMapping("board/new")// 게시판 등록 버튼을 눌렀을 때 실행되는 메서드
     @ResponseBody
-    public void saveFile(@RequestBody BoardForm boardForm) throws IOException {
-        boardService.insertBoard(boardForm);
+    public void saveFile(@RequestBody  List<MultipartFile> files) throws IOException {
+        //boardService.insertBoard(boardForm, files);
+        //log.info("boardForm={}",boardForm);
+        log.info("files={}",files); //안넘어옴
 
-
+        System.out.println("fetch success");
     }
 
     @GetMapping("boards") // 게시판 목록페이지 접속
@@ -43,11 +51,9 @@ public class BoardController {
     public String boardDetail(@PathVariable("bdIdx") int bdIdx,Model model) {
         System.out.println("getMapping");
         BoardForm boardForm = boardService.selectBoardByBdIdx(bdIdx);
-        model.addAttribute("board",boardForm);
+        model.addAttribute("board", boardForm);
         return "/campingHome/boardDetail";
     }
-
-
 
 }
 
