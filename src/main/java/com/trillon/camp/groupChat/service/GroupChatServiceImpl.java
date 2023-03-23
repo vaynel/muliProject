@@ -1,11 +1,13 @@
 package com.trillon.camp.groupChat.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import com.trillon.camp.group.dto.CampingGroup;
+import com.trillon.camp.group.dto.GroupMember;
 import com.trillon.camp.groupChat.dto.ChatRoom;
-import com.trillon.camp.groupChat.dto.GroupChat;
 import com.trillon.camp.groupChat.repository.GroupChatRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -18,8 +20,8 @@ public class GroupChatServiceImpl implements GroupChatService{
 
 
 	@Override
-	public List<ChatRoom> selectAllMygroupChatList(String id) {
-		return  groupChatRepository.myGroupChatList(id);
+	public List<CampingGroup> selectAllMygroupChatList(String userId) {
+		return  groupChatRepository.myGroupChatList(userId);
 	}
 
 
@@ -35,6 +37,27 @@ public class GroupChatServiceImpl implements GroupChatService{
 	@Override
 	public List<ChatRoom> findRoomById(String roomId) {
 		return groupChatRepository.findRoomById(roomId);
+	}
+
+
+	@Override
+	public List<GroupMember> selectAllChatRoomList(String userId) {
+		
+		return groupChatRepository.selectAllChatRoomList(userId);
+	}
+
+
+	@Override
+	public void insertNewGroup(CampingGroup campingGroup) {
+		groupChatRepository.insertNewGroup(campingGroup);
+		
+	}
+
+
+	@Override
+	public void insertNewGroupChat(Map<String, Object> commandMap) {
+		groupChatRepository.insertNewGroupChat(commandMap);
+		
 	}
 
 }
