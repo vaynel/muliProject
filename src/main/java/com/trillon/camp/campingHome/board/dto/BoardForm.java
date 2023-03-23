@@ -10,7 +10,10 @@ import java.util.List;
 @Data
 public class BoardForm {
 
+
     private Integer bdIdx;
+    private long bd_idx;
+    private String id;
     private String title;
     private LocalDateTime Date;
     private String text;
@@ -19,5 +22,4 @@ public class BoardForm {
     private Integer like;
     private Integer share;
     private Integer comments;
-    private String id;
 }

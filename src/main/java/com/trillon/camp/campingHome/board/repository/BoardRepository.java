@@ -55,4 +55,3 @@ public interface BoardRepository {
     @Select("select count(1) from test")
     int countAllBoard();
 }
-

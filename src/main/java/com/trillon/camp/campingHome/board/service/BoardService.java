@@ -8,8 +8,12 @@ import java.util.Map;
 
 
 public interface BoardService {
-    int insertBoard(BoardForm boardForm,List<MultipartFile> files);
+    int insertBoard(BoardForm boardForm, List<MultipartFile> files);
+
     List<BoardForm> selectBoardAll();
+
     BoardForm selectBoardByBdIdx(int bdIdx);
+
     Map<String, Object> selectBoardList(int page);
+
 }

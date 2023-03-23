@@ -28,7 +28,7 @@
 
                     <div calss="row gtr-uniform">
                     <strong>제목</strong>
-                    <input type="text" id="title" value="제목을 입력하세요">
+                    <input type="text" id="title">
 
                     <div class="col-12">
                         <strong>텍스트</strong>
