@@ -103,9 +103,12 @@ public class GroupChatTest {
 	public void insertNewMemberToGroup() {
 		GroupMember groupMember = new GroupMember();
 		groupMember.setUserId("user1");
-		groupMember.setGroupIdx(4);
-		groupMember.setRoomId(groupChatRepository.selectChatRoomIdByGroupIdx(4));
-		groupRepository.insertNewMemberToGroup(groupMember);
+		for (int i = 1; i < 4; i++) {
+			groupMember.setGroupIdx(i);
+			groupMember.setRoomId(groupChatRepository.selectChatRoomIdByGroupIdx(i));
+			groupRepository.insertNewMemberToGroup(groupMember);
+		}
+		
 			
 		
 		

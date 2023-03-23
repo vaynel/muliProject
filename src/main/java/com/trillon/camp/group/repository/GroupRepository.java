@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.trillon.camp.group.dto.CampingGroup;
 import com.trillon.camp.group.dto.GroupMember;
+import com.trillon.camp.schedule.dto.Schedule;
 
 @Repository
 public interface GroupRepository {
@@ -21,6 +22,9 @@ public interface GroupRepository {
 	@Insert("insert into group_member(group_idx,room_id,user_id) "
 			+ "values(#{groupIdx},#{roomId},#{userId})")
 	void insertNewMemberToGroup(GroupMember groupMember);
+
+	@Insert("insert into group_todo_manager(user_id, title, date, date_end, allday, start_time) values(#{userId},#{title},#{date},#{dateEnd},#{allDay},#{startTime})")
+	void inserNewGroupTodo(Schedule schedule);
 
 
 

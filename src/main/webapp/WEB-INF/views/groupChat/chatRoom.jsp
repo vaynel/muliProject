@@ -30,6 +30,8 @@
 					</div>
 				</div>
 			</div>
+			<br>
+			<a href="/group/addGroupTodo">모임 생성</a>
 		</div>
 	</div>
 

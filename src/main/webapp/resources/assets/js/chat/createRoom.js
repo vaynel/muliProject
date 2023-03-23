@@ -12,7 +12,7 @@ createRoom.addEventListener('submit', async (e)=>{
         currentMember : 1
     }
     console.dir(data);
-    await fetch("http://localhost:8081/groupChat/createGroup",{
+    await fetch("http://localhost:8080/groupChat/createGroup",{
         method : 'post',
         headers: {
             'header': header,
@@ -23,7 +23,7 @@ createRoom.addEventListener('submit', async (e)=>{
     })
     .then((response)=>{
         console.dir(response);
-        window.location.href = "http://localhost:8081/groupChat/groupChatList";
+        window.location.href = "http://localhost:8080/groupChat/groupChatList";
         
     })
     .catch((err)=>{
