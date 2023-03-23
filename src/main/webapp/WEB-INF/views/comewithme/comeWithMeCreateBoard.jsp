@@ -21,16 +21,15 @@
 						<h1 style="color: black">게시글 작성</h1>
 						<hr>
 					</header>
-					<form id = "createBoard">
 					<div >
-					<li>제목</li><input  style="color: black" type="text">
+					<li>제목</li><input  style="color: black" type="text" id="title">
 					</div>
 					<br>
 					<br>
 
 					<li>내용</li>
-					<div class="content">
-						<textarea name="content" rows="10" cols="100" ></textarea>
+					<div>
+						<textarea name="content" rows="10" cols="100" id="content"></textarea>
 					</div>
 					<br>
 					<li>원하는 캠핑 장소는?</li> 
@@ -74,9 +73,8 @@
 						<div class="form-group">
 								<input type="text" id="tag" size="7" placeholder="엔터로 해시태그를 등록해주세요." style="width: 300px;" />
 						</div>
-                          <br>   <button type="submit" class="button primary" style="color:white; width:100%">게시글 저장하기</button>
+                          <br>   <button type="button" id="btnClick" class="button primary" style="color:white; width:100%">게시글 저장하기</button>
 					</div>
-					</from>
 				</section>
 			</div>
 		</div>

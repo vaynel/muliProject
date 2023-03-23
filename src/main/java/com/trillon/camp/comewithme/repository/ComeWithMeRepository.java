@@ -14,8 +14,8 @@ import com.trillon.camp.comewithme.dto.ComeWithMeBoard;
 @Repository
 public interface ComeWithMeRepository {
 	
-	@Insert("insert into comewithme_board(title, content, num_of_person, place, camping_way, age_average) "
-			+ "values(#{title}, #{content}, #{num_of_person}, #{place}, #{camping_way}, #{age_average})")
+	@Insert("insert into comewithme_board(title, content, num_of_person, place, camping_way, age_average, gender) "
+			+ "values(#{title}, #{content}, #{numOfPerson}, #{place}, #{campingWay}, #{ageAverage}, #{gender})")
 	@Options(useGeneratedKeys = true, keyProperty = "bdIdx")
 	public void insertBoard(ComeWithMeBoard board);
 

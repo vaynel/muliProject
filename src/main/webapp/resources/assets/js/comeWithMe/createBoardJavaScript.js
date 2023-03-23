@@ -1,17 +1,7 @@
-let classAddEventListener = function(cssSelector, ev){
-	let element = $(cssSelector);
-	for(let i = 0; i < element.length; i++){
-		element
-	}
-}
-
 let token = document.querySelector("meta[name='_csrf']").content;
 let header = document.querySelector("meta[name='_csrf_header']").content;
 
-const createBoard = document.getElementById('createBoard');
-
-createBoard.addEventlistener('submit', async (e)=> {
-	e.preventdefault();
+function sendData(){
 	
 	let data = {
 			title : title.value,
@@ -21,39 +11,43 @@ createBoard.addEventlistener('submit', async (e)=> {
 			campingWay : campingWay.value,
 			ageAverage : ageAverage.value,
 			gender : gender.value
-	}
-	await fetch("http://localhost:8080/comewithme/upload",{
+	};
+	
+	let response = fetch("http://localhost:8080/comewithme/upload",{
 		method : 'post',
 		headers : {
 			'header' : header,
 			'X-CSRF-Token' : token,
 			'Content-Type' : 'application/json'
 		},
-		//redirect : 'follow',
-		body : JSON.stringify(data)
-	}).then((response)=>{
-		let jsontest = response.text();
-		window.location.href = "http://localhost:8080/comewithme/comeWithMeList";
-	}).catch((err)=>{
-		alert("삐요삐요 에러발생", err);
+		body: JSON.stringify(data)
+	}).then((response) =>{
+		console.log(response);
+		window.location.href="http://localhost:8080/comewithme/comeWithMeList";
 	})
-});
-
-if(title.value == ""){
-	alert("마 제목 입력안하나");
-}else if(conent.value == ""){
-	alert("마 내용 입력안하나");
-}else if(numOfPerson.value == ""){
-	alert("마 인원수 입력안하나");
-}else if(place.value == ""){
-	alert("마 장소 선택 안하나");
-}else if(campingWay.value == ""){
-	alert("마 캠핑 방식 선택 안하나");
-}else if(ageAverage.value == ""){
-	alert("마 연령대 선택 안하나");
-}else if(gender.value == ""){
-	alert("마 성별 선택 안하나");
 }
+
+btnClick.addEventListener('click', e=>{
+	
+	if(title.value == ""){
+		alert("마 제목 입력안하나 만만하나");
+	}else if(content.value == ""){
+		alert("마 내용 입력안하나");
+	}else if(numOfPerson.value == ""){
+		alert("마 인원수 입력안하나");
+	}else if(place.value == ""){
+		alert("마 장소 선택 안하나");
+	}else if(campingWay.value == ""){
+		alert("마 캠핑 방식 선택 안하나");
+	}else if(ageAverage.value == ""){
+		alert("마 연령대 선택 안하나");
+	}else if(gender.value == ""){
+		alert("마 성별 선택 안하나");
+	}
+	sendData();
+})
+
+
 
 
 
