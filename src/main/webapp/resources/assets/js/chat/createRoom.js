@@ -8,11 +8,11 @@ createRoom.addEventListener('submit', async (e)=>{
         userId: userId.value,
         groupName: groupName.value,
         maxMember: maxMember.value,
-        roomMaster: roomMaster.value,
+        groupMaster: groupMaster.value,
         currentMember : 1
     }
     console.dir(data);
-    await fetch("http://localhost:8081/groupChat/createChat",{
+    await fetch("http://localhost:8081/groupChat/createGroup",{
         method : 'post',
         headers: {
             'header': header,
