@@ -43,28 +43,28 @@ public class MemberController {
 	@GetMapping("/login")
 	public void loginForm() {};
 
-	@PostMapping("/login") 
+	@PostMapping("/afterlogin") 
 	public String login(Member member, HttpSession session, RedirectAttributes redirectAttr) {
 		
-		
+		System.out.println("넘어는오냐구요");
 		if(member.getUserId().equals("") | member.getPassword().equals("")) {
 			redirectAttr.addFlashAttribute("msg", "아이디나 비밀번호를 입력해주세요.");
 			return "redirect:/members/login";
 		} 
 		
 		Member auth = memberService.authenticateUser(member);
-		System.out.println("되나요" + auth);
+		System.out.println("확인" + auth);
 		
 		
 		if (auth == null) {
 			redirectAttr.addFlashAttribute("msg", "아이디나 비밀번호가 틀렸습니다.");
-			System.out.println(" 아니면 이거가 auth = null");
+			System.out.println(" 아니면 auth = null");
 			return "redirect:/members/login";
 		}
 
 		
 		session.setAttribute("auth", auth);
-		return "redirect:/index";
+		return "redirect:/schedule/calendar";
 	}
 
 	@GetMapping("/signin")
