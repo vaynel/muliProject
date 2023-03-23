@@ -49,9 +49,11 @@ public class ComeWithMeController {
 	}
 	
 	@PostMapping("upload") // 게시판 처리
-	public String upload(ComeWithMeBoard board) {
-		comeWithMeService.insertBoard(board);
+	public String upload(@RequestBody ComeWithMeBoard board) {
+		
 		System.out.println(board);
+		comeWithMeService.insertBoard(board);
+		
 		return "redirect:/comewithme/comeWithMeList";
 	}
 	
