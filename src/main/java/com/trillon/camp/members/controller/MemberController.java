@@ -43,10 +43,10 @@ public class MemberController {
 	@GetMapping("/login")
 	public void loginForm() {};
 
-	@PostMapping("/login") 
+	@PostMapping("/afterlogin") 
 	public String login(Member member, HttpSession session, RedirectAttributes redirectAttr) {
 		
-		
+		System.out.println("넘어는오냐구요");
 		if(member.getUserId().equals("") | member.getPassword().equals("")) {
 			redirectAttr.addFlashAttribute("msg", "아이디나 비밀번호를 입력해주세요.");
 			return "redirect:/members/login";
@@ -64,7 +64,7 @@ public class MemberController {
 
 		
 		session.setAttribute("auth", auth);
-		return "redirect:/index";
+		return "redirect:/schedule/calendar";
 	}
 
 	@GetMapping("/signin")

@@ -1,25 +1,59 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<meta id="_csrf" name="_csrf" content="${_csrf.token}"></meta>
+<meta id="_csrf_header" name="_csrf_header"
+	content="${_csrf.headerName}"></meta>
 <meta charset="UTF-8">
 </head>
 <body>
 
-            
-            <form  action="/members/login"  method="POST" >
 
-                <input type="text" id="inputId"  placeholder="아이디" required autofocus>
-                <input type="password" id="inputPassword" placeholder="비밀번호" required>
-                <div id="remember" class="checkbox">
-                    <label>
-                        <input type="checkbox" value="remember-me"> 아이디 기억하기
-                    </label>
-                </div>
-                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">로그인</button>
-            </form>
-           
+
+
+	<input type="text" id="userId" placeholder="아이디" required autofocus>
+	<input type="password" id="password" placeholder="비밀번호" required>
+	<div id="remember" class="checkbox">
+		<label> <input type="checkbox" value="remember-me">
+			아이디 기억하기
+		</label>
+	</div>
+	<button class="btn btn-lg btn-primary btn-block btn-signin"
+		type="button" id="btnClick">로그인</button>
+
+
+
+
+	<script>
+	 var token = $("meta[name='_csrf']").attr("content");
+	 var header = $("meta[name='_csrf_header']").attr("content");
+		function btnlogin() {
+
+			$.ajax({
+				url : "afterlogin",
+				type : "post",
+				data : {
+					userId : userId.value,
+					password : password.value
+
+				},beforeSend : function(xhr){
+					xhr.setRequestHeader(header, token);
+				}
+
+			});
+
+		}
+		
+		 btnClick.addEventListener('click',e=>{
+			 	btnlogin();
+		        
+		        });
+		
+		
+	</script>
 
 </body>
 </html>
