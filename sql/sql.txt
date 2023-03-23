@@ -1,0 +1,105 @@
+ create table member(
+    ID VARCHAR(100) NOT NULL PRIMARY KEY ,
+    Name VARCHAR(70) NOT NULL ,
+    password VARCHAR(100) NOT NULL,
+    tell VARCHAR(13) not null ,
+    Gender VARCHAR(1) NULL,
+    birth date not null ,
+    role_grad varchar(20) not null default 'user'
+);
+
+CREATE TABLE comewithme_board (
+  BD_IDX INT AUTO_INCREMENT,
+  TITLE VARCHAR(100) NOT NULL,
+  CONTENT VARCHAR(1000) NOT NULL,
+  LIKE_COUNT INT NULL DEFAULT 0,
+  CREATE_DATE DATE NOT NULL default (current_date),
+  NUM_OF_PERSON INT NOT NULL,
+  is_del int default 0,
+  PRIMARY KEY (BD_IDX));
+
+
+
+CREATE TABLE TODO_MANAGER (
+    T_NUM    INT    NOT NULL auto_increment PRIMARY KEY,
+    USER_ID varchar(20) NOT NULL, 
+    TITLE varchar(50) NOT NULL,
+    DATE    DATE    NULL    ,
+    DATE_END DATE NULL,
+    ALLDAY BOOLEAN NOT NULL    DEFAULT FALSE,
+    START_TIME    TIME    NULL,
+    MADE_BY_GROUP    BOOLEAN    NOT NULL    DEFAULT FALSE,
+    GROUP_NAME varchar(20)    NULL
+
+);
+
+CREATE TABLE camp.comewithme_board (
+  BD_IDX INT AUTO_INCREMENT primary key,
+  TITLE VARCHAR(100) NOT NULL,
+  CONTENT VARCHAR(1000) NOT NULL,
+  LIKE_COUNT INT NULL DEFAULT 0,
+  CREATE_DATE DATE NOT NULL default (current_date),
+  NUM_OF_PERSON INT NOT NULL,
+  is_del int default 0, 
+  place varchar(100) not null,
+  camping_way varchar(100) not null,
+  age_average varchar(100) not null
+);
+
+CREATE TABLE group_TODO_MANAGER (
+    todo_num INT NOT NULL auto_increment PRIMARY KEY,
+    group_name varchar(100) NOT NULL, 
+    DATE    DATE    NULL,
+    DATE_END DATE NULL,
+    START_TIME  TIME  NULL,
+    content varchar(1000),
+    campsite varchar(100),
+    chat_id int
+);
+
+CREATE TABLE camping_group (
+    group_idx INT NOT NULL auto_increment PRIMARY KEY,
+    group_name varchar(100) NOT NULL, 
+    group_master varchar(100),
+    current_member    int    NULL,
+    max_member int NULL
+    
+);
+
+
+
+CREATE TABLE group_chat_room (
+    room_id varchar(100) primary key,
+    group_idx int,
+    foreign key(group_idx) references camping_group(group_idx)
+);
+
+CREATE TABLE group_member (
+    group_idx int,
+    user_Id varchar(100),
+    room_Id varchar(100),
+    foreign key(group_idx) references camping_group(group_idx),
+    -- foreign key(user_id) references member(id),
+    foreign key(room_id) references group_chat_room(room_id)
+);
+
+CREATE TABLE test (
+  bd_idx int NOT NULL AUTO_INCREMENT,
+  TITLE varchar(45) NOT NULL,
+  text varchar(100) NOT NULL,
+  HASHTAG varchar(45) NOT NULL,
+  PRIMARY KEY (bd_idx)
+);
+
+commit;
+
+
+
+
+
+
+
+
+
+
+

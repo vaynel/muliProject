@@ -9,19 +9,26 @@ import org.springframework.web.socket.WebSocketSession;
 import lombok.Data;
 
 @Data
-public class ChatRoom {
+public class ChatRoomDto {
 	
 	private String roomId;
-    private String name;
+    private String groupName;
     private Set<WebSocketSession> sessions = new HashSet<>();
     //WebSocketSession은 Spring에서 Websocket Connection이 맺어진 세션
 
-    public static ChatRoom create(String name){
-        ChatRoom room = new ChatRoom();
+    
+    
+    public static ChatRoomDto create(String groupName){
+        ChatRoomDto room = new ChatRoomDto();
 
         room.roomId = UUID.randomUUID().toString();
-        room.name = name;
+        room.groupName = groupName;
         return room;
     }
+
+	public void setRoomId() {
+		this.roomId = UUID.randomUUID().toString();
+	}
+    
 
 }

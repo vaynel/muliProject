@@ -33,7 +33,6 @@ public interface BoardRepository {
     //@Select("select * from test order by bd_idx desc")
     List<BoardForm> selectBoardAll();
 
-
     /**
      * 특정 게시글 조회
      */

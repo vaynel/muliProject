@@ -15,6 +15,9 @@ public class ComeWithMeBoard {
 	private LocalDateTime createDate;
 	private Integer numOfPerson ;
 	private Integer isDel;
+	private String place;  		// 산, 바다
+	private String campingWay; // 캠핑 방식
+	private String ageAverage;  // 연령층
 	
 	public String getRegDateAsDate() {
 		return createDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
