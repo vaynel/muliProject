@@ -33,12 +33,17 @@
 
                     <div class="col-12">
                         <strong>텍스트</strong>
-                        <input type="text" id="text" value="텍스트를 입력하세요" rows="6"></input>
+                        <input type="text" id="text" value="텍스트를 입력하세요" rows="6"/>
                     </div>
 
                         <div class="col-12">
                             <strong>해시태그</strong>
-                            <input type="text" id="hashtag" value="해시태그를 입력하세요" rows="6"></input>
+                            <input type="text" id="hashtag" value="해시태그를 입력하세요" rows="6"/>
+                        </div>
+
+                        <div class="col-12">
+                            <strong>사진 등록</strong>
+                            <input type="file" multiple/>
                         </div>
 
                     <div class="col-12">

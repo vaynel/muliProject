@@ -1,15 +1,17 @@
 package com.trillon.camp.campingHome.board.controller;
 import com.trillon.camp.campingHome.board.dto.BoardForm;
 import com.trillon.camp.campingHome.board.service.BoardService;
+import com.trillon.camp.campingHome.file.FileInfo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.multipart.MultipartFile;
 
 
 import java.io.IOException;
+import java.util.List;
 
 
 @Controller
@@ -27,10 +29,12 @@ public class BoardController {
 
     @PostMapping("board/new")// 게시판 등록 버튼을 눌렀을 때 실행되는 메서드
     @ResponseBody
-    public void saveFile(@RequestBody BoardForm boardForm) throws IOException {
-        boardService.insertBoard(boardForm);
+    public void saveFile(@RequestBody  List<MultipartFile> files) throws IOException {
+        //boardService.insertBoard(boardForm, files);
+        //log.info("boardForm={}",boardForm);
+        log.info("files={}",files); //안넘어옴
 
-
+        System.out.println("fetch success");
     }
 
     @GetMapping("boards") // 게시판 목록페이지 접속

@@ -20,5 +20,4 @@ public class BoardForm {
     private Integer share;
     private Integer comments;
     private String id;
-    //private List<MultipartFile> imageFiles;
 }
