@@ -16,6 +16,7 @@ import static org.apache.commons.io.FilenameUtils.getFullPath;
 @Component
 public class FileStore {
 
+    public List<UploadFile> storeFiles(List<MultipartFile> multipartFiles) throws IOException {
         List<UploadFile> storeFileResult = new ArrayList<>();
         for (MultipartFile multipartFile : multipartFiles) {
             if(!multipartFile.isEmpty()){

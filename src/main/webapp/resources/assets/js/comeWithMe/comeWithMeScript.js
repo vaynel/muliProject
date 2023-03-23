@@ -26,7 +26,7 @@ let matchFinish = async(answer)=>{
 			ageAverage : answer[2]
 	};
 	
-	let sendData = await fetch("http://localhost:8080/comewithme/comeWithMeMatch",{
+	let sendData = await fetch("http://localhost:8081/comewithme/comeWithMeMatch",{
 		method : 'post',
 		headers : {
 			'header' : header,
@@ -39,7 +39,7 @@ let matchFinish = async(answer)=>{
 	}).then((response)=>{
 		let jsonTest = response.text();
 		console.log(answer);
-		window.location.href = "http://localhost:8080/comewithme/matchFinish?page=1";
+		window.location.href = "http://localhost:8081/comewithme/matchFinish?page=1";
 	}).catch((err)=>{
 		alert("삐요삐요 에러발생", err);
 	})

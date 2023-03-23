@@ -6,27 +6,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-<<<<<<< Updated upstream
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
-=======
-import org.springframework.web.bind.annotation.GetMapping;
->>>>>>> Stashed changes
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-<<<<<<< Updated upstream
 
 import com.trillon.camp.members.dto.Member;
 import com.trillon.camp.members.service.MemberService;
 import com.trillon.camp.members.validator.SignUpFormValidator;
 import com.trillon.camp.members.validator.form.SignUpForm;
-=======
-import com.trillon.camp.members.dto.Member;
-import com.trillon.camp.members.service.MemberService;
->>>>>>> Stashed changes
 
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -37,7 +28,6 @@ import lombok.RequiredArgsConstructor;
 public class MemberController {
 
 	private final MemberService memberService;
-<<<<<<< Updated upstream
 	private final SignUpFormValidator signUpFormValidator;
 
 
@@ -97,59 +87,3 @@ public class MemberController {
 		return "redirect:/members/login";
 	}
 }
-=======
-
-	Logger log = LoggerFactory.getLogger(this.getClass());
-<<<<<<< HEAD
-		
-	@GetMapping("/signin")
-	public void signin() { System.out.println("signin.jsp"); }
-	
-=======
-
-
->>>>>>> e91d1b2264740c3f63e9fadd9d30d0229477ca42
-	@GetMapping("/login")
-	public void login() {
-		System.out.println("login.jsp");
-	}
-
-	@PostMapping("/login")
-	public String loginUser(Member member, HttpSession session, RedirectAttributes rAttributes, String test) {
-		System.out.println(test);
-		System.out.println(member);
-		Member auth = memberService.authenticateUser(member);
-
-		if (auth == null) {
-			System.out.println("auth=null");
-			return "redirect:/members/login";
-		}
-		System.out.println(auth);
-
-		session.setAttribute("auth", auth);
-		return "redirect:/index";
-	}
-}
-//<<<<<<< Updated upstream
-<<<<<<< HEAD
-
-//	@GetMapping("/signIn")
-//=======
-	
-	
-//	@GetMapping("/signin")
-//>>>>>>> Stashed changes
-//	public void signIn() { System.out.println("signin.jsp"); }
-//}
-=======
-//
-//	//@GetMapping("/signIn")
-//=======
-//
-//
-//	//@GetMapping("/signin")
-//>>>>>>> Stashed changes
-//	//public void signIn() { System.out.println("signin.jsp"); }
-////}
->>>>>>> e91d1b2264740c3f63e9fadd9d30d0229477ca42
->>>>>>> Stashed changes

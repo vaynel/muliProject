@@ -1,6 +1,5 @@
 package com.trillon.camp.suggest.repository;
 
-<<<<<<< Updated upstream
 import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
@@ -28,11 +27,4 @@ public interface SuggestRepository {
 	@Select("select * from campingData where (doNm=#{doNm} and sigunguNm=#{sigunguNm}) and (induty like #{induty})")
 	List<Campsite> findCampingByAnswerWithoutInduty(Answer answer);
 
-=======
-import org.springframework.stereotype.Repository;
-
-@Repository
-public interface SuggestRepository {
-
->>>>>>> Stashed changes
 }
