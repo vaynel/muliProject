@@ -7,6 +7,12 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<meta id="_csrf" name="_csrf" content="${_csrf.token}"></meta>
+	<meta id="_csrf_header" name="_csrf_header"
+	content="${_csrf.headerName}"></meta>
+  
   <title>회원가입 화면</title>
 
   <!-- Bootstrap CSS -->
@@ -65,7 +71,13 @@
               <div class="invalid-feedback">
                 아이디를 입력해주세요.
               </div>
+                <button type="button" id="idCheck">중복확인</button>
             </div>
+            
+          
+            
+            <br>
+            
             <div class="col-md-6 mb-3">
               <label for="nickname">비밀번호</label>
               <input type="text" class="form-control" id="password" placeholder="" value="" required>
@@ -75,17 +87,24 @@
             </div>
           </div>
 
-          <div class="mb-3">
-            <label for="email">이메일</label>
-            <input type="email" class="form-control" id="email" placeholder="you@example.com" required>
-            <div class="invalid-feedback">
-              이메일을 입력해주세요.
-            </div>
-          </div>
+
+   		 <label for="name">이름</label>
+      	        <input type="text" class="form-control" id="nameData" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                이름를 입력해주세요.
+              </div>
 
           <div class="mb-3">
+            <label for="birth">생년월일</label>
+            <input type="date" class="form-control" id="birth" required>
+            <div class="invalid-feedback">
+              생년월일을 입력해주세요.
+            </div>
+          </div>
+          
+             <div class="mb-3">
             <label for="phone-number">전화번호</label>
-            <input type="text" class="form-control" id="phone-number" placeholder="010-****-****" required>
+            <input type="text" class="form-control" id="tell" placeholder="010-****-****" required>
             <div class="invalid-feedback">
               전화번호를 입력해주세요.
             </div>
@@ -94,25 +113,17 @@
           <div class="row">
             <div class="col-md-8 mb-3">
               <label for="root">성별</label>
-              <select class="custom-select d-block w-100" id="root">
+              <select class="custom-select d-block w-100" id="gender">
                 <option value=""></option>
-                <option>남자</option>
-                <option>여자</option>
+                <option value="m">남자</option>
+                <option value="w">여자</option>
               </select>
               <div class="invalid-feedback">
                 성별을 선택해주세요.
               </div>
             </div>
             
-            <div class="mb-3">
-            <label for="kakao-id">카카오 아이디</label>
-            <input type="text" class="form-control" id="kakao-id" placeholder="" required>
-            <div class="invalid-feedback">
-              카카오톡 아이디를 입력해주세요.
-            </div>
-          </div>          
 
-          
           <hr class="mb-4">
           <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" id="aggrement" required>
@@ -120,7 +131,7 @@
           </div>
           
           <div class="mb-4"></div>
-          <button class="btn btn-primary btn-lg btn-block" type="submit">가입 완료</button>
+          <button class="btn btn-primary btn-lg btn-block" type="button" id="btnSign">가입 완료</button>
         </form>
       </div>
     </div>
@@ -145,4 +156,5 @@
     }, false);
   </script>
 </body>
+<script defer src="${context}/resources/assets/js/member/signin.js"></script>
 </html>

@@ -3,9 +3,13 @@ package com.trillon.camp.comewithme.service;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import com.trillon.camp.comewithme.common.Paging;
+import com.trillon.camp.campingHome.file.FileInfo;
+import com.trillon.camp.comewithme.common.page.Paging;
 import com.trillon.camp.comewithme.dto.Answer;
 import com.trillon.camp.comewithme.dto.ComeWithMeBoard;
 import com.trillon.camp.comewithme.repository.ComeWithMeRepository;
@@ -16,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ComeWithMeServiceImpl implements ComeWithMeService{
 
+	Logger logger =  LoggerFactory.getLogger(this.getClass());
 	
 	private final ComeWithMeRepository comeWithMeRepository;
 	
@@ -60,9 +65,23 @@ public class ComeWithMeServiceImpl implements ComeWithMeService{
 
 	@Override
 	public void insertBoard(ComeWithMeBoard board) {
-
 		comeWithMeRepository.insertBoard(board);
 		
+		
 	}
+
+	@Override
+	public void updateBoard(ComeWithMeBoard board) {
+		comeWithMeRepository.updateBoard(board);
+	}
+
+	@Override
+	public void deleteBoardByBdIdx(int bdIdx) {
+		comeWithMeRepository.deleteBoardByBdIdx(bdIdx);
+		
+		
+	}
+	
+	
 
 }

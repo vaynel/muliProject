@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -32,13 +33,18 @@ public class BoardController {
 
 
     @PostMapping("board/new")// 게시판 등록 버튼을 눌렀을 때 실행되는 메서드
-    @ResponseBody
-    public void saveFile(@RequestBody  List<MultipartFile> files) throws IOException {
+    public String saveFile(@RequestParam String title,
+                            @RequestParam String text,
+                            @RequestParam String hashtag,
+                            @RequestParam(name = "file") MultipartFile files) throws IOException {
+        BoardForm boardForm = new BoardForm();
+        boardForm.setTitle(title);
+        boardForm.setText(text);
+        boardForm.setHashtag(hashtag);
+        log.info("boardForm={}",boardForm);
         //boardService.insertBoard(boardForm, files);
-        //log.info("boardForm={}",boardForm);
-        log.info("files={}",files); //안넘어옴
-
-        System.out.println("fetch success");
+        log.info("files={}", files);
+        return "redirect:/campingHome/boards";
     }
 
     @GetMapping("boards") // 게시판 목록페이지 접속

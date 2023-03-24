@@ -12,7 +12,6 @@ public class BoardForm {
 
 
     private Integer bdIdx;
-    private long bd_idx;
     private String id;
     private String title;
     private LocalDateTime Date;
