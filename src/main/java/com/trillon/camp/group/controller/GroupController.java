@@ -1,5 +1,6 @@
 package com.trillon.camp.group.controller;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -41,7 +42,8 @@ public class GroupController {
 	@PostMapping("/newGroupTodo")
 	public void newGroupTodo(@RequestBody Map<String, Object> data) {
 		log.info("post : newGroupTodo");
-		log.info("data : "+data);
+		List<Date> recommendDate = groupService.findGroupMeetingDate(data);
+		
 		
 	}
 	

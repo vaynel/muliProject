@@ -12,44 +12,36 @@
 	let token = document.querySelector("meta[name='_csrf']").content;
     let header = document.querySelector("meta[name='_csrf_header']").content;
     
-    function PostTest(){
+function PostTest(){
     	
-        let data = {
-                groupIdx: groupIdx.innerHTML,
-                title : title.value, 
-        		date : date.value, 
-        		dateEnd : dateEnd.value, 
-        	       		
-            };
-        console.dir(groupIdx.value);
-        
-        let response = fetch("http://localhost:8080/group/newGroupTodo",{
-            method : 'post',
-            headers: {
-                'header': header,
-                'X-CSRF-Token': token,
-                'Content-Type': 'application/json',
-            },
-                      //redirect:'follow',            
-            body: JSON.stringify(data)
-        }).then((response)=>{        	
-        	console.dir(response);
-            window.location.href="http://localhost:8080/groupChat/groupChatList";	
-        })      
-    }
+    let data = {
+            groupIdx: groupIdx.innerHTML,
+            title : title.value, 
+            date : date.value, 
+            dateEnd : dateEnd.value, 
+                    
+        };        
+    let response = fetch("http://localhost:8081/group/newGroupTodo",{
+        method : 'post',
+        headers: {
+            'header': header,
+            'X-CSRF-Token': token,
+            'Content-Type': 'application/json',
+        },
+                    //redirect:'follow',            
+        body: JSON.stringify(data)
+    }).then((response)=>{        	
+        console.dir(response);
+        window.location.href="http://localhost:8081/groupChat/groupChatList";	
+    })      
+};
 
-    function canPage(){
-    	window.location.href="http://localhost:8080/groupChat/groupChatList";	
-    }
+function canPage(){
+    window.location.href="http://localhost:8081/groupChat/groupChatList";	
+}
     
     
-    btnClick.addEventListener('click',e=>{
-        PostTest();
-        
-        });
+    btnClick.addEventListener('click',e=> PostTest());
     
-    btnCan.addEventListener('click',e=>{
-    	canPage();
-        
-        });
+    btnCan.addEventListener('click',e=>canPage());
     

@@ -13,6 +13,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.trillon.camp.group.dto.GroupMember;
 import com.trillon.camp.group.repository.GroupRepository;
+import com.trillon.camp.group.service.GroupSerivce;
 import com.trillon.camp.groupChat.repository.GroupChatRepository;
 import com.trillon.camp.schedule.dto.Schedule;
 import com.trillon.camp.schedule.repository.ScheduleRepository;
@@ -34,6 +35,9 @@ public class GroupTest {
 	
 	@Autowired
 	private ScheduleRepository scheduleRepository;
+	
+	@Autowired
+	private GroupSerivce groupService;
 	
 	@Test
 	public void insertNewMemberToGroup() {
@@ -81,7 +85,6 @@ public class GroupTest {
 			
 		}
 		
-		
 		for (String strKey : scheduleMap.keySet()) {
 				for (Schedule schedule : scheduleMap.get(strKey)) {
 					System.out.println(schedule);
@@ -96,7 +99,11 @@ public class GroupTest {
 	
 	@Test
 	public void test() {
-		System.out.println(scheduleRepository.selectScheduleByUserId("user1"));
+		Map<String,Object> data = new HashMap<String, Object>();
+		data.put("date","2023-03-24");
+		data.put("dateEnd","2023-04-28");
+		groupService.findGroupMeetingDate(data);
+		
 	}
 	
 	
