@@ -1,8 +1,11 @@
 package com.trillon.camp.groupChat.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,7 +38,7 @@ public class GroupChatController {
 	
 	
 	@GetMapping("/groupChatList")
-	public void groupChatList(Model model,String userId) {
+	public void groupChatList(Model model,HttpSession session,String userId) {
 	
 		System.out.println("groupChatList");
 		userId="user1";
@@ -45,6 +48,8 @@ public class GroupChatController {
 		Map<String, Object> MyGroupMap = new HashMap<>();
 		MyGroupMap.put("GroupMember", GroupMembers);
 		MyGroupMap.put("campingGroup", campingGroups);
+		
+		System.out.println(session.getAttribute("recommnadWeekEndMap"));
 		
 		model.addAttribute("MyGroup", MyGroupMap);	
 	}
@@ -86,7 +91,7 @@ public class GroupChatController {
         log.info("# get Chat Room, roomID : " + roomId);
         List<ChatRoom> chatRooms = groupChatService.findRoomById(roomId);
         for (ChatRoom Room : chatRooms) {
-			System.out.println(Room);
+			System.out.println(Room.getUserId());
 		}
         ChatRoom chatRoom  = new ChatRoom();
         chatRoom.setRoomId(chatRooms.get(0).getRoomId());

@@ -108,8 +108,11 @@ public class GroupTest {
 	
 	@Test
 	public void testArgolizim() {
+		
+		Map<Date,Integer> recommandWeekEndMap = new HashMap<>();
 		// 그룹이 설정한 기간중에 주말만 받음
 		Map<String,Object> data = new HashMap<String, Object>();
+
 		// 설정한 기간
 		data.put("date","2023-03-24");
 		data.put("dateEnd","2023-04-01");
@@ -120,6 +123,7 @@ public class GroupTest {
 		Map<String,List<Schedule>> scheduleMap = new HashMap<>();
 		List<GroupMember> groupMembers=groupRepository.selectAllGroupMemberByGroupIdx(groupIdx);
 		List<Schedule> schedules= new ArrayList<Schedule>();
+		
 		int n =1;
 		
 		for (GroupMember groupMember : groupMembers) {
@@ -127,28 +131,33 @@ public class GroupTest {
 			scheduleMap.put(groupMember.getUserId(), schedules);
 			System.out.println(n+". "+groupMember.getUserId());
 			System.out.println(schedules);
+			int count = 0;
 			for (Date weekEnd : weekEnds) {
-				checkHowManyMemberCan(weekEnd,schedules);
-				/* System.out.println(groupMember.getUserId()+" - " + schedule); */
+				
+				if(checkHowManyMemberCan(weekEnd,schedules)) {
+					
+					if(recommandWeekEndMap.get(weekEnd)!=null) count=recommandWeekEndMap.get(weekEnd);
+					else count=0;
+					count++;
+					System.out.println("지금들어감" + count);
+					recommandWeekEndMap.put(weekEnd, count);
+					
+				}
 			}
 			n++;
 			
 		}
-		
+		System.out.println(recommandWeekEndMap);
 	}
 	
+
 	
-	
-	public Calendar LastWeekendByUser= Calendar.getInstance();
-	
-	public void checkHowManyMemberCan(Date weekEnd, List<Schedule> schedules){
+	public boolean checkHowManyMemberCan(Date weekEnd, List<Schedule> schedules){
 		
 		if(schedules.size()==0) {
 			System.out.println("해당 인원은 모든 날짜에 참석 가능");
-			return;
+			return true;
 		}
-		
-		
 		
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd"); 
 		
@@ -168,28 +177,29 @@ public class GroupTest {
 			
 			System.out.println("검사하고 싶은 날짜 : "+simpleDateFormat.format(weekEnd)+"============================");
 			for (Date userWeekEnd : userTodoWeekEnds) {
+				System.out.println(simpleDateFormat.format(userWeekEnd));
 				dateweek=userWeekEnd;
 				// user의 todo가 group의 weekend보다 이후일 경우
-				if(userWeekEnd.after(weekEnd))continue;				
+				if(userWeekEnd.before(weekEnd)) {
+					System.out.println("userWeekEnd.before(weekEnd)");
+					continue;				
+				}
 				if(userWeekEnd.equals(weekEnd)) {
 					System.out.println(simpleDateFormat.format(weekEnd)+" -> " + simpleDateFormat.format(userWeekEnd));
 					System.out.println("일정이 겹쳐서 해당 인원은 이날 안됨");
-					return;
+					return false;
 				}
 			}
-			System.out.println(simpleDateFormat.format(dateweek)+"[dateWeek]");
-			System.out.println(simpleDateFormat.format(weekEnd)+"에 해당 인원은 가능합니다.");
+			
+			if(dateweek.before(weekEnd)) {
+				System.out.println("검사하기 전날의 날짜입니다");
+				continue;
+			}
 			
 		}
 		
-		
-		
-		
+		System.out.println(simpleDateFormat.format(weekEnd)+"에 해당 인원은 가능합니다.");
+		return true;
 	}
-	
-	
-	
-	
-	
 
 }

@@ -1,8 +1,11 @@
 package com.trillon.camp.group.controller;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +32,6 @@ public class GroupController {
 	
 	private final GroupSerivce groupService;
 	private final ScheduleService scheduleService;
-
 	
 	@GetMapping("/newGroupTodo")
 	public void MyGroupTodo(Model model,String groupIdx) {
@@ -40,10 +42,12 @@ public class GroupController {
 	} 
 	
 	@PostMapping("/newGroupTodo")
-	public void newGroupTodo(@RequestBody Map<String, Object> data) {
+	public void newGroupTodo(@RequestBody Map<String, Object> data,Model model,HttpSession session) {
 		log.info("post : newGroupTodo");
-		List<Date> groupWeekend = groupService.weekEndBetweedDate(data);
+		System.out.println(data);
+		Map<Date,Integer> recommandWeekEndMap = groupService.recommandWeekEndFromDate(data);
 		
+		session.setAttribute("recommnadWeekEndMap", recommandWeekEndMap);
 		
 	}
 	

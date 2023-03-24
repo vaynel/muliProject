@@ -14,4 +14,6 @@ public interface GroupSerivce {
 
 	List<Date> weekEndBetweedDate(Map<String, Object> data);
 
+	Map<Date, Integer> recommandWeekEndFromDate(Map<String, Object> data);
+
 }
