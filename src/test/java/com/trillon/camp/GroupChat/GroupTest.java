@@ -177,9 +177,8 @@ public class GroupTest {
 					return;
 				}
 			}
-			
-//			if(dateweek.before(weekEnd)) return;
-			System.out.println(simpleDateFormat.format(dateweek)+"에 해당 인원은 가능합니다.");
+			System.out.println(simpleDateFormat.format(dateweek)+"[dateWeek]");
+			System.out.println(simpleDateFormat.format(weekEnd)+"에 해당 인원은 가능합니다.");
 			
 		}
 		
