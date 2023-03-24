@@ -3,8 +3,14 @@ package com.trillon.camp.campingHome.board.service;
 import com.trillon.camp.campingHome.board.dto.BoardForm;
 import com.trillon.camp.campingHome.board.dto.Paging;
 import com.trillon.camp.campingHome.board.repository.BoardRepository;
+import com.trillon.camp.campingHome.file.FileInfo;
+import com.trillon.camp.campingHome.file.FileUtil;
+import com.trillon.camp.campingHome.file.FileRepository;
 import lombok.RequiredArgsConstructor;
+
+
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 
 import java.util.List;
@@ -15,14 +21,25 @@ import java.util.Map;
 public class BoardServiceImpl implements BoardService{
 
     private final BoardRepository boardRepository;
+    private final FileRepository fileRepository;
+    private final FileUtil fileUtil;
 
     /**
      * 게시글 등록
      */
     @Override
-    public int insertBoard(BoardForm boardForm){
+    public int insertBoard(BoardForm boardForm, List<MultipartFile> files){
         boardRepository.insertBoard(boardForm);
         int bdIdx = boardForm.getBdIdx();  // 해당 insert의 bd_idx값
+
+        // 파일업로드
+        FileInfo fileInfo = new FileInfo();
+        fileInfo.setGnIdx(boardForm.getBdIdx());
+        int gnIdx = fileInfo.getGnIdx();
+        System.out.println("post bdIdx" +gnIdx);
+        fileUtil.uploadFile(fileInfo, files);
+
+
         return bdIdx;
     }
 

@@ -41,7 +41,7 @@
                            <br>
                         </tr>
                
-               </c:forEach>
+               </c:forEach><br>
                
                <div class="row mt-3">
       <nav aria-label="Page navigation example">

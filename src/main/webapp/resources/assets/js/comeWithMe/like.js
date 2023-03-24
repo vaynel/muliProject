@@ -1,91 +1,60 @@
-let classAddEventListener = function(cssSelector, ev){
-	let element = $(cssSelector);
-	for(let i = 0; i < element.length; i++){
-		element[i].addEventListener('click', ev);
-	}
-}
-
-let matchList = [ "어디로 가고싶나요?", "어떤 캠핑을 하고싶나요?", "원하는 연령층은?"];
-
-let selectMatchList = [
-						["산", "바다"],
-						["오토", "모토", "차박"],
-						["20대", "30대", "40대"]
-					  ];
-let answer = [];
-
-let selectIndex = 0;
-
 let token = document.querySelector("meta[name='_csrf']").content;
 let header = document.querySelector("meta[name='_csrf_header']").content;
 
-let matchFinish = async(answer)=>{
-	let data={
-			place : answer[0],
-			campingWay : answer[1],
-			ageAverage : answer[2]
-	};
+function sendData(){
 	
-	let sendData = await fetch("http://localhost:8081/comewithme/comeWithMeMatch",{
+	let data = {
+			bdIdx : bdIdx.value,
+			title : title.value,
+			content : content.value,
+			numOfPerson : numOfPerson.value,
+			place : place.value,
+			campingWay : campingWay.value,
+			ageAverage : ageAverage.value,
+			gender : gender.value
+	};
+	console.dir(data);
+	
+	let response = fetch("http://localhost:8080/comewithme/modify",{
 		method : 'post',
 		headers : {
 			'header' : header,
 			'X-CSRF-Token' : token,
 			'Content-Type' : 'application/json'
 		},
-		redirect : 'follow',
-		body : JSON.stringify(data)
-		
-	}).then((response)=>{
-		let jsonTest = response.text();
-		console.log(answer);
-		window.location.href = "http://localhost:8081/comewithme/matchFinish?page=1";
-	}).catch((err)=>{
-		alert("삐요삐요 에러발생", err);
+		body: JSON.stringify(data)
+	}).then((response) =>{
+		console.log(response);
+		window.location.href="http://localhost:8080/comewithme/comeWithMeList";
 	})
-	
 }
 
-
-let selectQuestion = () =>{
-	if(selectIndex == 3){
-		matchFinish(answer);
-		return;
+btnClick.addEventListener('click', e=>{
+	
+	if(title.value == ""){
+		alert("제목을 입력해주세요.");
+	}else if(content.value == ""){
+		alert("내용을 입력해주세요.");
+	}else if(numOfPerson.value == ""){
+		alert("원하는 인원수를 입력해주세요.");
+	}else if(place.value == ""){
+		alert("원하는 장소를 선택해주세요.");
+	}else if(campingWay.value == ""){
+		alert("원하는 캠핑 방식을 선택해주세요.");
+	}else if(ageAverage.value == ""){
+		alert("원하는 연령대를 입력해주세요.");
+	}else if(gender.value == ""){
+		alert("원하는 성별을 입력해주세요.");
+	}else{
+		sendData();
 	}
-	
-	matchStart.replaceChildren();
-	let selectIdx = selectIndex;
-	
-	for(let i = 0; i < selectMatchList[selectIndex].length; i++){
-		console.log(selectMatchList);
-		matchQuestion.innerText = matchList[selectIdx];
-		let option = createElement('li', {prop:{className:'option'}});
-		let a = createElement('a', {prop:{className:"button primary small fit", innerText:selectMatchList[selectIndex][i],idx:option}});
-		let br = createElement('br');
-		option.prepend(a);
-		option.prepend(br);
-		option.addEventListener('click', ev =>{
-			answer.push(a.innerText);
-			console.log(answer);
-		})
-		
-		$('.matchStart').append(option);
-	}
-	
-	classAddEventListener('.option', selectQuestion);
-	selectIndex++;
-}
-
-classAddEventListener('.option', selectQuestion);
-selectQuestion();
+})
 
 
 
 
 
-
-
-	//해시태그
+//해시태그
 	$(document).ready(function() {
 		var tag = {};
 		var counter = 0;
