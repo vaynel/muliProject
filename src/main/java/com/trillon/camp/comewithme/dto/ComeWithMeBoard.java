@@ -18,6 +18,7 @@ public class ComeWithMeBoard {
 	private String place;  		// 산, 바다
 	private String campingWay; // 캠핑 방식
 	private String ageAverage;  // 연령층
+	private String gender;
 	
 	public String getRegDateAsDate() {
 		return createDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));

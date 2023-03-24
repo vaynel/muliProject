@@ -65,6 +65,7 @@
 					
 					<li style="color: black">원하는 인원수는?</li> 
 					<input type="number" placeholder="숫자만 입력해주세요." id="numOfPerson">
+					<input  type="hidden" value="${boardList.bdIdx}" id="bdIdx" name="bdIdx">
 					<br>
 
 					<div class="tr_hashTag_area">
@@ -88,6 +89,6 @@
 	<!-- Scripts -->
 	<%@ include file="/WEB-INF/views/include/commonScripts.jsp"%>
 
-	<script defer src="${context}/resources/assets/js/comeWithMe/createBoardJavaScript.js"></script>
+	<script defer src="${context}/resources/assets/js/comeWithMe/modify.js"></script>
 </body>
 </html>

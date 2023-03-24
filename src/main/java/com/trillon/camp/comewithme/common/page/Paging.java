@@ -1,4 +1,4 @@
-package com.trillon.camp.comewithme.common;
+package com.trillon.camp.comewithme.common.page;
 
 
 

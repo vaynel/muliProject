@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
@@ -43,42 +44,69 @@ public class MemberController {
 	@GetMapping("/login")
 	public void loginForm() {};
 
+	@ResponseBody
 	@PostMapping("/afterlogin") 
-	public String login(Member member, HttpSession session, RedirectAttributes redirectAttr) {
-		
+	public String login(Member member, HttpSession session) {
+		//RedirectAttributes redirectAttr
 		System.out.println("넘어는오냐구요");
 		if(member.getUserId().equals("") | member.getPassword().equals("")) {
-			redirectAttr.addFlashAttribute("msg", "아이디나 비밀번호를 입력해주세요.");
-			return "redirect:/members/login";
+			//redirectAttr.addFlashAttribute("msg", "아이디나 비밀번호를 입력해주세요.");
+			return "failEmpty";
 		} 
-		
 		Member auth = memberService.authenticateUser(member);
 		System.out.println("확인" + auth);
 		
 		
 		if (auth == null) {
-			redirectAttr.addFlashAttribute("msg", "아이디나 비밀번호가 틀렸습니다.");
+			//redirectAttr.addFlashAttribute("msg", "아이디나 비밀번호가 틀렸습니다.");
 			System.out.println(" 아니면 auth = null");
-			return "redirect:/members/login";
+			return "failWrong";
 		}
 
 		
 		session.setAttribute("auth", auth);
-		return "redirect:/schedule/calendar";
+		return "successLogin";
 	}
 
 	@GetMapping("/signin")
-	public void registForm() {
+	public void signin() {
 	}
 
-	@PostMapping("/signin")
-	public String regist(HttpSession session, SignUpForm form) {
+	@ResponseBody
+	@PostMapping("/idCheck") 
+	public String idCheck(Member member, HttpSession session) {
+		
+		System.out.println("idcheck 넘어오는지 확인");
+		
+		if(memberService.idCheck(member.getUserId())) {
+			
+			System.out.println("notToExist");
+			return "notToExist";
+			
+		}
+		else {
+			System.out.println("Exist");
+			return "exist";
+		}
+		
+		
+	}
+	
+	@ResponseBody
+	@PostMapping("/signInData")
+	public String signin(HttpSession session, SignUpForm form) {
 
 		session.setAttribute("form", form);
 
+		System.out.println(form);
+		
 		memberService.insertNewMember(form);
 
-		return "redirect:/members/login";
+		if(!memberService.idCheck(form.getUserId())){
+			return "success";
+		}
+		else
+		return "fail";
 	}
 
 	@GetMapping("/logout")

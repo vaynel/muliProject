@@ -25,35 +25,11 @@
 		type="button" id="btnClick">로그인</button>
 
 
+	<button class="btn btn-lg btn-primary btn-block btn-signin"
+		type="button" id="btnSign">회원가입</button>
 
 
-	<script>
-	 var token = $("meta[name='_csrf']").attr("content");
-	 var header = $("meta[name='_csrf_header']").attr("content");
-		function btnlogin() {
-
-			$.ajax({
-				url : "afterlogin",
-				type : "post",
-				data : {
-					userId : userId.value,
-					password : password.value
-
-				},beforeSend : function(xhr){
-					xhr.setRequestHeader(header, token);
-				}
-
-			});
-
-		}
-		
-		 btnClick.addEventListener('click',e=>{
-			 	btnlogin();
-		        
-		        });
-		
-		
-	</script>
-
+	
 </body>
+<script defer src="${context}/resources/assets/js/member/login.js"></script>
 </html>
