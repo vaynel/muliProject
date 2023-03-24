@@ -15,6 +15,13 @@ public interface MemberRepository {
 	
 	@Select("SELECT * FROM camp.member WHERE id = #{userId}")
 	Member selectMemberByUserId(String userId);
+	
+
+	
+	/*
+	 * @Select("SELECT * FROM camp.member WHERE id = #{userId} and password = #{password}"
+	 * ) Member selectMemberByUserIdPassword(Member member);
+	 */
 
 	@Insert("insert into camp.member (id, name, password, tell, gender, birth, role_grad) " + " values(#{userId}, #{name}, #{password},#{tell},#{gender},#{birth},'user')")
 	void insertMember(SignUpForm form);

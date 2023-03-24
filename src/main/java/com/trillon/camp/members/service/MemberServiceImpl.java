@@ -33,11 +33,28 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public Member authenticateUser(Member rowMember) {
 		
+		
 		Member member = memberRepository.selectMemberByUserId(rowMember.getUserId());
 		
 		if(member == null) return null;
-		
+		else if(!passwordEncoder.matches(rowMember.getPassword(), member.getPassword())) {
+			return null;
+		}
+		else
 		return member;
 	}
+
+	@Override
+	public boolean idCheck(String userId) {
+		Member member = memberRepository.selectMemberByUserId(userId);
+		
+		if(member == null) return true;
+		
+		return false;
+		
+	
+	}
+
+
 
 }
