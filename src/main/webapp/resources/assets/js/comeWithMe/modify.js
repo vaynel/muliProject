@@ -4,6 +4,7 @@ let header = document.querySelector("meta[name='_csrf_header']").content;
 function sendData(){
 	
 	let data = {
+			bdIdx : bdIdx.value,
 			title : title.value,
 			content : content.value,
 			numOfPerson : numOfPerson.value,
@@ -14,7 +15,7 @@ function sendData(){
 	};
 	console.dir(data);
 	
-	let response = fetch("http://localhost:8080/comewithme/upload",{
+	let response = fetch("http://localhost:8080/comewithme/modify",{
 		method : 'post',
 		headers : {
 			'header' : header,

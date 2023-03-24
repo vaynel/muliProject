@@ -2,12 +2,14 @@ package com.trillon.camp.comewithme.repository;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
-import com.trillon.camp.comewithme.common.Paging;
+import com.trillon.camp.comewithme.common.page.Paging;
 import com.trillon.camp.comewithme.dto.Answer;
 import com.trillon.camp.comewithme.dto.ComeWithMeBoard;
 
@@ -31,6 +33,14 @@ public interface ComeWithMeRepository {
 	
 	@Select("select * from comewithme_board where is_del = 0 and bd_idx = #{bdIdx}")
 	ComeWithMeBoard selectBoardByBdIdx(int bdIdx);
+
+	@Update("update comewithme_board set title = #{title}, content = #{content}, num_of_person=#{numOfPerson}, place=#{place}, camping_way=#{campingWay}, age_average=#{ageAverage}, gender=#{gender}"
+			+ "where is_del = 0 and bd_idx = #{bdIdx}")
+	int updateBoard(ComeWithMeBoard board);
+
+	@Update("update comewithme_board set is_del = 1 where bd_idx = #{bdIdx}")
+	int deleteBoardByBdIdx(int bdIdx);
+	
 
 
 }
