@@ -57,14 +57,13 @@ public class GroupServiceImpi implements GroupSerivce{
 	}
 
 	@Override
-	public List<Date> findGroupMeetingDate(Map<String, Object> data) throws RuntimeException {
+	public List<Date> weekEndBetweedDate(Map<String, Object> data) throws RuntimeException {
 		log.info("service : findGroupMeetingDate");
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd"); 
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		String dateStart  = (String) data.get("date");
 		String dateEnd  = (String) data.get("dateEnd");
 		List<Date> weekEnd = new ArrayList<>();
-		List<Date> recommandDate = new ArrayList<>();
 		
 		try {
 			Date start = df.parse(dateStart);
@@ -83,23 +82,12 @@ public class GroupServiceImpi implements GroupSerivce{
 				//System.out.println(simpleDateFormat.format(ds.getTime()));
 				ds.add(Calendar.DATE, 1);
 			}
-			
-			for (Date date : weekEnd) {
-				System.out.println(simpleDateFormat.format(date));
-			}
-			
-			
-			
-			
-			
-			
-			return recommandDate;
 		} 
 		catch (ParseException e) {
 			e.printStackTrace();
 		}
 		
-		return recommandDate;
+		return weekEnd;
 		
 		
 		

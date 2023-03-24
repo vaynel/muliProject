@@ -12,6 +12,6 @@ public interface GroupSerivce {
 
 	void insertNewGroupTodo(Schedule schedule, String groupIdx);
 
-	List<Date> findGroupMeetingDate(Map<String, Object> data);
+	List<Date> weekEndBetweedDate(Map<String, Object> data);
 
 }

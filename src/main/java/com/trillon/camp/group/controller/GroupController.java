@@ -42,7 +42,7 @@ public class GroupController {
 	@PostMapping("/newGroupTodo")
 	public void newGroupTodo(@RequestBody Map<String, Object> data) {
 		log.info("post : newGroupTodo");
-		List<Date> recommendDate = groupService.findGroupMeetingDate(data);
+		List<Date> groupWeekend = groupService.weekEndBetweedDate(data);
 		
 		
 	}
