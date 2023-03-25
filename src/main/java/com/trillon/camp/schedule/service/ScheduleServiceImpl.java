@@ -17,7 +17,7 @@ public class ScheduleServiceImpl implements ScheduleService{
 	private final ScheduleRepository scheduleRepository;
 	
 	@Override
-	public List selectTodo() {
+	public List<Schedule> selectTodo() {
 		
 		return scheduleRepository.findAll();
 		

@@ -79,7 +79,7 @@ public class GroupController {
 	@ResponseBody
 	@RequestMapping(value = "/get.do")
 	public List ajax() {
-		List<Object> list=scheduleService.selectTodo();
+		List<Schedule> list=scheduleService.selectTodo();
 	
 		return list;
 
