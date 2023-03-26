@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.BiFunction;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import com.trillon.camp.group.dto.CampingGroup;
 import com.trillon.camp.group.dto.GroupMember;
+import com.trillon.camp.group.dto.TemporaryDate;
 
 @Repository
 public interface GroupRepository {
@@ -37,6 +39,13 @@ public interface GroupRepository {
 
 	@Select("select * from group_member where group_idx = #{groupIdx}")
 	List<GroupMember> selectAllGroupMemberByGroupIdx(Integer groupIdx);
+
+	
+	@Select("select * from temporary_recommand_date where group_Idx = #{groupIdx}")
+	List<TemporaryDate> selectRecommaned(Integer groupIdx);
+
+	@Delete("delete from temporary_recommand_date where group_Idx = #{groupIdx}")
+	Integer deleteAllTemp(String groupIdx);
 
 
 

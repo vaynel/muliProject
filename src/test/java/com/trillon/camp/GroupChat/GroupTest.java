@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -109,7 +110,7 @@ public class GroupTest {
 	@Test
 	public void testArgolizim() {
 		
-		Map<Date,Integer> recommandWeekEndMap = new HashMap<>();
+		Map<Date,Integer> recommandWeekEndMap = new TreeMap<>();
 		// 그룹이 설정한 기간중에 주말만 받음
 		Map<String,Object> data = new HashMap<String, Object>();
 

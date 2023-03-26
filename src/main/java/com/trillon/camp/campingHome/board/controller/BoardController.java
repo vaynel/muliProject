@@ -33,7 +33,8 @@ public class BoardController {
 
 
     @PostMapping("board/new")// 게시판 등록 버튼을 눌렀을 때 실행되는 메서드
-    public String saveFile(@RequestParam String title,
+    public String saveFile(
+    						@RequestParam String title,
                             @RequestParam String text,
                             @RequestParam String hashtag,
                             @RequestParam(name = "file") MultipartFile files) throws IOException {

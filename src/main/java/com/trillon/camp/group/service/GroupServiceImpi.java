@@ -9,12 +9,14 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.trillon.camp.group.dto.GroupMember;
+import com.trillon.camp.group.dto.TemporaryDate;
 import com.trillon.camp.group.repository.GroupRepository;
 import com.trillon.camp.schedule.dto.Schedule;
 import com.trillon.camp.schedule.repository.ScheduleRepository;
@@ -93,7 +95,7 @@ public class GroupServiceImpi implements GroupSerivce {
 
 	@Override
 	public Map<Date, Integer> recommandWeekEndFromDate(Map<String, Object> data) {
-		Map<Date, Integer> recommandWeekEndMap = new HashMap<Date, Integer>();		
+		Map<Date, Integer> recommandWeekEndMap = new TreeMap<Date, Integer>();		
 	
 		Integer groupIdx = Integer.valueOf(String.valueOf(data.get("groupIdx")));
 		List<GroupMember> groupMembers = groupRepository.selectAllGroupMemberByGroupIdx(groupIdx);
@@ -120,11 +122,13 @@ public class GroupServiceImpi implements GroupSerivce {
 			}
 		}
 		System.out.println("그룹 주말 날짜 : 가능한 인원");
+		
 		for (Date date : recommandWeekEndMap.keySet()) {
 			
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			System.out.println(simpleDateFormat.format(date)+" : "+ recommandWeekEndMap.get(date));
 		}
+		
 		return recommandWeekEndMap;
 	}
 	
@@ -176,6 +180,17 @@ public class GroupServiceImpi implements GroupSerivce {
 
 		//System.out.println(simpleDateFormat.format(weekEnd) + "에 해당 인원은 가능합니다.");
 		return true;
+	}
+
+	@Override
+	public List<TemporaryDate> selectRecommand(Integer groupIdx) {
+		return groupRepository.selectRecommaned(groupIdx);
+	}
+
+	@Override
+	public Integer deleteAllTemp(String groupIdx) {
+		
+		return groupRepository.deleteAllTemp(groupIdx);
 	}
 
 }

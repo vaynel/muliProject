@@ -18,7 +18,6 @@
 
             <!-- Content -->
             <section>
-
                 <header class="main">
                     <h1>게시글 작성</h1>
                 </header>
@@ -58,10 +57,6 @@
                     </div>
 
                 </div>
-                </form>
-
-                <form >
-
                 </form>
 
             </section>

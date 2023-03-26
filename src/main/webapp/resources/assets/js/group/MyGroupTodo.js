@@ -16,6 +16,7 @@ function PostTest(){
     	
     let data = {
             groupIdx: groupIdx.value,
+            roomId:roomId.value,
             title : title.value, 
             date : date.value, 
             dateEnd : dateEnd.value, 
@@ -32,8 +33,8 @@ function PostTest(){
                     //redirect:'follow',            
         body: JSON.stringify(data)
     }).then((response)=>{        	
-        console.dir(response);
-        window.location.href="http://localhost:8080/groupChat/groupChatList";	
+        console.dir(response.text());
+        window.location.href="http://localhost:8080/groupChat/chatRoom?roomId="+roomId.value+"&groupIdx="+groupIdx.value;	
     })      
 };
 

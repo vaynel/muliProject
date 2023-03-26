@@ -32,7 +32,7 @@
 			</div>
 			<br>
 			<a href="/group/newGroupTodo?groupIdx=${groupIdx}">모임 생성</a>
-			<a href="/group/recommendDate">날짜 추천</a>
+			<a href="/group/recommendDate?groupIdx=${groupIdx}">날짜 추천</a>
 		</div>
 	</div>
 

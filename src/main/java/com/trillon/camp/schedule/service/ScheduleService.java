@@ -11,5 +11,8 @@ public interface ScheduleService {
 	void insertNewTodo(Schedule schedule);
 
 	void deleteTodo(Schedule schedule);
+
+	void insertNewTodoMadyByGroup(Schedule schedule);
+
 	
 }

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.trillon.camp.group.dto.TemporaryDate;
 import com.trillon.camp.schedule.dto.Schedule;
 
 public interface GroupSerivce {
@@ -15,5 +16,9 @@ public interface GroupSerivce {
 	List<Date> weekEndBetweedDate(Map<String, Object> data);
 
 	Map<Date, Integer> recommandWeekEndFromDate(Map<String, Object> data);
+
+	List<TemporaryDate> selectRecommand(Integer groupIdx);
+
+	Integer deleteAllTemp(String groupIdx);
 
 }

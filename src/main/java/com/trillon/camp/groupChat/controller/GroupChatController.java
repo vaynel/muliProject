@@ -1,6 +1,5 @@
 package com.trillon.camp.groupChat.controller;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -88,14 +87,16 @@ public class GroupChatController {
 	@GetMapping("/chatRoom")
     public void getRoom(@RequestParam("roomId") String roomId,@RequestParam("groupIdx") String groupIdx, Model model){
 		
-        log.info("# get Chat Room, roomID : " + roomId);
+        log.info("# 그룹 채팅 방, roomID : " + roomId);
         List<ChatRoom> chatRooms = groupChatService.findRoomById(roomId);
+        System.out.println("채팅의 참여 인원");
         for (ChatRoom Room : chatRooms) {
 			System.out.println(Room.getUserId());
 		}
         ChatRoom chatRoom  = new ChatRoom();
         chatRoom.setRoomId(chatRooms.get(0).getRoomId());
         
+        model.addAttribute("roomId",roomId);
         model.addAttribute("room", chatRoom);
         model.addAttribute("groupIdx", groupIdx);
     }

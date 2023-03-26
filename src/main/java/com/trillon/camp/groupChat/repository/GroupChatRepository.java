@@ -1,5 +1,6 @@
 package com.trillon.camp.groupChat.repository;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -56,11 +57,16 @@ public interface GroupChatRepository {
 
 	@Select("select room_id "
 			+ "from group_chat_room "
-			+ "where group_idx = #{i}")
-	String selectChatRoomIdByGroupIdx(int i);
+			+ "where group_idx = #{groupIdx}")
+	String selectChatRoomIdByGroupIdx(int groupIdx);
 
 	@Select("select * from group_member where user_id=#{userId}")
 	List<GroupMember> selectAllChatRoomList(String userId);
+
+
+	@Insert("insert into temporary_recommand_date(group_idx,recommand_date,how_many_member_can) "
+			+"values(#{groupIdx},#{weekEndDate},#{howMany})")
+	void insertTemporaryDate(Map<String, Object> tempMap);
 	
 	
 	

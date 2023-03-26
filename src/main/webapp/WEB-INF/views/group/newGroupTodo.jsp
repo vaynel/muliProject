@@ -23,8 +23,9 @@ Button {
 	<h1>일정 추가하기</h1>
 	<div>${groupIdx}</div>
 	<form id="form">
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+<%-- 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> --%>
 		<input type="hidden" id="groupIdx"  name="groupIdx" value="${groupIdx}"/>
+		<input type="hidden" id="roomId"  name="roomId" value="${roomId}"/>
 		일정 이름 <input type="text" name="title" id="title" maxlength="20"><br><br>
 		시작 날짜 <input type="date" name="dateStart" id="date"><br><br>
 		종료 날짜 <input type="date" name="dateEnd" id="dateEnd"><br><br>
@@ -34,5 +35,5 @@ Button {
 	</form>
 	</div>
 </body>
-<script defer src="${context}/resources/assets/js/group/MyGroupTodo.js"></script> 
+ <script defer src="${context}/resources/assets/js/group/MyGroupTodo.js"></script>  
 </html>
