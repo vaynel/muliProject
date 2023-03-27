@@ -3,6 +3,7 @@ package com.trillon.camp.campingHome.file;
 import com.trillon.camp.common.code.ErrorCode;
 import com.trillon.camp.common.exception.HandlableException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,9 +15,11 @@ import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class FileUtil {
 
     private final FileRepository fileRepository;
+
 
     public void uploadFile(FileInfo fileInfo, List<MultipartFile> files){
 
@@ -72,7 +75,5 @@ public class FileUtil {
         String uploadPath = fileInfo.STORAGE_PATH + fileInfo.getGnIdx() + "/" ;
         return uploadPath;
     }
-
-
 
 }

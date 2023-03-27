@@ -12,7 +12,7 @@ public interface BoardService {
 
     List<BoardForm> selectBoardAll();
 
-    BoardForm selectBoardByBdIdx(int bdIdx);
+    Map<String, Object> selectBoardByBdIdx(int bdIdx);
 
     Map<String, Object> selectBoardList(int page);
 
