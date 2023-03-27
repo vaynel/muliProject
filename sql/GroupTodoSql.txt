@@ -1,0 +1,44 @@
+select * from camping_group;
+select * from group_chat_room;
+select * from group_member;
+
+select * from member;
+select room_id from group_chat_room where group_idx=4;
+commit;
+rollback;
+
+delete from camping_group;
+select * from test;
+
+select a.*, b.user_id
+from camping_group a left join group_member b
+on a.group_idx=b.group_idx
+where b.user_Id="user4";
+
+select * from comewithme_board;
+select * from group_todo_manager;
+commit ;
+
+select * from group_member where group_idx=1;
+select * from camping_group;
+update camping_group set current_member = 4 where group_idx=1 or group_idx=2;
+
+update camping_group 
+set current_member = 
+(select count(*) from group_member where group_idx=3)
+where group_idx=3;
+
+select * from todo_manager;
+insert todo_manager(user_id,title,date,date_end) values ("user1","일정1","2023-03-22","2023-03-28");
+insert todo_manager(user_id,title,date,date_end) values ("user1","일정2","2023-03-24","2023-03-27");
+insert todo_manager(user_id,title,date,date_end) values ("user1","일정3","2023-03-31","2023-04-03");
+
+insert todo_manager(user_id,title,date,date_end) values ("user2","일정1","2023-03-22","2023-03-27");
+insert todo_manager(user_id,title,date,date_end) values ("user2","일정2","2023-04-01","2023-04-01");
+insert todo_manager(user_id,title,date,date_end) values ("user2","일정2","2023-04-09","2023-04-09");
+insert todo_manager(user_id,title,date,date_end) values ("master1","일정1","2023-04-01","2023-04-01");
+commit;
+
+select * from group_member where group_idx =1 ;
+select * from todo_manager where user_id="user1";
+

@@ -14,8 +14,8 @@
 
 	<div class="container">
 		<div class="col-6">
-			
-			<h2 id="roomIda">${room.roomId}</h2>
+			<h2 id="groupIdx">GroupIdx : ${groupIdx} </h2>
+			<h2 id="roomIda">RoomId : ${room.roomId}</h2>
 			
 		</div>
 		<div>
@@ -31,7 +31,8 @@
 				</div>
 			</div>
 			<br>
-			<a href="/group/addGroupTodo">모임 생성</a>
+			<a href="/group/newGroupTodo?groupIdx=${groupIdx}">모임 생성</a>
+			<a href="/group/recommendDate">날짜 추천</a>
 		</div>
 	</div>
 

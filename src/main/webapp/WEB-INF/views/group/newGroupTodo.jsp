@@ -26,14 +26,10 @@ Button {
 		일정 이름 <input type="text" name="title" id="title" maxlength="20"><br><br>
 		시작 날짜 <input type="date" name="dateStart" id="date"><br><br>
 		종료 날짜 <input type="date" name="dateEnd" id="dateEnd"><br><br>
-		Allday	  <input type="checkbox" onClick="check(this)" name="allDay" ><br><br>
-	<div id="timeBox">
-		시작 시간 <input type="time" name="timeStart" id="startTime" maxlength="20"><br><br>
-	</div>	
 		<button type="button" value="확인" id="btnClick" >확인</button>
 		<button type="button" value="취소" id="btnCan" >취소</button>
 	</div>
 	</div>
 </body>
-<script defer src="${context}/resources/assets/js/group/addMyGroupTodo.js"></script>
+<script defer src="${context}/resources/assets/js/group/MyGroupTodo.js"></script>
 </html>

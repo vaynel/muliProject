@@ -1,12 +1,15 @@
 package com.trillon.camp.group.repository;
 
+import java.util.List;
+import java.util.Map;
+import java.util.function.BiFunction;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import com.trillon.camp.group.dto.CampingGroup;
 import com.trillon.camp.group.dto.GroupMember;
-import com.trillon.camp.schedule.dto.Schedule;
 
 @Repository
 public interface GroupRepository {
@@ -23,8 +26,17 @@ public interface GroupRepository {
 			+ "values(#{groupIdx},#{roomId},#{userId})")
 	void insertNewMemberToGroup(GroupMember groupMember);
 
-	@Insert("insert into group_todo_manager(user_id, title, date, date_end, allday, start_time) values(#{userId},#{title},#{date},#{dateEnd},#{allDay},#{startTime})")
-	void inserNewGroupTodo(Schedule schedule);
+	@Insert("insert into group_todo_manager"
+			+ "(group_Idx,group_name,date, date_end)"
+			+ " values(#{groupIdx},#{CampingGroup.groupName},"
+			+ "#{schedule.date},#{schedule.dateEnd})")
+	void inserNewGroupTodo(Map<String,Object> command);
+
+	@Select("select * from camping_group where group_idx =#{groupIdx}")
+	CampingGroup findCampingGroupByGroupIdx(String groupIdx);
+
+	@Select("select * from group_member where group_idx = #{groupIdx}")
+	List<GroupMember> selectAllGroupMemberByGroupIdx(Integer groupIdx);
 
 
 

@@ -38,7 +38,8 @@
 								<tr>
 							<c:forEach items="${MyGroup['GroupMember']}" var="MyGroup">
 								
-								<td><a href="/groupChat/chatRoom?roomId=${MyGroup.roomId}&userId=">${MyGroup.groupIdx}</a></td><br>
+								<td><a href="/groupChat/chatRoom?roomId=${MyGroup.roomId}&groupIdx=${MyGroup.groupIdx}">
+								${MyGroup.groupIdx}</a></td><br>
 								<%-- <tr>
 									<td>${MyGroupChatList.groupMaster}</td>
 									<td>${MyGroupChatList.currentMember}</td>

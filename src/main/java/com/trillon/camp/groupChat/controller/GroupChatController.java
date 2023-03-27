@@ -81,7 +81,7 @@ public class GroupChatController {
 
 	
 	@GetMapping("/chatRoom")
-    public void getRoom(@RequestParam("roomId") String roomId, Model model){
+    public void getRoom(@RequestParam("roomId") String roomId,@RequestParam("groupIdx") String groupIdx, Model model){
 		
         log.info("# get Chat Room, roomID : " + roomId);
         List<ChatRoom> chatRooms = groupChatService.findRoomById(roomId);
@@ -92,6 +92,7 @@ public class GroupChatController {
         chatRoom.setRoomId(chatRooms.get(0).getRoomId());
         
         model.addAttribute("room", chatRoom);
+        model.addAttribute("groupIdx", groupIdx);
     }
 	
 	

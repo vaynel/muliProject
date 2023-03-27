@@ -32,6 +32,10 @@ public interface ScheduleRepository {
 
 	@Delete("delete from todo_manager where title = #{title} AND date=#{date}")
 	void deleteTodo(Schedule schedule);
+
+	
+	@Select("select * from todo_manager where user_id = #{userId}")
+	List<Schedule> selectScheduleByUserId(String userId);
 	
 	
 }
