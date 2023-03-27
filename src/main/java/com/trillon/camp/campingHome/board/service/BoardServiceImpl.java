@@ -9,6 +9,7 @@ import com.trillon.camp.campingHome.file.FileRepository;
 import lombok.RequiredArgsConstructor;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,8 +19,8 @@ import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class BoardServiceImpl implements BoardService{
-
     private final BoardRepository boardRepository;
     private final FileRepository fileRepository;
     private final FileUtil fileUtil;
@@ -35,10 +36,7 @@ public class BoardServiceImpl implements BoardService{
         // 파일업로드
         FileInfo fileInfo = new FileInfo();
         fileInfo.setGnIdx(boardForm.getBdIdx());
-        int gnIdx = fileInfo.getGnIdx();
-        System.out.println("post bdIdx" +gnIdx);
         fileUtil.uploadFile(fileInfo, files);
-
 
         return bdIdx;
     }
@@ -52,12 +50,13 @@ public class BoardServiceImpl implements BoardService{
     }
 
     /**
-     *  특정 게시글 조회
+     * 특정 게시글 조회
      */
     @Override
-    public BoardForm selectBoardByBdIdx(int bdIdx) {
+    public Map<String, Object> selectBoardByBdIdx(int bdIdx) {
         BoardForm boardForm = boardRepository.selectBoardByBdIdx(bdIdx);
-        return boardForm;
+        List<FileInfo> files =fileRepository.selectFileWithGroup(bdIdx);
+        return Map.of("board",boardForm,"files",files);
     }
 
     /**
@@ -74,7 +73,6 @@ public class BoardServiceImpl implements BoardService{
                 .total(total)
                 .blockCnt(10)
                 .build();
-
         return Map.of("boards",boardRepository.selectBoardList(paging),"paging",paging);
     }
 

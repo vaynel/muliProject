@@ -9,13 +9,6 @@ form.addEventListener('submit', async (e)=>{
 
     const formData = new FormData(form);
     const photos = document.querySelector('input[type="file"][multiple]');
-    //let title = document.getElementById('title').value;
-    //let text = document.getElementById('text').value;
-    //let hashtag = document.getElementById('hashtag').value;
-
-    //formData.append('title','yoon');
-    //formData.append('text','hyuk');
-    //formData.append('hashtag','hashtag');
     formData.append(`files`, photos.files);
 
     // for (let i = 0; i < photos.files.length; i++){
