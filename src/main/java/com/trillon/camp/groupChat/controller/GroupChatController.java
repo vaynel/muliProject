@@ -45,10 +45,9 @@ public class GroupChatController {
 		List<GroupMember> GroupMembers = groupChatService.selectAllChatRoomList(userId);
 		List<CampingGroup> campingGroups = groupChatService.selectAllMygroupChatList(userId);
 		Map<String, Object> MyGroupMap = new HashMap<>();
+		
 		MyGroupMap.put("GroupMember", GroupMembers);
 		MyGroupMap.put("campingGroup", campingGroups);
-		
-		System.out.println(session.getAttribute("recommnadWeekEndMap"));
 		
 		model.addAttribute("MyGroup", MyGroupMap);	
 	}

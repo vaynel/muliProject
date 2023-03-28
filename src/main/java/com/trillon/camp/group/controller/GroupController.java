@@ -71,6 +71,7 @@ public class GroupController {
 	
 	
 	
+	
 	@PostMapping("/addGroupTodo")
 	public void addMyGroupTodo(String groupIdx,String title, String date) {
 		log.info("post : addGroupTodo");
