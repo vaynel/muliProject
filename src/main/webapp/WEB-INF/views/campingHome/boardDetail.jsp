@@ -26,10 +26,16 @@
 
                     <div class="row">
                         <div class="col-6 col-12-large">
-                            <img src="/resources/images/campingHome01.png" width="400px" height="300px" alt="캠핑의집">
+                            <c:forEach items="${files}" var="files">
+                                <tr>
+                                    <img src="/campingHome/images/${files.gnIdx}/${files.renameFileName}" width="400px" height="300px" alt="캠핑의집">
+                                    <br>
+                                </tr>
+
+                            </c:forEach><br>
+
                         </div>
                         <div class="col-6 col-12-large" border="1px solid black">
-
 
 
                             <div>
