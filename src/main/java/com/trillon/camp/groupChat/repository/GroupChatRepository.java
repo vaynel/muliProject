@@ -59,6 +59,9 @@ public interface GroupChatRepository {
 			+ "from group_chat_room "
 			+ "where group_idx = #{groupIdx}")
 	String selectChatRoomIdByGroupIdx(int groupIdx);
+	
+	@Select("select group_name from camping_group where group_idx = #{groupIdx}")
+	String selectGroupNameByGroupIdx(int groupIdx);
 
 	@Select("select * from group_member where user_id=#{userId}")
 	List<GroupMember> selectAllChatRoomList(String userId);

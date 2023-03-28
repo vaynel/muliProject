@@ -35,7 +35,7 @@ public interface GroupRepository {
 	void inserNewGroupTodo(Map<String,Object> command);
 
 	@Select("select * from camping_group where group_idx =#{groupIdx}")
-	CampingGroup findCampingGroupByGroupIdx(String groupIdx);
+	CampingGroup findCampingGroupByGroupIdx(Integer groupIdx);
 
 	@Select("select * from group_member where group_idx = #{groupIdx}")
 	List<GroupMember> selectAllGroupMemberByGroupIdx(Integer groupIdx);

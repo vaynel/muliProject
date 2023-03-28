@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.trillon.camp.group.dto.CampingGroup;
 import com.trillon.camp.group.dto.GroupMember;
 import com.trillon.camp.group.dto.TemporaryDate;
 import com.trillon.camp.group.repository.GroupRepository;
@@ -50,7 +51,7 @@ public class GroupServiceImpi implements GroupSerivce {
 		} else
 			schedule.setAllDay(false);
 		Map<String, Object> command = new HashMap<>();
-		command.put("CampingGroup", groupRepository.findCampingGroupByGroupIdx(groupIdx));
+		command.put("CampingGroup", groupRepository.findCampingGroupByGroupIdx(Integer.valueOf(groupIdx)));
 		System.out.println(command.get("CampingGroup"));
 
 		command.put("schedule", schedule);
@@ -191,6 +192,11 @@ public class GroupServiceImpi implements GroupSerivce {
 	public Integer deleteAllTemp(String groupIdx) {
 		
 		return groupRepository.deleteAllTemp(groupIdx);
+	}
+
+	@Override
+	public CampingGroup findCampingGroupByGroupIdx(Integer groupIdx) {
+		return groupRepository.findCampingGroupByGroupIdx(groupIdx);
 	}
 
 }

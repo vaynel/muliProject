@@ -5,6 +5,7 @@
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp"%>
 <link rel="stylesheet" href="${context}/resources/assets/css/main.css" />
+<link rel="stylesheet" href="${context}/resources/assets/css/group/groupChatList.css" />
 
 <meta id="_csrf" name="_csrf" content="${_csrf.token}"></meta>
 <meta id="_csrf_header" name="_csrf_header"
@@ -41,12 +42,13 @@
 									varStatus="st">
 									<c:if test="${count eq st.count}">
 										<p>${st.count}.
-											<a
-												href="/groupChat/chatRoom?roomId=${Group.roomId}&groupIdx=${Group.groupIdx}">
-												${campingGroup.groupName} </a> <p>GroupMaster : ${campingGroup.groupMaster}</p>
+											<a class="" href="/groupChat/chatRoom?roomId=${Group.roomId}&groupIdx=${Group.groupIdx}">
+											${campingGroup.groupName} </a>
+											<span class="countMember">${campingGroup.currentMember} / ${campingGroup.maxMember}</span>
 										</p>
+												 <p>GroupMaster : ${campingGroup.groupMaster}</p>
+											<span >1 ,2 ,3 ,4 </span>
 										
-										<p>${campingGroup.currentMember} / ${campingGroup.maxMember}</p>
 									</c:if>
 								</c:forEach>
 								<br>

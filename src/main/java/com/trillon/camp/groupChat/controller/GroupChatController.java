@@ -53,11 +53,7 @@ public class GroupChatController {
 	}
 	
 	
-	
-	@GetMapping("/groupChat")
-	public void groupChat() {
-		System.out.println("groupChat");
-	}
+
 	
 	@PostMapping("/createGroup")
 	@ResponseBody
@@ -92,16 +88,22 @@ public class GroupChatController {
         for (ChatRoom Room : chatRooms) {
 			System.out.println(Room.getUserId());
 		}
+        CampingGroup campingGroup = groupSerivce.findCampingGroupByGroupIdx(Integer.valueOf(groupIdx));
         ChatRoom chatRoom  = new ChatRoom();
         chatRoom.setRoomId(chatRooms.get(0).getRoomId());
         
         model.addAttribute("roomId",roomId);
         model.addAttribute("room", chatRoom);
         model.addAttribute("groupIdx", groupIdx);
+        model.addAttribute("campingGroup",campingGroup);
     }
 	
 	
 	
+	@GetMapping("/groupChat")
+	public void groupChat2() {
+		System.out.println("그룹 쳇 버전 2");
+	}
 	
 	
 	

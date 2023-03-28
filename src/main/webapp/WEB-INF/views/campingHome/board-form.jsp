@@ -23,7 +23,7 @@
                 </header>
 
                 <!-- form -->
-                <form action="${context}/campingHome/board/new" id="form" method="post" enctype="multipart/form-data">
+                <form action="${context}/campingHome/board/new" id="form" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
                     <div calss="row gtr-uniform">

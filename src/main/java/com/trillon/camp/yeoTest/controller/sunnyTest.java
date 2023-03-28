@@ -49,6 +49,11 @@ public class sunnyTest {
 		System.out.println("boardDetail.jsp");
 	}
 	
+	@GetMapping("group/newGroupTodo")
+	public void newGroupTodo() {
+		
+	}
+	
 
 
 }

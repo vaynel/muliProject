@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.trillon.camp.group.dto.CampingGroup;
 import com.trillon.camp.group.dto.TemporaryDate;
 import com.trillon.camp.schedule.dto.Schedule;
 
@@ -20,5 +21,7 @@ public interface GroupSerivce {
 	List<TemporaryDate> selectRecommand(Integer groupIdx);
 
 	Integer deleteAllTemp(String groupIdx);
+
+	CampingGroup findCampingGroupByGroupIdx(Integer valueOf);
 
 }
