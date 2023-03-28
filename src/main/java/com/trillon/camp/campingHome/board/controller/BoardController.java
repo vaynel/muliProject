@@ -1,6 +1,7 @@
 package com.trillon.camp.campingHome.board.controller;
 import com.trillon.camp.campingHome.board.dto.BoardForm;
 
+import com.trillon.camp.campingHome.board.dto.Reply;
 import com.trillon.camp.campingHome.board.service.BoardService;
 
 
@@ -41,6 +42,9 @@ public class BoardController {
                             @RequestParam String hashtag,
                             @RequestParam("file") List<MultipartFile> files) throws IOException {
         BoardForm boardForm = new BoardForm();
+        title = new String(title.getBytes("8859_1"),"utf-8");
+        text = new String(text.getBytes("8859_1"),"utf-8");
+        hashtag = new String(hashtag.getBytes("8859_1"),"utf-8");
         boardForm.setTitle(title);
         boardForm.setText(text);
         boardForm.setHashtag(hashtag);
@@ -57,15 +61,28 @@ public class BoardController {
     @GetMapping("/board/{bdIdx}") // 게시판 상세페이지 접속
     public String boardDetail(@PathVariable("bdIdx") int bdIdx,Model model) {
         model.addAllAttributes(boardService.selectBoardByBdIdx(bdIdx));
+
         model.getAttribute("files");
         // 댓글 가져오기
         return "/campingHome/boardDetail";
     }
 
     @PostMapping("/board/{bdIdx}")// 게시판에서 쓴 댓글 저장
-    public void saveReply(@PathVariable("bdIdx") int bdIdx,Model model){
-
+    @ResponseBody
+    public void saveReply(@PathVariable("bdIdx") int bdIdx, Model model,
+                            @RequestBody Reply reply){
+        System.out.println("post!!!!!!!!!!!!");
+        boardService.insertReply(reply);
+        model.addAttribute("Reply={}",reply);
+        log.info("reply={}",reply);
     }
+
+    //@GetMapping("test")// 테스트
+    public String test(){
+        System.out.println("넘어와라");
+        return "campingHome/test";
+    }
+
 
     @ResponseBody
     @GetMapping("/images/{gnIdx}/{fileName}")  // 이미지를 출력해주는 메서드

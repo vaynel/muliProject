@@ -3,6 +3,7 @@ package com.trillon.camp.campingHome.board.repository;
 import com.trillon.camp.campingHome.board.dto.Board;
 import com.trillon.camp.campingHome.board.dto.BoardForm;
 import com.trillon.camp.campingHome.board.dto.Paging;
+import com.trillon.camp.campingHome.board.dto.Reply;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
@@ -25,13 +26,26 @@ public interface BoardRepository {
     @Options(useGeneratedKeys = true, keyProperty = "bdIdx")  // DB에서 증가되는 bd_idx값을 dto에 bd_idx로 넣어준다.
     Integer insertBoard(BoardForm boardForm); //앞에 데이터 형태 질문
 
-    //@Select("select * from campinghome_board where")
+    /**
+     * 댓글 저장
+     */
+    @Insert("insert into reply(reply) values(#{context})")
+    @Options(useGeneratedKeys = true, keyProperty = "reIdx")  // DB에서 증가되는 bd_idx값을 dto에 bd_idx로 넣어준다.
+    Integer insertReply(Reply reply); //앞에 데이터 형태 질문
+
 
     /**
      * 전체 게시글 조회(역순으로 최신게시물이 위에 오게하기 위함)
      */
     //@Select("select * from test order by bd_idx desc")
     List<BoardForm> selectBoardAll();
+
+    /**
+     * 전체 게시글 조회(역순으로 최신게시물이 위에 오게하기 위함)
+     */
+    @Select("select * from reply order by re_idx desc")
+    List<BoardForm> selectReplyAll();
+
 
     /**
      * 특정 게시글 조회

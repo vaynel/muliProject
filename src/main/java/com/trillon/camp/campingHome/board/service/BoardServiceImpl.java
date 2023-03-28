@@ -2,6 +2,7 @@ package com.trillon.camp.campingHome.board.service;
 
 import com.trillon.camp.campingHome.board.dto.BoardForm;
 import com.trillon.camp.campingHome.board.dto.Paging;
+import com.trillon.camp.campingHome.board.dto.Reply;
 import com.trillon.camp.campingHome.board.repository.BoardRepository;
 import com.trillon.camp.campingHome.file.FileInfo;
 import com.trillon.camp.campingHome.file.FileUtil;
@@ -39,6 +40,12 @@ public class BoardServiceImpl implements BoardService{
         fileUtil.uploadFile(fileInfo, files);
 
         return bdIdx;
+    }
+
+    @Override
+    public int insertReply(Reply reply) {
+        boardRepository.insertReply(reply);
+        return reply.getReIdx();
     }
 
     /**
