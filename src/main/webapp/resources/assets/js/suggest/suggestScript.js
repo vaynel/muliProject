@@ -149,7 +149,7 @@ async function GoCampingAPI(){
 
 async function DataToServer(CampingData){
     
-    let sendData = await fetch("http://localhost:8081/suggest/select", {
+    let sendData = await fetch("http://localhost:8080/suggest/select", {
         method : 'post',
         headers: {
             'header': header,

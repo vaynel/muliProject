@@ -15,13 +15,15 @@
 function PostTest(){
     	
     let data = {
-            groupIdx: groupIdx.innerHTML,
+            groupIdx: groupIdx.value,
+            roomId:roomId.value,
             title : title.value, 
             date : date.value, 
             dateEnd : dateEnd.value, 
                     
         };        
-    let response = fetch("http://localhost:8081/group/newGroupTodo",{
+    console.dir(data);
+    let response = fetch("http://localhost:8080/group/newGroupTodo",{
         method : 'post',
         headers: {
             'header': header,
@@ -31,17 +33,17 @@ function PostTest(){
                     //redirect:'follow',            
         body: JSON.stringify(data)
     }).then((response)=>{        	
-        console.dir(response);
-        window.location.href="http://localhost:8081/groupChat/groupChatList";	
+        console.dir(response.text());
+        window.location.href="http://localhost:8080/groupChat/chatRoom?roomId="+roomId.value+"&groupIdx="+groupIdx.value;	
     })      
 };
 
 function canPage(){
-    window.location.href="http://localhost:8081/groupChat/groupChatList";	
+    window.location.href="http://localhost:8080/groupChat/groupChatList";	
 }
     
     
-    btnClick.addEventListener('click',e=> PostTest());
+btnClick.addEventListener('click',e=> PostTest());
     
-    btnCan.addEventListener('click',e=>canPage());
+btnCan.addEventListener('click',e=>canPage());
     

@@ -3,6 +3,8 @@ package com.trillon.camp.schedule.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,8 +36,7 @@ public class ScheduleController {
 
 	@ResponseBody
 	@RequestMapping(value = "/get.do")
-	public List ajax() {
-
+	public List<Schedule> ajax() {
 		// �׽�Ʈ ������
 //		HashMap<String, String> data = new HashMap<String, String>();
 //		List<HashMap<String,String>> list = new ArrayList<HashMap<String, String>>();
@@ -68,8 +69,8 @@ public class ScheduleController {
 //		data.put("startTime", "13:30:00");
 //		list.add(data);
 
-		List<Object> list=scheduleService.selectTodo();
-		
+		List<Schedule> list=scheduleService.selectTodo();
+		System.out.println(list);
 		
 	
 		return list;
@@ -83,7 +84,7 @@ public class ScheduleController {
 		
 		Schedule schedule = new Schedule();
 		
-		schedule.setUserId("hi"); 
+		schedule.setUserId("user1"); 
 		schedule.setTitle(data.get("title"));
 		schedule.setDate(data.get("date")); 
 		schedule.setDateEnd(data.get("dateEnd"));
@@ -115,7 +116,7 @@ public class ScheduleController {
 	  System.out.println("test");
 	  
 	 
-	  List<Object> list=scheduleService.selectTodo();
+	  List<Schedule> list=scheduleService.selectTodo();
 	  System.out.println(list);
 	  
 	  }

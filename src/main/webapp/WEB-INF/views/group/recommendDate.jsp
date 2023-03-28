@@ -10,13 +10,49 @@
 
 <link rel="stylesheet" href="${context}/resources/assets/css/main.css" />
 
-<meta name="_csrf" th:content="${_csrf.token}">
-<meta name="_csrf_header" th:content="${_csrf.headerName}">
+<meta id="_csrf" name="_csrf" content="${_csrf.token}"></meta>
+<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"></meta>
 
-<script>
+
+
+<style>
+	#btnBox{
+	padding-top:3px;
+	padding-bottom:5px;
+	}
+</style>
+
+</head>
+<body>
+<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<input type="hidden" id="groupIdx"  name="groupIdx" value="${groupIdx}"/>
+
+							<%@ include file="/WEB-INF/views/include/header.jsp" %>
+
+					<!-- Content -->
+					
+					<div id='calendar'></div>
+							
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<%@ include file="/WEB-INF/views/include/sidebar.jsp" %>
+
+			</div>
+		<%@ include file="/WEB-INF/views/include/commonScripts.jsp" %>
+<script type="text/javascript">
+
+var token = $("meta[name='_csrf']").attr("content");
+var header = $("meta[name='_csrf_header']").attr("content");
 
 $.ajax({
-	url: "get.do",
+	url: "/group/get.do?groupIdx="+groupIdx.value,
 	type: 'GET',
 	success: function(res){
 		var list = res;
@@ -84,19 +120,28 @@ $.ajax({
 			    hour12: false
 			  },
 			eventClick : function(info){
-				if(confirm("일정 '"+info.event.title +"' 을 삭제하시겠습니까?")){
+				if(confirm("일정 '"+info.event.title +"' 로 하시겠습니까?")){
 					console.dir(info.event.title);
 					console.dir(info.event.startStr);
+					console.dir(info.event.groupIdx);
 					//
 					
 					
 					$.ajax({
-						url:"deleteTodo",
-						type:'get',
+						url:"/group/addGroupTodo",
+						type:'post',
 						data:{
+							groupIdx : groupIdx.value,
 							title : info.event.title,
 							date : info.event.startStr
 							
+						},
+						beforeSend : function(xhr){
+							xhr.setRequestHeader(header, token);
+						},
+						success : function(data) {
+							if(data == true)
+								alert("성공");
 						}
 					
 						
@@ -120,46 +165,6 @@ $.ajax({
    
       
 </script>
-
-<style>
-	#btnBox{
-	padding-top:3px;
-	padding-bottom:5px;
-	}
-</style>
-
-</head>
-<body>
-<!-- Wrapper -->
-			<div id="wrapper">
-
-				<!-- Main -->
-					<div id="main">
-						<div class="inner">
-
-							<%@ include file="/WEB-INF/views/include/header.jsp" %>
-
-					<!-- Content -->
-					
-									
-					<div id='btnBox'>
-					<input type="button" value="일정 추가"
-						onclick="location.href='/schedule/schedulePopUp'">
-					</div>
-					<div id='calendar'></div>
-								
-							
-									
-					
-
-					</div>
-					</div>
-
-				<!-- Sidebar -->
-					<%@ include file="/WEB-INF/views/include/sidebar.jsp" %>
-
-			</div>
-		<%@ include file="/WEB-INF/views/include/commonScripts.jsp" %>
 	
 </body>
 </html>
