@@ -15,6 +15,8 @@ public interface BoardService {
 
     List<BoardForm> selectBoardAll();
 
+    List<Reply> selectReplyAll(int bdIdx);
+
     Map<String, Object> selectBoardByBdIdx(int bdIdx);
 
     Map<String, Object> selectBoardList(int page);

@@ -29,7 +29,7 @@ public interface BoardRepository {
     /**
      * 댓글 저장
      */
-    @Insert("insert into reply(reply) values(#{context})")
+    @Insert("insert into reply(context,bd_Idx) values(#{context},#{bdIdx})")
     @Options(useGeneratedKeys = true, keyProperty = "reIdx")  // DB에서 증가되는 bd_idx값을 dto에 bd_idx로 넣어준다.
     Integer insertReply(Reply reply); //앞에 데이터 형태 질문
 
@@ -41,10 +41,10 @@ public interface BoardRepository {
     List<BoardForm> selectBoardAll();
 
     /**
-     * 전체 게시글 조회(역순으로 최신게시물이 위에 오게하기 위함)
+     * 해당 게시글의 댓글 조회
      */
-    @Select("select * from reply order by re_idx desc")
-    List<BoardForm> selectReplyAll();
+    @Select("select * from reply where bd_idx=#{bdIdx}")
+    List<Reply> selectReplyAll(int bdIdx);
 
 
     /**

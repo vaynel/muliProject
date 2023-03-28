@@ -64,13 +64,15 @@
                                     <li><a href="/campingHome/userPage">userId 2</a></li>
                                     <li>댓글 2 댓글을 작성해 주세요</li>
                                     <br>
-                                    <li><a href="/campingHome/userPage">userId 3</a></li>
-                                    <li>댓글 3 댓글을 작성해 주세요</li>
+                                    <div>
+                                        <c:forEach items="${replies}" var="replies">
+                                        <tr>
+                                            <input type="text" name="reply" value='${replies.context}' readonly>
+                                            <br>
+                                        </tr>
 
-                                    <br>
-                                    <li><a href="/campingHome/userPage">userId 4</a></li>
-                                    <li>댓글 4 댓글을 작성해 주세요</li>
-                                    <br>
+                                        </c:forEach>
+                                    </div>
                                 </ul>
                             </form>
                         </div>

@@ -42,6 +42,9 @@ public class BoardServiceImpl implements BoardService{
         return bdIdx;
     }
 
+    /**
+     * 댓글 작성
+     */
     @Override
     public int insertReply(Reply reply) {
         boardRepository.insertReply(reply);
@@ -55,6 +58,18 @@ public class BoardServiceImpl implements BoardService{
     public List<BoardForm> selectBoardAll() {
         return boardRepository.selectBoardAll();
     }
+
+
+
+    /**
+     * 전체 댓글 조회
+     */
+    @Override
+    public List<Reply> selectReplyAll(int bdIdx) {
+        return boardRepository.selectReplyAll(bdIdx);
+    }
+
+
 
     /**
      * 특정 게시글 조회

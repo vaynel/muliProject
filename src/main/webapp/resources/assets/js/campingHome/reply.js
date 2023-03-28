@@ -8,7 +8,8 @@ form.addEventListener('submit', async (e)=>{
     e.preventDefault();
 
     let data = {
-        reply:context.value
+        context:context.value,
+        bdIdx:bdIdx
     }
 
     console.log(data);

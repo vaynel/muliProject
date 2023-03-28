@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.List;
+import java.util.Map;
 
 
 @Controller
@@ -62,8 +63,9 @@ public class BoardController {
     public String boardDetail(@PathVariable("bdIdx") int bdIdx,Model model) {
         model.addAllAttributes(boardService.selectBoardByBdIdx(bdIdx));
 
-        model.getAttribute("files");
         // 댓글 가져오기
+        List<Reply> replies = boardService.selectReplyAll(bdIdx);
+        model.addAttribute("replies",replies);
         return "/campingHome/boardDetail";
     }
 
@@ -71,16 +73,7 @@ public class BoardController {
     @ResponseBody
     public void saveReply(@PathVariable("bdIdx") int bdIdx, Model model,
                             @RequestBody Reply reply){
-        System.out.println("post!!!!!!!!!!!!");
         boardService.insertReply(reply);
-        model.addAttribute("Reply={}",reply);
-        log.info("reply={}",reply);
-    }
-
-    //@GetMapping("test")// 테스트
-    public String test(){
-        System.out.println("넘어와라");
-        return "campingHome/test";
     }
 
 
