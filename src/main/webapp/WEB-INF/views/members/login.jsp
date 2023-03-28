@@ -13,7 +13,6 @@
 
 
 
-
 	<input type="text" id="userId" placeholder="아이디" required autofocus>
 	<input type="password" id="password" placeholder="비밀번호" required>
 	<div id="remember" class="checkbox">

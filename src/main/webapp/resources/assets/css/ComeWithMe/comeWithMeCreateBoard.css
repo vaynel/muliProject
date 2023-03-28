@@ -1,0 +1,97 @@
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  background-color: #f7f7f7;
+  color: #333;
+}
+
+/* Center the content */
+#wrapper {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+/* Style the heading */
+h1 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+/* Style the input fields and textareas */
+input[type="text"],
+textarea {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Style the select fields */
+select {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  width: 200px;
+  box-sizing: border-box;
+}
+
+/* Style the button */
+button {
+  background-color: #428bca;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Style the form labels */
+li {
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+/* Style the form section */
+section {
+  margin-bottom: 50px;
+}
+
+/* Style the hash tag area */
+.tr_hashTag_area {
+  margin-top: 30px;
+}
+
+/* Style the hash tag input field */
+#tag {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  width: 300px;
+  box-sizing: border-box;
+}
+
+/* Style the hash tag list */
+#tag-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Style the hash tag list items */
+#tag-list li {
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  background-color: #428bca;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+}

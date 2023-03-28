@@ -3,11 +3,84 @@
 
 <meta id="_csrf" name="_csrf" content="${_csrf.token}"></meta>
 <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"></meta>
+<style>
+#wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Style for the main content */
+#main {
+  flex: 3;
+  margin-right: 2em;
+}
+
+/* Style for the form inputs */
+input[type="text"],
+textarea,
+select {
+  width: 100%;
+  padding: 0.5em;
+  margin-bottom: 1em;
+  border-radius: 3px;
+  border: none;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  font-size: 1em;
+  color: #555;
+}
+
+/* Style for the form labels */
+li {
+  margin-bottom: 0.5em;
+  font-size: 1.2em;
+}
+
+/* Style for the submit button */
+#btnClick {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  border-radius: 12px;
+  background-color: rgba(222, 118, 119, 50);
+  color: #fff;
+  font-size: 1.2em;
+  border: none;
+  cursor: pointer;
+}
+
+/* Style for the form error message */
+#error-message {
+  color: red;
+  margin-bottom: 1em;
+}
+
+/* Style for the form success message */
+#success-message {
+  color: green;
+  margin-bottom: 1em;
+}
+
+/* Style for the tags */
+.tr_hashTag_area {
+  margin-bottom: 2em;
+}
+
+.tag {
+  display: inline-block;
+  margin-right: 0.5em;
+  background-color: #ccc;
+  color: #fff;
+  padding: 0.5em;
+  border-radius: 3px;
+  font-size: 0.8em;
+}
+</style>
+
 
 
 <!-- head 설정 -->
 <body class="is-preload">
-
 	<!-- Wrapper -->
 	<div id="wrapper">
 

@@ -3,6 +3,73 @@
 <%@ include file="/WEB-INF/views/include/head.jsp"%>
 <!-- head 설정 -->
 <body class="is-preload">
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+/* 페이지네이션 스타일 */
+.pagination {
+  display: inline-block;
+}
+
+.pagination li {
+  display: inline;
+  margin: 0 5px;
+}
+
+.pagination li a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  border: 1px solid #ddd;
+}
+
+.pagination li.active a {
+  background-color: #4CAF50;
+  color: white;
+  border: 1px solid #4CAF50;
+}
+
+.pagination li a:hover:not(.active) {
+  background-color: #ddd;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 15px;
+}
+
+
+button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 12px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+</style>
 
    <!-- Wrapper -->
    <div id="wrapper">
@@ -42,6 +109,18 @@
                         </tr>
                
                </c:forEach><br>
+            	   <tr>
+                           <td>1</td>
+                           <td><a >title</a></td>
+                           <td>content</td>
+                           <td>like</td>
+                           <td>date</td>
+                           <td>numOfperson</td>
+                           <br>
+                        </tr>
+               
+               
+               
                
                <div class="row mt-3">
       <nav aria-label="Page navigation example">
