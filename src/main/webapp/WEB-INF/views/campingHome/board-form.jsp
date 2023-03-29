@@ -18,31 +18,31 @@
 
             <!-- Content -->
             <section>
-
                 <header class="main">
                     <h1>게시글 작성</h1>
                 </header>
 
                 <!-- form -->
-                <form id="form" enctype="multipart/form-data">
+                <form action="${context}/campingHome/board/new" id="form" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
                     <div calss="row gtr-uniform">
                     <strong>제목</strong>
-                    <input type="text" id="title">
+                    <input type="text" name="title">
 
                     <div class="col-12">
                         <strong>텍스트</strong>
-                        <input type="text" id="text" value="텍스트를 입력하세요" rows="6"/>
+                        <input type="text" name="text" value="텍스트를 입력하세요" rows="6"/>
                     </div>
 
                         <div class="col-12">
                             <strong>해시태그</strong>
-                            <input type="text" id="hashtag" value="해시태그를 입력하세요" rows="6"/>
+                            <input type="text" name="hashtag" value="해시태그를 입력하세요" rows="6"/>
                         </div>
 
                         <div class="col-12">
                             <strong>사진 등록</strong>
-                            <input type="file" multiple/>
+                            <input type="file" name="file" multiple/>
                         </div>
 
                     <div class="col-12">
@@ -59,10 +59,6 @@
                 </div>
                 </form>
 
-                <form >
-
-                </form>
-
             </section>
 
         </div>
@@ -76,7 +72,7 @@
 <!-- Scripts -->
 <%@ include file="/WEB-INF/views/include/commonScripts.jsp" %>
 
-<script src="${context}/resources/assets/js/campingHome/boardForm.js"></script>
+<!--<script src="${context}/resources/assets/js/campingHome/boardForm.js"></script>-->
 
 </body>
 </html>

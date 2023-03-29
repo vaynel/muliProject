@@ -10,7 +10,7 @@ public class ComeWithMeBoard {
 
 	private Integer bdIdx;
 	private String title;
-	private String content;
+	private Object content;
 	private Integer likeCount;
 	private LocalDateTime createDate;
 	private Integer numOfPerson ;

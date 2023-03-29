@@ -21,15 +21,18 @@
 						<h1 style="color: black">게시글 작성</h1>
 						<hr>
 					</header>
+					
+					<form action="${context}/comewithme/upload" id="form" method="post"  enctype="multipart/form-data">
+					 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 					<div >
-					<li>제목</li><input  style="color: black" type="text" id="title">
+					<li>제목</li><input name="title" style="color: black" type="text" id="title">
 					</div>
 					<br>
 					<br>
 
 					<li>내용</li>
 					<div>
-						<textarea name="content" rows="10" cols="100" id="content"></textarea>
+						<input type="text" name="content"  id="content"/>
 					</div>
 					<br>
 					<li>원하는 캠핑 장소는?</li> 
@@ -73,13 +76,18 @@
 						<div class="form-group">
 								<input type="text" id="tag" size="7" placeholder="엔터로 해시태그를 등록해주세요." style="width: 300px;" />
 						</div>
-                          <br>   <button type="button" id="btnClick" class="button primary" style="color:white; width:100%">게시글 저장하기</button>
+						<div class="col-12">
+                            <strong>사진 등록</strong>
+                            <input type="file" name="files" id="contract_file" multiple/>
+                        </div>						
+						
+                          <br>   <button type="submit" id="btnClick" class="button primary" style="color:white; width:100%">게시글 저장하기</button>
                           
 					</div>
+</form>
 				</section>
 			</div>
 		</div>
-
 		<!-- Sidebar -->
 		<%@ include file="/WEB-INF/views/include/sidebar.jsp"%>
 
@@ -88,6 +96,6 @@
 	<!-- Scripts -->
 	<%@ include file="/WEB-INF/views/include/commonScripts.jsp"%>
 
-	<script defer src="${context}/resources/assets/js/comeWithMe/createBoardJavaScript.js"></script>
+	<%-- <script defer src="${context}/resources/assets/js/comeWithMe/createBoardJavaScript.js"></script> --%>
 </body>
 </html>

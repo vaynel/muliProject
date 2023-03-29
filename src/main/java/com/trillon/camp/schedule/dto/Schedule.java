@@ -11,7 +11,7 @@ public class Schedule {
 	private String dateEnd;
 	private boolean allDay;
 	private String startTime;
-	//private boolean madeByGroup;
+	private boolean madeByGroup;
 	//private String groupName;
 	
 	
