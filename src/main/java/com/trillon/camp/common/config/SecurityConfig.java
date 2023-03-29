@@ -6,6 +6,7 @@ import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -33,12 +34,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers(HttpMethod.GET,  "/**").permitAll()
 		.antMatchers(HttpMethod.POST,  "/**").permitAll()
 		
+		.antMatchers(HttpMethod.GET,  "/resources/**").permitAll()
+		.antMatchers(HttpMethod.POST,  "/resources/**").permitAll()
+		.antMatchers("/resources/**").permitAll()
+
+		
+		.antMatchers(HttpMethod.GET,  "/members/**").permitAll()
+		.antMatchers(HttpMethod.POST,  "/members/**").permitAll()
+		
 		.antMatchers(HttpMethod.GET,  "/sample/admin").permitAll()
 		.antMatchers(HttpMethod.GET,  "/index").permitAll()
 		.antMatchers(HttpMethod.GET,  "/elements").permitAll()
 		
 		.antMatchers(HttpMethod.GET,  "/suggest/**").permitAll() 
 		.antMatchers(HttpMethod.POST, "/suggest/**").permitAll()
+		
+		.antMatchers(HttpMethod.GET,  "/schedule/**").hasRole("USER")
+		.antMatchers(HttpMethod.POST, "/schedule/**").hasRole("USER")
 				
 		.antMatchers(HttpMethod.GET,  "/sample/admin").permitAll()
 		.antMatchers(HttpMethod.GET, "/members/signin").permitAll()
@@ -77,10 +89,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		
 	}
 	
-	@Override
-	public void configure(WebSecurity web) {
-		web.ignoring().antMatchers(HttpMethod.GET,"/resources/**");
-	}
+	
+	  @Override public void configure(WebSecurity web) {
+	  web.ignoring().antMatchers(HttpMethod.GET,"/resources/**") ; 
+	
+      web.ignoring().antMatchers("/resources/**");
+   
+	  
+	  }
+	 
 	
 	@Bean
 	public PersistentTokenRepository tokenRepository() {
@@ -90,18 +107,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	
