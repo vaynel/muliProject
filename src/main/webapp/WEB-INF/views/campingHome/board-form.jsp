@@ -18,13 +18,12 @@
 
             <!-- Content -->
             <section>
-
                 <header class="main">
                     <h1>게시글 작성</h1>
                 </header>
 
                 <!-- form -->
-                <form action="${context}/campingHome/board/new" id="form" method="post" enctype="multipart/form-data">
+                <form action="${context}/campingHome/board/new" id="form" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
                     <div calss="row gtr-uniform">
@@ -58,10 +57,6 @@
                     </div>
 
                 </div>
-                </form>
-
-                <form >
-
                 </form>
 
             </section>

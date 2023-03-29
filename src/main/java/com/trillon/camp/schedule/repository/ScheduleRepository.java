@@ -36,6 +36,12 @@ public interface ScheduleRepository {
 	
 	@Select("select * from todo_manager where user_id = #{userId}")
 	List<Schedule> selectScheduleByUserId(String userId);
+
+	
+	@Insert("insert into todo_manager(user_id, title, date, date_end, allday, start_time,made_by_group)"
+			+ " values(#{userId},#{title},#{date},#{dateEnd},#{allDay},#{startTime},#{madeByGroup})")
+	void insertNewTodoMadeByGroup(Schedule schedule);
+
 	
 	
 }

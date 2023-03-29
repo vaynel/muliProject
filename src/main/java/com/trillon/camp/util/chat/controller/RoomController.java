@@ -51,8 +51,6 @@ public class RoomController {
 	    public void getRoom(@RequestParam("roomId") String roomId, Model model){
 
 	        log.info("# get Chat Room, roomID : " + roomId);
-	        
-
 	        model.addAttribute("room", chatRoomservice.findRoomById(roomId));
 	    }
 }

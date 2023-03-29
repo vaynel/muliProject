@@ -308,6 +308,18 @@ button:hover {
                         </tr>
                
                </c:forEach><br>
+            	   <tr>
+                           <td>1</td>
+                           <td><a >title</a></td>
+                           <td>content</td>
+                           <td>like</td>
+                           <td>date</td>
+                           <td>numOfperson</td>
+                           <br>
+                        </tr>
+               
+               
+               
                
                <div class="row mt-3" id="navigation">
       <nav aria-label="Page navigation example">

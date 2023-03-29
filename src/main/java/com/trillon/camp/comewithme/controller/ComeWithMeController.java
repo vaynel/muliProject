@@ -54,10 +54,10 @@ public class ComeWithMeController {
 	}
 	
 	@PostMapping("upload") // 게시판 생성 1-2
-	public String upload(@RequestBody ComeWithMeBoard board) {
+	public String upload(@RequestParam(required = false) List<MultipartFile> files, ComeWithMeBoard board ) {
 		
 		System.out.println("upload post : " + board);
-		comeWithMeService.insertBoard(board);
+		comeWithMeService.insertBoard(board, files);
 		
 		return "redirect:/comewithme/comeWithMeList";
 	}
