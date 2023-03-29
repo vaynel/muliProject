@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
 import lombok.RequiredArgsConstructor;
 
@@ -24,9 +25,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	/* private final UserDetailsService userDetailsService; */
 	
 	
+	@Configuration
+	   public class AppConfig {
+	       @Bean(name = "mvcHandlerMappingIntrospector")
+	       public HandlerMappingIntrospector mvcHandlerMappingIntrospector() {
+	           return new HandlerMappingIntrospector();
+	       }
+	   }
+	
+	
+	
+	
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-		
+	
 		http.headers().frameOptions().sameOrigin();
 		
 		http.authorizeRequests()
@@ -43,7 +55,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers(HttpMethod.GET,  "/sample/admin").permitAll()
 		.antMatchers(HttpMethod.GET, "/members/signin").permitAll()
 		.antMatchers(HttpMethod.POST, "/mail").permitAll()
-		.antMatchers(HttpMethod.GET, "/comewithme/comeWithMeList", "/comewithme/comeWithMeSelect", "/comewithme/comeWithMeBoard").permitAll()
+		.antMatchers(HttpMethod.GET, "/comewithme/**").permitAll()
+		.antMatchers(HttpMethod.POST, "/comewithme/**").permitAll()
 		.antMatchers(HttpMethod.GET,  "/members/login").permitAll()
 		.antMatchers(HttpMethod.GET,  "/board/list", "/board/detail", "/board/download").permitAll()
 
@@ -69,12 +82,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		 */
 		
 		
-		//http.csrf().disable();
 		http.csrf().ignoringAntMatchers("/mail");
 //		http.csrf().ignoringAntMatchers("/chat");
 
 		http.csrf().ignoringAntMatchers("/members/**");
-		
 	}
 	
 	@Override

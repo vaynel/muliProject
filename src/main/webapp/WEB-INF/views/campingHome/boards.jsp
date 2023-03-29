@@ -21,24 +21,21 @@
 
                 <div>
 
-
-
                     <c:forEach items="${boards}" var="boards">
                         <div class="col-6 col-12-large">
                             <ul>
                                 <tr>
-                                    <td><a href="/campingHome/board/${boards.bdIdx}" class="button primary small">${boards.bdIdx}</a></td>
-                                    <td>${boards.title}</td>
-                                    <td>${boards.text}</td>
-                                    <td>${boards.hashtag}</td>
+                                    <td><a href="/campingHome/board/${boards.gnIdx}" class="button primary small">${boards.gnIdx}</a></td>
                                     <br>
-                                 </tr>
+                                </tr>
+
 
                                 <div class="image object">
-                                    <a href="/campingHome/boardDetail">
-                                        <img src="/resources/images/campingHome01.png"  width="400px" height="300px" alt="캠핑의집" >
+                                    <a href="/campingHome/board/${boards.gnIdx}">
+                                        <img src="/campingHome/images/${boards.gnIdx}/${boards.renameFileName}"  width="400px" height="300px" alt="캠핑의집" >
                                     </a>
                                 </div>
+
                                 <ul class = "actions">
                                     <li>
                                         <a class="button primary">Like</a>
@@ -53,8 +50,10 @@
                             </ul>
 
                         </div>
-
                     </c:forEach>
+
+
+
                 </div>
 
                 <div class="row mt-3">

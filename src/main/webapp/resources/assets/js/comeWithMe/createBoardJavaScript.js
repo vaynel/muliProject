@@ -1,32 +1,32 @@
-let token = document.querySelector("meta[name='_csrf']").content;
-let header = document.querySelector("meta[name='_csrf_header']").content;
-
-function sendData(){
-	
-	let data = {
-			title : title.value,
-			content : content.value,
-			numOfPerson : numOfPerson.value,
-			place : place.value,
-			campingWay : campingWay.value,
-			ageAverage : ageAverage.value,
-			gender : gender.value
-	};
-	console.dir(data);
-	
-	let response = fetch("http://localhost:8080/comewithme/upload",{
-		method : 'post',
-		headers : {
-			'header' : header,
-			'X-CSRF-Token' : token,
-			'Content-Type' : 'application/json'
-		},
-		body: JSON.stringify(data)
-	}).then((response) =>{
-		console.log(response);
-		window.location.href="http://localhost:8080/comewithme/comeWithMeList";
-	})
-}
+//let token = document.querySelector("meta[name='_csrf']").content;
+//let header = document.querySelector("meta[name='_csrf_header']").content;
+//
+//function sendData(){
+//	
+//	let data = {
+//			title : title.value,
+//			content : content.value,
+//			numOfPerson : numOfPerson.value,
+//			place : place.value,
+//			campingWay : campingWay.value,
+//			ageAverage : ageAverage.value,
+//			gender : gender.value
+//	};
+//	console.dir(data);
+//	
+//	let response = fetch("http://localhost:8080/comewithme/upload",{
+//		method : 'post',
+//		headers : {
+//			'header' : header,
+//			'X-CSRF-Token' : token,
+//			'Content-Type' : 'application/json'
+//		},
+//		body: JSON.stringify(data)
+//	}).then((response) =>{
+//		console.log(response);
+//		window.location.href="http://localhost:8080/comewithme/comeWithMeList";
+//	})
+//}
 
 btnClick.addEventListener('click', e=>{
 	
@@ -45,7 +45,7 @@ btnClick.addEventListener('click', e=>{
 	}else if(gender.value == ""){
 		alert("원하는 성별을 입력해주세요.");
 	}else{
-		sendData();
+		
 	}
 })
 
