@@ -47,9 +47,11 @@ th {
   background-color: #ddd;
 }
 
+
 h1 {
   font-size: 36px;
   margin-bottom: 15px;
+  text-align : center;
 }
 
 
@@ -83,20 +85,217 @@ button:hover {
             <!-- Content -->
             <section>
                <header class="main">
-                  <h1>같이갈래 목록</h1>
+                  <h1>캠핑의 집 - 목록</h1>
                   <hr>
-                  <li><a href="/comewithme/comeWithMeMatch">매칭하러가기</a></li>
-                  <li><a href="/comewithme/comeWithMeCreateBoard">게시글 작성하러 가기</a></li>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     
+                     
+                     <a href="/comewithme/comeWithMeMatch">
+                                    <img id="match" src="https://cdn-icons-png.flaticon.com/512/33/33308.png" height="70px" width="70px">
+                                    &nbsp;&nbsp;&nbsp;
+                     </a>
+                     <a href="/comewithme/comeWithMeCreateBoard">
+                                    <img id="write" src="https://cdn-icons-png.flaticon.com/512/1357/1357748.png" height="70px" width="70px">
+                                    &nbsp;&nbsp;&nbsp;
+                     </a>
                </header>
-               <tr>
-                  <th style="width: 10%; height: 20%;"><span>| 번호 |</span></th>
-                  <th style="width: 70%;"><span> 제목 |</span></th>
-                  <th style="width: 10%;"><span> 내용 |</span></th>
-                  <th style="width: 10%;"><span> 좋아요 |</span></th>
-                  <th style="width: 10%;"><span> 등록일 |</span></th>
-                  <th style="width: 10%;"><span> 모집 인원 수 |</span></th>
-                  <br>
-               </tr>
+               
+                                         
+               
+               
+<br>
+               <div class="row">
+                <div>
+                <h1>1. 제목</h1>
+                                <a href="/campingHome/boardDetail">
+                                    <img src="https://a0.muscache.com/im/pictures/6aab9a34-f079-4b78-ac19-4ab72f5426d5.jpg?im_w=1920" 
+                                    width="300px" height="300px" alt="캠핑의집" >
+                                </a>
+                                <ul class="actions">
+                                <li>
+                                <a href="#">
+                                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <img id="like" src="https://cdn-icons-png.flaticon.com/512/739/739231.png" height="50px" width="50px">
+                                	&nbsp;&nbsp;&nbsp;&nbsp;
+                                </a>
+                                </li>
+                                <li>
+                                <a href="#">
+                                    <img id="comment" src="https://cdn-icons-png.flaticon.com/512/13/13673.png" height="50px" width="50px">
+                                    &nbsp;&nbsp;&nbsp;
+                                </a>
+                                </li>
+                                <li>
+                                <a href="#">
+                                    <img id="save" src="https://cdn-icons-png.flaticon.com/512/102/102279.png" height="50px" width="50px">
+                                </a>
+                                </li>
+                                </ul>    
+                            </div>
+                     		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     		<div>
+                     		<h1>2. 제목</h1>
+                                <a href="/campingHome/boardDetail">
+                                    <img src="https://images.pexels.com/photos/1539225/pexels-photo-1539225.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                                    width="300px" height="300px" alt="캠핑의집" >
+                                </a>
+                                <ul class="actions">
+                                <li>
+                                <a href="#">
+                                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <img id="like" src="https://cdn-icons-png.flaticon.com/512/739/739231.png" height="50px" width="50px">
+                                	&nbsp;&nbsp;&nbsp;&nbsp;
+                                </a>
+                                </li>
+                                <li>
+                                <a href="#">
+                                    <img id="comment" src="https://cdn-icons-png.flaticon.com/512/13/13673.png" height="50px" width="50px">
+                                    &nbsp;&nbsp;&nbsp;
+                                </a>
+                                </li>
+                                <li>
+                                <a href="#">
+                                    <img id="save" src="https://cdn-icons-png.flaticon.com/512/102/102279.png" height="50px" width="50px">
+                                </a>
+                                </li>
+                                </ul>    
+                            </div>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <div>
+                            <h1>3. 제목</h1>
+                                <a href="/campingHome/boardDetail">
+                                    <img src="https://images.pexels.com/photos/756780/pexels-photo-756780.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                                    width="300px" height="300px" alt="캠핑의집" >
+                                </a>
+                                <ul class="actions">
+                                <li>
+                                <a href="#">
+                                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <img id="like" src="https://cdn-icons-png.flaticon.com/512/739/739231.png" height="50px" width="50px">
+                                	&nbsp;&nbsp;&nbsp;&nbsp;
+                                </a>
+                                </li>
+                                <li>
+                                <a href="#">
+                                    <img id="comment" src="https://cdn-icons-png.flaticon.com/512/13/13673.png" height="50px" width="50px">
+                                    &nbsp;&nbsp;&nbsp;
+                                </a>
+                                </li>
+                                <li>
+                                <a href="#">
+                                    <img id="save" src="https://cdn-icons-png.flaticon.com/512/102/102279.png" height="50px" width="50px">
+                                </a>
+                                </li>
+                                </ul>    
+                            </div>
+               </div>
+               <br>
+               <br>
+               <br>
+                              <div class="row">
+                <div>
+                <h1>4. 제목</h1>
+                                <a href="/campingHome/boardDetail">
+                                    <img src="https://images.pexels.com/photos/2376997/pexels-photo-2376997.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                                    width="300px" height="300px" alt="캠핑의집" >
+                                </a>
+                                <ul class="actions">
+                                <li>
+                                <a href="#">
+                                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <img id="like" src="https://cdn-icons-png.flaticon.com/512/739/739231.png" height="50px" width="50px">
+                                	&nbsp;&nbsp;&nbsp;&nbsp;
+                                </a>
+                                </li>
+                                <li>
+                                <a href="#">
+                                    <img id="comment" src="https://cdn-icons-png.flaticon.com/512/13/13673.png" height="50px" width="50px">
+                                    &nbsp;&nbsp;&nbsp;
+                                </a>
+                                </li>
+                                <li>
+                                <a href="#">
+                                    <img id="save" src="https://cdn-icons-png.flaticon.com/512/102/102279.png" height="50px" width="50px">
+                                </a>
+                                </li>
+                                </ul>    
+                            </div>
+                     		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     		<div>
+                     		<h1>5. 제목</h1>
+                                <a href="/campingHome/boardDetail">
+                                    <img src="https://images.pexels.com/photos/6271635/pexels-photo-6271635.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                                    width="300px" height="300px" alt="캠핑의집" >
+                                </a>
+                                <ul class="actions">
+                                <li>
+                                <a href="#">
+                                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <img id="like" src="https://cdn-icons-png.flaticon.com/512/739/739231.png" height="50px" width="50px">
+                                	&nbsp;&nbsp;&nbsp;&nbsp;
+                                </a>
+                                </li>
+                                <li>
+                                <a href="#">
+                                    <img id="comment" src="https://cdn-icons-png.flaticon.com/512/13/13673.png" height="50px" width="50px">
+                                    &nbsp;&nbsp;&nbsp;
+                                </a>
+                                </li>
+                                <li>
+                                <a href="#">
+                                    <img id="save" src="https://cdn-icons-png.flaticon.com/512/102/102279.png" height="50px" width="50px">
+                                </a>
+                                </li>
+                                </ul>    
+                            </div>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <div>
+                            <h1>6. 제목</h1>
+                                <a href="/campingHome/boardDetail">
+                                    <img src="https://images.pexels.com/photos/2126578/pexels-photo-2126578.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                                    width="300px" height="300px" alt="캠핑의집" >
+                                </a>
+                                <ul class="actions">
+                                <li>
+                                <a href="#">
+                                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <img id="like" src="https://cdn-icons-png.flaticon.com/512/739/739231.png" height="50px" width="50px">
+                                	&nbsp;&nbsp;&nbsp;&nbsp;
+                                </a>
+                                </li>
+                                <li>
+                                <a href="#">
+                                    <img id="comment" src="https://cdn-icons-png.flaticon.com/512/13/13673.png" height="50px" width="50px">
+                                    &nbsp;&nbsp;&nbsp;
+                                </a>
+                                </li>
+                                <li>
+                                <a href="#">
+                                    <img id="save" src="https://cdn-icons-png.flaticon.com/512/102/102279.png" height="50px" width="50px">
+                                </a>
+                                </li>
+                                </ul>    
+                            </div>
+               </div>			
+              
                <c:forEach items="${boardList}" var="boardList">
                         <tr>
                            <td>${boardList.bdIdx}</td>
@@ -110,7 +309,7 @@ button:hover {
                
                </c:forEach><br>
                
-               <div class="row mt-3">
+               <div class="row mt-3" id="navigation">
       <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
          
