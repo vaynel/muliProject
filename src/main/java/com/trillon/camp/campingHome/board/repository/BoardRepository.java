@@ -15,8 +15,6 @@ import java.util.List;
 @Repository
 public interface BoardRepository {
 
-    //@Insert("insert into campinghome_board(title, date, content, hashtag, photo, like, share, comment_num, id) " +
-    //        "values(#{title}, #{date}, #{text}, #{hashtag}, #{photo}, #{like}, #{share}, #{comments},#{id})")
 
     /**
      *  게시글 저장
@@ -55,12 +53,15 @@ public interface BoardRepository {
 
     
     /**
-     * 페이징 처리를 위한 젠체 게시글 조회
+     * 페이징 처리를 위한 전체 게시글 조회 (해당게시물의 첫번째 사진 썸네일 처리)
      */
-    @Select("select * from test order by bd_idx desc limit #{start}, #{cntPerPage}")
+
+    @Select("with thumbnail as(" +
+            "select min(file_idx)as poster from test2 group by gn_idx" +
+            ") " +
+            "select * from test2 f inner join thumbnail b on f.file_idx = b.poster " +
+            "order by gn_idx desc limit #{start}, #{cntPerPage}")
     List<Board> selectBoardList(Paging paging);
-
-
 
 
     /**
