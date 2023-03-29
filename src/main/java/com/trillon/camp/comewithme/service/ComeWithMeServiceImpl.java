@@ -8,7 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.trillon.camp.campingHome.file.FileInfo;
+import com.trillon.camp.comewithme.common.file.FileInfo;
+import com.trillon.camp.comewithme.common.file.FileRepositoryYG;
+import com.trillon.camp.comewithme.common.file.FileUtilYG;
 import com.trillon.camp.comewithme.common.page.Paging;
 import com.trillon.camp.comewithme.dto.Answer;
 import com.trillon.camp.comewithme.dto.ComeWithMeBoard;
@@ -23,6 +25,8 @@ public class ComeWithMeServiceImpl implements ComeWithMeService{
 	Logger logger =  LoggerFactory.getLogger(this.getClass());
 	
 	private final ComeWithMeRepository comeWithMeRepository;
+	private final FileRepositoryYG fileRepository;
+	private final FileUtilYG fileUtil;
 	
 	@Override
 	public Map<String, Object> selectBoardList(int page){
@@ -64,10 +68,14 @@ public class ComeWithMeServiceImpl implements ComeWithMeService{
 	}
 
 	@Override
-	public void insertBoard(ComeWithMeBoard board) {
+	public void insertBoard(ComeWithMeBoard board, List<MultipartFile> files) {
+		
 		comeWithMeRepository.insertBoard(board);
 		
-		
+		FileInfo fileInfo = new FileInfo();
+		fileInfo.setGroupName("board");
+		fileInfo.setGnIdx(board.getBdIdx());
+		fileUtil.uploadFile(fileInfo, files);
 	}
 
 	@Override
@@ -81,6 +89,9 @@ public class ComeWithMeServiceImpl implements ComeWithMeService{
 		
 		
 	}
+
+	
+	
 	
 	
 
