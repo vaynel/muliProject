@@ -62,8 +62,8 @@ public class GroupController {
 		Map<Date,Integer> recommandWeekEndMap = groupService.recommandWeekEndFromDate(data);
 		
 		String roomId = groupChatService.findRoomIdByGroupIdx(Integer.valueOf(String.valueOf(data.get("groupIdx"))) );
-		
-		groupChatService.sendMassageRecommandWeekEnd(recommandWeekEndMap,roomId,groupIdx);
+		String title = (String) data.get("title");
+		groupChatService.sendMassageRecommandWeekEnd(recommandWeekEndMap,roomId,groupIdx,title);
 		
 		
 		//return "redirect:/groupChat/chatRoom?roomId="+roomId+"&groupIdx="+data.get("groupIdx");
@@ -75,6 +75,7 @@ public class GroupController {
 	@PostMapping("/addGroupTodo")
 	public void addMyGroupTodo(String groupIdx,String title, String date) {
 		log.info("post : addGroupTodo");
+		System.out.println(title);
 		Schedule schedule = new Schedule();
 		schedule.setTitle(title);
 		schedule.setDate(date);
@@ -121,7 +122,7 @@ public class GroupController {
 			Schedule schedule = new Schedule();
 			schedule.setDate(temp.getRecommandDate());
 			schedule.setDateEnd(temp.getRecommandDate());
-			schedule.setTitle(String.valueOf(temp.getHowManyMemberCan()));
+			schedule.setTitle(temp.getTitle()+" : " +String.valueOf(temp.getHowManyMemberCan())+"명 가능");
 			schedule.setStartTime("00:00:00");
 			list.add(schedule);			
 		}

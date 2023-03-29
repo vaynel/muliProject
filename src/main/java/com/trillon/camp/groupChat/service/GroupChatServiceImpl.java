@@ -75,7 +75,10 @@ public class GroupChatServiceImpl implements GroupChatService{
 
 
 	@Override
-	public void sendMassageRecommandWeekEnd(Map<Date, Integer> recommandWeekEndMap, String roomId, String groupIdx) {
+	public void sendMassageRecommandWeekEnd(Map<Date, Integer> recommandWeekEndMap,
+			String roomId,
+			String groupIdx,
+			String title) {
 		// 그룹에 추천 날짜 메시지 보내기
 		ChatMessage message = new ChatMessage();
 		message.setRoomId(roomId);
@@ -91,6 +94,7 @@ public class GroupChatServiceImpl implements GroupChatService{
 			tempMap.put("groupIdx", groupIdx);
 			tempMap.put("weekEndDate", weekEndDate);
 			tempMap.put("howMany", recommandWeekEndMap.get(date));
+			tempMap.put("title",title);
 			groupChatRepository.insertTemporaryDate(tempMap);
 			
 			// chatRoom에 메세지 보내기 

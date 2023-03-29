@@ -43,7 +43,7 @@ public interface BoardRepository {
     /**
      * 페이징 처리를 위한 젠체 게시글 조회
      */
-    @Select("select * from test order by bd_idx desc limit #{start}, #{cntPerPage}")
+    @Select("select * from test order by campingIdx desc limit #{start}, #{cntPerPage}")
     List<Board> selectBoardList(Paging paging);
 
 

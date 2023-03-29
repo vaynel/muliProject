@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.trillon.camp.suggest.dto.Answer;
 import com.trillon.camp.suggest.dto.Campsite;
@@ -20,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 
 
 @Controller
-@RequestMapping("suggest")
+@RequestMapping("suggest")	
 @RequiredArgsConstructor
 public class SuggestController {
 	
@@ -29,6 +31,21 @@ public class SuggestController {
 	@GetMapping("select")
 	public void select() { 
 		System.out.println("select.jsp");
+		
+	}
+	
+	@GetMapping("select2")
+	public void selelct2(Model model,
+			@RequestParam(value ="page", required = false,defaultValue = "1") int page,
+			HttpSession session) {
+		System.out.println("최종페이지");
+		if(session.getAttribute("campsites")==null) System.out.println("session에 없음");
+		if(model.getAttribute("campsites")==null) {
+			System.out.println("model에 campsites가 없음");
+			model.addAllAttributes(suggestService.selectCampsiteByPage(page));
+		}
+		
+		
 	}
 	
 	
@@ -57,19 +74,17 @@ public class SuggestController {
 		
 	}
 	
-	@PostMapping("select")
-	@ResponseBody
-	public void PostSelect(@RequestBody Answer answer,HttpSession session) {		
+	@PostMapping("select2")
+	public String PostSelect(@RequestBody Answer answer,
+			@RequestParam(value = "page", required = false,defaultValue = "1" ) int page,
+			HttpSession session,
+			Model model,
+			RedirectAttributes redirectAttributes) {		
+		System.out.println(answer);
 		
-		List<Campsite> campsites;
-		campsites=suggestService.findCampingByAnswer(answer);
-		if(campsites!=null) {
-			System.out.println("캠핑장 검색 성공");
-			session.setAttribute("campsites", campsites);
-		}
-		else {
-			System.out.println("캠핑장 검색 실패");
-		}
+		model.addAllAttributes(suggestService.findCampingByAnswerWithPage(answer,page));
+		System.out.println(model.getAttribute("campsites"));
+		return "success";
 	}
 	
 	
