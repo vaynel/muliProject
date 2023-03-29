@@ -17,7 +17,7 @@ public class ScheduleServiceImpl implements ScheduleService{
 	private final ScheduleRepository scheduleRepository;
 	
 	@Override
-	public List selectTodo() {
+	public List<Schedule> selectTodo() {
 		
 		return scheduleRepository.findAll();
 		
@@ -63,6 +63,23 @@ public class ScheduleServiceImpl implements ScheduleService{
 
 		scheduleRepository.deleteTodo(schedule);
 	}
+
+	@Override
+	public void insertNewTodoMadyByGroup(Schedule schedule) {
+		if(schedule.getDateEnd()=="")
+			schedule.setDateEnd(schedule.getDate());
+		
+		if(schedule.getStartTime()=="") {
+			schedule.setStartTime("00:00:00");
+			schedule.setAllDay(true);
+		}
+		else
+			schedule.setAllDay(false);
+		
+		scheduleRepository.insertNewTodoMadeByGroup(schedule);
+		
+	}
+
 
 
 

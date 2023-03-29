@@ -1,9 +1,70 @@
-@charset "UTF-8";
-
-button.small, .button.small {
-	font-size: 1em;
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
+<!-- 폰트 : 나무명조 -->
+* {
+	font-family: 'Nanum Gothic', sans-serif; 
+	text-align : center;
 }
 
-li {
-	text-align: -webkit-match-parent;
+#recommend {
+	text-align : center;
+}
+
+#h2_1, #h2_2 {
+	text-align : center;
+}
+
+#campingContainer {
+	text-align : center;
+}
+
+#CampingContainer input[type="radio"] {
+  display : inline-block;
+}
+
+#whereCamping {
+	text-align : center;
+}
+
+#whereCamping input[type="radio"] {
+	display : inline-block;
+}
+
+#campingRegion {
+  width: 40%;
+}
+
+#smallRegion {
+	width : 40%;
+}
+
+
+#answer {
+	  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+
+input[type="radio"] {
+  display: none; 
+}
+
+label {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-right: 10px;
+  font-size: 16px;
+  color: #555;
+  border: 2px solid #ccc;
+  border-radius: 20px;
+  cursor: pointer;
+  text-align: center; 
+  line-height: 1; 
+}
+
+
+input[type="radio"]:checked + label {
+  color: #fff;
+  background-color: #ff5500;
+  border-color: #ff5500;
 }

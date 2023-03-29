@@ -2,6 +2,7 @@ package com.trillon.camp.campingHome.board.service;
 
 import com.trillon.camp.campingHome.board.dto.BoardForm;
 import com.trillon.camp.campingHome.board.dto.Paging;
+import com.trillon.camp.campingHome.board.dto.Reply;
 import com.trillon.camp.campingHome.board.repository.BoardRepository;
 import com.trillon.camp.campingHome.file.FileInfo;
 import com.trillon.camp.campingHome.file.FileUtil;
@@ -42,12 +43,33 @@ public class BoardServiceImpl implements BoardService{
     }
 
     /**
+     * 댓글 작성
+     */
+    @Override
+    public int insertReply(Reply reply) {
+        boardRepository.insertReply(reply);
+        return reply.getReIdx();
+    }
+
+    /**
      * 전체 게시글 조회
      */
     @Override
     public List<BoardForm> selectBoardAll() {
         return boardRepository.selectBoardAll();
     }
+
+
+
+    /**
+     * 전체 댓글 조회
+     */
+    @Override
+    public List<Reply> selectReplyAll(int bdIdx) {
+        return boardRepository.selectReplyAll(bdIdx);
+    }
+
+
 
     /**
      * 특정 게시글 조회
