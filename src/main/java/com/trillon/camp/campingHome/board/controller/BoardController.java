@@ -1,9 +1,12 @@
 package com.trillon.camp.campingHome.board.controller;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.nio.charset.StandardCharsets;
-import java.util.List;
+import com.trillon.camp.campingHome.board.dto.BoardForm;
 
+import com.trillon.camp.campingHome.board.dto.Reply;
+import com.trillon.camp.campingHome.board.service.BoardService;
+
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Controller;
@@ -22,8 +25,10 @@ import com.trillon.camp.campingHome.board.dto.BoardForm;
 import com.trillon.camp.campingHome.board.dto.Reply;
 import com.trillon.camp.campingHome.board.service.BoardService;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.util.List;
+
 
 
 @Controller
@@ -43,20 +48,18 @@ public class BoardController {
 
 
     @PostMapping("board/new")// 게시판 등록 버튼을 눌렀을 때 실행되는 메서드
-    public String saveFile(
-    						@RequestParam String title,
+    public String saveFile(@RequestParam String title,
                             @RequestParam String text,
                             @RequestParam String hashtag,
                             @RequestParam("file") List<MultipartFile> files) throws IOException {
         BoardForm boardForm = new BoardForm();
-        title= new String(title.getBytes("8859_1"),"utf-8");
-        text= new String(text.getBytes("8859_1"),"utf-8");
-        hashtag= new String(hashtag.getBytes("8859_1"),"utf-8");
+        title = new String(title.getBytes("8859_1"),"utf-8");
+        text = new String(text.getBytes("8859_1"),"utf-8");
+        hashtag = new String(hashtag.getBytes("8859_1"),"utf-8");
         boardForm.setTitle(title);
         boardForm.setText(text);
         boardForm.setHashtag(hashtag);
         boardService.insertBoard(boardForm, files);
-        System.out.println(boardForm);
         return "redirect:/campingHome/boards";
     }
 

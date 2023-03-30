@@ -18,12 +18,13 @@
 
             <!-- Content -->
             <section>
+
                 <header class="main">
                     <h1>게시글 작성</h1>
                 </header>
 
                 <!-- form -->
-                <form action="${context}/campingHome/board/new" id="form" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
+                <form action="${context}/campingHome/board/new" id="form" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
                     <div calss="row gtr-uniform">
@@ -40,7 +41,7 @@
                             <input type="text" name="hashtag" value="해시태그를 입력하세요" rows="6"/>
                         </div>
 
-                        <<div class="col-12">
+                        <div class="col-12">
                             <strong>사진 등록</strong>
                             <input type="file" name="file" multiple/>
                         </div>
@@ -57,6 +58,10 @@
                     </div>
 
                 </div>
+                </form>
+
+                <form >
+
                 </form>
 
             </section>

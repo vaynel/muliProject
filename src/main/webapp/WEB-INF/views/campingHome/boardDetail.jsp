@@ -32,7 +32,9 @@
                                     <br>
                                 </tr>
 
-                            </c:forEach><br>
+                            </c:forEach>
+
+                            <br>
 
                         </div>
                         <div class="col-6 col-12-large" border="1px solid black">

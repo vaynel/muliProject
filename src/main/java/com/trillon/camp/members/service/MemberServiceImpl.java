@@ -33,14 +33,17 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public Member authenticateUser(Member rowMember) {
 		
+		System.out.println("rowMember확인"+rowMember);
 		
 		Member member = memberRepository.selectMemberByUserId(rowMember.getUserId());
+		member.setUserId(rowMember.getUserId());
 		
 		if(member == null) return null;
 		else if(!passwordEncoder.matches(rowMember.getPassword(), member.getPassword())) {
 			return null;
 		}
 		else
+			System.out.println("service확인"+member);
 		return member;
 	}
 
