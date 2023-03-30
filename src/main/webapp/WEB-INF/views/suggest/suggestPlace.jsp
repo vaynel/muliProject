@@ -19,8 +19,8 @@
 										<h1>장소추천</h1>
 									</header>
 									<c:forEach items="${campsites}" var="campsite">
+										<h2>${campsite.facltNm}</h2>
 										<tr>
-											<h2 id="content">${campsite.facltNm}</h2>
 											<a href="${campsite.homepage}">${campsite.homepage}</a><br>
 											
 										<div class="row">

@@ -13,4 +13,6 @@ public interface MemberService {
 	Member authenticateUser(Member member);
 
 	boolean idCheck(String userId);
+
+	Member idCheckRetrunMember(String userId);
 }
