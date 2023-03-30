@@ -36,7 +36,7 @@ public class FileUtilYG {
 			String originFileName = multipartFile.getOriginalFilename();
 			String renameFileName = createRenameFileName(originFileName);
 			
-			file.setGroup(fileInfo.getGroup());
+			file.setGroupName(fileInfo.getGroupName());
 			file.setOriginFileName(originFileName);
 			file.setRenameFileName(renameFileName);
 			file.setSavePath(uploadPath);
@@ -70,7 +70,7 @@ public class FileUtilYG {
 		// 폴더를 기능, 일자별로 생성, 지나치게 많은 파일이 저장된 폴더는 열리지 않음
 		LocalDate now =  LocalDate.now();
 		String uploadPath = now.getYear() + "/" + now.getMonthValue() + "/" + now.getDayOfMonth() + "/";
-		new File(Code.STORAGE_PATH + fileInfo.getGroup()  + "/" + uploadPath).mkdirs();
+		new File(Code.STORAGE_PATH + fileInfo.getGroupName()  + "/" + uploadPath).mkdirs();
 		
 		return uploadPath;
 	}
