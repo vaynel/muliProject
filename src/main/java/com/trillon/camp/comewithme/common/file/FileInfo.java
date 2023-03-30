@@ -8,17 +8,18 @@ import lombok.Data;
 
 @Data
 public class FileInfo {
-	
-	private int fpIdx;
+
+	private int flIdx;
 	private String originFileName;
 	private String renameFileName;
 	private String savePath;
 	private LocalDateTime regDate;
-	private boolean isDel;
-	private String groupName;
-	
+	private Boolean isDel;
+	private String group;
+	private int groupIdx;
+
 	public String getFullPath() {
-		return Code.STORAGE_PATH + groupName + "/" + savePath + renameFileName;
+		return Code.STORAGE_PATH + group + "/" + savePath + renameFileName;
 	}
 
 }
