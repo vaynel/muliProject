@@ -5,13 +5,14 @@ import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.trillon.camp.comewithme.common.file.FileInfo;
 import com.trillon.camp.comewithme.dto.Answer;
 import com.trillon.camp.comewithme.dto.ComeWithMeBoard;
 
 
 public interface ComeWithMeService {
 
-	void insertBoard(ComeWithMeBoard board, List<MultipartFile> files);
+	void insertBoard(ComeWithMeBoard board, List<MultipartFile> files); // 게시글 업로드
 
 	Map<String, Object> selectBoardList(int page); // 목록전체보기
 
@@ -22,6 +23,10 @@ public interface ComeWithMeService {
 	void updateBoard(ComeWithMeBoard board); // 게시글 수정
 
 	void deleteBoardByBdIdx(int bdIdx);  // 게시글 삭제
+	
+	//void updateboard(ComeWithMeBoard board, List<MultipartFile> fileList, List<String> delFiles);
+
+	FileInfo selectFileInfo(String flIdx);
 
 
 
