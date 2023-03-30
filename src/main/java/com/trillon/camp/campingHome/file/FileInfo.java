@@ -6,6 +6,7 @@ import lombok.Data;
 @Data
 public class FileInfo {
 
+    private int fileIdx;
     private String originFileName;
     private String renameFileName;
     private String savePath;
@@ -16,4 +17,5 @@ public class FileInfo {
     public String getFullPath() {
         return savePath + renameFileName;
     }
+
 }

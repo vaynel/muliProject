@@ -6,13 +6,13 @@ import lombok.Data;
 public class Board {
 
 
-    private Integer bdIdx;
-
-    private long bd_idx;
-
+    private int bdIdx;
+    private int gnIdx;
+    private int fileIdx;
     private String id;
     private String title;
     private String text;
     private String hashtag;
+    private String renameFileName;
     
 }

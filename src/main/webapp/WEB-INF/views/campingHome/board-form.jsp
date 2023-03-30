@@ -41,7 +41,7 @@
                             <input type="text" name="hashtag" value="해시태그를 입력하세요" rows="6"/>
                         </div>
 
-                        <<div class="col-12">
+                        <div class="col-12">
                             <strong>사진 등록</strong>
                             <input type="file" name="file" multiple/>
                         </div>
