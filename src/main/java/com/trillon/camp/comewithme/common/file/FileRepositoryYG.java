@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FileRepositoryYG {
 
-	@Insert("insert into file_info(origin_file_name, rename_file_name, save_path, group_name, gn_idx)"
-			+ " values(#{originFileName},#{renameFileName},#{savePath},#{groupName}, #{gnIdx})")
+	@Insert("insert into file_path(origin_file_name, rename_file_name, save_path, group_name)"
+			+ " values(#{originFileName},#{renameFileName},#{savePath},#{groupName})")
 	void insertFileInfo(FileInfo fileInfo);
 }

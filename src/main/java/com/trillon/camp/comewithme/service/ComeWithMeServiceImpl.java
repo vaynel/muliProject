@@ -74,7 +74,6 @@ public class ComeWithMeServiceImpl implements ComeWithMeService{
 		
 		FileInfo fileInfo = new FileInfo();
 		fileInfo.setGroupName("board");
-		fileInfo.setGnIdx(board.getBdIdx());
 		fileUtil.uploadFile(fileInfo, files);
 	}
 

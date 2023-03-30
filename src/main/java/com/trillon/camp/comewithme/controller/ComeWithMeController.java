@@ -1,5 +1,6 @@
 package com.trillon.camp.comewithme.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
 
@@ -54,11 +55,17 @@ public class ComeWithMeController {
 	}
 	
 	@PostMapping("upload") // 게시판 생성 1-2
-	public String upload(@RequestParam(required = false) List<MultipartFile> files, ComeWithMeBoard board ) {
+	public String upload(@RequestParam List<MultipartFile> files, ComeWithMeBoard board) throws UnsupportedEncodingException {
+		
+		board.setTitle(new String(board.getTitle().getBytes("8859_1"),"utf-8"));
+		board.setContent(new String(board.getContent().getBytes("8859_1"),"utf-8"));
+		board.setPlace(new String(board.getPlace().getBytes("8859_1"),"utf-8"));
+		board.setCampingWay(new String(board.getCampingWay().getBytes("8859_1"),"utf-8"));
+		board.setAgeAverage(new String(board.getAgeAverage().getBytes("8859_1"),"utf-8"));
+		board.setGender(new String(board.getGender().getBytes("8859_1"),"utf-8"));
 		
 		System.out.println("upload post : " + board);
 		comeWithMeService.insertBoard(board, files);
-		
 		return "redirect:/comewithme/comeWithMeList";
 	}
 	

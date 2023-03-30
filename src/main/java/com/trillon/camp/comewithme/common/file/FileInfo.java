@@ -9,14 +9,13 @@ import lombok.Data;
 @Data
 public class FileInfo {
 	
-	private int flIdx;
+	private int fpIdx;
 	private String originFileName;
 	private String renameFileName;
 	private String savePath;
 	private LocalDateTime regDate;
 	private boolean isDel;
 	private String groupName;
-	private int gnIdx;
 	
 	public String getFullPath() {
 		return Code.STORAGE_PATH + groupName + "/" + savePath + renameFileName;
