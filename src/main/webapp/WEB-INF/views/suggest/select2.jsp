@@ -3,8 +3,7 @@
 <%@ include file="/WEB-INF/views/include/head.jsp"%>
 
 <meta id="_csrf" name="_csrf" content="${_csrf.token}"></meta>
-<meta id="_csrf_header" name="_csrf_header"
-	content="${_csrf.headerName}"></meta>
+<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"></meta>
 
 <link rel="stylesheet" href="/resources/assets/css/suggest/suggest.css?v=<%= System.currentTimeMillis() %>">
 
@@ -81,7 +80,8 @@
 							<label for="select09">상관없다</label>
 					</div>
 					<button  id="btnSummit" >확인</button>
-					<div>
+					
+					<div id="campsiteList">
 					<br><br>
 						<h2>캠핑장 리스트</h2>
 						<c:forEach items="${campsites}" var="campsite">
@@ -89,7 +89,8 @@
 							<tr>
 								<a href="${campsite.homepage}">${campsite.homepage}</a><br>
 								
-							<div class="row">
+						<div class="row">
+							
 							<div class="col-6 col-12-small">
 								<div class="image left fit"><img src="${campsite.firstImageUrl}" alt="" /></div>
 							</div>
@@ -102,7 +103,8 @@
 								<li>${campsite.tel}<br></li>
 							</ul>
 							</div>	
-						</div>
+						</div></tr>
+						
 						</c:forEach>
 						
 						<div class="row mt-3">
@@ -123,6 +125,7 @@
 		
 		                        </ul>
 		                    </nav>
+		              	 	</div>
 		               	</div>
 					
 					</section>

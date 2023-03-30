@@ -6,6 +6,78 @@ let classAddEventListener= function(cssSelector,ev){
     }
 }
 
+ //paging 버튼 만들기
+let createPaging = function(paging){
+    
+     let row_mt_3 = $('<div class = "row mt-3">');
+     let nav = $('<nav aria-label="Page navigation example" >');
+     let ul_pagination = $('<ul class="pagination justify-content-center">');
+     let pagingPrevPage = $('<li class="page-item"><a class="page-link" href="/suggest/select2?page=${paging.prevPage}">Previous</a></li>');
+     let pagingNextPage = $('<li class="page-item"><a class="page-link" href="/suggest/select2?page=${paging.nextPage}">Next</a></li>');
+ 
+     ul_pagination.append(pagingPrevPage);
+     for (let page = 1; page < paging.blockEnd; page++) {
+         let paging = $('<li class="page-item"><a class="page-link" href="/suggest/select2?page='+page+'">'+page+'</a></li>');
+         ul_pagination.append(paging);
+     }
+     ul_pagination.append(pagingNextPage);
+     nav.append(ul_pagination);
+     row_mt_3.append(nav);
+     $('#campsiteList').append(row_mt_3);
+ 
+
+}
+
+// 캠핑장 리스트 추천 
+let createCampingList = function(campingList){
+     campingList.forEach(campsite => {
+        let row = $('<div class ="row">');
+        let h2 = $('<h2>'+campsite.facltNm+'</h2>')
+        let homepage = $('<a href="'+campsite.homepage+'">'+campsite.homepage+'</a><br>');
+        let div_col_6_col_12_small = $('<div class="col-6 col-12-small">');
+        let div_image_left_fit = $('<div class="image left fit"><img src='+campsite.firstImageUrl+' alt="" /><');
+        let div_col_6_col_12_small_left = $('<div class="col-6 col-12-small left">');
+        let h3 = $('<h3>캠핑장 소개</h3>');
+        let ul = $('<ul><li>'+campsite.lineIntro+'<br></li><li>'+campsite.intro+'<br></li><li>'+campsite.addr1+'<br></li><li>'+campsite.tel+'<br></li></ul>');
+
+        div_col_6_col_12_small_left.append(h3);
+        div_col_6_col_12_small_left.append(ul);
+        div_col_6_col_12_small.append(div_image_left_fit);
+        row.append(div_col_6_col_12_small);
+        row.append(div_col_6_col_12_small_left);
+        $('#campsiteList').append(h2);
+        $('#campsiteList').append(homepage);
+        $('#campsiteList').append(row);
+
+
+        
+     });
+ 
+     
+
+}
+
+
+let showCampingListWithPaging = async function(data){
+    let campingList 
+    let paging
+    await data.then((a)=>{
+      campingList = a.campsites;
+      paging = a.paging;
+    })
+    console.dir(campingList);
+    console.dir(paging);
+    // CampsiteList 만들기
+    $('#campsiteList').empty();
+    createCampingList(campingList);
+    createPaging(paging);
+
+
+
+
+   
+}   
+
 async function DataToServer(url,data){
     
     let sendData = await fetch(url, {
@@ -17,11 +89,18 @@ async function DataToServer(url,data){
         },
         body: JSON.stringify(data)
 
-    }).then((response)=>{
-        console.dir(response.text());
+    }).then((data)=>{
+        let receiveData = data.json();
+        showCampingListWithPaging(receiveData);
+        
+        // $('#campsiteList').empty();
+        // var html = jQuery('<div>').html(data);
+        // console.dir(html);
+
       //  window.location.href = "http://localhost:8080/suggest/select2";
     })
 };
+
 
 let token = document.querySelector("meta[name='_csrf']").content;
 let header = document.querySelector("meta[name='_csrf_header']").content;

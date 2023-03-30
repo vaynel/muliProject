@@ -73,13 +73,16 @@ public class SuggestServiceImpl  implements SuggestSerivce{
 			answer.setLctCl("%"+answer.getLctCl()+"%");
 			total = suggestRepository.countCampsiteByAnswer(answer);
 		}
-		
+		System.out.println("serviceImpl : total = "+total);
+	
+		// 페이징 처리
 		Paging paging = Paging.builder()
 				.cntPerPage(3)
 				.currentPage(page)
 				.total(total)
 				.blockCnt(10)
 				.build();
+		// 검색하기(select) 위한 Map 만들기 
 		Map<String,Object> command = new HashMap<String, Object>();
 		command.put("answer", answer);
 		command.put("paging",paging);

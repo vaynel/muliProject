@@ -58,6 +58,11 @@ public class MemberServiceImpl implements MemberService{
 	
 	}
 
+	@Override
+	public Member idCheckRetrunMember(String userId) {
+		return memberRepository.selectMemberByUserId(userId);
+	}
+
 
 
 }

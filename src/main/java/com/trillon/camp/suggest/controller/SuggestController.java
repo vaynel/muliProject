@@ -1,6 +1,7 @@
 package com.trillon.camp.suggest.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.trillon.camp.suggest.dto.Answer;
 import com.trillon.camp.suggest.dto.Campsite;
@@ -49,17 +49,16 @@ public class SuggestController {
 	}
 	
 	
-	/*
-	 * @PostMapping("select")
-	 * 
-	 * @ResponseBody public void receiveDate(@RequestBody HashMap<Integer,
-	 * APIParsing> data) {
-	 * 
-	 * APIParsing testData;
-	 * 
-	 * for (Map.Entry<Integer, APIParsing> entry : data.entrySet()) { testData =
-	 * entry.getValue(); suggestService.updateCampingData(testData); } }
-	 */
+	
+//	  @PostMapping("select")
+//	  @ResponseBody public void receiveDate(@RequestBody HashMap<Integer,APIParsing> data) {
+//		  APIParsing testData;
+//		  for (Map.Entry<Integer, APIParsing> entry : data.entrySet()) {
+//			  testData =entry.getValue();
+//			  suggestService.updateCampingData(testData);
+//		  } 
+//	  }
+	 
 	
 	
 	
@@ -75,18 +74,44 @@ public class SuggestController {
 	}
 	
 	@PostMapping("select2")
-	public String PostSelect(@RequestBody Answer answer,
+	@ResponseBody
+	public Map<String,Object> PostSelect(@RequestBody Answer answer,
 			@RequestParam(value = "page", required = false,defaultValue = "1" ) int page,
-			HttpSession session,
-			Model model,
-			RedirectAttributes redirectAttributes) {		
+			HttpSession session, Model model) {		
+		System.out.println("post : select2");
 		System.out.println(answer);
 		
-		model.addAllAttributes(suggestService.findCampingByAnswerWithPage(answer,page));
-		System.out.println(model.getAttribute("campsites"));
-		return "success";
+		//model.addAllAttributes(suggestService.findCampingByAnswerWithPage(answer,page));
+		//System.out.println(model.getAttribute("campsites"));
+		
+		Map<String,Object> result = suggestService.findCampingByAnswerWithPage(answer,page);
+		model.addAllAttributes(result);
+		System.out.println(result.get("campsites"));
+		return result;
 	}
 	
+	
+	@PostMapping("campsites")
+	public void campsites(Model model,
+			@RequestBody Answer answer,
+			@RequestParam(value = "page", required = false,defaultValue = "1" ) int page) { 
+		System.out.println("campsites.jsp");	
+		System.out.println(answer);
+		
+		//model.addAllAttributes(suggestService.findCampingByAnswerWithPage(answer,page));
+		//System.out.println(model.getAttribute("campsites"));
+		
+		Map<String,Object> result = suggestService.findCampingByAnswerWithPage(answer,page);
+		model.addAllAttributes(result);
+		System.out.println(model.getAttribute("campsites"));
+		
+		
+	}
+	@GetMapping("campsites")
+	public void getCampsites(Model model) {
+		System.out.println("get : campsites");
+		System.out.println(model.getAttribute("campsites"));
+	}
 	
 	
 	

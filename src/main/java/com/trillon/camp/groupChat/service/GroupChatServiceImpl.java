@@ -84,11 +84,12 @@ public class GroupChatServiceImpl implements GroupChatService{
 		message.setRoomId(roomId);
 		message.setWriter("추천 날짜");
 		message.setMessage("가능한 인원");
-		template.convertAndSend("/sub/chat/room/RoomId : "+message.getRoomId(), message);
+		template.convertAndSend("/sub/chat/room/"+message.getRoomId(), message);
 		for (Date date : recommandWeekEndMap.keySet()) {
 			System.out.println("추천중...");
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			String weekEndDate = simpleDateFormat.format(date);
+			
 			// DB에 저장하기
 			Map<String,Object> tempMap = new HashMap<String, Object>();
 			tempMap.put("groupIdx", groupIdx);
@@ -100,8 +101,8 @@ public class GroupChatServiceImpl implements GroupChatService{
 			// chatRoom에 메세지 보내기 
 			message.setWriter(weekEndDate);
 			message.setMessage(String.valueOf(recommandWeekEndMap.get(date)));
-			System.out.println("/sub/chat/room/"+message.getRoomId());
-			template.convertAndSend("/sub/chat/room/RoomId : "+message.getRoomId(), message);
+			System.out.println("message -> "+message);
+			template.convertAndSend("/sub/chat/room/"+message.getRoomId(), message);
 		}
 		System.out.println("추천끝!");
 		

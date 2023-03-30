@@ -17,10 +17,10 @@
 										<h2>Menu</h2>
 									</header>
 									<ul>
-										<li><a href="/index">index</a></li>
+										<li><a href="/members/myPage">MyPage</a></li>
 										<li><a href="/campingHome/myPage/">캠핑의집</a></li>
 										<li><a href="/comewithme/comeWithMeList">같이갈래</a></li>
-										<li><a href="/suggest/select">장소추천</a></li>
+										<li><a href="/suggest/select2">장소추천</a></li>
 										<li><a href="/schedule/calendar">일정</a></li>
 										<li><a href="/groupChat/groupChatList">채팅</a></li>
 										<li><a href="/elements">Elements</a></li>
@@ -79,9 +79,9 @@
 									<header class="major">
 										<h2>Get in touch</h2>
 									</header>
-									<p>Sed varius enim lorem ullamcorper dolore aliquam aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin sed aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
+									<p>멀티캠퍼스 1조 Trillion</p>
 									<ul class="contact">
-										<li class="icon solid fa-envelope"><a href="#">information@untitled.tld</a></li>
+										<li class="icon solid fa-envelope"><a href="#">multicampus@untitled.tld</a></li>
 										<li class="icon solid fa-phone">(000) 000-0000</li>
 										<li class="icon solid fa-home">1234 Somewhere Road #8254<br />
 										Nashville, TN 00000-0000</li>

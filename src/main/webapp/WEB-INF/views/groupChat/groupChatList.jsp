@@ -20,14 +20,14 @@
 			<div class="inner">
 				<%@ include file="/WEB-INF/views/include/header.jsp"%>
 				<!-- Content -->
-				<form id="createRoom">
+				<!-- <form id="createRoom">
 					<label>myUserId : <input id="userId" text="JaeHyun">
 					</label> <label>groupName : <input id="groupName">
 					</label> <label>maxMember : <input id="maxMember">
 					</label> <label>groupMaster : <input id="groupMaster">
 					</label>
 					<button>방생성하기</button>
-				</form>
+				</form> -->
 
 				<div class="row gtr-200">
 					<div class="col-6 col-12-medium">
