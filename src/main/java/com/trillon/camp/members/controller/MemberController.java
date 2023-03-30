@@ -5,6 +5,11 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.TestingAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
+import com.trillon.camp.common.config.security.SecurityUser;
+import com.trillon.camp.members.dto.Account;
 import com.trillon.camp.members.dto.Member;
 import com.trillon.camp.members.service.MemberService;
 import com.trillon.camp.members.validator.SignUpFormValidator;
@@ -49,6 +55,7 @@ public class MemberController {
 	public String login(Member member, HttpSession session) {
 		//RedirectAttributes redirectAttr
 		System.out.println("넘어는오냐구요");
+		System.out.println("컨트롤러첫확인"+member);
 		if(member.getUserId().equals("") | member.getPassword().equals("")) {
 			//redirectAttr.addFlashAttribute("msg", "아이디나 비밀번호를 입력해주세요.");
 			return "failEmpty";
@@ -64,7 +71,29 @@ public class MemberController {
 		}
 
 		
-		session.setAttribute("auth", auth);
+		
+		
+		Account account = new Account();
+		account.setUserId(auth.getUserId());
+		account.setPassword(auth.getPassword());
+		account.setAuthority("ROLE_USER");
+		
+		//SecurityUser securityUser =new SecurityUser(account);
+		
+		
+
+		
+		SecurityContext context = SecurityContextHolder.createEmptyContext();
+		Authentication authentication = new TestingAuthenticationToken(account.getUserId(), account.getPassword(),account.getAuthority());
+		context.setAuthentication(authentication);
+		
+		SecurityContextHolder.setContext(context);
+		
+		session.setAttribute("loginId", account.getUserId());
+		
+		System.out.println(authentication);
+		System.out.println(context);
+		
 		return "successLogin";
 	}
 
