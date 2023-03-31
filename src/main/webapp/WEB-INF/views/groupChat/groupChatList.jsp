@@ -33,12 +33,11 @@
 					<div class="col-6 col-12-medium">
 					<h3>나의 그룹</h3>
 					
-						<c:forEach items="${MyGroup['GroupMember']}" var="Group" varStatus="status">
+						<c:forEach items="${MyGroup['myGroups']}" var="Group" varStatus="status">
 
 							<div class="box">
 								<c:set var="count" value="${status.count}"></c:set>
-								<c:forEach items="${MyGroup['campingGroup']}" var="campingGroup"
-									varStatus="st">
+								<c:forEach items="${MyGroup['campingGroup']}" var="campingGroup" varStatus="st">					
 									<c:if test="${count eq st.count}">
 										<p>${st.count}.
 											<a class="" href="/groupChat/chatRoom?roomId=${Group.roomId}&groupIdx=${Group.groupIdx}">
@@ -46,7 +45,18 @@
 											<span class="countMember">${campingGroup.currentMember} / ${campingGroup.maxMember}</span>
 										</p>
 												 <p>GroupMaster : ${campingGroup.groupMaster}</p>
-											<span>1 ,2 ,3 ,4 </span>
+												 
+												 <c:if test="${Group.groupIdx eq 2 }">
+												 		<span> member -> </span>
+														<c:forEach items="${MyGroup['2']}" var="name">
+															<span>${name} </span>	 
+														</c:forEach>
+				 
+												 </c:if>
+													
+
+												
+											
 									</c:if>	
 								</c:forEach>
 								<br>
