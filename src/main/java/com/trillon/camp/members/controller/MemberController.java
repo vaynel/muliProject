@@ -1,5 +1,7 @@
 package com.trillon.camp.members.controller;
 
+import java.util.Calendar;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -214,10 +216,53 @@ public class MemberController {
 			Model model) {
 		String userId =(String)session.getAttribute("loginId");
 		System.out.println("get myPage userId -> "+ userId);
-		Member member = memberService.idCheckRetrunMember(userId);
-		System.out.println(member);
-		model.addAttribute("member", member);
+		Member member = new Member();
+		
+		// 일반 로그인시 
+		if((member= memberService.idCheckRetrunMember(userId))!=null ) {
+			model.addAttribute("member", member);
+			model.addAttribute("age",getAge(member.getBirth()));
+			return; 
+		}
+		
+		else if((member= memberService.idCheckGoogleReturnMember(userId))!=null ) {
+			model.addAttribute("member", member);
+			model.addAttribute("age",getAge(member.getBirth()));
+			return; 
+		}
+		
+		
+		
 		
 	}
+	
+	
+	
+	
+	
+	public int getAge(String birth)
+	{
+			int birthYear = Integer.valueOf(birth.substring(0, 4));
+			int birthMonth = Integer.valueOf(birth.substring(5, 7));
+			int birthDay= Integer.valueOf(birth.substring(8, 10));
+			System.out.println(birthYear +"-"+birthMonth +"-"+birthDay);
+			
+			
+			
+	        Calendar current = Calendar.getInstance();
+	        int currentYear  = current.get(Calendar.YEAR);
+	        int currentMonth = current.get(Calendar.MONTH) + 1;
+	        int currentDay   = current.get(Calendar.DAY_OF_MONTH);
+	      
+	        int age = currentYear - birthYear;
+	        // 생일 안 지난 경우 -1
+	        if (birthMonth * 100 + birthDay > currentMonth * 100 + currentDay) 
+	            age--;
+	      
+	        return age;
+	}
+	
+	
+
 	
 }

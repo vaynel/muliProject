@@ -65,8 +65,8 @@ public class ComeWithMeServiceImpl implements ComeWithMeService{
 	@Override
 	public Map<String, Object> selectBoardContentByBdIdx(int bdIdx) {
 		ComeWithMeBoard boardList = comeWithMeRepository.selectBoardByBdIdx(bdIdx);
-		List<FileInfo> files = fileRepository.selectFileWithGroup(Map.of("groupName","board", "groupIdx", boardList.getBdIdx()));
-		System.out.println("duddd" + files);
+		logger.info("groupIdx :" + boardList.getBdIdx());
+		List<FileInfo> files = fileRepository.selectFileWithGroup(Map.of("groupName","board", "groupIdx", 0));
 		return Map.of("boardList", boardList, "files", files);
 	}
 

@@ -1,5 +1,5 @@
  create table member(
-    ID VARCHAR(100) NOT NULL PRIMARY KEY ,
+    userID VARCHAR(100) NOT NULL PRIMARY KEY ,
     Name VARCHAR(70) NOT NULL ,
     password VARCHAR(100) NOT NULL,
     tell VARCHAR(13) not null ,
@@ -7,18 +7,6 @@
     birth date not null ,
     role_grad varchar(20) not null default 'user'
 );
-
-CREATE TABLE comewithme_board (
-  BD_IDX INT AUTO_INCREMENT,
-  TITLE VARCHAR(100) NOT NULL,
-  CONTENT VARCHAR(1000) NOT NULL,
-  LIKE_COUNT INT NULL DEFAULT 0,
-  CREATE_DATE DATE NOT NULL default (current_date),
-  NUM_OF_PERSON INT NOT NULL,
-  is_del int default 0,
-  PRIMARY KEY (BD_IDX));
-
-
 
 CREATE TABLE TODO_MANAGER (
     T_NUM    INT    NOT NULL auto_increment PRIMARY KEY,
@@ -32,6 +20,18 @@ CREATE TABLE TODO_MANAGER (
     GROUP_NAME varchar(20)    NULL
 
 );
+
+
+CREATE TABLE camping_group (
+    group_idx INT NOT NULL auto_increment PRIMARY KEY,
+    group_name varchar(100) NOT NULL, 
+    group_master varchar(100),
+    current_member    int    NULL,
+    max_member int NULL
+    
+);
+
+
 
 CREATE TABLE camp.comewithme_board (
   BD_IDX INT AUTO_INCREMENT primary key,
@@ -57,14 +57,6 @@ CREATE TABLE group_TODO_MANAGER (
     chat_id int
 );
 
-CREATE TABLE camping_group (
-    group_idx INT NOT NULL auto_increment PRIMARY KEY,
-    group_name varchar(100) NOT NULL, 
-    group_master varchar(100),
-    current_member    int    NULL,
-    max_member int NULL
-    
-);
 
 
 
@@ -79,7 +71,7 @@ CREATE TABLE group_member (
     user_Id varchar(100),
     room_Id varchar(100),
     foreign key(group_idx) references camping_group(group_idx),
-    -- foreign key(user_id) references member(id),
+    -- foreign key(user_id) references member(userid),
     foreign key(room_id) references group_chat_room(room_id)
 );
 
