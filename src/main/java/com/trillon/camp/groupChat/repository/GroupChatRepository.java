@@ -67,8 +67,8 @@ public interface GroupChatRepository {
 	List<GroupMember> selectAllChatRoomList(String userId);
 
 
-	@Insert("insert into temporary_recommand_date(group_idx,recommand_date,how_many_member_can) "
-			+"values(#{groupIdx},#{weekEndDate},#{howMany})")
+	@Insert("insert into temporary_recommand_date(group_idx,recommand_date,how_many_member_can,title) "
+			+"values(#{groupIdx},#{weekEndDate},#{howMany},#{title})")
 	void insertTemporaryDate(Map<String, Object> tempMap);
 	
 	

@@ -1,5 +1,6 @@
 package com.trillon.camp.groupChat.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,11 +38,15 @@ public class GroupChatController {
 	
 	
 	@GetMapping("/groupChatList")
-	public void groupChatList(Model model,HttpSession session,String userId) {
+	public String groupChatList(Model model,HttpSession session) {
 	
 		System.out.println("groupChatList");
-		userId="user1";
-		System.out.println(groupChatService.selectAllMygroupChatList(userId));
+		String userId = (String) session.getAttribute("loginId");
+		// session이 죽은 경우 로그인 페이지로 이동
+		if(userId==null) return "redirect:/members/login";
+		
+		log.info("userId -> "+userId);
+		System.out.println("GroupList -> " +groupChatService.selectAllMygroupChatList(userId));
 		List<GroupMember> GroupMembers = groupChatService.selectAllChatRoomList(userId);
 		List<CampingGroup> campingGroups = groupChatService.selectAllMygroupChatList(userId);
 		Map<String, Object> MyGroupMap = new HashMap<>();
@@ -49,7 +54,8 @@ public class GroupChatController {
 		MyGroupMap.put("GroupMember", GroupMembers);
 		MyGroupMap.put("campingGroup", campingGroups);
 		
-		model.addAttribute("MyGroup", MyGroupMap);	
+		model.addAttribute("MyGroup", MyGroupMap);
+		return "/groupChat/groupChatList";
 	}
 	
 	
@@ -80,11 +86,13 @@ public class GroupChatController {
 
 	
 	@GetMapping("/chatRoom")
-    public void getRoom(@RequestParam("roomId") String roomId,@RequestParam("groupIdx") String groupIdx, Model model){
+    public void getRoom(@RequestParam("roomId") String roomId,
+    		@RequestParam("groupIdx") String groupIdx, Model model,
+    		HttpSession session){
 		
         log.info("# 그룹 채팅 방, roomID : " + roomId);
         List<ChatRoom> chatRooms = groupChatService.findRoomById(roomId);
-        System.out.println("채팅의 참여 인원");
+        System.out.println("채팅의 참여 가능 멤버");
         for (ChatRoom Room : chatRooms) {
 			System.out.println(Room.getUserId());
 		}
@@ -92,6 +100,7 @@ public class GroupChatController {
         ChatRoom chatRoom  = new ChatRoom();
         chatRoom.setRoomId(chatRooms.get(0).getRoomId());
         
+        model.addAttribute("userId", session.getAttribute("loginId"));
         model.addAttribute("roomId",roomId);
         model.addAttribute("room", chatRoom);
         model.addAttribute("groupIdx", groupIdx);
@@ -106,11 +115,7 @@ public class GroupChatController {
 	}
 	
 	
-	
-	
-	
-	
-	
+
 	
 	
 	

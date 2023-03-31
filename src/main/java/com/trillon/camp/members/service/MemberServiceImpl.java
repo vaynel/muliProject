@@ -72,6 +72,8 @@ public class MemberServiceImpl implements MemberService{
 		if(member == null) return true;
 		
 		return false;
+	public Member idCheckRetrunMember(String userId) {
+		return memberRepository.selectMemberByUserId(userId);
 	}
 
 

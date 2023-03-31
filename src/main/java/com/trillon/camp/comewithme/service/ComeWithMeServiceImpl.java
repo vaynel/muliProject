@@ -1,5 +1,6 @@
 package com.trillon.camp.comewithme.service;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -64,7 +65,8 @@ public class ComeWithMeServiceImpl implements ComeWithMeService{
 	@Override
 	public Map<String, Object> selectBoardContentByBdIdx(int bdIdx) {
 		ComeWithMeBoard boardList = comeWithMeRepository.selectBoardByBdIdx(bdIdx);
-		return Map.of("boardList", boardList);
+		List<FileInfo> files = fileRepository.selectFileWithGroup(Map.of("groupName","board", "groupIdx", boardList.getBdIdx()));
+		return Map.of("boardList", boardList, "files", files);
 	}
 
 	@Override
@@ -74,7 +76,6 @@ public class ComeWithMeServiceImpl implements ComeWithMeService{
 		
 		FileInfo fileInfo = new FileInfo();
 		fileInfo.setGroupName("board");
-		fileInfo.setGnIdx(board.getBdIdx());
 		fileUtil.uploadFile(fileInfo, files);
 	}
 
@@ -87,7 +88,20 @@ public class ComeWithMeServiceImpl implements ComeWithMeService{
 	public void deleteBoardByBdIdx(int bdIdx) {
 		comeWithMeRepository.deleteBoardByBdIdx(bdIdx);
 		
+		List<FileInfo> files = fileRepository.selectFileWithGroup(Map.of("groupName", "board", "gnIdx", bdIdx));
 		
+		fileRepository.deleFileByGroup(Map.of("gourpName", "board", "gnidx", bdIdx));
+		
+		for(FileInfo fileInfo : files) {
+			new File(fileInfo.getFullPath()).delete();
+		}
+		
+	}
+
+	@Override
+	public FileInfo selectFileInfo(String flIdx) {
+		FileInfo fileInfo = fileRepository.selectFileInfo(flIdx);
+		return fileInfo;
 	}
 
 	

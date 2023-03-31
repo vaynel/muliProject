@@ -75,29 +75,34 @@ public class GroupChatServiceImpl implements GroupChatService{
 
 
 	@Override
-	public void sendMassageRecommandWeekEnd(Map<Date, Integer> recommandWeekEndMap, String roomId, String groupIdx) {
+	public void sendMassageRecommandWeekEnd(Map<Date, Integer> recommandWeekEndMap,
+			String roomId,
+			String groupIdx,
+			String title) {
 		// 그룹에 추천 날짜 메시지 보내기
 		ChatMessage message = new ChatMessage();
 		message.setRoomId(roomId);
 		message.setWriter("추천 날짜");
 		message.setMessage("가능한 인원");
-		template.convertAndSend("/sub/chat/room/RoomId : "+message.getRoomId(), message);
+		template.convertAndSend("/sub/chat/room/"+message.getRoomId(), message);
 		for (Date date : recommandWeekEndMap.keySet()) {
 			System.out.println("추천중...");
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			String weekEndDate = simpleDateFormat.format(date);
+			
 			// DB에 저장하기
 			Map<String,Object> tempMap = new HashMap<String, Object>();
 			tempMap.put("groupIdx", groupIdx);
 			tempMap.put("weekEndDate", weekEndDate);
 			tempMap.put("howMany", recommandWeekEndMap.get(date));
+			tempMap.put("title",title);
 			groupChatRepository.insertTemporaryDate(tempMap);
 			
 			// chatRoom에 메세지 보내기 
 			message.setWriter(weekEndDate);
 			message.setMessage(String.valueOf(recommandWeekEndMap.get(date)));
-			System.out.println("/sub/chat/room/"+message.getRoomId());
-			template.convertAndSend("/sub/chat/room/RoomId : "+message.getRoomId(), message);
+			System.out.println("message -> "+message);
+			template.convertAndSend("/sub/chat/room/"+message.getRoomId(), message);
 		}
 		System.out.println("추천끝!");
 		

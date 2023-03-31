@@ -8,6 +8,8 @@
 <meta id="_csrf" name="_csrf" content="${_csrf.token}"></meta>
 <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"></meta>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
+
 body {
   background-color: #f2f2f2;
   font-family: Arial, sans-serif;

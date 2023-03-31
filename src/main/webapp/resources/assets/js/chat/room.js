@@ -2,7 +2,7 @@
 
                 
              	// var roomName = [roomNamea.innerHTML];
-                var roomId = roomIda.innerHTML;
+                var roomId = roomIda.value;
                 var username = userNamea.value;
 
                 // console.log(roomName + ", " + roomId + ", " + username);

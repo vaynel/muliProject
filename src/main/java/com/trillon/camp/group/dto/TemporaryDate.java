@@ -8,5 +8,6 @@ public class TemporaryDate {
 	private Integer groupIdx;
 	private String recommandDate;
 	private Integer howManyMemberCan;
+	private String title;
 
 }

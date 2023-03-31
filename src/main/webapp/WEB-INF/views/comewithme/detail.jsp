@@ -25,9 +25,23 @@
                   <hr>
                 
                </header>
+               
+                  <div class="row">
+                        <div class="col-6 col-12-large">
+                            <c:forEach items="${files}" var="files">
+                                <tr>
+                                    <img src="/comewithme/images/${files.groupIdx}/${files.renameFileName}" width="400px" height="300px" alt="같이갈래">
+                                    <br>
+                                </tr>
+
+                            </c:forEach>
+
+                            <br>
+
+                        </div>
+                        </div>
               
                         <tr>
-                           <td><pre>${boardList.content}</pre></td><br>
                            <td>인원수 : ${boardList.numOfPerson}</td><br>
                            <td>장소 : ${boardList.place}</td><br>
                            <td>모집 연령층 : ${boardList.ageAverage}</td><br>
@@ -35,6 +49,7 @@
                            <td>좋아요 갯수 : ${boardList.likeCount}</td><br>
                            <br>
                         </tr>
+                        <pre>${boardList.content}</pre></td><br>
             </section>
                
             <form action="/comewithme/remove" method="get">

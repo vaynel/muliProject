@@ -49,9 +49,10 @@ public class sunnyTest {
 		System.out.println("boardDetail.jsp");
 	}
 	
-	@GetMapping("campingHome/mypage_test")
+	@GetMapping("campingHome/board-form")
 	public void mypage_test() {
-		System.out.println("mypage_test.jsp");
+		System.out.println("board-form.jsp");
 	}
+
 
 }

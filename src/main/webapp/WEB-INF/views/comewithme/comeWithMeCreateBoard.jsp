@@ -32,18 +32,18 @@
 
 					<li>내용</li>
 					<div>
-						<input type="text" name="content"  id="content"/>
+						<textarea type="text" name="content"  id="content"></textarea>
 					</div>
 					<br>
 					<li>원하는 캠핑 장소는?</li> 
-					<select style="width: 190px;" id="place">
+					<select style="width: 190px;" id="place" name ="place">
 						<option value="" selected></option>
 						<option value="산">산</option>
 						<option value="바다">바다</option>
 					</select> <br>
 
 					<li>원하는 캠핑방식</li> 
-					<select style="width: 190px;" id="campingWay">
+					<select style="width: 190px;" id="campingWay" name="campingWay">
 						<option  value="" selected></option>
 						<option value="차박">차박</option>
 						<option value="오토">오토</option>
@@ -51,7 +51,7 @@
 					</select> <br>
 
 					<li>원하는 성별은?</li> 
-					<select style="width: 190px;" id="gender">
+					<select style="width: 190px;" id="gender" name="gender">
 						<option value="" selected></option>
 						<option value="남">남</option>
 						<option value="여">여</option>
@@ -59,7 +59,7 @@
 					</select> <br>
 
 					<li style="color: black">원하는 연령층은?</li> 
-					<select style="width: 190px;" id="ageAverage">
+					<select style="width: 190px;" id="ageAverage" name="ageAverage">
 						<option value="" selected></option>
 						<option value="20대">20대</option>
 						<option value="30대">30대</option>
@@ -67,7 +67,7 @@
 					</select> <br>
 					
 					<li style="color: black">원하는 인원수는?</li> 
-					<input type="number" placeholder="숫자만 입력해주세요." id="numOfPerson">
+					<input type="number" placeholder="숫자만 입력해주세요." id="numOfPerson" name="numOfPerson">
 					<br>
 
 					<div class="tr_hashTag_area">
@@ -96,6 +96,6 @@
 	<!-- Scripts -->
 	<%@ include file="/WEB-INF/views/include/commonScripts.jsp"%>
 
-	<%-- <script defer src="${context}/resources/assets/js/comeWithMe/createBoardJavaScript.js"></script> --%>
+	<script defer src="${context}/resources/assets/js/comeWithMe/createBoardJavaScript.js"></script>
 </body>
 </html>

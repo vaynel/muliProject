@@ -4,20 +4,18 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.TestingAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.trillon.camp.members.dto.Account;
 import com.trillon.camp.members.dto.Member;
@@ -26,7 +24,6 @@ import com.trillon.camp.members.service.MemberService;
 import com.trillon.camp.members.validator.SignUpFormValidator;
 import com.trillon.camp.members.validator.form.SignUpForm;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -210,4 +207,17 @@ public class MemberController {
 		session.removeAttribute("auth");
 		return "redirect:/members/login";
 	}
+	
+	
+	@GetMapping("/myPage")
+	public void myPage(HttpSession session,
+			Model model) {
+		String userId =(String)session.getAttribute("loginId");
+		System.out.println("get myPage userId -> "+ userId);
+		Member member = memberService.idCheckRetrunMember(userId);
+		System.out.println(member);
+		model.addAttribute("member", member);
+		
+	}
+	
 }

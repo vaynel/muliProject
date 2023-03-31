@@ -71,6 +71,7 @@ public class GroupChatTest {
 		System.out.println(groupChatRepository.myGroupChatList("member1"));
 		
 	}
+
 	
 	@Test
 	public void testInsertNewGroup() {
@@ -102,12 +103,17 @@ public class GroupChatTest {
 	@Test
 	public void insertNewMemberToGroup() {
 		GroupMember groupMember = new GroupMember();
-		groupMember.setUserId("user1");
-		for (int i = 1; i < 4; i++) {
-			groupMember.setGroupIdx(i);
-			groupMember.setRoomId(groupChatRepository.selectChatRoomIdByGroupIdx(i));
-			groupRepository.insertNewMemberToGroup(groupMember);
-		}
+		
+		groupMember.setUserId("test2");
+		groupMember.setGroupIdx(3);
+		groupMember.setRoomId(groupChatRepository.selectChatRoomIdByGroupIdx(3));
+		groupRepository.insertNewMemberToGroup(groupMember);
+		
+		/*
+		 * for (int i = 1; i < 4; i++) { groupMember.setGroupIdx(i);
+		 * groupMember.setRoomId(groupChatRepository.selectChatRoomIdByGroupIdx(i));
+		 * groupRepository.insertNewMemberToGroup(groupMember); }
+		 */
 		
 			
 		

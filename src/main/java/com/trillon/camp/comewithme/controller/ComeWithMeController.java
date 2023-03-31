@@ -1,5 +1,8 @@
 package com.trillon.camp.comewithme.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Map;
 
@@ -10,13 +13,22 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.ContentDisposition;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 
+import com.trillon.camp.comewithme.common.file.FileInfo;
 import com.trillon.camp.comewithme.dto.Answer;
 import com.trillon.camp.comewithme.dto.ComeWithMeBoard;
 import com.trillon.camp.comewithme.service.ComeWithMeService;
@@ -54,11 +66,10 @@ public class ComeWithMeController {
 	}
 	
 	@PostMapping("upload") // 게시판 생성 1-2
-	public String upload(@RequestParam(required = false) List<MultipartFile> files, ComeWithMeBoard board ) {
-		
+	public String upload(@RequestParam List<MultipartFile> files, ComeWithMeBoard board) throws UnsupportedEncodingException {
 		System.out.println("upload post : " + board);
+		System.out.println("upload post : " + files);
 		comeWithMeService.insertBoard(board, files);
-		
 		return "redirect:/comewithme/comeWithMeList";
 	}
 	
@@ -116,6 +127,27 @@ public class ComeWithMeController {
 		return "redirect:/comewithme/comeWithMeList";
 	}
 	
+	
+	@GetMapping("download")
+	public ResponseEntity<FileSystemResource> downloadFile(String flIdx){
+		
+		FileInfo fileInfo = comeWithMeService.selectFileInfo(flIdx);
+		System.out.println(fileInfo);
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+		headers.setContentDisposition(ContentDisposition.builder("attachment")
+				.filename(fileInfo.getOriginFileName(), Charset.forName("utf-8"))
+				.build());
+		
+		FileSystemResource fsr = new FileSystemResource(fileInfo.getFullPath());
+		return ResponseEntity.ok().headers(headers).body(fsr);
+	}
+	
+	@ResponseBody
+	@GetMapping("/images/{groupIdx}/{fileName}")
+	public Resource downloadImage(@PathVariable Object fileName, @PathVariable int groupIdx) throws MalformedURLException {
+                return new UrlResource("file:"+"C:/comewithme/"+groupIdx+"/"+ fileName);
+	}
 	
 
 	
