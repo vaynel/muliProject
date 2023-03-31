@@ -37,6 +37,7 @@ public class FileUtilYG {
 			String renameFileName = createRenameFileName(originFileName);
 			
 			file.setGroupName(fileInfo.getGroupName());
+			file.setGroupIdx(fileInfo.getGroupIdx());
 			file.setOriginFileName(originFileName);
 			file.setRenameFileName(renameFileName);
 			file.setSavePath(uploadPath);

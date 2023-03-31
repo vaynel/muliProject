@@ -66,17 +66,23 @@ public class ComeWithMeServiceImpl implements ComeWithMeService{
 	public Map<String, Object> selectBoardContentByBdIdx(int bdIdx) {
 		ComeWithMeBoard boardList = comeWithMeRepository.selectBoardByBdIdx(bdIdx);
 		List<FileInfo> files = fileRepository.selectFileWithGroup(Map.of("groupName","board", "groupIdx", boardList.getBdIdx()));
+		System.out.println("duddd" + files);
 		return Map.of("boardList", boardList, "files", files);
 	}
 
 	@Override
-	public void insertBoard(ComeWithMeBoard board, List<MultipartFile> files) {
+	public int insertBoard(ComeWithMeBoard board, List<MultipartFile> files) {
 		
 		comeWithMeRepository.insertBoard(board);
+		int bdIdx = board.getBdIdx();
+		System.out.println(bdIdx);
 		
 		FileInfo fileInfo = new FileInfo();
 		fileInfo.setGroupName("board");
+		fileInfo.setGroupIdx(board.getBdIdx());
 		fileUtil.uploadFile(fileInfo, files);
+		System.out.println(files);
+		return bdIdx;
 	}
 
 	@Override
@@ -87,14 +93,6 @@ public class ComeWithMeServiceImpl implements ComeWithMeService{
 	@Override
 	public void deleteBoardByBdIdx(int bdIdx) {
 		comeWithMeRepository.deleteBoardByBdIdx(bdIdx);
-		
-		List<FileInfo> files = fileRepository.selectFileWithGroup(Map.of("groupName", "board", "gnIdx", bdIdx));
-		
-		fileRepository.deleFileByGroup(Map.of("gourpName", "board", "gnidx", bdIdx));
-		
-		for(FileInfo fileInfo : files) {
-			new File(fileInfo.getFullPath()).delete();
-		}
 		
 	}
 

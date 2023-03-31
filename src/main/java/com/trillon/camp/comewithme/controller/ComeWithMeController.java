@@ -2,7 +2,6 @@ package com.trillon.camp.comewithme.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
-import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +9,8 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,18 +21,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
-import org.springframework.http.ContentDisposition;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 
-import com.trillon.camp.comewithme.common.file.FileInfo;
 import com.trillon.camp.comewithme.dto.Answer;
 import com.trillon.camp.comewithme.dto.ComeWithMeBoard;
 import com.trillon.camp.comewithme.service.ComeWithMeService;
+import com.trillon.camp.group.dto.CampingGroup;
+import com.trillon.camp.groupChat.service.GroupChatService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -43,6 +38,7 @@ public class ComeWithMeController {
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	private final ComeWithMeService comeWithMeService;
+	private final GroupChatService groupChatService;
 
 	@GetMapping("comeWithMeList") // 동행인 구인 게시글 목록
 	public String comeWithMeList(Model model, @RequestParam(required = false, defaultValue="1")int page) {
@@ -66,9 +62,18 @@ public class ComeWithMeController {
 	}
 	
 	@PostMapping("upload") // 게시판 생성 1-2
-	public String upload(@RequestParam List<MultipartFile> files, ComeWithMeBoard board) throws UnsupportedEncodingException {
+	public String upload(@RequestParam List<MultipartFile> files, ComeWithMeBoard board, HttpSession session) throws UnsupportedEncodingException {
 		System.out.println("upload post : " + board);
 		System.out.println("upload post : " + files);
+		
+		CampingGroup campingGroup = new CampingGroup();
+		campingGroup.setMaxMember(board.getNumOfPerson());
+		campingGroup.setGroupMaster((String)session.getAttribute("loginId"));
+		campingGroup.setCurrentMember(1);
+		campingGroup.setGroupName(board.getGroupName());
+		groupChatService.insertNewGroup(campingGroup);
+		
+		
 		comeWithMeService.insertBoard(board, files);
 		return "redirect:/comewithme/comeWithMeList";
 	}
@@ -116,6 +121,7 @@ public class ComeWithMeController {
 	public String modify(@RequestBody ComeWithMeBoard board) {
 		System.out.println("modify post : " + board);
 		//System.out.println(board.getBdIdx());
+		
 		comeWithMeService.updateBoard(board);
 		return "redirect:/comewithme/detail?bdIdx="+board.getBdIdx();
 	}
@@ -128,25 +134,11 @@ public class ComeWithMeController {
 	}
 	
 	
-	@GetMapping("download")
-	public ResponseEntity<FileSystemResource> downloadFile(String flIdx){
-		
-		FileInfo fileInfo = comeWithMeService.selectFileInfo(flIdx);
-		System.out.println(fileInfo);
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-		headers.setContentDisposition(ContentDisposition.builder("attachment")
-				.filename(fileInfo.getOriginFileName(), Charset.forName("utf-8"))
-				.build());
-		
-		FileSystemResource fsr = new FileSystemResource(fileInfo.getFullPath());
-		return ResponseEntity.ok().headers(headers).body(fsr);
-	}
-	
 	@ResponseBody
-	@GetMapping("/images/{groupIdx}/{fileName}")
-	public Resource downloadImage(@PathVariable Object fileName, @PathVariable int groupIdx) throws MalformedURLException {
-                return new UrlResource("file:"+"C:/comewithme/"+groupIdx+"/"+ fileName);
+	@GetMapping("/images/{groupName}/{savePath}/{fileName}")
+	public Resource downloadImage(@PathVariable Object fileName,@PathVariable String groupName ,@PathVariable String savePath) throws MalformedURLException {
+		System.out.println("여기 오고 있나요?");
+        return new UrlResource("file:" + "C:/Program Files/CODE/storage" + "/" + groupName + "/" + savePath + fileName);
 	}
 	
 
