@@ -4,6 +4,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.trillon.camp.members.dto.Member;
+import com.trillon.camp.members.dto.MemberGoogle;
 import com.trillon.camp.members.repository.MemberRepository;
 import com.trillon.camp.members.validator.form.SignUpForm;
 
@@ -29,7 +30,6 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	
-
 	@Override
 	public Member authenticateUser(Member rowMember) {
 		
@@ -56,6 +56,22 @@ public class MemberServiceImpl implements MemberService{
 		return false;
 		
 	
+	}
+
+	@Override
+	public void insertNewMemberGoogle(MemberGoogle member) {
+		memberRepository.insertMemberGoogle(member);
+		
+		
+	}
+
+	@Override
+	public boolean idCheckGoogle(String userId) {
+		Member member = memberRepository.selectMemberByUserIdGoogle(userId);
+		
+		if(member == null) return true;
+		
+		return false;
 	}
 
 
