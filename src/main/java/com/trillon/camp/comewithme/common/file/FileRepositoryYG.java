@@ -22,9 +22,5 @@ public interface FileRepositoryYG {
 	@Select("select * from file_info where is_del = 0 and groupName = #{groupName} and group_idx = #{groupIdx}")
 	List<FileInfo> selectFileWithGroup(Map<String, Object> group);
 	
-	@Update("update file_info set is_del = 1 where groupName = #{groupName} and group_idx = #{groupIdx} ")
-	void deleFileByGroup(Map<String, Object> of);
 	
-	@Update("update file_info set is_del = 1 where fl_idx = #{flIdx}")
-	void delFileByFlIdx(String flIdx);
 }

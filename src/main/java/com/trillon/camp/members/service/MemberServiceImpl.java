@@ -73,7 +73,6 @@ public class MemberServiceImpl implements MemberService{
 		
 		return false;
 	}
-	
 	public Member idCheckRetrunMember(String userId) {
 		return memberRepository.selectMemberByUserId(userId);
 	}

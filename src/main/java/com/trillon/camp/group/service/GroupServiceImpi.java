@@ -199,4 +199,10 @@ public class GroupServiceImpi implements GroupSerivce {
 		return groupRepository.findCampingGroupByGroupIdx(groupIdx);
 	}
 
+	@Override
+	public void insertNewMemberToGroup(GroupMember member) {
+		groupRepository.insertNewMemberToGroup(member);
+		
+	}
+
 }
