@@ -1,7 +1,7 @@
 var token = $("meta[name='_csrf']").attr("content");
 var header = $("meta[name='_csrf_header']").attr("content");
 
-
+/*
 		function idCheckDB() {
 
 			$.ajax({
@@ -28,8 +28,47 @@ var header = $("meta[name='_csrf_header']").attr("content");
 
 			});
 
+		}*/
+	
+$(document).ready(function(){
+		$("#id").on("focusout", function(){
+			
+			$.ajax({
+				url : "idCheck",
+				type : "post",
+				data : {
+					userId : id.value
+
+				},beforeSend : function(xhr){
+					xhr.setRequestHeader(header, token);
+				},
+				success: function(data){
+					
+					console.log("통신 성공");
+					if(id.value === ''|| id.length==0){
+						$('#id_div').html('<a style="color:red;">ID를 입력해주세요.</a>');
+					}
+					
+				
+					else if(data === 'notToExist'){
+						$('#id_div').html('<a>사용 가능한 ID입니다.</a>');
+					}
+					else{
+						$('#id_div').html('<a style="color:red;">이미 존재하는 ID입니다.</a>');
+					}
+					
+					}
+
+			});
+			
+
+			
 		}
-		
+	
+		);
+});
+
+
 		
 		function signIn() {
 
@@ -72,6 +111,10 @@ var header = $("meta[name='_csrf_header']").attr("content");
 					{
 						alert('회원가입 실패!');
 					}
+					else if(data === 'idError')
+					{
+						alert('중복된 아이디입니다!');
+					}
 					else{
 						alert('회원가입 실패!');
 					}
@@ -88,10 +131,10 @@ var header = $("meta[name='_csrf_header']").attr("content");
 		
 		
 		
-		idCheck.addEventListener('click',e=>{
+	/*	idCheck.addEventListener('click',e=>{
 			idCheckDB();
 		        
-		        });
+		        });*/
 		
 		btnSign.addEventListener('click',e=>{
 			signIn();

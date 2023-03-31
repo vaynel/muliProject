@@ -62,38 +62,11 @@
 	 <div class="container">
     <div class="input-form-backgroud row">
       <div class="input-form col-md-12 mx-auto">
-        <h4 class="mb-3">회원가입</h4>
+        <h4 class="mb-3">회원 정보 입력</h4>
         <form class="validation-form" novalidate>
           <div class="row">
-            <div class="col-md-6 mb-3">
-              <label for="name">아이디</label>
-              <input type="text" class="form-control" id="id" placeholder="" value="" required>
-              <div class="invalid-feedback">
-                아이디를 입력해주세요.
-              </div>
-              <!--   <button type="button" id="idCheck">중복확인</button> -->
-              <div id="id_div"></div>
-            </div>
-            
-          
-            
-            <br>
-            
-            <div class="col-md-6 mb-3">
-              <label for="nickname">비밀번호</label>
-              <input type="text" class="form-control" id="password" placeholder="" value="" required>
-              <div class="invalid-feedback">
-                비밀번호를 입력해주세요.
-              </div>
-            </div>
-          </div>
+       
 
-
-   		 <label for="name">이름</label>
-      	        <input type="text" class="form-control" id="nameData" placeholder="" value="" required>
-              <div class="invalid-feedback">
-                이름를 입력해주세요.
-              </div>
 
           <div class="mb-3">
             <label for="birth">생년월일</label>
@@ -157,5 +130,5 @@
     }, false);
   </script>
 </body>
-<script defer src="${context}/resources/assets/js/member/signin.js"></script>
+<script defer src="${context}/resources/assets/js/member/signinGoogle.js"></script>
 </html>

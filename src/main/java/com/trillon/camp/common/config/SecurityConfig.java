@@ -43,8 +43,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http.headers().frameOptions().sameOrigin();
 		
 		http.authorizeRequests()
-		.antMatchers(HttpMethod.GET,  "/**").permitAll()
-		.antMatchers(HttpMethod.POST,  "/**").permitAll()
+		//.antMatchers(HttpMethod.GET,  "/**").permitAll()
+		//.antMatchers(HttpMethod.POST,  "/**").permitAll()
 		
 		.antMatchers(HttpMethod.GET,  "/resources/**").permitAll()
 		.antMatchers(HttpMethod.POST,  "/resources/**").permitAll()
