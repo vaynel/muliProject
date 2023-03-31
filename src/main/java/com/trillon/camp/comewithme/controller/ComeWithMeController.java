@@ -157,12 +157,21 @@ public class ComeWithMeController {
 	
 	
 	@ResponseBody
-	@GetMapping("/images/{groupName}/{savePath}/{fileName}")
+	@GetMapping("/{groupName}/{savePath}/{fileName}")
 	public Resource downloadImage(@PathVariable Object fileName,@PathVariable String groupName ,@PathVariable String savePath) throws MalformedURLException {
 		System.out.println("여기 오고 있나요?");
         return new UrlResource("file:" + "C:/Program Files/CODE/storage" + "/" + groupName + "/" + savePath + fileName);
 	}
 	
+	
+	@PostMapping("memberInsert")
+	public String memberInsert(GroupMember groupMember, ComeWithMeBoard board, HttpSession session) {
+		System.out.println("멤버 추가하기 들어오나요");
+		System.out.println("userId : " + session.getAttribute("loginId"));
+		System.out.println("board : " + board.getBdIdx());
+		
+		return "redirect:/comewithme/detail?bdIdx="+board.getBdIdx();
+	}
 
 	
 }

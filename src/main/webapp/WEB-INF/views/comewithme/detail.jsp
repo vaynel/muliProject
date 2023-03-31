@@ -22,6 +22,8 @@
                   <h1>${boardList.title}<a type="button" id="btnLike">♡</a></h1>
                            <li>작성일 : ${boardList.createDate}</li>
                            <li><a href="/comewithme/comeWithMeList">목록으로 돌아가기</a></li>
+                          
+                          
                   <hr>
                 
                </header>
@@ -56,6 +58,14 @@
             <input  type="hidden" value="${boardList.bdIdx}" name="bdIdx">
             <button id="btnDel"><span>삭제</span></button>	
             </form>
+            
+            <form action="/comewithme/memberInsert" method="post">
+						<input  type="hidden" value="${boardList.bdIdx}" name="bdIdx"/> 
+		            	<input  type="hidden" value="${sessionScope.userId}" name="userId"/> 
+		            	<input  type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		           		<button type="submit" id="btnMember">멤버 추가하기</button>
+            </form>
+            
             
             <form action="/comewithme/modify" method="get">
           	<input type="hidden" value="${boardList.bdIdx}" name="bdIdx"/> 
