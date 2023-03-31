@@ -1,6 +1,7 @@
 package com.trillon.camp.comewithme.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
 import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.http.ContentDisposition;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -30,6 +32,7 @@ import com.trillon.camp.comewithme.common.file.FileInfo;
 import com.trillon.camp.comewithme.dto.Answer;
 import com.trillon.camp.comewithme.dto.ComeWithMeBoard;
 import com.trillon.camp.comewithme.service.ComeWithMeService;
+import com.trillon.camp.group.dto.CampingGroup;
 
 import lombok.RequiredArgsConstructor;
 
@@ -64,9 +67,22 @@ public class ComeWithMeController {
 	}
 	
 	@PostMapping("upload") // 게시판 생성 1-2
-	public String upload(@RequestParam List<MultipartFile> files, ComeWithMeBoard board) throws UnsupportedEncodingException {
+	public String upload(@RequestParam List<MultipartFile> files,
+			ComeWithMeBoard board,
+			HttpSession session) throws UnsupportedEncodingException {
 		System.out.println("upload post : " + board);
+		System.out.println("upload post : " + files);
+		
+		CampingGroup campingGroup = new CampingGroup();
+		campingGroup.setMaxMember(board.getNumOfPerson());
+		campingGroup.setGroupMaster((String)session.getAttribute("loginId"));
+		
+		
+		
 		comeWithMeService.insertBoard(board, files);
+		
+		
+		
 		return "redirect:/comewithme/comeWithMeList";
 	}
 	
@@ -129,7 +145,7 @@ public class ComeWithMeController {
 	public ResponseEntity<FileSystemResource> downloadFile(String flIdx){
 		
 		FileInfo fileInfo = comeWithMeService.selectFileInfo(flIdx);
-		
+		System.out.println(fileInfo);
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
 		headers.setContentDisposition(ContentDisposition.builder("attachment")
@@ -140,6 +156,11 @@ public class ComeWithMeController {
 		return ResponseEntity.ok().headers(headers).body(fsr);
 	}
 	
+	@ResponseBody
+	@GetMapping("/images/{groupIdx}/{fileName}")
+	public Resource downloadImage(@PathVariable Object fileName, @PathVariable int groupIdx) throws MalformedURLException {
+                return new UrlResource("file:"+"C:/Program Files/CODE/storage/board/2023/3/30/"+ fileName);
+	}
 	
 
 	

@@ -1,6 +1,5 @@
 package com.trillon.camp.groupChat.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,6 +49,14 @@ public class GroupChatController {
 		List<GroupMember> GroupMembers = groupChatService.selectAllChatRoomList(userId);
 		List<CampingGroup> campingGroups = groupChatService.selectAllMygroupChatList(userId);
 		Map<String, Object> MyGroupMap = new HashMap<>();
+		
+		for (GroupMember member : GroupMembers) {
+			System.out.println(member);
+		}
+		
+		for (CampingGroup campingGroup : campingGroups) {
+			System.out.println(campingGroup);
+		}
 		
 		MyGroupMap.put("GroupMember", GroupMembers);
 		MyGroupMap.put("campingGroup", campingGroups);

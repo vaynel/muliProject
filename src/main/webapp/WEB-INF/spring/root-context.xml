@@ -42,6 +42,5 @@
    </bean>
    
     <context:component-scan base-package="com.trillon.camp" /> 
-    
     <mybatis:scan base-package="com.trillon.camp" annotation="org.springframework.stereotype.Repository"/>
 </beans>

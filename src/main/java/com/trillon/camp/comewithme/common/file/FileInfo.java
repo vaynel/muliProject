@@ -15,11 +15,11 @@ public class FileInfo {
 	private String savePath;
 	private LocalDateTime regDate;
 	private Boolean isDel;
-	private String group;
+	private String groupName;
 	private int groupIdx;
 
 	public String getFullPath() {
-		return Code.STORAGE_PATH + group + "/" + savePath + renameFileName;
+		return Code.STORAGE_PATH + groupName + "/" + savePath + renameFileName;
 	}
 
 }

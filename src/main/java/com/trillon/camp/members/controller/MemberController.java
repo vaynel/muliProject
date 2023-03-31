@@ -1,5 +1,7 @@
 package com.trillon.camp.members.controller;
 
+import java.util.Calendar;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.trillon.camp.members.dto.Account;
 import com.trillon.camp.members.dto.Member;
+import com.trillon.camp.members.dto.MemberGoogle;
 import com.trillon.camp.members.service.MemberService;
 import com.trillon.camp.members.validator.SignUpFormValidator;
 import com.trillon.camp.members.validator.form.SignUpForm;
@@ -74,10 +77,6 @@ public class MemberController {
 		account.setPassword(auth.getPassword());
 		account.setAuthority("ROLE_USER");
 		
-		//SecurityUser securityUser =new SecurityUser(account);
-		
-		
-
 		
 		SecurityContext context = SecurityContextHolder.createEmptyContext();
 		Authentication authentication = new TestingAuthenticationToken(account.getUserId(), account.getPassword(),account.getAuthority());
@@ -93,6 +92,72 @@ public class MemberController {
 		return "successLogin";
 	}
 
+	
+	
+	@ResponseBody
+	@PostMapping("/google")
+	public String google(HttpSession session, MemberGoogle member) {
+		System.out.println("google 확인");
+		System.out.println(member);
+		
+		if(memberService.idCheckGoogle(member.getUserId()))
+		{	
+			
+			session.setAttribute("googleDataUserId", member.getUserId());
+			session.setAttribute("googleDataName", member.getName());
+			session.setAttribute("googleDataEmail", member.getEmail());
+			return "firstLogin";
+			
+		}
+		else {
+			
+			Account account = new Account();
+			account.setUserId(member.getUserId());
+			account.setPassword("googleUser");
+			account.setAuthority("ROLE_USER");
+			
+			
+			SecurityContext context = SecurityContextHolder.createEmptyContext();
+			Authentication authentication = new TestingAuthenticationToken(account.getUserId(), account.getPassword(),account.getAuthority());
+			context.setAuthentication(authentication);
+			
+			SecurityContextHolder.setContext(context);
+			
+			session.setAttribute("loginId", account.getUserId());
+			
+			System.out.println(authentication);
+			System.out.println(context);
+			
+
+			return "successLogin";
+			
+		}
+		
+	
+	}
+	
+	@GetMapping("/googleSignin")
+	public void googleSignin() {
+	}
+	
+	@ResponseBody
+	@PostMapping("/googleSignin")
+	public String googleSignin(HttpSession session, MemberGoogle member) {
+		System.out.println("구글회원가입정보 확인");
+		member.setUserId((String) session.getAttribute("googleDataUserId"));
+		member.setName((String) session.getAttribute("googleDataName"));
+		member.setEmail((String) session.getAttribute("googleDataEmail"));
+		System.out.println(member);
+		memberService.insertNewMemberGoogle(member);
+		
+		return "success";
+	}
+	
+
+	
+	
+	
+	
 	@GetMapping("/signin")
 	public void signin() {
 	}
@@ -121,8 +186,13 @@ public class MemberController {
 	@PostMapping("/signInData")
 	public String signin(HttpSession session, SignUpForm form) {
 
-		session.setAttribute("form", form);
+		
 
+		if(!memberService.idCheck(form.getUserId()))
+		{
+			return "idError";
+		}
+		
 		System.out.println(form);
 		
 		memberService.insertNewMember(form);
@@ -147,9 +217,39 @@ public class MemberController {
 		String userId =(String)session.getAttribute("loginId");
 		System.out.println("get myPage userId -> "+ userId);
 		Member member = memberService.idCheckRetrunMember(userId);
-		System.out.println(member);
+		System.out.println(member.getBirth());
 		model.addAttribute("member", member);
+		model.addAttribute("age",getAge(member.getBirth()));
 		
 	}
+	
+	
+	
+	
+	
+	public int getAge(String birth)
+	{
+			int birthYear = Integer.valueOf(birth.substring(0, 4));
+			int birthMonth = Integer.valueOf(birth.substring(5, 7));
+			int birthDay= Integer.valueOf(birth.substring(8, 10));
+			System.out.println(birthYear +"-"+birthMonth +"-"+birthDay);
+			
+			
+			
+	        Calendar current = Calendar.getInstance();
+	        int currentYear  = current.get(Calendar.YEAR);
+	        int currentMonth = current.get(Calendar.MONTH) + 1;
+	        int currentDay   = current.get(Calendar.DAY_OF_MONTH);
+	      
+	        int age = currentYear - birthYear;
+	        // 생일 안 지난 경우 -1
+	        if (birthMonth * 100 + birthDay > currentMonth * 100 + currentDay) 
+	            age--;
+	      
+	        return age;
+	}
+	
+	
+
 	
 }
