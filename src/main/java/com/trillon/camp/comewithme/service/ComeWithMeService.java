@@ -28,6 +28,8 @@ public interface ComeWithMeService {
 
 	FileInfo selectFileInfo(String flIdx);
 
+	Integer returnGroupIdxByBdIdx(Integer bdIdx);
+
 
 
 	

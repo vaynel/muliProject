@@ -41,6 +41,8 @@ public class ComeWithMeServiceImpl implements ComeWithMeService{
 							  .blockCnt(10)
 							  .build();
 		
+		
+		System.out.println(comeWithMeRepository.selectBoardList(paging));
 		return Map.of("boardList", comeWithMeRepository.selectBoardList(paging), "paging",paging);
 	}
 
@@ -100,6 +102,12 @@ public class ComeWithMeServiceImpl implements ComeWithMeService{
 	public FileInfo selectFileInfo(String flIdx) {
 		FileInfo fileInfo = fileRepository.selectFileInfo(flIdx);
 		return fileInfo;
+	}
+
+	@Override
+	public Integer returnGroupIdxByBdIdx(Integer bdIdx) {
+		
+		return comeWithMeRepository.returnGroupIdxByBdIdx(bdIdx);
 	}
 
 	

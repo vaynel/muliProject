@@ -20,6 +20,7 @@ public class ComeWithMeBoard {
 	private String ageAverage;  // 연령층
 	private String gender;
 	private String groupName;
+	private Integer groupIdx;
 	
 	public String getRegDateAsDate() {
 		return createDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
