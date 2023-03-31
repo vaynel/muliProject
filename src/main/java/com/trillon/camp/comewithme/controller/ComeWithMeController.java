@@ -2,6 +2,7 @@ package com.trillon.camp.comewithme.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +27,9 @@ import com.trillon.camp.comewithme.dto.Answer;
 import com.trillon.camp.comewithme.dto.ComeWithMeBoard;
 import com.trillon.camp.comewithme.service.ComeWithMeService;
 import com.trillon.camp.group.dto.CampingGroup;
+import com.trillon.camp.group.dto.GroupMember;
+import com.trillon.camp.group.service.GroupSerivce;
+import com.trillon.camp.groupChat.dto.ChatRoom;
 import com.trillon.camp.groupChat.service.GroupChatService;
 
 import lombok.RequiredArgsConstructor;
@@ -39,6 +43,8 @@ public class ComeWithMeController {
 	
 	private final ComeWithMeService comeWithMeService;
 	private final GroupChatService groupChatService;
+	private final GroupSerivce	groupService;
+	
 
 	@GetMapping("comeWithMeList") // 동행인 구인 게시글 목록
 	public String comeWithMeList(Model model, @RequestParam(required = false, defaultValue="1")int page) {
@@ -66,15 +72,31 @@ public class ComeWithMeController {
 		System.out.println("upload post : " + board);
 		System.out.println("upload post : " + files);
 		
-		CampingGroup campingGroup = new CampingGroup();
+		
+		
+		CampingGroup campingGroup = new CampingGroup(); // 그룹 만들기
 		campingGroup.setMaxMember(board.getNumOfPerson());
 		campingGroup.setGroupMaster((String)session.getAttribute("loginId"));
 		campingGroup.setCurrentMember(1);
 		campingGroup.setGroupName(board.getGroupName());
 		groupChatService.insertNewGroup(campingGroup);
 		
+		ChatRoom chatRoom = new ChatRoom();     // 채팅방 만들기
+        Map<String, Object> commandMap = new HashMap<>();
+        chatRoom.setRoomId();
+        commandMap.put("roomId", chatRoom);
+        commandMap.put("groupIdx", groupService.selectNewGampingGroupIdx());
+
+        groupChatService.insertNewGroupChat(commandMap);
+        
+        Integer groupIdx = groupService.selectNewGampingGroupIdx();
+        GroupMember member = new GroupMember();
+        member.setUserId((String)session.getAttribute("loginId"));
+        member.setGroupIdx(groupIdx);
+        member.setRoomId(groupChatService.findRoomIdByGroupIdx(groupIdx));
+        groupService.insertNewMemberToGroup(member);
 		
-		comeWithMeService.insertBoard(board, files);
+		comeWithMeService.insertBoard(board, files);// 게시글 만들기
 		return "redirect:/comewithme/comeWithMeList";
 	}
 	

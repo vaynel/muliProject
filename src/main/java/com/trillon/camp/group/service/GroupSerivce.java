@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.trillon.camp.group.dto.CampingGroup;
+import com.trillon.camp.group.dto.GroupMember;
 import com.trillon.camp.group.dto.TemporaryDate;
 import com.trillon.camp.schedule.dto.Schedule;
 
@@ -23,5 +24,7 @@ public interface GroupSerivce {
 	Integer deleteAllTemp(String groupIdx);
 
 	CampingGroup findCampingGroupByGroupIdx(Integer valueOf);
+
+	void insertNewMemberToGroup(GroupMember member);
 
 }
