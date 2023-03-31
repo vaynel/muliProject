@@ -46,6 +46,11 @@
                             <input type="file" name="file" multiple/>
                         </div>
 
+                        <div class="col-12">
+                            <strong>제품 등록</strong>
+                            <input type="text" name="itemName" multiple/>
+                        </div>
+
                     <div class="col-12">
                         <ul class="actions">
                             <li>

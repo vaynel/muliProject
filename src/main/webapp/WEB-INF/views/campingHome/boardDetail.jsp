@@ -32,9 +32,7 @@
                                     <br>
                                 </tr>
 
-                            </c:forEach>
-
-                            <br>
+                            </c:forEach><br>
 
                         </div>
                         <div class="col-6 col-12-large" border="1px solid black">
@@ -43,7 +41,7 @@
                             <div>
                                 <p>
                                     해시태그 작성란입니다.
-                                    <input type="text" name="text" value='${board.hashtag}' readonly>
+                                    <input type="text" name="hashtag" value='${board.hashtag}' readonly>
                                 </p>
                             </div>
 
@@ -51,6 +49,20 @@
                                 <p>텍스트 작성란 입니다.</p>
                                 <input type="text" name="text" value='${board.text}' readonly>
                             </div>
+
+
+                            <div>
+                                <p>제품 상세페이지</p>
+
+                                <span><c:out value="${item}"/></span>
+                                <a>${item}</a>
+                        </div>
+                            <%--
+                                <input type="text" name="itemName" value='${item.link}' readonly>
+                                <input type="text" name="itemName" value='${item.image}' readonly>
+                            </div>
+                        --%>
+
                         </div>
 
                         <div>
@@ -58,7 +70,7 @@
                                 <h3>댓글</h3>
                                 <ul>
                                     <li><a href="/campingHome/userPage">userId 1</a></li>
-                                    <input type="hidden" id="bdIdx" value='${board.bdIdx}'></input>
+                                    <input type="hidden" id="bdIdx" value='${board.bdIdx}'/>
                                     <input type="text" id ="context">
                                     <input type="submit" value="Send Message" class="primary">
                                     <li>댓글 1 댓글을 작성해 주세요</li>

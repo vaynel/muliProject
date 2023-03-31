@@ -2,6 +2,7 @@ package com.trillon.camp.campingHome.board.service;
 
 import com.trillon.camp.campingHome.board.dto.BoardForm;
 import com.trillon.camp.campingHome.board.dto.Reply;
+import org.json.simple.parser.ParseException;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.Map;
 
 
 public interface BoardService {
-    int insertBoard(BoardForm boardForm, List<MultipartFile> files);
+    int insertBoard(BoardForm boardForm, List<MultipartFile> files) throws ParseException;
 
     int insertReply(Reply reply);
 
