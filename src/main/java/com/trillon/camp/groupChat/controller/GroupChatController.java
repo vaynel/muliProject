@@ -65,15 +65,10 @@ public class GroupChatController {
 		return "/groupChat/groupChatList";
 	}
 	
-	
-
-	
 	@PostMapping("/createGroup")
 	@ResponseBody
 	public String createChat(@RequestBody CampingGroup campingGroup) {
 		System.out.println("Post : createGroup");
-		
-		
 		groupChatService.insertNewGroup(campingGroup);
 		
 		ChatRoom chatRoom = new ChatRoom();
@@ -91,7 +86,6 @@ public class GroupChatController {
 //		groupChatService.createNewChatRoom(newChatRoom);
 		return "성공";
 	}
-	
 
 	
 	@GetMapping("/chatRoom")
@@ -122,12 +116,5 @@ public class GroupChatController {
 	public void groupChat2() {
 		System.out.println("그룹 쳇 버전 2");
 	}
-	
-	
-
-	
-	
-	
-	
 	
 }

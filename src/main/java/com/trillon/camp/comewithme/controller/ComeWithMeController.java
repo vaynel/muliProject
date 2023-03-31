@@ -41,7 +41,7 @@ public class ComeWithMeController {
 	
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	private final ComeWithMeService comeWithMeService;
+	private final ComeWithMeService comeWithMeService; 	
 	private final GroupChatService groupChatService;
 	private final GroupSerivce	groupService;
 	

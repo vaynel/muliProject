@@ -18,6 +18,7 @@ public class StompChatController {
 	public void enter(ChatMessage message) {
 		message.setMessage(message.getWriter()+"님이 채팅방에 참여하였습니다.");
 		System.out.println(message.getWriter()+"님이 채팅방에 참여하였습니다.");
+		message.setWriter("서버");
 		template.convertAndSend("/sub/chat/room/"+ message.getRoomId(),message );
 	}
 	
