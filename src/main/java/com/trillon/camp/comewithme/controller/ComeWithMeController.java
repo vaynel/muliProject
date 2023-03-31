@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
+import javax.swing.border.Border;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,6 +51,7 @@ public class ComeWithMeController {
 	@GetMapping("comeWithMeList") // 동행인 구인 게시글 목록
 	public String comeWithMeList(Model model, @RequestParam(required = false, defaultValue="1")int page) {
 		System.out.println("comeWithMeList1");
+		System.out.println(comeWithMeService.selectBoardList(page));
 		model.addAllAttributes(comeWithMeService.selectBoardList(page));
 		return "/comewithme/comeWithMeList";
 	}
@@ -98,7 +100,7 @@ public class ComeWithMeController {
         groupService.insertNewMemberToGroup(member);
         
         
-		
+		board.setGroupIdx(groupIdx);
 		comeWithMeService.insertBoard(board, files);// 게시글 만들기
 		return "redirect:/comewithme/comeWithMeList";
 	}
@@ -168,10 +170,20 @@ public class ComeWithMeController {
 	
 	
 	@PostMapping("memberInsert")
-	public String memberInsert(GroupMember groupMember, ComeWithMeBoard board, HttpSession session) {
+	public String memberInsert(ComeWithMeBoard board, HttpSession session) {
 		System.out.println("멤버 추가하기 들어오나요");
 		System.out.println("userId : " + session.getAttribute("loginId"));
 		System.out.println("board : " + board.getBdIdx());
+		
+		Integer groupIdx = comeWithMeService.returnGroupIdxByBdIdx(board.getBdIdx());
+		System.out.println("groupIdx -> "+ groupIdx);
+		
+		GroupMember groupMember = new GroupMember();
+		groupMember.setGroupIdx(groupIdx);
+		groupMember.setUserId((String)session.getAttribute("loginId"));
+		groupMember.setRoomId(groupChatService.findRoomIdByGroupIdx(groupIdx));
+		
+		groupService.insertNewMemberToGroup(groupMember);
 		
 		return "redirect:/comewithme/detail?bdIdx="+board.getBdIdx();
 	}
