@@ -19,8 +19,8 @@ public interface FileRepositoryYG {
 	@Select("select * from file_info where is_del = 0 and fl_idx=#{flIdx}")
 	FileInfo selectFileInfo(String flIdx);
 
-	@Select("select * from file_info where is_del = 0 and groupName = #{groupName} and group_idx = #{groupIdx}")
-	List<FileInfo> selectFileWithGroup(Map<String, Object> group);
+	@Select("select * from file_info where is_del = 0 and fl_idx = #{bdIdx}")
+	List<FileInfo> selectFileWithGroup(int bdIdx);
 	
 	
 }
