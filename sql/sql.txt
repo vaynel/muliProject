@@ -94,9 +94,18 @@ CREATE TABLE test (
 commit;
 
 
+alter table member change id userId VARCHAR(70) NOT NULL;
 
 
-
+ create table member_google(
+    userId VARCHAR(70) NOT NULL PRIMARY KEY ,
+    Name VARCHAR(70) NOT NULL ,
+    tell VARCHAR(13) not null ,
+    Gender VARCHAR(1) NULL,
+    birth date not null ,
+    role_grad varchar(20) not null default 'user',
+    email VARCHAR(70) NOT NULL
+);
 
 
 
