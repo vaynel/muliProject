@@ -66,8 +66,8 @@ h4, h2 {
                     	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     	&nbsp;프로필 사진 변경</h4>
                     	<br>
-                    	<h2>이름 : ${member.userId}</h2>
-                    	<h2>나이 : 28</h2>
+                    	<h2>이름 : ${member.name}</h2>
+                    	<h2>나이 : ${age}</h2>
                     	<h2>성별 : ${member.gender}</h2>
                     </div>                 
 

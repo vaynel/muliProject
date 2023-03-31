@@ -32,6 +32,7 @@ import com.trillon.camp.comewithme.common.file.FileInfo;
 import com.trillon.camp.comewithme.dto.Answer;
 import com.trillon.camp.comewithme.dto.ComeWithMeBoard;
 import com.trillon.camp.comewithme.service.ComeWithMeService;
+import com.trillon.camp.group.dto.CampingGroup;
 
 import lombok.RequiredArgsConstructor;
 
@@ -66,10 +67,22 @@ public class ComeWithMeController {
 	}
 	
 	@PostMapping("upload") // 게시판 생성 1-2
-	public String upload(@RequestParam List<MultipartFile> files, ComeWithMeBoard board) throws UnsupportedEncodingException {
+	public String upload(@RequestParam List<MultipartFile> files,
+			ComeWithMeBoard board,
+			HttpSession session) throws UnsupportedEncodingException {
 		System.out.println("upload post : " + board);
 		System.out.println("upload post : " + files);
+		
+		CampingGroup campingGroup = new CampingGroup();
+		campingGroup.setMaxMember(board.getNumOfPerson());
+		campingGroup.setGroupMaster((String)session.getAttribute("loginId"));
+		
+		
+		
 		comeWithMeService.insertBoard(board, files);
+		
+		
+		
 		return "redirect:/comewithme/comeWithMeList";
 	}
 	
@@ -146,7 +159,7 @@ public class ComeWithMeController {
 	@ResponseBody
 	@GetMapping("/images/{groupIdx}/{fileName}")
 	public Resource downloadImage(@PathVariable Object fileName, @PathVariable int groupIdx) throws MalformedURLException {
-                return new UrlResource("file:"+"C:/comewithme/"+groupIdx+"/"+ fileName);
+                return new UrlResource("file:"+"C:/Program Files/CODE/storage/board/2023/3/30/"+ fileName);
 	}
 	
 

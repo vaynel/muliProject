@@ -107,14 +107,15 @@ public class GroupController {
 	public void recommendDate(Model model,String groupIdx) {
 		log.info("get : recommendDate");
 		System.out.println(groupIdx);
+		String roomId = groupChatService.findRoomIdByGroupIdx(Integer.valueOf(groupIdx));
 		model.addAttribute("groupIdx", groupIdx);
+		model.addAttribute("roomId", roomId);
 	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/get.do")
 	public List<Schedule> ajax(@RequestParam String groupIdx) {
 		log.info("그룹 날짜 추천 달력");
-		System.out.println(groupIdx);
 		List<TemporaryDate> listTemp= groupService.selectRecommand(Integer.valueOf(groupIdx));
 		
 		List<Schedule> list= new ArrayList<Schedule>();

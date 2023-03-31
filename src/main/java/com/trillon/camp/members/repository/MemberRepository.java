@@ -13,7 +13,7 @@ import com.trillon.camp.members.validator.form.SignUpForm;
 public interface MemberRepository {
 
 	
-	@Select("SELECT * FROM camp.member WHERE id = #{userId}")
+	@Select("SELECT * FROM camp.member WHERE userid = #{userId}")
 	Member selectMemberByUserId(String userId);
 	
 
@@ -23,7 +23,7 @@ public interface MemberRepository {
 	 * ) Member selectMemberByUserIdPassword(Member member);
 	 */
 
-	@Insert("insert into camp.member (id, name, password, tell, gender, birth, role_grad) " + " values(#{userId}, #{name}, #{password},#{tell},#{gender},#{birth},'user')")
+	@Insert("insert into camp.member (userid, name, password, tell, gender, birth, role_grad) " + " values(#{userId}, #{name}, #{password},#{tell},#{gender},#{birth},'user')")
 	void insertMember(SignUpForm form);
 	
 }

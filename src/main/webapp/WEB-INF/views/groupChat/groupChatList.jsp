@@ -33,8 +33,7 @@
 					<div class="col-6 col-12-medium">
 					<h3>채팅방</h3>
 					
-						<c:forEach items="${MyGroup['GroupMember']}" var="Group"
-							varStatus="status">
+						<c:forEach items="${MyGroup['GroupMember']}" var="Group" varStatus="status">
 
 							<div class="box">
 								<c:set var="count" value="${status.count}"></c:set>
@@ -47,9 +46,8 @@
 											<span class="countMember">${campingGroup.currentMember} / ${campingGroup.maxMember}</span>
 										</p>
 												 <p>GroupMaster : ${campingGroup.groupMaster}</p>
-											<span >1 ,2 ,3 ,4 </span>
-										
-									</c:if>
+											<span>1 ,2 ,3 ,4 </span>
+									</c:if>	
 								</c:forEach>
 								<br>
 							</div>
