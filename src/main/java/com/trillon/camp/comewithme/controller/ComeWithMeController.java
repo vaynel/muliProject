@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.trillon.camp.comewithme.common.code.Code;
 import com.trillon.camp.comewithme.dto.Answer;
 import com.trillon.camp.comewithme.dto.ComeWithMeBoard;
 import com.trillon.camp.comewithme.service.ComeWithMeService;
@@ -95,6 +96,8 @@ public class ComeWithMeController {
         member.setGroupIdx(groupIdx);
         member.setRoomId(groupChatService.findRoomIdByGroupIdx(groupIdx));
         groupService.insertNewMemberToGroup(member);
+        
+        
 		
 		comeWithMeService.insertBoard(board, files);// 게시글 만들기
 		return "redirect:/comewithme/comeWithMeList";
@@ -160,7 +163,7 @@ public class ComeWithMeController {
 	@GetMapping("/{groupName}/{savePath}/{fileName}")
 	public Resource downloadImage(@PathVariable Object fileName,@PathVariable String groupName ,@PathVariable String savePath) throws MalformedURLException {
 		System.out.println("여기 오고 있나요?");
-        return new UrlResource("file:" + "C:/Program Files/CODE/storage" + "/" + groupName + "/" + savePath + fileName);
+        return new UrlResource("file:" + Code.STORAGE_PATH + "/" + groupName + "/" + savePath + fileName);
 	}
 	
 	
