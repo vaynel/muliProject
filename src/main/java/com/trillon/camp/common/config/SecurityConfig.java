@@ -102,7 +102,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	
 	  @Override public void configure(WebSecurity web) {
-	  web.ignoring().antMatchers(HttpMethod.GET,"/resources/**") ; 
+	  web.ignoring().antMatchers(HttpMethod.GET,"/resources/**", "/storage/**"); 
 	
       web.ignoring().antMatchers("/resources/**");
    

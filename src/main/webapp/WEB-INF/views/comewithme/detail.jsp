@@ -32,7 +32,7 @@
                         <div class="col-6 col-12-large">
                             <c:forEach items="${files}" var="files">
                                 <tr>
-                                    <img src="/comewithme/${files.groupName}/${files.savePath}${files.renameFileName}" width="400px" height="300px" alt="같이갈래">
+                                    <img src="/storage/${files.groupName}/${files.savePath}${files.renameFileName}" width="400px" height="300px" alt="같이갈래">
                                     <br>
                                 </tr>
 

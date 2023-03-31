@@ -159,12 +159,6 @@ public class ComeWithMeController {
 	}
 	
 	
-	@ResponseBody
-	@GetMapping("/{groupName}/{savePath}/{fileName}")
-	public Resource downloadImage(@PathVariable Object fileName,@PathVariable String groupName ,@PathVariable String savePath) throws MalformedURLException {
-		System.out.println("여기 오고 있나요?");
-        return new UrlResource("file:" + Code.STORAGE_PATH + "/" + groupName + "/" + savePath + fileName);
-	}
 	
 	
 	@PostMapping("memberInsert")
