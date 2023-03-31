@@ -12,4 +12,5 @@ public class Member {
 	private String gender;
 	private String birth;
 	private boolean isLeave;
+	private String email;
 }

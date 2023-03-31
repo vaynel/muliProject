@@ -31,7 +31,7 @@
 
 				<div class="row gtr-200">
 					<div class="col-6 col-12-medium">
-					<h3>채팅방</h3>
+					<h3>나의 그룹</h3>
 					
 						<c:forEach items="${MyGroup['GroupMember']}" var="Group" varStatus="status">
 

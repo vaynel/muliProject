@@ -18,11 +18,11 @@
 									</header>
 									<ul>
 										<li><a href="/members/myPage">MyPage</a></li>
-										<li><a href="/campingHome/myPage/">캠핑의집</a></li>
+										<li><a href="/campingHome/boards/">캠핑의집</a></li>
 										<li><a href="/comewithme/comeWithMeList">같이갈래</a></li>
 										<li><a href="/suggest/select2">장소추천</a></li>
 										<li><a href="/schedule/calendar">일정</a></li>
-										<li><a href="/groupChat/groupChatList">채팅</a></li>
+										<li><a href="/groupChat/groupChatList">나의그룹</a></li>
 										<li><a href="/elements">Elements</a></li>
 										<li>
 											<span class="opener">Submenu</span>

@@ -216,10 +216,23 @@ public class MemberController {
 			Model model) {
 		String userId =(String)session.getAttribute("loginId");
 		System.out.println("get myPage userId -> "+ userId);
-		Member member = memberService.idCheckRetrunMember(userId);
-		System.out.println(member.getBirth());
-		model.addAttribute("member", member);
-		model.addAttribute("age",getAge(member.getBirth()));
+		Member member = new Member();
+		
+		// 일반 로그인시 
+		if((member= memberService.idCheckRetrunMember(userId))!=null ) {
+			model.addAttribute("member", member);
+			model.addAttribute("age",getAge(member.getBirth()));
+			return; 
+		}
+		
+		else if((member= memberService.idCheckGoogleReturnMember(userId))!=null ) {
+			model.addAttribute("member", member);
+			model.addAttribute("age",getAge(member.getBirth()));
+			return; 
+		}
+		
+		
+		
 		
 	}
 	

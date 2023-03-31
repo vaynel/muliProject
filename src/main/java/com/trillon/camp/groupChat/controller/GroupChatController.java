@@ -72,10 +72,12 @@ public class GroupChatController {
 	@ResponseBody
 	public String createChat(@RequestBody CampingGroup campingGroup) {
 		System.out.println("Post : createGroup");
-		ChatRoom chatRoom = new ChatRoom();
-		Map<String, Object> commandMap = new HashMap<>();
+		
 		
 		groupChatService.insertNewGroup(campingGroup);
+		
+		ChatRoom chatRoom = new ChatRoom();
+		Map<String, Object> commandMap = new HashMap<>();
 		chatRoom.setRoomId();
 		commandMap.put("roomId", chatRoom);
 		commandMap.put("groupIdx", groupSerivce.selectNewGampingGroupIdx());
