@@ -46,7 +46,7 @@
 											<span class="countMember">${campingGroup.currentMember} / ${campingGroup.maxMember}</span>
 										</p>
 												 <p>GroupMaster : ${campingGroup.groupMaster}</p>
-											<span>1 ,2 ,3 ,4 </span>
+											
 									</c:if>	
 								</c:forEach>
 								<br>
@@ -61,9 +61,6 @@
 	</div>
 	<%@ include file="/WEB-INF/views/include/commonScripts.jsp"%>
 	<script src="${context}/resources/assets/js/chat/createRoom.js"></script>
-	<script type="text/javascript">
-		
-	</script>
 
 </body>
 </html>
