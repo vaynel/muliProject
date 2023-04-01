@@ -205,4 +205,20 @@ public class GroupServiceImpi implements GroupSerivce {
 		
 	}
 
+	@Override
+	public Integer updateCurrentGroupMember(Integer groupIdx) {
+		return groupRepository.updateCurrentGroupMember(groupIdx);
+	}
+
+	@Override
+	public boolean checkMemberToGroup(GroupMember groupMember) {
+		if(groupRepository.checkMemberToGroup(groupMember) != null) return false;
+		return true;
+	}
+
+	@Override
+	public List<String> selectGroupMemberNameByGroupIdx(Integer groupIdx) {
+		return groupRepository.selectGroupMemberNameByGroupIdx(groupIdx);
+	}
+
 }

@@ -33,18 +33,21 @@ CREATE TABLE camping_group (
 
 
 
-CREATE TABLE camp.comewithme_board (
-  BD_IDX INT AUTO_INCREMENT primary key,
-  TITLE VARCHAR(100) NOT NULL,
-  CONTENT VARCHAR(1000) NOT NULL,
-  LIKE_COUNT INT NULL DEFAULT 0,
-  CREATE_DATE DATE NOT NULL default (current_date),
-  NUM_OF_PERSON INT NOT NULL,
-  is_del int default 0, 
-  place varchar(100) not null,
-  camping_way varchar(100) not null,
-  age_average varchar(100) not null
-);
+CREATE TABLE `comewithme_board` (
+  `BD_IDX` int NOT NULL AUTO_INCREMENT,
+  `TITLE` varchar(100) NOT NULL,
+  `CONTENT` varchar(1000) NOT NULL,
+  `LIKE_COUNT` int DEFAULT '0',
+  `CREATE_DATE` date NOT NULL DEFAULT (curdate()),
+  `NUM_OF_PERSON` int NOT NULL,
+  `is_del` int DEFAULT '0',
+  `place` varchar(100) NOT NULL,
+  `camping_way` varchar(100) NOT NULL,
+  `age_average` varchar(100) NOT NULL,
+  `gender` varchar(100) DEFAULT '무관',
+  PRIMARY KEY (`BD_IDX`),
+foreign key(group_idx) references camping_group(group_idx)
+) 
 
 CREATE TABLE group_TODO_MANAGER (
     todo_num INT NOT NULL auto_increment PRIMARY KEY,
@@ -56,9 +59,6 @@ CREATE TABLE group_TODO_MANAGER (
     campsite varchar(100),
     chat_id int
 );
-
-
-
 
 CREATE TABLE group_chat_room (
     room_id varchar(100) primary key,
@@ -85,10 +85,6 @@ CREATE TABLE test (
 
 commit;
 
-
-alter table member change id userId VARCHAR(70) NOT NULL;
-
-
  create table member_google(
     userId VARCHAR(70) NOT NULL PRIMARY KEY ,
     Name VARCHAR(70) NOT NULL ,
@@ -100,6 +96,35 @@ alter table member change id userId VARCHAR(70) NOT NULL;
 );
 
 
+CREATE TABLE temporary_recommand_date (
+    group_idx int,
+    recommand_date date,
+    how_many_member_can int,
+    title varchar(100),
+    foreign key(group_idx) references camping_group(group_idx)
+);
+
+CREATE TABLE `FILE_INFO` (
+   `FL_IDX`   int primary key auto_increment   NOT NULL   COMMENT '파일번호',
+   `ORIGIN_FILE_NAME`   VARCHAR(36)   NOT NULL   COMMENT '원본파일명',
+   `RENAME_FILE_NAME`   VARCHAR(36 )   NOT NULL   COMMENT '저장파일명',
+   `SAVE_PATH`   VARCHAR(255 )   NOT NULL   COMMENT '저장경로',
+   `REG_DATE`   timestamp   NULL   DEFAULT now()   COMMENT '파일등록일자',
+   `IS_DEL`   bool   NULL   DEFAULT 0   COMMENT '삭제여부',
+   `GROUPNAME`   VARCHAR(36)   NOT NULL,
+   `GROUP_IDX`  int   NOT NULL
+);
+
+CREATE TABLE test2 (
+  file_idx int NOT NULL AUTO_INCREMENT,
+  gn_idx int NOT NULL,
+  origin_file_name varchar(100) NOT NULL,
+  rename_file_name varchar(100) NOT NULL,
+  save_path varchar(100) NOT NULL,
+  PRIMARY KEY (file_idx,rename_file_name),
+  KEY gn_idx_idx (gn_idx),
+  CONSTRAINT gn_idx FOREIGN KEY (gn_idx) REFERENCES test (bd_idx)
+) ;
 
 
 

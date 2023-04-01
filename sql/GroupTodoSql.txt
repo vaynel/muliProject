@@ -42,3 +42,20 @@ commit;
 select * from group_member where group_idx =1 ;
 select * from todo_manager where user_id="user1";
 
+select * from camping_group;
+select * from todo_manager;
+
+update camping_group 
+set current_member = 
+(select count(*) from group_member where group_idx=2)
+where group_idx=2;
+
+select * from todo_manager;
+
+select * from group_member where user_id="user1";
+
+update todo_manager
+set start_time = "00:00:00"
+where user_id = "user1";
+commit;
+

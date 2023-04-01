@@ -29,7 +29,7 @@
 			<%-- 			<h2 id="groupIdx">GroupIdx : ${groupIdx}</h2> --%>
 						<h2 id="groupName">GroupName : ${campingGroup.groupName} </h2>
 					<!-- 	 <span class="input-group mb-3">userName : </span>-->
-						  <input type="hidden" id="userNamea" value="${userId}"><br>
+						  <input type="hidden" id="userNamea" value="${user.name}"><br>
 						<input type="hidden" id="roomIda" value="${room.roomId}">
 
 					</div>

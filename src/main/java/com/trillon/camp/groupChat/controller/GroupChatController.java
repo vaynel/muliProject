@@ -1,5 +1,6 @@
 package com.trillon.camp.groupChat.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +23,8 @@ import com.trillon.camp.group.dto.GroupMember;
 import com.trillon.camp.group.service.GroupSerivce;
 import com.trillon.camp.groupChat.dto.ChatRoom;
 import com.trillon.camp.groupChat.service.GroupChatService;
+import com.trillon.camp.members.dto.Member;
+import com.trillon.camp.members.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -32,6 +35,8 @@ public class GroupChatController {
 	
 	private final GroupChatService groupChatService;
 	private final GroupSerivce groupSerivce;
+	private final MemberService memberService;
+	
 	Logger log = LoggerFactory.getLogger(this.getClass());
 	
 	
@@ -46,21 +51,20 @@ public class GroupChatController {
 		
 		log.info("userId -> "+userId);
 		System.out.println("GroupList -> " +groupChatService.selectAllMygroupChatList(userId));
-		List<GroupMember> GroupMembers = groupChatService.selectAllChatRoomList(userId);
+		List<GroupMember> myGroups = groupChatService.selectAllChatRoomList(userId);
 		List<CampingGroup> campingGroups = groupChatService.selectAllMygroupChatList(userId);
 		Map<String, Object> MyGroupMap = new HashMap<>();
 		
-		for (GroupMember member : GroupMembers) {
-			System.out.println(member);
+		
+		for (GroupMember myGroup : myGroups) {
+			List<String> groupMemberNameList = groupSerivce.selectGroupMemberNameByGroupIdx(myGroup.getGroupIdx());
+			MyGroupMap.put(String.valueOf(myGroup.getGroupIdx()), groupMemberNameList);
 		}
 		
-		for (CampingGroup campingGroup : campingGroups) {
-			System.out.println(campingGroup);
-		}
-		
-		MyGroupMap.put("GroupMember", GroupMembers);
+	
+		MyGroupMap.put("myGroups", myGroups);
 		MyGroupMap.put("campingGroup", campingGroups);
-		
+	
 		model.addAttribute("MyGroup", MyGroupMap);
 		return "/groupChat/groupChatList";
 	}
@@ -103,7 +107,10 @@ public class GroupChatController {
         ChatRoom chatRoom  = new ChatRoom();
         chatRoom.setRoomId(chatRooms.get(0).getRoomId());
         
-        model.addAttribute("userId", session.getAttribute("loginId"));
+        Member user = memberService.idCheckRetrunMember((String)session.getAttribute("loginId"));
+        		
+        
+        model.addAttribute("user", user);
         model.addAttribute("roomId",roomId);
         model.addAttribute("room", chatRoom);
         model.addAttribute("groupIdx", groupIdx);

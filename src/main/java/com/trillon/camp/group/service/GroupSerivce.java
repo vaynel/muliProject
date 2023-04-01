@@ -27,4 +27,10 @@ public interface GroupSerivce {
 
 	void insertNewMemberToGroup(GroupMember member);
 
+	Integer updateCurrentGroupMember(Integer groupIdx);
+
+	boolean checkMemberToGroup(GroupMember groupMember);
+
+	List<String> selectGroupMemberNameByGroupIdx(Integer groupIdx);
+
 }

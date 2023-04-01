@@ -1,22 +1,17 @@
 package com.trillon.camp.comewithme.controller;
 
 import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
-import javax.swing.border.Border;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.trillon.camp.comewithme.common.code.Code;
 import com.trillon.camp.comewithme.dto.Answer;
 import com.trillon.camp.comewithme.dto.ComeWithMeBoard;
 import com.trillon.camp.comewithme.service.ComeWithMeService;
@@ -177,7 +171,22 @@ public class ComeWithMeController {
 		groupMember.setUserId((String)session.getAttribute("loginId"));
 		groupMember.setRoomId(groupChatService.findRoomIdByGroupIdx(groupIdx));
 		
-		groupService.insertNewMemberToGroup(groupMember);
+		if(groupService.checkMemberToGroup(groupMember)) {
+			CampingGroup campingGroup = groupService.findCampingGroupByGroupIdx(groupIdx);
+			if(campingGroup.getCurrentMember() < campingGroup.getMaxMember()) {
+				System.out.println("새로운 멤버 그룹에 추가");
+				groupService.insertNewMemberToGroup(groupMember);
+				Integer currentMember = groupService.updateCurrentGroupMember(groupIdx);
+				System.out.println(currentMember + " - "+ campingGroup.getMaxMember());
+			}
+			else System.out.println("그룹에 사람이 다 찼음");
+			
+		}
+		else{
+			System.out.println("같은 멤버가 추가 하려해서 반환함");
+		}
+		
+		
 		
 		return "redirect:/comewithme/detail?bdIdx="+board.getBdIdx();
 	}

@@ -9,5 +9,6 @@ public class CampingGroup {
 	private String groupMaster;
 	private Integer currentMember;
 	private Integer maxMember;
+	private Integer groupIdx;
 
 }
