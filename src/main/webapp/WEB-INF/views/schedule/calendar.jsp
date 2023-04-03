@@ -22,47 +22,87 @@ $.ajax({
 		var list = res;
 		console.log(list);
 		
-		
 		var calendarEl = document.getElementById('calendar');
 		
 		var events = list.map(function(item) {
 			
-			if(item.startTime!="00:00:00"){	
-				return {
-				title : item.title,
-				start : item.date + "T" + item.startTime,
-				end	  : item.dateEnd + "T24:00:00",
-				backgroundColor : "rgba(222, 118, 119, 50)",
-				borderColor : "rgba(222, 118, 119, 50)",
-				textColor : "#ffffff"
-			}}
-			
-			else if(item.date==item.dateEnd){
-			return {
-				title : item.title,
-				start : item.date + "T" + item.startTime,
-				end	  : item.dateEnd + "T24:00:00",
-				allDay:true,
-				backgroundColor : "rgba(222, 118, 119, 50)",
-				borderColor : "rgba(222, 118, 119, 50)",
-				textColor : "#ffffff"
-			}
-			
-		}
-			else{
+			if(item.madeByGroup){
+				if(item.startTime!="00:00:00"){	
+					return {
+					title : item.title,
+					start : item.date + "T" + item.startTime,
+					end	  : item.dateEnd + "T24:00:00",
+					backgroundColor : "rgba(44, 62, 80, 50)",
+					borderColor : "rgba(44, 62, 80, 50)",
+					textColor : "#ffffff"
+				}}
+				
+				else if(item.date==item.dateEnd){
 				return {
 					title : item.title,
-					start : item.date ,
-					end	  : item.dateEnd+"T24:00:00",
+					start : item.date + "T" + item.startTime,
+					end	  : item.dateEnd + "T24:00:00",
+					allDay:true,
+					backgroundColor : "rgba(44, 62, 80, 50)",
+					borderColor : "rgba(44, 62, 80, 50)",
+					textColor : "#ffffff"
+				}
+				
+			}
+				else{
+					return {
+						title : item.title,
+						start : item.date ,
+						end	  : item.dateEnd+"T24:00:00",
+						allDay:true,
+						backgroundColor : "rgba(44, 62, 80, 50)",
+						borderColor : "rgba(44, 62, 80, 50)",
+						textColor : "#ffffff"
+						
+					}	
+					
+				}	
+			}
+			else{
+				if(item.startTime!="00:00:00"){	
+					return {
+					title : item.title,
+					start : item.date + "T" + item.startTime,
+					end	  : item.dateEnd + "T24:00:00",
+					backgroundColor : "rgba(222, 118, 119, 50)",
+					borderColor : "rgba(222, 118, 119, 50)",
+					textColor : "#ffffff"
+				}}
+				
+				else if(item.date==item.dateEnd){
+				return {
+					title : item.title,
+					start : item.date + "T" + item.startTime,
+					end	  : item.dateEnd + "T24:00:00",
 					allDay:true,
 					backgroundColor : "rgba(222, 118, 119, 50)",
 					borderColor : "rgba(222, 118, 119, 50)",
 					textColor : "#ffffff"
-					
-				}	
+				}
 				
 			}
+				else{
+					return {
+						title : item.title,
+						start : item.date ,
+						end	  : item.dateEnd+"T24:00:00",
+						allDay:true,
+						backgroundColor : "rgba(222, 118, 119, 50)",
+						borderColor : "rgba(222, 118, 119, 50)",
+						textColor : "#ffffff"
+						
+					}	
+					
+				}	
+			}
 			
+			
+		
 		});
 		
 		

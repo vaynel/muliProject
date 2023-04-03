@@ -31,6 +31,7 @@
 					<div id="main">
 						<div class="inner">
 							<input type="hidden" id="groupIdx"  name="groupIdx" value="${groupIdx}"/>
+							<input type="hidden" id="roomId" name="roomId" value="${roomId}" />
 
 							<%@ include file="/WEB-INF/views/include/header.jsp" %>
 
@@ -140,14 +141,15 @@ $.ajax({
 							xhr.setRequestHeader(header, token);
 						},
 						success : function(data) {
-							if(data == true)
-								alert("성공");
+							if(data == true)alert("성공");
+							
 						}
 					
 						
 						
 					});
 					info.event.remove();
+					location.href = "http://localhost:8080/groupChat/chatRoom?roomId="+$('#roomId').val()+"&groupIdx="+$('#groupIdx').val();
 				
 					
 					

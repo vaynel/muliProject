@@ -4,6 +4,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.trillon.camp.members.dto.Member;
+import com.trillon.camp.members.dto.MemberGoogle;
 import com.trillon.camp.members.repository.MemberRepository;
 import com.trillon.camp.members.validator.form.SignUpForm;
 
@@ -16,11 +17,7 @@ public class MemberServiceImpl implements MemberService{
 	private final MemberRepository memberRepository;
 	private final PasswordEncoder passwordEncoder;
 	
-	@Override
-	public boolean existUser(String userId) {
-		Member member = memberRepository.selectMemberByUserId(userId);
-		return member != null;
-	}
+
 
 	@Override
 	public void insertNewMember(SignUpForm form) {
@@ -29,7 +26,6 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	
-
 	@Override
 	public Member authenticateUser(Member rowMember) {
 		
@@ -59,8 +55,30 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
+	public void insertNewMemberGoogle(MemberGoogle member) {
+		memberRepository.insertMemberGoogle(member);
+		
+		
+	}
+
+	@Override
+	public boolean idCheckGoogle(String userId) {
+		Member member = memberRepository.selectMemberByUserIdGoogle(userId);
+		
+		if(member == null) return true;
+		
+		return false;
+		
+	}
+	
+	
 	public Member idCheckRetrunMember(String userId) {
 		return memberRepository.selectMemberByUserId(userId);
+	}
+
+	@Override
+	public Member idCheckGoogleReturnMember(String userId) {
+		return memberRepository.selectMemberByUserIdGoogle(userId);
 	}
 
 

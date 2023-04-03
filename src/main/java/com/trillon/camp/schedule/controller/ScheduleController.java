@@ -36,40 +36,12 @@ public class ScheduleController {
 
 	@ResponseBody
 	@RequestMapping(value = "/get.do")
-	public List<Schedule> ajax() {
-		// �׽�Ʈ ������
-//		HashMap<String, String> data = new HashMap<String, String>();
-//		List<HashMap<String,String>> list = new ArrayList<HashMap<String, String>>();
-//
-//		data.put("reservationTitle","study");
-//		data.put("reservationDate","2023-03-23");
-//		data.put("reservationDateEnd","2023-03-24");
-//		data.put("reservationTime","13:30:00");
-//		data.put("reservationIdx","1");
-//		data.put("reservationDetail","test");
-//		
-//		list.add(data);
-		
-		
-//		Map data;
-//
-//		List<Object> list = new ArrayList<Object>();
-//
-//		data = new HashMap();
-//		data.put("title", "camping");
-//		data.put("date", "2023-03-23");
-//		data.put("dateEnd", "2023-03-24");
-//		data.put("startTime", "13:30:00");
-//		list.add(data);
-//
-//		data = new HashMap();
-//		data.put("title", "study");
-//		data.put("date", "2023-03-27");
-//		data.put("dateEnd", "2023-03-28");
-//		data.put("startTime", "13:30:00");
-//		list.add(data);
+	public List<Schedule> ajax(HttpSession session) {
 
-		List<Schedule> list=scheduleService.selectTodo();
+		
+		
+		String userId=(String) session.getAttribute("loginId");
+		List<Schedule> list=scheduleService.selectUserTodo(userId);
 		System.out.println(list);
 		
 	
@@ -79,12 +51,12 @@ public class ScheduleController {
 
 	@ResponseBody
 	@PostMapping("/addTodo")
-	public String addTodo(@RequestBody Map<String, String> data) {
+	public String addTodo(@RequestBody Map<String, String> data, HttpSession session) {
 		System.out.println("addTodo page");
 		
 		Schedule schedule = new Schedule();
 		
-		schedule.setUserId("user1"); 
+		schedule.setUserId((String) session.getAttribute("loginId")); 
 		schedule.setTitle(data.get("title"));
 		schedule.setDate(data.get("date")); 
 		schedule.setDateEnd(data.get("dateEnd"));
@@ -100,26 +72,17 @@ public class ScheduleController {
 	
 	
 	@GetMapping("/deleteTodo")
-	public void deleteTodo(String title, String date) {
+	public void deleteTodo(String title, String date, HttpSession session) {
 		Schedule schedule = new Schedule();
 		schedule.setTitle(title);
 		schedule.setDate(date.substring(0,10));
+		schedule.setUserId((String) session.getAttribute("loginId")); 
 		System.out.println(schedule);
-		
-		System.out.println(schedule);
-		System.out.println("삭제중");
+
+		System.out.println("삭제");
 		scheduleService.deleteTodo(schedule);
 	}
 
-
-	  @RequestMapping("/testPage") public void testPage() {
-	  System.out.println("test");
-	  
-	 
-	  List<Schedule> list=scheduleService.selectTodo();
-	  System.out.println(list);
-	  
-	  }
 	
 
 }

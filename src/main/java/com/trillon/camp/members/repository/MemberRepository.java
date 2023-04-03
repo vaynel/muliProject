@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 
 import com.trillon.camp.members.dto.Member;
+import com.trillon.camp.members.dto.MemberGoogle;
 import com.trillon.camp.members.validator.form.SignUpForm;
 
 
@@ -13,17 +14,17 @@ import com.trillon.camp.members.validator.form.SignUpForm;
 public interface MemberRepository {
 
 	
-	@Select("SELECT * FROM camp.member WHERE id = #{userId}")
+	@Select("SELECT * FROM camp.member WHERE userid = #{userId}")
 	Member selectMemberByUserId(String userId);
 	
+	@Select("SELECT * FROM camp.member_google WHERE userid = #{userId}")
+	Member selectMemberByUserIdGoogle(String userId);
 
-	
-	/*
-	 * @Select("SELECT * FROM camp.member WHERE id = #{userId} and password = #{password}"
-	 * ) Member selectMemberByUserIdPassword(Member member);
-	 */
 
-	@Insert("insert into camp.member (id, name, password, tell, gender, birth, role_grad) " + " values(#{userId}, #{name}, #{password},#{tell},#{gender},#{birth},'user')")
+	@Insert("insert into camp.member (userid, name, password, tell, gender, birth, role_grad) " + " values(#{userId}, #{name}, #{password},#{tell},#{gender},#{birth},'user')")
 	void insertMember(SignUpForm form);
+	
+	@Insert("insert into camp.member_google (userid, name, tell, gender, birth, role_grad, email) " + " values(#{userId}, #{name},#{tell},#{gender},#{birth},'user',#{email})")
+	void insertMemberGoogle(MemberGoogle member);
 	
 }

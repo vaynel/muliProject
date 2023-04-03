@@ -28,6 +28,10 @@
 					<li>제목</li><input name="title" style="color: black" type="text" id="title">
 					</div>
 					<br>
+					<div >
+					<li>그룹 이름</li><input name="groupName" style="color: black" type="text" id="groupName">
+					</div>
+					<br>
 					<br>
 
 					<li>내용</li>
