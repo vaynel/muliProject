@@ -73,7 +73,7 @@
 							<h3 style="font-family: 'Stylish', sans-serif;">별빛캠핑장 한가족04 글자수 공백포함 20자 제한</h3>
 							<!-- 본문 -->
 							<p style="font-family: 'Stylish', sans-serif;">Lorem ipsum dolor sit amet, consectetur adipiscing elit Duis aute irure dolor in reprehenderit in voluptate 사진 있을 시 썸네일에 보이는 글자수 공백 포함 155자로 자르기 (155자 세줄꽉참)</p>
-							<p style="font-family: 'Stylish', sans-serif; line-height : 0.1;">2023년 4월 22일 · 0개의 댓글</p>
+							<p style="font-family: 'Stylish', sans-serif; line-height : 0.1;">2023년 4월 22일 · 모집수 2/4</p>
 							<p style="color:blue; line-height : 0.1;">#산, #경남, #오토캠핑</p>
 							<div class="line" style="background-color:black;
 							height:2px; width:100%;
@@ -87,8 +87,14 @@
 							style="height:30px; width:30px;
 							margin: 0 1em 0 0; line-height:0.1; float:left;">
 							<!-- 작성자 이름 -->
-							<p style="font-family: 'Stylish', sans-serif;">by 서지윤</p>
+							<p style="font-family: 'Stylish', sans-serif;
+							float:left;">by 서지윤</p>
 							</div>
+							<!-- 하트 -->
+							<img src="https://cdn-icons-png.flaticon.com/512/2961/2961957.png"
+							style="height:30px; width:30px;
+							"
+							>
 						</div>
 						<br>
 						<div class="col-xs-6 col-sm-4" id="g2" 
