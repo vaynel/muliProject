@@ -77,8 +77,12 @@ public interface BoardRepository {
     /**
      * 해당 게시판 제품 리스트
      */
-    @Select("select * from reply where bd_idx=#{bdIdx}")
+    @Select("select * from item where bd_idx=#{bdIdx}")
     List<Item> selectItemAll(int bdIdx);
+
+
+
+
 
     /**
      * 댓글 저장

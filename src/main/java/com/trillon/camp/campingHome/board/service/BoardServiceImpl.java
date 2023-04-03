@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -34,7 +35,7 @@ public class BoardServiceImpl implements BoardService{
      * 게시글 등록
      */
     @Override
-    public int insertBoard(BoardForm boardForm, List<MultipartFile> files) throws ParseException {
+    public int insertBoard(BoardForm boardForm,String itemName ,List<MultipartFile> files) throws ParseException, IOException {
         boardRepository.insertBoard(boardForm);
         int bdIdx = boardForm.getBdIdx();  // 해당 insert의 bd_idx값
 
@@ -44,12 +45,21 @@ public class BoardServiceImpl implements BoardService{
         fileUtil.uploadFile(fileInfo, files);
 
         //제품등록
-        Item item = shopping.search(boardForm.getItemName());
+        Item item = shopping.search(itemName);
         item.setBdIdx(bdIdx);
-        log.info("item={}",item);
         boardRepository.insertItem(item);
 
         return bdIdx;
+    }
+
+
+
+    /**
+     * 전체 게시글 조회
+     */
+    @Override
+    public List<BoardForm> selectBoardAll() {
+        return boardRepository.selectBoardAll();
     }
 
     /**
@@ -60,16 +70,6 @@ public class BoardServiceImpl implements BoardService{
         boardRepository.insertReply(reply);
         return reply.getReIdx();
     }
-
-    /**
-     * 전체 게시글 조회
-     */
-    @Override
-    public List<BoardForm> selectBoardAll() {
-        return boardRepository.selectBoardAll();
-    }
-
-
 
     /**
      * 전체 댓글 조회

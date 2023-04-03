@@ -22,8 +22,8 @@ public class BoardForm {
     private Integer share;
     private Integer comments;
 
-    private String itemName;
+    //private String itemName;
 
-    public String link;
-    public String image;
+    //public String link;
+    //public String image;
 }
