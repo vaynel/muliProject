@@ -19,6 +19,7 @@
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
+	<resources mapping="/storage/**" location="file:///C:/Program Files/CODE/storage/" /> <!-- storge로 시작하는 모든 요청은 로케이션 아래에있는 것들을 찾는 요청이된다 -->
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

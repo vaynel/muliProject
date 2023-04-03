@@ -29,8 +29,8 @@ Button {
 		일정 이름 <input type="text" name="title" id="title" maxlength="20"><br><br>
 		시작 날짜 <input type="date" name="dateStart" id="date"><br><br>
 		종료 날짜 <input type="date" name="dateEnd" id="dateEnd"><br><br>
-		<button type="button" value="확인" id="btnClick" >확인</button>
-		<button type="button" value="취소" id="btnCan" >취소</button>
+		<button type="button" value="확인" id="btnClick" onclick="window.close()" >확인</button>
+		<button type="button" value="취소" id="btnCan" onclick="window.close()" >취소</button>
 	
 	</form>
 	</div>

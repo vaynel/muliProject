@@ -18,4 +18,5 @@ public interface MemberService {
 	boolean idCheckGoogle(String userId);
 
 	Member idCheckRetrunMember(String userId);
+	Member idCheckGoogleReturnMember(String userId);
 }

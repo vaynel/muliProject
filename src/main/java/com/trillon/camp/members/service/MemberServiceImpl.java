@@ -71,8 +71,14 @@ public class MemberServiceImpl implements MemberService{
 		
 	}
 	
+	}
 	public Member idCheckRetrunMember(String userId) {
 		return memberRepository.selectMemberByUserId(userId);
+	}
+
+	@Override
+	public Member idCheckGoogleReturnMember(String userId) {
+		return memberRepository.selectMemberByUserIdGoogle(userId);
 	}
 
 

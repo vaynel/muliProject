@@ -17,8 +17,8 @@ import com.trillon.camp.comewithme.dto.ComeWithMeBoard;
 @Repository
 public interface ComeWithMeRepository {
 	
-	@Insert("insert into comewithme_board(title, content, num_of_person, place, camping_way, age_average, gender) "
-			+ "values(#{title}, #{content}, #{numOfPerson}, #{place}, #{campingWay}, #{ageAverage}, #{gender})")
+	@Insert("insert into comewithme_board(title, content, num_of_person, place, camping_way, age_average, gender,group_idx) "
+			+ "values(#{title}, #{content}, #{numOfPerson}, #{place}, #{campingWay}, #{ageAverage}, #{gender},#{groupIdx})")
 	@Options(useGeneratedKeys = true, keyProperty = "bdIdx")
 	public void insertBoard(ComeWithMeBoard board);
 
@@ -41,6 +41,10 @@ public interface ComeWithMeRepository {
 
 	@Update("update comewithme_board set is_del = 1 where bd_idx = #{bdIdx}")
 	int deleteBoardByBdIdx(int bdIdx);
+
+	
+	@Select("select group_idx from comewithme_board where bd_idx=#{bdIdx}")
+	public Integer returnGroupIdxByBdIdx(Integer bdIdx);
 	
 
 

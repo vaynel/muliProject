@@ -41,6 +41,8 @@ public class ComeWithMeServiceImpl implements ComeWithMeService{
 							  .blockCnt(10)
 							  .build();
 		
+		
+		System.out.println(comeWithMeRepository.selectBoardList(paging));
 		return Map.of("boardList", comeWithMeRepository.selectBoardList(paging), "paging",paging);
 	}
 
@@ -65,18 +67,24 @@ public class ComeWithMeServiceImpl implements ComeWithMeService{
 	@Override
 	public Map<String, Object> selectBoardContentByBdIdx(int bdIdx) {
 		ComeWithMeBoard boardList = comeWithMeRepository.selectBoardByBdIdx(bdIdx);
-		List<FileInfo> files = fileRepository.selectFileWithGroup(Map.of("groupName","board", "groupIdx", boardList.getBdIdx()));
+		logger.info("groupIdx :" + boardList.getBdIdx());
+		List<FileInfo> files = fileRepository.selectFileWithGroup(bdIdx);
 		return Map.of("boardList", boardList, "files", files);
 	}
 
 	@Override
-	public void insertBoard(ComeWithMeBoard board, List<MultipartFile> files) {
+	public int insertBoard(ComeWithMeBoard board, List<MultipartFile> files) {
 		
 		comeWithMeRepository.insertBoard(board);
+		int bdIdx = board.getBdIdx();
+		System.out.println(bdIdx);
 		
 		FileInfo fileInfo = new FileInfo();
 		fileInfo.setGroupName("board");
+		fileInfo.setGroupIdx(board.getBdIdx());
 		fileUtil.uploadFile(fileInfo, files);
+		System.out.println(files);
+		return bdIdx;
 	}
 
 	@Override
@@ -88,20 +96,18 @@ public class ComeWithMeServiceImpl implements ComeWithMeService{
 	public void deleteBoardByBdIdx(int bdIdx) {
 		comeWithMeRepository.deleteBoardByBdIdx(bdIdx);
 		
-		List<FileInfo> files = fileRepository.selectFileWithGroup(Map.of("groupName", "board", "gnIdx", bdIdx));
-		
-		fileRepository.deleFileByGroup(Map.of("gourpName", "board", "gnidx", bdIdx));
-		
-		for(FileInfo fileInfo : files) {
-			new File(fileInfo.getFullPath()).delete();
-		}
-		
 	}
 
 	@Override
 	public FileInfo selectFileInfo(String flIdx) {
 		FileInfo fileInfo = fileRepository.selectFileInfo(flIdx);
 		return fileInfo;
+	}
+
+	@Override
+	public Integer returnGroupIdxByBdIdx(Integer bdIdx) {
+		
+		return comeWithMeRepository.returnGroupIdxByBdIdx(bdIdx);
 	}
 
 	

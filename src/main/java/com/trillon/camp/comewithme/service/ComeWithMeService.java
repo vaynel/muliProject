@@ -12,7 +12,7 @@ import com.trillon.camp.comewithme.dto.ComeWithMeBoard;
 
 public interface ComeWithMeService {
 
-	void insertBoard(ComeWithMeBoard board, List<MultipartFile> files); // 게시글 업로드
+	int insertBoard(ComeWithMeBoard board, List<MultipartFile> files); // 게시글 업로드
 
 	Map<String, Object> selectBoardList(int page); // 목록전체보기
 
@@ -27,6 +27,8 @@ public interface ComeWithMeService {
 	//void updateboard(ComeWithMeBoard board, List<MultipartFile> fileList, List<String> delFiles);
 
 	FileInfo selectFileInfo(String flIdx);
+
+	Integer returnGroupIdxByBdIdx(Integer bdIdx);
 
 
 
