@@ -17,11 +17,7 @@ public class MemberServiceImpl implements MemberService{
 	private final MemberRepository memberRepository;
 	private final PasswordEncoder passwordEncoder;
 	
-	@Override
-	public boolean existUser(String userId) {
-		Member member = memberRepository.selectMemberByUserId(userId);
-		return member != null;
-	}
+
 
 	@Override
 	public void insertNewMember(SignUpForm form) {
@@ -72,6 +68,9 @@ public class MemberServiceImpl implements MemberService{
 		if(member == null) return true;
 		
 		return false;
+		
+	}
+	
 	public Member idCheckRetrunMember(String userId) {
 		return memberRepository.selectMemberByUserId(userId);
 	}

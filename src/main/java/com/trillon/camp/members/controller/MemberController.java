@@ -50,11 +50,9 @@ public class MemberController {
 	@ResponseBody
 	@PostMapping("/afterlogin") 
 	public String login(Member member, HttpSession session) {
-		//RedirectAttributes redirectAttr
-		System.out.println("넘어는오냐구요");
-		System.out.println("컨트롤러첫확인"+member);
+
 		if(member.getUserId().equals("") | member.getPassword().equals("")) {
-			//redirectAttr.addFlashAttribute("msg", "아이디나 비밀번호를 입력해주세요.");
+			
 			return "failEmpty";
 		} 
 		Member auth = memberService.authenticateUser(member);
@@ -62,7 +60,7 @@ public class MemberController {
 		
 		
 		if (auth == null) {
-			//redirectAttr.addFlashAttribute("msg", "아이디나 비밀번호가 틀렸습니다.");
+			
 			System.out.println(" 아니면 auth = null");
 			return "failWrong";
 		}

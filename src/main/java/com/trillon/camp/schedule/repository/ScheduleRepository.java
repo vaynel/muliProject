@@ -30,7 +30,7 @@ public interface ScheduleRepository {
 	void insertNewTodoNull3(Schedule schedule);
 	
 
-	@Delete("delete from todo_manager where title = #{title} AND date=#{date}")
+	@Delete("delete from todo_manager where title = #{title} AND date=#{date} AND user_id=#{userId}")
 	void deleteTodo(Schedule schedule);
 
 	

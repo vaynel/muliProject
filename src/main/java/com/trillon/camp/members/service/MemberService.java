@@ -7,8 +7,6 @@ import com.trillon.camp.members.validator.form.SignUpForm;
 
 public interface MemberService {
 
-	boolean existUser(String userId);
-
 	void insertNewMember(SignUpForm form);
 
 	void insertNewMemberGoogle(MemberGoogle member);
