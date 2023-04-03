@@ -34,7 +34,11 @@
 
 					</div>
 					<div>
+						<div class="row" id="chatRow">
+						
 						<div id="msgArea" class="col"></div>
+						</div>
+						
 						
 						<div class="col-6 inputText" >
 							<div class="input-group -xsmall">

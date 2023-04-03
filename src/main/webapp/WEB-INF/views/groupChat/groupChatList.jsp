@@ -40,7 +40,7 @@
 								<c:forEach items="${MyGroup['campingGroup']}" var="campingGroup" varStatus="st">					
 									<c:if test="${count eq st.count}">
 										<p>${st.count}.
-											<a class="" href="/groupChat/chatRoom?roomId=${Group.roomId}&groupIdx=${Group.groupIdx}">
+											<a class="" href="/groupChat/groupChat?roomId=${Group.roomId}&groupIdx=${Group.groupIdx}">
 											${campingGroup.groupName} </a>
 											<span class="countMember">${campingGroup.currentMember} / ${campingGroup.maxMember}</span>
 										</p>

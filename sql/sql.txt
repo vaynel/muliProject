@@ -57,7 +57,8 @@ CREATE TABLE group_TODO_MANAGER (
     START_TIME  TIME  NULL,
     content varchar(1000),
     campsite varchar(100),
-    chat_id int
+    group_idx int,
+    foreign key(group_idx) references camping_group(group_idx)
 );
 
 CREATE TABLE group_chat_room (
@@ -82,8 +83,6 @@ CREATE TABLE test (
   HASHTAG varchar(45) NOT NULL,
   PRIMARY KEY (bd_idx)
 );
-
-commit;
 
  create table member_google(
     userId VARCHAR(70) NOT NULL PRIMARY KEY ,
@@ -125,6 +124,17 @@ CREATE TABLE test2 (
   KEY gn_idx_idx (gn_idx),
   CONSTRAINT gn_idx FOREIGN KEY (gn_idx) REFERENCES test (bd_idx)
 ) ;
+
+CREATE TABLE reply (
+  re_idx int NOT NULL AUTO_INCREMENT,
+  id varchar(45) DEFAULT NULL,
+  context varchar(45) NOT NULL,
+  bd_idx int NOT NULL,
+  PRIMARY KEY (re_idx),
+  KEY bd_idx_idx (bd_idx)
+) ;
+
+commit;
 
 
 
