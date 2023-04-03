@@ -71,9 +71,6 @@
 	</div>
 	<%@ include file="/WEB-INF/views/include/commonScripts.jsp"%>
 	<script src="${context}/resources/assets/js/chat/createRoom.js"></script>
-	<script type="text/javascript">
-		
-	</script>
 
 </body>
 </html>
