@@ -10,7 +10,7 @@
 
 CREATE TABLE TODO_MANAGER (
     T_NUM    INT    NOT NULL auto_increment PRIMARY KEY,
-    USER_ID varchar(20) NOT NULL, 
+    USER_ID varchar(70) NOT NULL, 
     TITLE varchar(50) NOT NULL,
     DATE    DATE    NULL    ,
     DATE_END DATE NULL,

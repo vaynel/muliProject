@@ -204,7 +204,9 @@ public class MemberController {
 
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
-		session.removeAttribute("auth");
+		session.removeAttribute("loginId");
+		SecurityContextHolder.clearContext();
+		System.out.println("로그아웃");
 		return "redirect:/members/login";
 	}
 	
@@ -262,5 +264,4 @@ public class MemberController {
 	
 	
 
-	
 }
