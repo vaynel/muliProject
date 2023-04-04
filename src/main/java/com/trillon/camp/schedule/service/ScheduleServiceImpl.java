@@ -22,21 +22,8 @@ public class ScheduleServiceImpl implements ScheduleService{
 		return scheduleRepository.findAll();
 		
 	}
+	
 
-	/*
-	 * @Override public void insertNewTodo(Schedule schedule) {
-	 * 
-	 * if(schedule.getDateEnd()==""&&schedule.getStartTime()=="")
-	 * scheduleRepository.insertNewTodoNull1(schedule);
-	 * 
-	 * else if(schedule.getDateEnd()=="")
-	 * scheduleRepository.insertNewTodoNull3(schedule); else
-	 * if(schedule.getStartTime()=="")
-	 * scheduleRepository.insertNewTodoNull2(schedule); else
-	 * scheduleRepository.insertNewTodo(schedule);
-	 * 
-	 * }
-	 */
 
 	@Override
 	public void insertNewTodo(Schedule schedule) {
@@ -78,6 +65,16 @@ public class ScheduleServiceImpl implements ScheduleService{
 		
 		scheduleRepository.insertNewTodoMadeByGroup(schedule);
 		
+	}
+
+
+
+
+
+	@Override
+	public List<Schedule> selectUserTodo(String userId) {
+		
+		return scheduleRepository.selectScheduleByUserId(userId);
 	}
 
 

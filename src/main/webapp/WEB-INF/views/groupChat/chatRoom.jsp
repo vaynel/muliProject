@@ -4,7 +4,7 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp"%>
-<link rel="stylesheet" href="${context}/resources/assets/css/chat/chatRoom.css" />
+<link rel="stylesheet" href="${context}/resources/assets/css/chat/chat.css" />
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
@@ -29,12 +29,16 @@
 			<%-- 			<h2 id="groupIdx">GroupIdx : ${groupIdx}</h2> --%>
 						<h2 id="groupName">GroupName : ${campingGroup.groupName} </h2>
 					<!-- 	 <span class="input-group mb-3">userName : </span>-->
-						  <input type="hidden" id="userNamea" value="${userId}"><br>
+						  <input type="hidden" id="userNamea" value="${user.name}"><br>
 						<input type="hidden" id="roomIda" value="${room.roomId}">
 
 					</div>
 					<div>
+						<div class="row" id="chatRow">
+						
 						<div id="msgArea" class="col"></div>
+						</div>
+						
 						
 						<div class="col-6 inputText" >
 							<div class="input-group -xsmall">

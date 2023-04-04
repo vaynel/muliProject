@@ -8,6 +8,8 @@ public interface ScheduleService {
 
 	public List<Schedule> selectTodo();
 	
+	public List<Schedule> selectUserTodo(String userId);
+	
 	void insertNewTodo(Schedule schedule);
 
 	void deleteTodo(Schedule schedule);
