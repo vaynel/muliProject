@@ -19,6 +19,7 @@
 		<div id="main">
 			<div class="inner">
 				<%@ include file="/WEB-INF/views/include/header.jsp"%>
+				
 				<!-- Content -->
 				<!-- <form id="createRoom">
 					<label>myUserId : <input id="userId" text="JaeHyun">
