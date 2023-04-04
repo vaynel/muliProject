@@ -4,7 +4,7 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp"%>
-<link rel="stylesheet" href="${context}/resources/assets/css/chat/chatRoom.css" />
+<link rel="stylesheet" href="${context}/resources/assets/css/chat/chat.css" />
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
@@ -34,7 +34,11 @@
 
 					</div>
 					<div>
+						<div class="row" id="chatRow">
+						
 						<div id="msgArea" class="col"></div>
+						</div>
+						
 						
 						<div class="col-6 inputText" >
 							<div class="input-group -xsmall">

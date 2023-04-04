@@ -76,15 +76,22 @@ public class GroupController {
 	public void addMyGroupTodo(String groupIdx,String title, String date) {
 		log.info("post : addGroupTodo");
 		System.out.println(title);
-		Schedule schedule = new Schedule();
-		schedule.setTitle(title);
-		schedule.setDate(date);
-		schedule.setUserId("user1");
-		schedule.setDateEnd("");
-		schedule.setStartTime("");
-		schedule.setMadeByGroup(true);
 		
-		scheduleService.insertNewTodoMadyByGroup(schedule);
+		List<String> groupMember = groupService.selectGroupMemberNameByGroupIdx(Integer.valueOf(groupIdx));
+		
+		for (String userId : groupMember) {
+			Schedule schedule = new Schedule();
+			schedule.setTitle(title);
+			schedule.setDate(date);
+			schedule.setUserId(userId);
+			schedule.setDateEnd("");
+			schedule.setStartTime("");
+			schedule.setMadeByGroup(true);
+			
+			scheduleService.insertNewTodoMadyByGroup(schedule);
+		}
+		
+		
 		Integer n = groupService.deleteAllTemp(groupIdx);
 		System.out.println(n);
 		
