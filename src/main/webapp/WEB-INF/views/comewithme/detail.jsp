@@ -19,7 +19,7 @@
             <!-- Content -->
             <section>
                <header class="main">
-                  <h1>${boardList.title}<a type="button" id="btnLike">♡</a></h1>
+                  <h1>${boardList.title}</h1>
                            <li>작성일 : ${boardList.createDate}</li>
                   <hr>
                 
@@ -29,12 +29,11 @@
                         <div class="col-6 col-12-large">
                             <c:forEach items="${files}" var="files">
                                 <tr>
-                                    <img src="/storage/${files.groupName}/${files.savePath}${files.renameFileName}" width="400px" height="300px" alt="같이갈래">
+                                    <img src="/storage/${files.groupName}/${files.savePath}${files.renameFileName}" width="400px" height="300px">
                                     <br>
                                 </tr>
 
                             </c:forEach>
-
                             <br>
 
                         </div>
@@ -45,7 +44,6 @@
                            <td>장소 : ${boardList.place}</td><br>
                            <td>모집 연령층 : ${boardList.ageAverage}</td><br>
                            <td>캠핑 방식 : ${boardList.campingWay}</td><br>
-                           <td>좋아요 갯수 : ${boardList.likeCount}</td><br>
                            <br>
                         </tr>
                         <pre>${boardList.content}</pre></td><br>
