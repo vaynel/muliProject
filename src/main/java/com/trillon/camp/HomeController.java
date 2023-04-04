@@ -76,6 +76,11 @@ public class HomeController {
 		model.addAttribute("msg", "Access Denied");
 	}
 	
+	@GetMapping("/mail/mail-template")
+	public void mail() {
+		
+	}
+	
 	
 	
 	

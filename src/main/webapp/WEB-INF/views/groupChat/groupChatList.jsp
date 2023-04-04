@@ -8,8 +8,7 @@
 <link rel="stylesheet" href="${context}/resources/assets/css/group/groupChatList.css" />
 
 <meta id="_csrf" name="_csrf" content="${_csrf.token}"></meta>
-<meta id="_csrf_header" name="_csrf_header"
-	content="${_csrf.headerName}"></meta>
+<meta id="_csrf_header" name="_csrf_header"	content="${_csrf.headerName}"></meta>
 
 </head>
 <body>
@@ -45,20 +44,13 @@
 											${campingGroup.groupName} </a>
 											<span class="countMember">${campingGroup.currentMember} / ${campingGroup.maxMember}</span>
 										</p>
-												 <p>GroupMaster : ${campingGroup.groupMaster}</p>
-												 
-												 <c:if test="${Group.groupIdx eq 2 }">
-												 		<span> member -> </span>
-														<c:forEach items="${MyGroup['2']}" var="name">
-															<span>${name} </span>	 
-														</c:forEach>
-				 
-												 </c:if>
-													
-
-												
-											
+										<p>GroupMaster : ${campingGroup.groupMaster}</p>
 									</c:if>	
+									<form action="/group/withdrawGroup?groupIdx=${Group.groupIdx}" method="post">
+										 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+								    	<button class="button small countMember" >그룹 탈퇴</button>
+									</form>
+									
 								</c:forEach>
 								<br>
 							</div>
