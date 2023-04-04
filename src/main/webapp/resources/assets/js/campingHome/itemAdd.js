@@ -1,15 +1,13 @@
 let token = document.querySelector("meta[name='_csrf']").content;
 let header = document.querySelector("meta[name='_csrf_header']").content;
 
-const form = document.getElementById('reply');
-const bdIdx = document.getElementById('bdIdx').value;
+const form = document.getElementById('form');
 
 form.addEventListener('submit', async (e)=>{
     e.preventDefault();
 
     let data = {
-        context:context.value,
-        bdIdx:bdIdx
+        itemName:itemName.value
     }
 
 

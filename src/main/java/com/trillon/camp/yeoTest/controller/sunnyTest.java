@@ -34,7 +34,7 @@ public class sunnyTest {
 		System.out.println("comeWithMeCreateBoard.jsp");
 	}
 	
-	@GetMapping("comewithme/comeWithMeList")
+	@GetMapping("comewithme/comeWithMeList") // 같이갈래 리스트 화면
 	public void comeWithMeList() {
 		System.out.println("comeWithMeList.jsp");
 	}
@@ -52,6 +52,11 @@ public class sunnyTest {
 	@GetMapping("campingHome/board-form")
 	public void mypage_test() {
 		System.out.println("board-form.jsp");
+	}
+	
+	@GetMapping("campingHome/board") // 캠핑의집 리스트 화면
+	public void campingHomeBoard() {
+		System.out.println("board.jsp");
 	}
 
 

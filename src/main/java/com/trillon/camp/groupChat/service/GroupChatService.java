@@ -27,6 +27,8 @@ public interface GroupChatService {
 
 	void sendMassageRecommandWeekEnd(Map<Date, Integer> recommandWeekEndMap, String roomId, String groupIdx, String title);
 
+	void deletGroupChat(String groupIdx);
+
 
 	
 

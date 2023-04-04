@@ -7,14 +7,18 @@ import com.trillon.camp.campingHome.board.repository.BoardRepository;
 import com.trillon.camp.campingHome.file.FileInfo;
 import com.trillon.camp.campingHome.file.FileUtil;
 import com.trillon.camp.campingHome.file.FileRepository;
+import com.trillon.camp.campingHome.naverShopping.dto.Item;
+import com.trillon.camp.campingHome.naverShopping.service.NaverShoppingSearch;
 import lombok.RequiredArgsConstructor;
 
 
 import lombok.extern.slf4j.Slf4j;
+import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -25,12 +29,13 @@ public class BoardServiceImpl implements BoardService{
     private final BoardRepository boardRepository;
     private final FileRepository fileRepository;
     private final FileUtil fileUtil;
+    private final NaverShoppingSearch shopping;
 
     /**
      * 게시글 등록
      */
     @Override
-    public int insertBoard(BoardForm boardForm, List<MultipartFile> files){
+    public int insertBoard(BoardForm boardForm,String itemName ,List<MultipartFile> files) throws ParseException, IOException {
         boardRepository.insertBoard(boardForm);
         int bdIdx = boardForm.getBdIdx();  // 해당 insert의 bd_idx값
 
@@ -39,7 +44,22 @@ public class BoardServiceImpl implements BoardService{
         fileInfo.setGnIdx(boardForm.getBdIdx());
         fileUtil.uploadFile(fileInfo, files);
 
+        //제품등록
+        Item item = shopping.search(itemName);
+        item.setBdIdx(bdIdx);
+        boardRepository.insertItem(item);
+
         return bdIdx;
+    }
+
+
+
+    /**
+     * 전체 게시글 조회
+     */
+    @Override
+    public List<BoardForm> selectBoardAll() {
+        return boardRepository.selectBoardAll();
     }
 
     /**
@@ -50,16 +70,6 @@ public class BoardServiceImpl implements BoardService{
         boardRepository.insertReply(reply);
         return reply.getReIdx();
     }
-
-    /**
-     * 전체 게시글 조회
-     */
-    @Override
-    public List<BoardForm> selectBoardAll() {
-        return boardRepository.selectBoardAll();
-    }
-
-
 
     /**
      * 전체 댓글 조회
@@ -78,7 +88,8 @@ public class BoardServiceImpl implements BoardService{
     public Map<String, Object> selectBoardByBdIdx(int bdIdx) {
         BoardForm boardForm = boardRepository.selectBoardByBdIdx(bdIdx);
         List<FileInfo> files =fileRepository.selectFileWithGroup(bdIdx);
-        return Map.of("board",boardForm,"files",files);
+        List<Item> item = boardRepository.selectItemAll(bdIdx);
+        return Map.of("board",boardForm,"files",files,"item",item);
     }
 
     /**

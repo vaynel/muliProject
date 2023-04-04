@@ -1,18 +1,14 @@
 package com.trillon.camp.dummy;
 
-import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.xml.crypto.Data;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -27,8 +23,6 @@ import com.trillon.camp.groupChat.dto.ChatRoom;
 import com.trillon.camp.groupChat.service.GroupChatService;
 import com.trillon.camp.members.service.MemberService;
 import com.trillon.camp.members.validator.form.SignUpForm;
-
-import lombok.RequiredArgsConstructor;
 
 @WebAppConfiguration
 
@@ -130,6 +124,30 @@ public class TestDummy {
 			GroupMember groupMember = new GroupMember();
 			groupMember.setGroupIdx(groupIdx);
 			groupMember.setUserId("user"+(4+i));
+			groupMember.setRoomId(groupChatService.findRoomIdByGroupIdx(groupIdx));
+			if(groupService.checkMemberToGroup(groupMember)) {
+				CampingGroup campingGroup = groupService.findCampingGroupByGroupIdx(groupIdx);
+				if(campingGroup.getCurrentMember() < campingGroup.getMaxMember()) {
+					System.out.println("새로운 멤버 그룹에 추가");
+					groupService.insertNewMemberToGroup(groupMember);
+					Integer currentMember = groupService.updateCurrentGroupMember(groupIdx);
+					System.out.println(currentMember + " - "+ campingGroup.getMaxMember());
+				}
+				else System.out.println("그룹에 사람이 다 찼음");
+				
+			}
+			else{
+				System.out.println("같은 멤버가 추가 하려해서 반환함");
+			}
+			
+		}
+		
+		for (int i = 1; i < 3; i++) {
+			Integer groupIdx = comeWithMeService.returnGroupIdxByBdIdx(i);
+			
+			GroupMember groupMember = new GroupMember();
+			groupMember.setGroupIdx(groupIdx);
+			groupMember.setUserId("user"+(3+i));
 			groupMember.setRoomId(groupChatService.findRoomIdByGroupIdx(groupIdx));
 			if(groupService.checkMemberToGroup(groupMember)) {
 				CampingGroup campingGroup = groupService.findCampingGroupByGroupIdx(groupIdx);

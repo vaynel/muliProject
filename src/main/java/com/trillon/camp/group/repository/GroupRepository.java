@@ -63,6 +63,21 @@ public interface GroupRepository {
 			+ "where b.group_idx=#{groupIdx}")
 	List<String> selectGroupMemberNameByGroupIdx(Integer groupIdx);
 
+	
+	@Delete("delete from group_member where group_Idx = #{groupIdx} and user_id = #{userId}")
+	void deleteMemberFromGroupByGroupIdx(Map<String, Object> command);
+	
+	@Delete("delete from group_member where group_Idx = #{groupIdx}")
+	Integer deleteAllMemberFromGroupByGroupIdx(String groupIdx);
+	
+	@Delete("delete from camping_group where group_Idx = #{groupIdx}")
+	void deleteGroup(String groupIdx);
+	
+	@Update("update camping_group "
+			+ "set activate = 0 "
+			+ "where group_idx=#{groupIdx} ")
+	void DisabledGroup(String groupIdx);
+
 
 
 }
