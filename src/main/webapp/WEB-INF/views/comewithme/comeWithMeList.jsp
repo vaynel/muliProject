@@ -18,8 +18,8 @@
                <header class="main">
                   <h1>같이갈래 목록</h1>
                   <hr>
-                  <li><a href="/comewithme/comeWithMeMatch">매칭하러가기</a></li>
-                  <li><a href="/comewithme/comeWithMeCreateBoard">게시글 작성하러 가기</a></li>
+                 <!--  <li><a href="/comewithme/comeWithMeMatch">매칭하러가기</a></li> -->
+                
                </header>
                <tr>
                   <th style="width: 10%; height: 20%;"><span>| 번호 |</span></th>
@@ -33,7 +33,9 @@
                <c:forEach items="${boardList}" var="boardList">
                         <tr>
                            <td>${boardList.bdIdx}</td>
-                           <td><a href="${context}/comewithme/detail?bdIdx=${boardList.bdIdx}">${boardList.title}</a></td>
+                           <td>
+                           	<a href="#none" onclick="window.open('${context}/comewithme/detail?bdIdx=${boardList.bdIdx}', 'new', 'scrollbars=no, resizable=no width=500 height=550, left=750, top=150');">${boardList.title}</a>
+                           </td>
                            <td>${boardList.content}</td>
                            <td>${boardList.likeCount}</td>
                            <td>${boardList.createDate}</td>
@@ -58,7 +60,8 @@
           <li class="page-item">
             <a class="page-link" href="/comewithme/comeWithMeList?page=${paging.nextPage}">Next</a>
           </li>
-          
+          <br>
+            <li><a href="/comewithme/comeWithMeCreateBoard">게시글 작성하러 가기</a></li>
         </ul>
       </nav>
    </div>
@@ -75,6 +78,7 @@
 
    <!-- Scripts -->
    <%@ include file="/WEB-INF/views/include/commonScripts.jsp"%>
+   
 
 </body>
 </html>

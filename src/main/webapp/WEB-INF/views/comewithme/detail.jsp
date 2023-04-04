@@ -21,9 +21,6 @@
                <header class="main">
                   <h1>${boardList.title}<a type="button" id="btnLike">♡</a></h1>
                            <li>작성일 : ${boardList.createDate}</li>
-                           <li><a href="/comewithme/comeWithMeList">목록으로 돌아가기</a></li>
-                          
-                          
                   <hr>
                 
                </header>
@@ -76,8 +73,6 @@
       </div>
       
       
-      <!-- Sidebar -->
-      <%@ include file="/WEB-INF/views/include/sidebar.jsp"%>
 
    </div>
 
