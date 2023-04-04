@@ -17,11 +17,7 @@
 
 	<input type="text" id="userId" placeholder="아이디" required autofocus>
 	<input type="password" id="password" placeholder="비밀번호" required>
-	<div id="remember" class="checkbox">
-		<label> <input type="checkbox" value="remember-me">
-			아이디 기억하기
-		</label>
-	</div>
+	
 	<button class="btn btn-lg btn-primary btn-block btn-signin"
 		type="button" id="btnClick">로그인</button>
 

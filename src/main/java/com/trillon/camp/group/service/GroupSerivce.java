@@ -7,6 +7,7 @@ import java.util.Map;
 import com.trillon.camp.group.dto.CampingGroup;
 import com.trillon.camp.group.dto.GroupMember;
 import com.trillon.camp.group.dto.TemporaryDate;
+import com.trillon.camp.members.dto.Member;
 import com.trillon.camp.schedule.dto.Schedule;
 
 public interface GroupSerivce {
@@ -23,7 +24,7 @@ public interface GroupSerivce {
 
 	Integer deleteAllTemp(String groupIdx);
 
-	CampingGroup findCampingGroupByGroupIdx(Integer valueOf);
+	CampingGroup findCampingGroupByGroupIdx(Integer groupIdx);
 
 	void insertNewMemberToGroup(GroupMember member);
 
@@ -32,5 +33,15 @@ public interface GroupSerivce {
 	boolean checkMemberToGroup(GroupMember groupMember);
 
 	List<String> selectGroupMemberNameByGroupIdx(Integer groupIdx);
+
+	void withdrawGroup(String groupIdx, String userId);
+
+	Integer deleteAllMember(String groupIdx);
+
+	void deleteGroup(String groupIdx);
+
+	void DisabledGroup(String groupIdx);
+
+	void sendMailToGroupMaster(Integer groupIdx, Member user);
 
 }

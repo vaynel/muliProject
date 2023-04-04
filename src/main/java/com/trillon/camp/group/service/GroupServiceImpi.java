@@ -7,18 +7,26 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.MediaType;
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import com.trillon.camp.common.code.Code;
+import com.trillon.camp.common.mail.MailSender;
 import com.trillon.camp.group.dto.CampingGroup;
 import com.trillon.camp.group.dto.GroupMember;
 import com.trillon.camp.group.dto.TemporaryDate;
 import com.trillon.camp.group.repository.GroupRepository;
+import com.trillon.camp.members.dto.Member;
 import com.trillon.camp.schedule.dto.Schedule;
 import com.trillon.camp.schedule.repository.ScheduleRepository;
 
@@ -33,6 +41,8 @@ public class GroupServiceImpi implements GroupSerivce {
 	private final GroupRepository groupRepository;
 
 	private final ScheduleRepository scheduleRepository;
+	private final RestTemplate restTemplate;
+	private final MailSender sender;
 
 	@Override
 	public Integer selectNewGampingGroupIdx() {
@@ -219,6 +229,55 @@ public class GroupServiceImpi implements GroupSerivce {
 	@Override
 	public List<String> selectGroupMemberNameByGroupIdx(Integer groupIdx) {
 		return groupRepository.selectGroupMemberNameByGroupIdx(groupIdx);
+	}
+
+	@Override
+	public void withdrawGroup(String groupIdx, String userId) {
+		Map<String, Object> command = new HashMap<>();
+		command.put("groupIdx", groupIdx);
+		command.put("userId",userId);
+		groupRepository.deleteMemberFromGroupByGroupIdx(command);
+		
+	}
+
+	@Override
+	public Integer deleteAllMember(String groupIdx) {
+		return groupRepository.deleteAllMemberFromGroupByGroupIdx(groupIdx);
+	}
+
+	@Override
+	public void deleteGroup(String groupIdx) {
+		groupRepository.deleteGroup(groupIdx);
+		
+	}
+
+	@Override
+	public void DisabledGroup(String groupIdx) {
+		groupRepository.DisabledGroup(groupIdx);
+		
+	}
+
+	@Override
+	public void sendMailToGroupMaster(Integer groupIdx, Member user) {
+		CampingGroup group = groupRepository.findCampingGroupByGroupIdx(groupIdx);
+		System.out.println(group);
+		Map<String, Object> body = new LinkedHashMap<String, Object>();
+		
+		body.put("userId", user.getUserId());
+		body.put("group", group);
+		body.put("groupIdx", groupIdx);
+		body.put("mailTemplate", "mail-template");
+		
+		RequestEntity<Map<String, Object>> request = 
+				RequestEntity
+				.post(Code.DOMAIN + "/mail")
+				.contentType(MediaType.APPLICATION_JSON)
+				.body(body);
+		
+		ResponseEntity<String> response =  restTemplate.exchange(request, String.class);
+		String html = response.getBody();
+		sender.send("ssp04041@gmail.com", "그룹 신청서.", html);
+//		sender.send(user.getEmail(), "그룹 신청서.", html);
 	}
 
 }

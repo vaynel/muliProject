@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.trillon.camp.group.dto.GroupMember;
 import com.trillon.camp.group.dto.TemporaryDate;
 import com.trillon.camp.group.service.GroupSerivce;
 import com.trillon.camp.groupChat.dto.ChatRoom;
@@ -38,7 +39,7 @@ public class GroupController {
 	private final GroupSerivce groupService;
 	private final ScheduleService scheduleService;
 
-	
+	// 날짜 추천 팝업페이지 
 	@GetMapping("/newGroupTodo")
 	public void MyGroupTodo(Model model,String groupIdx,ChatRoom room) {
 		
@@ -53,6 +54,7 @@ public class GroupController {
 		
 	} 
 	
+	// 모임 날짜 추천해서 보내줌
 	@PostMapping("/newGroupTodo")
 	//@MessageMapping(value = "/chat/message")
 	public void newGroupTodo(@RequestBody Map<String, Object> data,Model model,HttpSession session) {
@@ -71,7 +73,7 @@ public class GroupController {
 	
 	
 	
-	
+	// 그룹 멤버들에게 그룹일정을 개인일정에 추가 시키기 
 	@PostMapping("/addGroupTodo")
 	public void addMyGroupTodo(String groupIdx,String title, String date) {
 		log.info("post : addGroupTodo");
@@ -110,6 +112,8 @@ public class GroupController {
 		
 	}
 	
+	
+	// 날짜 추천 
 	@GetMapping("/recommendDate")
 	public void recommendDate(Model model,String groupIdx) {
 		log.info("get : recommendDate");
@@ -119,6 +123,8 @@ public class GroupController {
 		model.addAttribute("roomId", roomId);
 	}
 	
+	
+	// 그룹 모임 날짜 추천 달력 
 	@ResponseBody
 	@RequestMapping(value = "/get.do")
 	public List<Schedule> ajax(@RequestParam String groupIdx) {
@@ -137,6 +143,40 @@ public class GroupController {
 	
 		return list;
 
+	}
+	
+	
+	// 그룹 탈퇴 및 삭제
+	@PostMapping("withdrawGroup")
+	public String withdrawGroup(@RequestParam String groupIdx,
+			HttpSession session) {
+		log.info("그룹탈퇴합니다");
+		
+		if(groupService.findCampingGroupByGroupIdx(Integer.valueOf(groupIdx)).getGroupMaster().equals(session.getAttribute("loginId"))) {
+			log.info("그룹장이 그룹을 삭제합니다");
+			System.out.println(groupService.deleteAllMember(groupIdx) + "명의 멤버가 있는 그룹을 삭제합니다");
+			groupChatService.deletGroupChat(groupIdx);
+			groupService.DisabledGroup(groupIdx);
+			log.info("그룹을 삭제했습니다");
+			return "redirect:/groupChat/groupChatList";
+		}
+		
+		groupService.withdrawGroup(groupIdx,(String)session.getAttribute("loginId"));
+		log.info(session.getAttribute("loginId")+"님이 "+groupIdx+" 그룹을 탈퇴했습니다.");
+		return "redirect:/groupChat/groupChatList";
+		
+	}
+	
+	@GetMapping("insertNewMemberToGroup")
+	public void insertNewMemberToGroup(@RequestParam String userId,
+			@RequestParam String groupIdx,
+			HttpSession session) {
+		// 추가할 멤버 
+		GroupMember groupMember = new GroupMember();
+		groupMember.setGroupIdx(Integer.valueOf(groupIdx) );
+		groupMember.setUserId(userId);
+		groupMember.setRoomId(groupChatService.findRoomIdByGroupIdx(Integer.valueOf(groupIdx) ));
+		groupService.insertNewMemberToGroup(groupMember);
 	}
 	
 }

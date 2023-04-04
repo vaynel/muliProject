@@ -42,8 +42,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http.headers().frameOptions().sameOrigin();
 		
 		http.authorizeRequests()
-		//.antMatchers(HttpMethod.GET,  "/**").permitAll()
-		//.antMatchers(HttpMethod.POST,  "/**").permitAll()
+		.antMatchers(HttpMethod.GET,  "/**").permitAll()
+		.antMatchers(HttpMethod.POST,  "/**").permitAll()
 		
 		.antMatchers(HttpMethod.GET,  "/resources/**").permitAll()
 		.antMatchers(HttpMethod.POST,  "/resources/**").permitAll()
@@ -85,7 +85,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		 
 		http.logout()
 			.logoutUrl("/members/logout")
-			.logoutSuccessUrl("/members/login");
+			.logoutSuccessUrl("/members/login")
+			.invalidateHttpSession(true);
 		
 		/*
 		 * http.rememberMe() .userDetailsService(userDetailsService)
