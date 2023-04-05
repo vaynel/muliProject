@@ -3,10 +3,12 @@ package com.trillon.camp.comewithme.dto;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import com.trillon.camp.members.dto.Member;
+
 import lombok.Data;
 
 @Data
-public class ComeWithMeBoard {
+public class ComeWithMeBoard extends Member{
 
 	private Integer bdIdx;
 	private String title;
@@ -19,11 +21,15 @@ public class ComeWithMeBoard {
 	private String campingWay; // 캠핑 방식
 	private String ageAverage;  // 연령층
 	private String gender;
-	private String groupName;
 	private Integer groupIdx;
 	
+	// join에서 가져오는 내용
+	private String groupName;
+	private String groupMaster;
+	private String crDate;
+	
 	public String getRegDateAsDate() {
-		return createDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		return createDate.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일"));
 	}
 	
 	public String getRegDateAsTime() {
