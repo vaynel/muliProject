@@ -36,8 +36,9 @@
 					</header>
 					<br>
 					<br>
-					<c:forEach items="${boardList}" var="boardList">
 					<div class="row" id="1st">
+					<c:forEach items="${boardList}" var="boardList">
+					
 						<div class="col-xs-6 col-sm-4" id="g1"  style=" height:600px; box-shadow: 10px 5px 5px gray;">
 							<br>
 							<img src="/storage/${files.groupName}/${files.savePath}${files.renameFileName}" width="40%;" height="100%;" alt="같이갈래">
@@ -67,8 +68,9 @@
 							</div>
 							</div>							
 						</div>
-					</div>
+					
 					</c:forEach>
+					</div>
 						<br>
 						
 						

@@ -177,6 +177,7 @@ public class GroupController {
 		groupMember.setUserId(userId);
 		groupMember.setRoomId(groupChatService.findRoomIdByGroupIdx(Integer.valueOf(groupIdx) ));
 		groupService.insertNewMemberToGroup(groupMember);
+		System.out.println("새로운 멤버 등록 완료");
 	}
 	
 }
