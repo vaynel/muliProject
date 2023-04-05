@@ -6,8 +6,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <meta id="_csrf" name="_csrf" content="${_csrf.token}"></meta>
-<meta id="_csrf_header" name="_csrf_header"
-	content="${_csrf.headerName}"></meta>
+<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"></meta>
 <meta charset="UTF-8">
 
 </head>
