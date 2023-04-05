@@ -169,15 +169,6 @@ public class ComeWithMeController {
 		System.out.println("userId : " + session.getAttribute("loginId"));
 		System.out.println("board : " + board.getBdIdx());
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		// 멤버 생성
 		Member user = memberService.idCheckRetrunMember((String)session.getAttribute("loginId"));
 		if(user==null) user = memberService.idCheckGoogleReturnMember((String)session.getAttribute("loginId"));
@@ -190,29 +181,24 @@ public class ComeWithMeController {
 		groupMember.setUserId(user.getUserId());
 		groupMember.setRoomId(groupChatService.findRoomIdByGroupIdx(Integer.valueOf(groupIdx) ));
 		
-		// 멤버 검사 후 추가하기 
-				if(groupService.checkMemberToGroup(groupMember)) {
-					CampingGroup campingGroup = groupService.findCampingGroupByGroupIdx(groupIdx);
-					if(campingGroup.getCurrentMember() < campingGroup.getMaxMember()) {
-						System.out.println("새로운 멤버 그룹에 추가");
-						groupService.insertNewMemberToGroup(groupMember);
-						Integer currentMember = groupService.updateCurrentGroupMember(groupIdx);
-						System.out.println(currentMember + " - "+ campingGroup.getMaxMember());
-					}
-					else {
-						System.out.println("그룹에 사람이 다 찼음");
-						return "redirect:/comewithme/detail?bdIdx="+board.getBdIdx();
-					}
-				}
-				else{
-					System.out.println("같은 멤버가 추가 하려해서 반환함");
-					return "redirect:/comewithme/detail?bdIdx="+board.getBdIdx();
-				}
-		
-		
-		// 그룹장에게 신청 메일 보내기
-		groupService.sendMailToGroupMaster(groupIdx,user);
-		System.out.println("groupIdx -> "+ groupIdx);		
+		// 멤버 검사 후 메일 보내기 하기 
+		if(groupService.checkMemberToGroup(groupMember)) {
+			CampingGroup campingGroup = groupService.findCampingGroupByGroupIdx(groupIdx);
+			if(campingGroup.getCurrentMember() < campingGroup.getMaxMember()) {
+				System.out.println("새로운 멤버 그룹에 추가 메일 보냈음");
+				// 그룹장에게 신청 메일 보내기
+				groupService.sendMailToGroupMaster(groupIdx,user);
+			}
+			else {
+				System.out.println("그룹에 사람이 다 찼음");
+				return "redirect:/comewithme/detail?bdIdx="+board.getBdIdx();
+			}
+		}
+		else{
+			System.out.println("같은 멤버가 추가 하려해서 반환함");
+			return "redirect:/comewithme/detail?bdIdx="+board.getBdIdx();
+		}
+	
 		return "redirect:/comewithme/detail?bdIdx="+board.getBdIdx();
 	}
 

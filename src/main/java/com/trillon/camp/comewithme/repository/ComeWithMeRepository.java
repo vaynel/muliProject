@@ -25,7 +25,7 @@ public interface ComeWithMeRepository {
 	@Select("select count(*) from comewithme_board where is_del = 0")
 	public int countAllBoard();
 	
-	@Select("select a.* "
+	@Select("select a.* , b.* "
 			+ "from comewithme_board a left join camping_group b "
 			+ " on a.group_idx = b.group_idx"
 			+ " where a.is_del = 0 and b.activate = 1 "

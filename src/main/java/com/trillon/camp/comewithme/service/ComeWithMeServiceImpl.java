@@ -35,14 +35,20 @@ public class ComeWithMeServiceImpl implements ComeWithMeService{
 		int total = comeWithMeRepository.countAllBoard();
 		
 		Paging paging = Paging.builder()
-							  .cntPerPage(10)
+							  .cntPerPage(6)
 							  .currentPage(page)
 							  .total(total)
-							  .blockCnt(10)
+							  .blockCnt(5)
 							  .build();
 		
 		
-		System.out.println(comeWithMeRepository.selectBoardList(paging));
+//		System.out.println(comeWithMeRepository.selectBoardList(paging));
+		List<ComeWithMeBoard> boardList = comeWithMeRepository.selectBoardList(paging);
+		for (ComeWithMeBoard comeWithMeBoard : boardList) {
+			comeWithMeBoard.setCrDate(comeWithMeBoard.getRegDateAsDate());
+		}
+		
+		
 		return Map.of("boardList", comeWithMeRepository.selectBoardList(paging), "paging",paging);
 	}
 
