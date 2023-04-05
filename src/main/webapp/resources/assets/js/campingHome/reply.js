@@ -2,16 +2,19 @@ let token = document.querySelector("meta[name='_csrf']").content;
 let header = document.querySelector("meta[name='_csrf_header']").content;
 
 const form = document.getElementById('reply');
+//const context = document.getElementById('context').value
 const bdIdx = document.getElementById('bdIdx').value;
+
 
 form.addEventListener('submit', async (e)=>{
     e.preventDefault();
 
-    let data = {
+    let reply = {
         context:context.value,
-        bdIdx:bdIdx
     }
 
+    let formData = new FormData();
+    formData.append('context',context.value);
 
     await fetch("http://localhost:8080/campingHome/board/" + bdIdx,{
         method : 'POST',
@@ -19,13 +22,24 @@ form.addEventListener('submit', async (e)=>{
             'header': header,
             'X-CSRF-Token': token,
             'Content-Type': 'application/json',
+            'Accept': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(reply)
     })
-        .then((response)=>{
-            console.log(response);
-        }).catch((err)=>{
-            console.log("err",err);
+        .then((response) => response.json())
+        .then(data=>{
+
+            let replies = document.getElementById('replies');
+            let newReply = document.createElement('p');
+            newReply.innerHTML = data.context;
+            newReply.setAttribute("id","reply");
+            replies.appendChild(newReply)
+
         })
-    window.location.reload();
+        .catch((err)=> console.log(err));
+
+    document.getElementById('context').value = null;
 });
+
+
+
