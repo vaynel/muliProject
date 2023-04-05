@@ -5,7 +5,8 @@
     tell VARCHAR(13) not null ,
     Gender VARCHAR(1) NULL,
     birth date not null ,
-    role_grad varchar(20) not null default 'user'
+    role_grad varchar(20) not null default 'user',
+    email varchar(100) not null
 );
 
 CREATE TABLE comewithme_board (

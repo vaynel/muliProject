@@ -184,7 +184,7 @@ public class MemberController {
 	@PostMapping("/signInData")
 	public String signin(HttpSession session, SignUpForm form) {
 
-		
+		System.out.println(form);
 
 		if(!memberService.idCheck(form.getUserId()))
 		{
