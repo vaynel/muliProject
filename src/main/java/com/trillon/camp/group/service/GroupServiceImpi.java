@@ -276,6 +276,7 @@ public class GroupServiceImpi implements GroupSerivce {
 		
 		ResponseEntity<String> response =  restTemplate.exchange(request, String.class);
 		String html = response.getBody();
+		System.out.println(html);
 		sender.send("ssp04041@gmail.com", "그룹 신청서.", html);
 //		sender.send(user.getEmail(), "그룹 신청서.", html);
 	}
