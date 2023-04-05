@@ -16,7 +16,8 @@ public class FileInfo {
 	private LocalDateTime regDate;
 	private Boolean isDel;
 	private String groupName;
-	private int groupIdx;
+	private Integer groupIdx;
+	private Integer bdIdx;
 
 	public String getFullPath() {
 		return Code.STORAGE_PATH + groupName + "/" + savePath + renameFileName;

@@ -39,10 +39,10 @@
 					</header>
 					
 					<div class="row" id="1st">
-					<c:forEach items="${boardList}" var="boardList">
+					<c:forEach items="${boardList}" var="boardList"  varStatus="status">
 						<div class="col-xs-6 col-sm-4" id="g1"  style=" height:600px; box-shadow: 10px 5px 5px gray;">
 							<br>
-							<img src="/storage${files.groupName}/${files.savePath}${files.renameFileName}" width="40%;" height="100%;" alt="이미지파일">
+							<img src="/storage/${boardList.groupName}/${boardList.savePath}${boardList.renameFileName}" style="height:40%; width:100%;" alt="이미지파일">
 							<br>
 							<!-- 게시글 제목 -->
 							<h3 style="cursor:pointer; font-family: 'Stylish', sans-serif;" onclick="window.open('${context}/comewithme/detail?bdIdx=${boardList.bdIdx}', 'new', 'scrollbars=no, resizable=no width=500 height=550, left=750, top=150');">${boardList.title}</h3>
@@ -52,7 +52,7 @@
 							<p style="font-family: 'Stylish', sans-serif; line-height : 0.1;">${boardList.crDate} · 모집수 1/${boardList.numOfPerson}</p>
 							<p style="color:blue; line-height : 0.1;">#산, #경북, #별빛캠핑장</p>
 							
-							<div id="line-to-heart" style="position: relative; bottom:-275px;">
+							<div id="line-to-heart" style="position: absolute; bottom:0; width:94%">
 							<!-- 구분선 -->
 							<div class="line" style="background-color:black; height:2px; width:100%; line-height:0.1; position:relative; bottom:0px;">
 							<br>
