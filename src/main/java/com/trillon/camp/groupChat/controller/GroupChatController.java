@@ -50,6 +50,8 @@ public class GroupChatController {
 		
 		log.info("userId -> "+userId);
 		System.out.println("GroupList -> " +groupChatService.selectAllMygroupChatList(userId));
+		
+		// 그룹 리스트 검색
 		List<GroupMember> myGroups = groupChatService.selectAllChatRoomList(userId);
 		List<CampingGroup> campingGroups = groupChatService.selectAllMygroupChatList(userId);
 		Map<String, Object> MyGroupMap = new HashMap<>();

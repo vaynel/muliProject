@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.sun.source.tree.MemberSelectTree;
 import com.trillon.camp.comewithme.dto.Answer;
 import com.trillon.camp.comewithme.dto.ComeWithMeBoard;
 import com.trillon.camp.comewithme.service.ComeWithMeService;
@@ -27,6 +28,8 @@ import com.trillon.camp.group.dto.GroupMember;
 import com.trillon.camp.group.service.GroupSerivce;
 import com.trillon.camp.groupChat.dto.ChatRoom;
 import com.trillon.camp.groupChat.service.GroupChatService;
+import com.trillon.camp.members.dto.Member;
+import com.trillon.camp.members.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -40,6 +43,7 @@ public class ComeWithMeController {
 	private final ComeWithMeService comeWithMeService; 	
 	private final GroupChatService groupChatService;
 	private final GroupSerivce	groupService;
+	private final MemberService memberService;
 	
 
 	@GetMapping("comeWithMeList") // 동행인 구인 게시글 목록
@@ -157,37 +161,44 @@ public class ComeWithMeController {
 	
 	
 	
+	
+	// 그룹에 멤버에 추가
 	@PostMapping("memberInsert")
 	public String memberInsert(ComeWithMeBoard board, HttpSession session) {
 		System.out.println("멤버 추가하기 들어오나요");
 		System.out.println("userId : " + session.getAttribute("loginId"));
 		System.out.println("board : " + board.getBdIdx());
 		
+		// 멤버 생성
+		Member user = memberService.idCheckRetrunMember((String)session.getAttribute("loginId"));
+		if(user==null) user = memberService.idCheckGoogleReturnMember((String)session.getAttribute("loginId"));
 		Integer groupIdx = comeWithMeService.returnGroupIdxByBdIdx(board.getBdIdx());
-		System.out.println("groupIdx -> "+ groupIdx);
+		// session이 죽어서 다시 로그인 창으로 보냄
+		if(user==null) return "redirect:/members/login";
 		
 		GroupMember groupMember = new GroupMember();
-		groupMember.setGroupIdx(groupIdx);
-		groupMember.setUserId((String)session.getAttribute("loginId"));
-		groupMember.setRoomId(groupChatService.findRoomIdByGroupIdx(groupIdx));
+		groupMember.setGroupIdx(Integer.valueOf(groupIdx) );
+		groupMember.setUserId(user.getUserId());
+		groupMember.setRoomId(groupChatService.findRoomIdByGroupIdx(Integer.valueOf(groupIdx) ));
 		
+		// 멤버 검사 후 메일 보내기 하기 
 		if(groupService.checkMemberToGroup(groupMember)) {
 			CampingGroup campingGroup = groupService.findCampingGroupByGroupIdx(groupIdx);
 			if(campingGroup.getCurrentMember() < campingGroup.getMaxMember()) {
-				System.out.println("새로운 멤버 그룹에 추가");
-				groupService.insertNewMemberToGroup(groupMember);
-				Integer currentMember = groupService.updateCurrentGroupMember(groupIdx);
-				System.out.println(currentMember + " - "+ campingGroup.getMaxMember());
+				System.out.println("새로운 멤버 그룹에 추가 메일 보냈음");
+				// 그룹장에게 신청 메일 보내기
+				groupService.sendMailToGroupMaster(groupIdx,user);
 			}
-			else System.out.println("그룹에 사람이 다 찼음");
-			
+			else {
+				System.out.println("그룹에 사람이 다 찼음");
+				return "redirect:/comewithme/detail?bdIdx="+board.getBdIdx();
+			}
 		}
 		else{
 			System.out.println("같은 멤버가 추가 하려해서 반환함");
+			return "redirect:/comewithme/detail?bdIdx="+board.getBdIdx();
 		}
-		
-		
-		
+	
 		return "redirect:/comewithme/detail?bdIdx="+board.getBdIdx();
 	}
 

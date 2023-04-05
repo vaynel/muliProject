@@ -5,12 +5,13 @@
     tell VARCHAR(13) not null ,
     Gender VARCHAR(1) NULL,
     birth date not null ,
-    role_grad varchar(20) not null default 'user'
+    role_grad varchar(20) not null default 'user',
+    email varchar(100) not null
 );
 
 CREATE TABLE TODO_MANAGER (
     T_NUM    INT    NOT NULL auto_increment PRIMARY KEY,
-    USER_ID varchar(20) NOT NULL, 
+    USER_ID varchar(70) NOT NULL, 
     TITLE varchar(50) NOT NULL,
     DATE    DATE    NULL    ,
     DATE_END DATE NULL,
@@ -21,15 +22,27 @@ CREATE TABLE TODO_MANAGER (
 
 );
 
-
 CREATE TABLE camping_group (
     group_idx INT NOT NULL auto_increment PRIMARY KEY,
     group_name varchar(100) NOT NULL, 
     group_master varchar(100),
     current_member    int    NULL,
-    max_member int NULL
-    
+    max_member int NULL,
+    activate tinyint default 1    
 );
+
+CREATE TABLE group_TODO_MANAGER (
+    todo_num INT NOT NULL auto_increment PRIMARY KEY,
+    group_name varchar(100) NOT NULL, 
+    DATE    DATE    NULL,
+    DATE_END DATE NULL,
+    START_TIME  TIME  NULL,
+    content varchar(1000),
+    campsite varchar(100),
+    chat_id int,
+    title varchar(100)
+);
+
 
 
 
@@ -45,21 +58,12 @@ CREATE TABLE `comewithme_board` (
   `camping_way` varchar(100) NOT NULL,
   `age_average` varchar(100) NOT NULL,
   `gender` varchar(100) DEFAULT '무관',
+  group_idx int ,
   PRIMARY KEY (`BD_IDX`),
-foreign key(group_idx) references camping_group(group_idx)
-) 
+  foreign key(group_idx) references camping_group(group_idx)
+  
+) ;
 
-CREATE TABLE group_TODO_MANAGER (
-    todo_num INT NOT NULL auto_increment PRIMARY KEY,
-    group_name varchar(100) NOT NULL, 
-    DATE    DATE    NULL,
-    DATE_END DATE NULL,
-    START_TIME  TIME  NULL,
-    content varchar(1000),
-    campsite varchar(100),
-    group_idx int,
-    foreign key(group_idx) references camping_group(group_idx)
-);
 
 CREATE TABLE group_chat_room (
     room_id varchar(100) primary key,
@@ -72,7 +76,7 @@ CREATE TABLE group_member (
     user_Id varchar(100),
     room_Id varchar(100),
     foreign key(group_idx) references camping_group(group_idx),
-    -- foreign key(user_id) references member(userid),
+    foreign key(user_id) references member(userid),
     foreign key(room_id) references group_chat_room(room_id)
 );
 
@@ -82,6 +86,14 @@ CREATE TABLE test (
   text varchar(100) NOT NULL,
   HASHTAG varchar(45) NOT NULL,
   PRIMARY KEY (bd_idx)
+);
+
+create table temporary_recommand_date(
+	group_idx int ,
+    recommand_DATE    DATE   ,
+	how_many_member_can int,
+    title varchar(100),
+	foreign key(group_idx) references camping_group(group_idx)
 );
 
  create table member_google(
@@ -94,13 +106,15 @@ CREATE TABLE test (
     email VARCHAR(70) NOT NULL
 );
 
-
-CREATE TABLE temporary_recommand_date (
-    group_idx int,
-    recommand_date date,
-    how_many_member_can int,
-    title varchar(100),
-    foreign key(group_idx) references camping_group(group_idx)
+CREATE TABLE test2 (
+  file_idx int NOT NULL AUTO_INCREMENT,
+  gn_idx int NOT NULL,
+  origin_file_name varchar(100) NOT NULL,
+  rename_file_name varchar(100) NOT NULL,
+  save_path varchar(100) NOT NULL,
+  PRIMARY KEY (file_idx,rename_file_name),
+  KEY gn_idx_idx (gn_idx),
+  FOREIGN KEY (gn_idx) REFERENCES test (bd_idx)
 );
 
 CREATE TABLE `FILE_INFO` (
@@ -114,17 +128,6 @@ CREATE TABLE `FILE_INFO` (
    `GROUP_IDX`  int   NOT NULL
 );
 
-CREATE TABLE test2 (
-  file_idx int NOT NULL AUTO_INCREMENT,
-  gn_idx int NOT NULL,
-  origin_file_name varchar(100) NOT NULL,
-  rename_file_name varchar(100) NOT NULL,
-  save_path varchar(100) NOT NULL,
-  PRIMARY KEY (file_idx,rename_file_name),
-  KEY gn_idx_idx (gn_idx),
-  CONSTRAINT gn_idx FOREIGN KEY (gn_idx) REFERENCES test (bd_idx)
-) ;
-
 CREATE TABLE reply (
   re_idx int NOT NULL AUTO_INCREMENT,
   id varchar(45) DEFAULT NULL,
@@ -132,10 +135,7 @@ CREATE TABLE reply (
   bd_idx int NOT NULL,
   PRIMARY KEY (re_idx),
   KEY bd_idx_idx (bd_idx)
-) ;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb3;
 
 commit;
-
-
-
 

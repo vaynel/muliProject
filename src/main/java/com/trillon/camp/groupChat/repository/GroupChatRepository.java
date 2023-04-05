@@ -1,9 +1,9 @@
 package com.trillon.camp.groupChat.repository;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
@@ -23,7 +23,7 @@ public interface GroupChatRepository {
 	@Select("select a.*, b.user_id"
 			+ " from  camping_group a left join  group_member b"
 			+ " on a.group_idx= b.group_idx "
-			+ "where b.user_id = #{userId}")
+			+ "where b.user_id = #{userId} and a.activate = 1")
 	List<CampingGroup> myGroupChatList(String userId);
 
 	@Insert("insert into chat_member(chat_idx,id) values(#{ChatIdx},#{Id})")
@@ -70,6 +70,9 @@ public interface GroupChatRepository {
 	@Insert("insert into temporary_recommand_date(group_idx,recommand_date,how_many_member_can,title) "
 			+"values(#{groupIdx},#{weekEndDate},#{howMany},#{title})")
 	void insertTemporaryDate(Map<String, Object> tempMap);
+
+	@Delete("delete from group_chat_room where group_Idx = #{groupIdx}")
+	void deleteGroupChat(String groupIdx);
 	
 	
 	
