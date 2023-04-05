@@ -167,8 +167,10 @@ public class GroupController {
 		
 	}
 	
+	
+	// 메일을 통해서 멤버 추가 
 	@GetMapping("insertNewMemberToGroup")
-	public void insertNewMemberToGroup(@RequestParam String userId,
+	public String insertNewMemberToGroup(@RequestParam String userId,
 			@RequestParam String groupIdx,
 			HttpSession session) {
 		// 추가할 멤버 
@@ -176,7 +178,15 @@ public class GroupController {
 		groupMember.setGroupIdx(Integer.valueOf(groupIdx) );
 		groupMember.setUserId(userId);
 		groupMember.setRoomId(groupChatService.findRoomIdByGroupIdx(Integer.valueOf(groupIdx) ));
-		groupService.insertNewMemberToGroup(groupMember);
+		if(groupService.checkMemberToGroup(groupMember)) {
+			groupService.insertNewMemberToGroup(groupMember);
+			Integer currentMember = groupService.updateCurrentGroupMember(Integer.valueOf(groupIdx) );
+			log.info(groupMember.getUserId() +"를 " +groupIdx+"에 추가합니다.");
+			return "redirect:/groupChat/groupChatList";
+		}
+		log.info(groupMember.getUserId()+"가 이미 있습니다.");
+		return "redirect:/groupChat/groupChatList";
+		
 	}
 	
 }

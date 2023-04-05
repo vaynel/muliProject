@@ -11,7 +11,7 @@ public class SignUpForm {
 	private String tell;
 	private String gender;
 	private String birth;
-	
+	private String email;
 	
 	
 }

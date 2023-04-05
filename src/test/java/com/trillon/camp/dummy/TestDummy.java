@@ -67,7 +67,7 @@ public class TestDummy {
 		List<MultipartFile> files = new ArrayList<MultipartFile>();
 		System.out.println(files);
 		
-		for (int i = 1; i < 4; i++) {
+		for (int i = 1; i < 8; i++) {
 			//게시글 생성	
 			
 			ComeWithMeBoard board = new ComeWithMeBoard();
