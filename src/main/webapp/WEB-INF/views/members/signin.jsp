@@ -87,16 +87,10 @@
             </div>
           </div>
 
-<!-- 	    <div class="col-md-6 mb-3">
-              <label for="email">이메일</label>
-              <input type="text" class="form-control" id="email" placeholder="" value="" required>
-              <div class="invalid-feedback">
-                이메일을 입력해주세요.
-              </div>
-              <div id="email_div"></div>
-            </div> -->
 
-
+	<label for=email_>이메일</label>
+	<input type="email" placeholder="이메일" name="mail" id="mail" maxlength="30">
+	<div id="error_mail" class="result-email result-check"></div>
 
    		 <label for="name">이름</label>
       	        <input type="text" class="form-control" id="nameData" placeholder="" value="" required>

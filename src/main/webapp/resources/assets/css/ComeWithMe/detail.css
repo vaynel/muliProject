@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+.popup > .title{
+    border-radius: 15px 15px 0 0;
+    min-height: 40px;
+    color: #fff;
+    background-color: #b66;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    font-weight: bold;
+}
+
+.popup > .content {
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.popup > .cmd {
+    bottom: 0;
+    min-height: 40px;
+    padding: 15px 15px;
+    box-sizing: border-box;
+    border-radius: 0 0 15px 15px;
+    min-height: 40px;
+    text-align: right;
+}
+
+.popup > .cmd .button {
+    border-radius: 8px;
+    padding: 5px 10px;
+    border: 1px solid #aaa;
+}
+
+.popup > .cmd .button:hover {
+    color: #fff;
+    background-color: #000;
+    border-color: #000;
+}
