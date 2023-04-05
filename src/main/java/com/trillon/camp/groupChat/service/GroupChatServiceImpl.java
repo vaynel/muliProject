@@ -108,4 +108,11 @@ public class GroupChatServiceImpl implements GroupChatService{
 		
 	}
 
+
+	@Override
+	public void deletGroupChat(String groupIdx) {
+		groupChatRepository.deleteGroupChat(groupIdx);
+		
+	}
+
 }

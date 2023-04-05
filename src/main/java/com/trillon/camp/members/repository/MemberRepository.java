@@ -21,7 +21,7 @@ public interface MemberRepository {
 	Member selectMemberByUserIdGoogle(String userId);
 
 
-	@Insert("insert into camp.member (userid, name, password, tell, gender, birth, role_grad) " + " values(#{userId}, #{name}, #{password},#{tell},#{gender},#{birth},'user')")
+	@Insert("insert into camp.member (userid, name, password, tell, gender, birth, role_grad, email) " + " values(#{userId}, #{name}, #{password},#{tell},#{gender},#{birth},'user',#{email})")
 	void insertMember(SignUpForm form);
 	
 	@Insert("insert into camp.member_google (userid, name, tell, gender, birth, role_grad, email) " + " values(#{userId}, #{name},#{tell},#{gender},#{birth},'user',#{email})")

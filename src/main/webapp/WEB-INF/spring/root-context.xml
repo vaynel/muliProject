@@ -13,8 +13,7 @@
    
    <!-- Root Context: defines shared resources visible to all other web components -->
    
-   <bean id="dataSource"
-      class="org.apache.commons.dbcp2.BasicDataSource">
+   <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
       <!-- &가 xml에서 참조자로 사용되기 때문에 &amp; 로 대체하여 사용 -->
       <property name="url"
          value="jdbc:mysql://localhost:3306/camp?useUnicode=true&amp;characterEncoding=utf8" />
@@ -32,6 +31,27 @@
    <bean id="passwordEncoder"
       class="org.springframework.security.crypto.factory.PasswordEncoderFactories"
       factory-method="createDelegatingPasswordEncoder" />
+   
+	<bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+    	<property name="host" value="smtp.naver.com"/>
+    	<property name="username" value="ssp04041"></property>
+    	<property name="password" value="assp040451@"></property>
+    	<property name="port" value="465"></property>
+    	
+    	<!-- 
+    		smtp property 설정
+    		https://javadoc.io/doc/com.sun.mail/javax.mail/latest/index.html
+    	 -->
+    	 <property name="javaMailProperties">
+    	 	<props>
+				<prop key="mail.smtp.auth">true</prop>    
+				<prop key="mail.smtp.ssl.enable">true</prop>    
+				<prop key="mail.debug">true</prop>		 	
+    	 	</props>
+    	 </property>
+	</bean>
+	
+	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate"/>
       
 
    <bean id="sqlSessionFactory"
@@ -40,6 +60,10 @@
       <property name="configLocation"
          value="classpath:mybatis/config.xml" />
    </bean>
+   
+   
+   
+   
    
     <context:component-scan base-package="com.trillon.camp" /> 
     <mybatis:scan base-package="com.trillon.camp" annotation="org.springframework.stereotype.Repository"/>

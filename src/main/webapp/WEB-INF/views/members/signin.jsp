@@ -71,7 +71,6 @@
               <div class="invalid-feedback">
                 아이디를 입력해주세요.
               </div>
-              <!--   <button type="button" id="idCheck">중복확인</button> -->
               <div id="id_div"></div>
             </div>
             
@@ -88,6 +87,10 @@
             </div>
           </div>
 
+
+	<label for=email_>이메일</label>
+	<input type="email" placeholder="이메일" name="mail" id="mail" maxlength="30">
+	<div id="error_mail" class="result-email result-check"></div>
 
    		 <label for="name">이름</label>
       	        <input type="text" class="form-control" id="nameData" placeholder="" value="" required>
