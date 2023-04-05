@@ -65,10 +65,6 @@
                 </div>
                 </form>
 
-                <form >
-
-                </form>
-
             </section>
 
         </div>

@@ -82,19 +82,17 @@
                                     <input type="hidden" id="bdIdx" value='${board.bdIdx}'/>
                                     <input type="text" id ="context">
                                     <input type="submit" value="Send Message" class="primary">
-                                    <li>댓글 1 댓글을 작성해 주세요</li>
                                     <br>
-                                    <li><a href="/campingHome/userPage">userId 2</a></li>
-                                    <li>댓글 2 댓글을 작성해 주세요</li>
-                                    <br>
-                                    <div>
+
+                                    <div id="replies">
                                         <c:forEach items="${replies}" var="replies">
                                         <tr>
-                                            <input type="text" name="reply" value='${replies.context}' readonly>
-                                            <br>
+                                            <p>${replies.context}</p>
                                         </tr>
                                         </c:forEach>
+
                                     </div>
+
                                 </ul>
                             </form>
                         </div>
