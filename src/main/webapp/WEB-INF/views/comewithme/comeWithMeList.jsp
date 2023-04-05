@@ -14,6 +14,8 @@
 		'GRAD' 0,
 	    'opsz' 48
 	}
+	
+	
 
 	</style>
 
@@ -36,14 +38,14 @@
 					</header>
 					<br>
 					<br>
-					<c:forEach items="${boardList}" var="boardList">
 					<div class="row" id="1st">
+					<c:forEach items="${boardList}" var="boardList" varStatus="status">
 						<div class="col-xs-6 col-sm-4" id="g1"  style=" height:600px; box-shadow: 10px 5px 5px gray;">
 							<br>
 							<img src="/storage/${files.groupName}/${files.savePath}${files.renameFileName}" width="40%;" height="100%;" alt="같이갈래">
 							<br>
 							<!-- 게시글 제목 -->
-							<h3 style="cursor:pointer; font-family: 'Stylish', sans-serif;" onclick="window.open('${context}/comewithme/detail?bdIdx=${boardList.bdIdx}', 'new', 'scrollbars=no, resizable=no width=500 height=550, left=750, top=150');">${boardList.title}</h3>
+							<h3 style="cursor:pointer; font-family: 'Stylish', sans-serif;" onclick="window.open('${context}/comewithme/detail?bdIdx=${boardList.bdIdx}', 'new', 'resizable=no, width=500, height=550, left=750, top=150');">${boardList.title}</h3>
 							<!-- 본문 -->
 							<p style="font-family: 'Stylish', sans-serif;">${boardList.content}</p>
 							<p style="font-family: 'Stylish', sans-serif; line-height : 0.1;">${boardList.createDate} · 1/${boardList.numOfPerson}</p>
@@ -67,8 +69,8 @@
 							</div>
 							</div>							
 						</div>
-					</div>
 					</c:forEach>
+					</div>
 						<br>
 						
 						
