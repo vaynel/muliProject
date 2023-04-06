@@ -45,7 +45,7 @@
                 </header>
                 <br>
                 <br>
-                <div>
+                <div class="row">
 
                     <c:forEach items="${boards}" var="boards">
                         <div class="col-xs-6 col-sm-4" style="

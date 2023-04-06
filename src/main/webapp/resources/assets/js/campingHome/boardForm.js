@@ -1,43 +1,27 @@
-let token = document.querySelector("meta[name='_csrf']").content;
-let header = document.querySelector("meta[name='_csrf_header']").content;
 
-const form = document.getElementById('form');
+const button = document.getElementById('itemButton');
 
-form.addEventListener('submit', async (e)=>{
+button.addEventListener('click', async (e)=>{
     e.preventDefault();
 
+    console.log("button 입성");
 
-    const formData = new FormData(form);
-    const photos = document.querySelector('input[type="file"][multiple]');
-    formData.append(`files`, photos.files);
+    let item ={
+        itemName:itemName.value
+    }
 
-    // for (let i = 0; i < photos.files.length; i++){
-    //     formData.append(`files`, photos.files);
-    // }
+            let items = document.getElementById('items');
+            let newItem = document.createElement('input');
 
+            newItem.setAttribute("id","items");
+            newItem.setAttribute("name","itemName");
+            newItem.setAttribute("type","text");
+            newItem.setAttribute("value",item.itemName);
+            items.appendChild(newItem)
 
-    // let data = {
-    //     title: title.value,
-    //     text: text.value,
-    //     hashtag:hashtag.value,
-    // }
-
-    await fetch("http://localhost:8080/campingHome/board/new",{
-        method : 'POST',
-        //redirect: 'follow',
-        headers: {
-            'header': header,
-            'X-CSRF-Token': token,
-
-        },
-        body : formData,
-    })
-        .then((response)=>{
-            response.json()
-            //window.location.href = "http://localhost:8080/campingHome/boards?page=1";
-        }).then(result => console.log("Success:", result))
-        .catch((err)=>{
-            console.log("err",err);
-        })
+    document.getElementById('itemName').value = null;
 
 });
+
+
+
