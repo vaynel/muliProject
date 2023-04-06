@@ -26,9 +26,9 @@ Button {
 <%-- 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> --%>
 		<input type="hidden" id="groupIdx"  name="groupIdx" value="${groupIdx}"/>
 		<input type="hidden" id="roomId"  name="roomId" value="${roomId}"/>
-		일정 이름 <input type="text" name="title" id="title" maxlength="20"><br><br>
-		시작 날짜 <input type="date" name="dateStart" id="date"><br><br>
-		종료 날짜 <input type="date" name="dateEnd" id="dateEnd"><br><br>
+		일정 이름 <input type="text" name="title" id="title" maxlength="20" required><br><br>
+		시작 날짜 <input type="date" name="dateStart" id="date" required><br><br>
+		종료 날짜 <input type="date" name="dateEnd" id="dateEnd" required><br><br>
 		<button type="button" value="확인" id="btnClick" onclick="window.close()" >확인</button>
 		<button type="button" value="취소" id="btnCan" onclick="window.close()" >취소</button>
 	
