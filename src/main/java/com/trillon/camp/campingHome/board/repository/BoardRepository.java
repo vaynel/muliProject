@@ -39,7 +39,8 @@ public interface BoardRepository {
     @Select("with thumbnail as(" +
             "select min(file_idx)as poster from test2 group by gn_idx" +
             ") " +
-            "select * from test2 f inner join thumbnail b on f.file_idx = b.poster " +
+            "select * from (select * from test a inner join test2 b on a.bd_idx = b.gn_idx)f " +
+            "inner join thumbnail t on f.file_idx = t.poster " +
             "order by gn_idx desc limit #{start}, #{cntPerPage}")
     List<Board> selectBoardList(Paging paging);
 

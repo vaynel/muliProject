@@ -25,9 +25,12 @@ public interface ComeWithMeRepository {
 	@Select("select count(*) from comewithme_board where is_del = 0")
 	public int countAllBoard();
 	
-	@Select("select a.* , b.* "
-			+ "from comewithme_board a left join camping_group b "
-			+ " on a.group_idx = b.group_idx"
+	@Select("select * "
+			+ "from comewithme_board"
+			+ " a left join camping_group b "
+			+ " on a.group_idx = b.group_idx "
+			+ " LEFT JOIN file_info c " 
+			+ " on a.group_idx = c.group_idx "
 			+ " where a.is_del = 0 and b.activate = 1 "
 			+ " order by ${sortColumn} ${sortDirection} limit #{start}, #{cntPerPage}")
 	List<ComeWithMeBoard> selectBoardList(Paging paging);

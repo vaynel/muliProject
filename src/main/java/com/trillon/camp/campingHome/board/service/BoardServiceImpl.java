@@ -100,7 +100,6 @@ public class BoardServiceImpl implements BoardService{
 
         int total = boardRepository.countAllBoard();  //총 게시물 수
 
-
         Paging paging = Paging.builder()
                 .cntPerPage(5)
                 .currentPage(page)        //현재 페이지는 파라미터로 넘어온 값

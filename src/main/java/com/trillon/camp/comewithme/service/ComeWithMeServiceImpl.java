@@ -75,6 +75,9 @@ public class ComeWithMeServiceImpl implements ComeWithMeService{
 		ComeWithMeBoard boardList = comeWithMeRepository.selectBoardByBdIdx(bdIdx);
 		logger.info("groupIdx :" + boardList.getBdIdx());
 		List<FileInfo> files = fileRepository.selectFileWithGroup(bdIdx);
+		for (FileInfo fileInfo : files) {
+			logger.info("이미지 파일->" + fileInfo);
+		}
 		return Map.of("boardList", boardList, "files", files);
 	}
 
@@ -87,6 +90,7 @@ public class ComeWithMeServiceImpl implements ComeWithMeService{
 		
 		FileInfo fileInfo = new FileInfo();
 		fileInfo.setGroupName("board");
+		fileInfo.setBdIdx(board.getBdIdx());
 		fileInfo.setGroupIdx(board.getBdIdx());
 		fileUtil.uploadFile(fileInfo, files);
 		System.out.println(files);
