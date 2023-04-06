@@ -10,8 +10,20 @@
 <script src="https://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 
+
+<style type="text/css">
+a,button{
+font-family: 'TheJamsil5Bold';
+}
+
+button{
+font-family: 'TheJamsil5Bold';
+}
+
+</style>
 </head>
 <body>
+
 	<!-- Wrapper -->
 	<div id="wrapper">
 
@@ -34,11 +46,11 @@
 						
 						</div>
 						<div class="input-group -xsmall">
-							<a class="button" href="#none" onclick="window.open('${context}/group/newGroupTodo?groupIdx=${groupIdx}', 'new', 'scrollbars=no, resizable=no width=300 height=350, left=750, top=150');">모임생성</a>
-							<a class="button" href="/group/recommendDate?groupIdx=${groupIdx}">날짜추천</a>
-							<input type="text" id="msg" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
+							<a class="button ml-1" href="#none" onclick="window.open('${context}/group/newGroupTodo?groupIdx=${groupIdx}', 'new', 'scrollbars=no, resizable=no width=300 height=350, left=750, top=150');">모임생성</a>
+							<a class="button ml-1" href="/group/recommendDate?groupIdx=${groupIdx}">날짜추천</a>
+							<input type="text" id="msg" class="form-control ml-2" aria-label="Recipient's username" aria-describedby="button-addon2">
 							<span class="input-group-append">
-								<button class="button " type="button" id="button-send">전송</button>
+								<button class="button ml-1" type="button" id="button-send">전송</button>
 							</span>
 							
 						</div>

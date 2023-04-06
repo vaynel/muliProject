@@ -5,10 +5,11 @@
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp"%>
 <link rel="stylesheet" href="${context}/resources/assets/css/main.css" />
-<link rel="stylesheet" href="${context}/resources/assets/css/group/groupChatList.css" />
 
 <meta id="_csrf" name="_csrf" content="${_csrf.token}"></meta>
 <meta id="_csrf_header" name="_csrf_header"	content="${_csrf.headerName}"></meta>
+
+<link rel="stylesheet" href="${context}/resources/assets/css/group/groupChatList.css" />
 
 </head>
 <body>
@@ -28,8 +29,10 @@
 					</label>
 					<button>방생성하기</button>
 				</form> -->
-
-					<h3>나의 그룹</h3>
+				
+				
+				
+					<h3 class="pt-2 mt-2">나의 그룹</h3>
 				<div class="row gtr-200">
 					
 					
@@ -51,7 +54,7 @@
 								</c:forEach>
 									<form action="/group/withdrawGroup?groupIdx=${Group.groupIdx}" method="post">
 										 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-								    	<button class="button small countMember" >그룹 탈퇴</button>
+								    	<button class="button small countMember" style="font-size : 0.9em" >그룹 탈퇴</button>
 									</form>
 								<br>
 							</div>
@@ -65,6 +68,8 @@
 	</div>
 	<%@ include file="/WEB-INF/views/include/commonScripts.jsp"%>
 	<script src="${context}/resources/assets/js/chat/createRoom.js"></script>
+	
+	
 
 </body>
 </html>

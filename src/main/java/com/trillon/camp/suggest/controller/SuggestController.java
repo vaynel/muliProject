@@ -79,7 +79,7 @@ public class SuggestController {
 			@RequestParam(value = "page", required = false,defaultValue = "1" ) int page,
 			HttpSession session, Model model) {		
 		System.out.println("post : select2");
-		System.out.println(answer);
+		System.out.println(answer +"page: " +page);
 		
 		//model.addAllAttributes(suggestService.findCampingByAnswerWithPage(answer,page));
 		//System.out.println(model.getAttribute("campsites"));

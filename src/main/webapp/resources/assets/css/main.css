@@ -21,7 +21,9 @@ section, summary, time, mark, audio, video {
   border: 0;
   font-size: 100%;
   font: inherit;
-  vertical-align: baseline; }
+  vertical-align: baseline;
+  font-family: 'TheJamsil5Bold';
+   }
 
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
@@ -132,7 +134,8 @@ p {
 
 h1, h2, h3, h4, h5, h6 {
   color: #3d4449;
-  font-family: "Roboto Slab", serif;
+  /* 여기가 폰트였어! */
+ /*  font-family: "Roboto Slab", serif; */
   font-weight: 700;
   line-height: 1.5;
   margin: 0 0 1em 0; }
@@ -1499,7 +1502,8 @@ button,
   color: #f56a6a !important;
   cursor: pointer;
   display: inline-block;
-  font-family: "Roboto Slab", serif;
+  /* 버튼 태그 폰트 수정  */
+ /*  font-family: "Roboto Slab", serif; */
   font-size: 0.8em;
   font-weight: 700;
   height: 3.5em;
@@ -2271,3 +2275,39 @@ button,
     border-top: 0;
     margin-top: 0;
     padding-top: 0; }
+    
+    
+@font-face {
+	font-family: 'TheJamsil5Bold';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2')
+		format('woff2');
+	font-weight: 700;
+	font-style: normal;
+}
+
+.h1Style{
+	color: rgba(227, 118, 119, 50);
+	margin-top: 20px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	font-size: 40px;
+	font-family: 'TheJamsil5Bold';
+}
+
+.divStyle {
+	margin-top: 20px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-family: 'TheJamsil5Bold';
+	font-size: 15px;
+}
+
+button{
+	font-family: 'TheJamsil5Bold';
+	font-size: 13px;
+}    
+
+

@@ -16,14 +16,35 @@ let createPaging = function(paging){
      let pagingNextPage = $('<li class="page-item"><a class="page-link" href="/suggest/select2?page=${paging.nextPage}">Next</a></li>');
  
      ul_pagination.append(pagingPrevPage);
-     for (let page = 1; page < paging.blockEnd; page++) {
-         let paging = $('<li class="page-item"><a class="page-link" href="/suggest/select2?page='+page+'">'+page+'</a></li>');
-         ul_pagination.append(paging);
+     for (let page_num = 1; page_num < paging.blockEnd; page_num++) {
+         let paging = $('<li class="page-item"></li>');
+         let a_paging = $('<a class="page-link">'+page_num+'</a>');
+
+         a_paging.on('click',e=>{
+            let data ={
+                induty : $('input[name=induty]:checked').val(),
+                doNm : $('select[name=doNm]').val(),
+                sigunguNm : $('select[name=sigunguNm]').val(),
+                lctCl : $('input[name=lctCl]:checked').val(),
+            }
+            console.dir(data);
+        
+            let url = "http://localhost:8080/suggest/select2?page="+page_num;
+            DataToServer(url,data);
+        });
+
+        paging.append(a_paging);
+        ul_pagination.append(paging);
      }
      ul_pagination.append(pagingNextPage);
      nav.append(ul_pagination);
      row_mt_3.append(nav);
      $('#campsiteList').append(row_mt_3);
+
+
+
+
+
  
 
 }
@@ -48,6 +69,7 @@ let createCampingList = function(campingList){
         $('#campsiteList').append(h2);
         $('#campsiteList').append(homepage);
         $('#campsiteList').append(row);
+
 
 
         

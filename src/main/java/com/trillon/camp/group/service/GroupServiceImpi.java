@@ -279,7 +279,7 @@ public class GroupServiceImpi implements GroupSerivce {
 		System.out.println(html);
 //		sender.send("ssp04041@gmail.com", "그룹 신청서.", html);
 		sender.send(master.getEmail(), "그룹 신청서.", html);
-		System.out.println(master.getEmail());
+		System.out.println(master.getEmail()+"로 메일 전송");
 	}
 
 	@Override

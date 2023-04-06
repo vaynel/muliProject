@@ -40,11 +40,11 @@ button{
 </style>
 
 <header id="header">
-	<h1 class="h1Style">떠나자</h1>
+	<h1 class="h1Style pt-2">떠나자</h1>
 	<%
 		String id = (String) session.getAttribute("loginId");
 	%>
-	<div class="divStyle">
+	<div class="divStyle pt-2">
 		<%
 			if (id != null) {
 		%>
