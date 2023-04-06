@@ -58,7 +58,7 @@ public interface GroupRepository {
 			+ "where group_idx = #{groupIdx} and user_Id=#{userId}")
 	GroupMember checkMemberToGroup(GroupMember groupMember);
 
-	@Select("select a.name from member a left join group_member b "
+	@Select("select a.userId from member a left join group_member b "
 			+ "on a.userID=b.user_Id "
 			+ "where b.group_idx=#{groupIdx}")
 	List<String> selectGroupMemberNameByGroupIdx(Integer groupIdx);
