@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.sun.source.tree.MemberSelectTree;
 import com.trillon.camp.comewithme.dto.Answer;
 import com.trillon.camp.comewithme.dto.ComeWithMeBoard;
 import com.trillon.camp.comewithme.service.ComeWithMeService;
@@ -171,7 +171,7 @@ public class ComeWithMeController {
 	
 	// 그룹에 멤버에 추가
 	@PostMapping("memberInsert")
-	public String memberInsert(ComeWithMeBoard board, HttpSession session) {
+	public String memberInsert(ComeWithMeBoard board, HttpSession session, RedirectAttributes redirectAttr) {
 		System.out.println("멤버 추가하기 들어오나요");
 		System.out.println("userId : " + session.getAttribute("loginId"));
 		System.out.println("board : " + board.getBdIdx());
@@ -192,17 +192,21 @@ public class ComeWithMeController {
 		if(groupService.checkMemberToGroup(groupMember)) {
 			CampingGroup campingGroup = groupService.findCampingGroupByGroupIdx(groupIdx);
 			if(campingGroup.getCurrentMember() < campingGroup.getMaxMember()) {
+				
 				System.out.println("새로운 멤버 그룹에 추가 메일 보냈음");
+				redirectAttr.addFlashAttribute("msg", "새로운 멤버 추가 메일을 그룹장에게 보냈습니다.");
 				// 그룹장에게 신청 메일 보내기
 				groupService.sendMailToGroupMaster(groupIdx,user);
 			}
 			else {
 				System.out.println("그룹에 사람이 다 찼음");
+				redirectAttr.addFlashAttribute("msg", "그룹에 사람이 다 찼습니다.");
 				return "redirect:/comewithme/detail?bdIdx="+board.getBdIdx();
 			}
 		}
 		else{
 			System.out.println("같은 멤버가 추가 하려해서 반환함");
+			redirectAttr.addFlashAttribute("msg", "이미 그룹에 속해 있습니다.");
 			return "redirect:/comewithme/detail?bdIdx="+board.getBdIdx();
 		}
 	

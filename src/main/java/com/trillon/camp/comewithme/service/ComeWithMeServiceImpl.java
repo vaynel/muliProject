@@ -92,7 +92,7 @@ public class ComeWithMeServiceImpl implements ComeWithMeService{
 		System.out.println(bdIdx);
 		
 		FileInfo fileInfo = new FileInfo();
-		fileInfo.setGroupName("board");
+		fileInfo.setGroupName(board.getGroupName());
 		fileInfo.setBdIdx(board.getBdIdx());
 		fileInfo.setGroupIdx(board.getBdIdx());
 		fileInfo.setBdIdx(bdIdx);
