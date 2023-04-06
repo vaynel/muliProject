@@ -42,6 +42,8 @@ public interface GroupSerivce {
 
 	void DisabledGroup(String groupIdx);
 
-	void sendMailToGroupMaster(Integer groupIdx, Member user);
+	void sendMailToGroupMaster(Integer groupIdx, Member user, Member master);
+
+	String findMasterBygroupIdx(Integer groupIdx);
 
 }
