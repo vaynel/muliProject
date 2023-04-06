@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.trillon.camp.campingHome.board.service.BoardService;
 import com.trillon.camp.comewithme.dto.Answer;
 import com.trillon.camp.comewithme.dto.ComeWithMeBoard;
 import com.trillon.camp.comewithme.service.ComeWithMeService;
@@ -175,6 +176,7 @@ public class ComeWithMeController {
 		System.out.println("멤버 추가하기 들어오나요");
 		System.out.println("userId : " + session.getAttribute("loginId"));
 		System.out.println("board : " + board.getBdIdx());
+		System.out.println(board);
 		
 		// 멤버 생성
 		Member user = memberService.idCheckRetrunMember((String)session.getAttribute("loginId"));
@@ -182,6 +184,9 @@ public class ComeWithMeController {
 		Integer groupIdx = comeWithMeService.returnGroupIdxByBdIdx(board.getBdIdx());
 		// session이 죽어서 다시 로그인 창으로 보냄
 		if(user==null) return "redirect:/members/login";
+		
+		Member master = memberService.idCheckRetrunMember(groupService.findMasterBygroupIdx(groupIdx));
+		
 		
 		GroupMember groupMember = new GroupMember();
 		groupMember.setGroupIdx(Integer.valueOf(groupIdx) );
@@ -196,7 +201,7 @@ public class ComeWithMeController {
 				System.out.println("새로운 멤버 그룹에 추가 메일 보냈음");
 				redirectAttr.addFlashAttribute("msg", "새로운 멤버 추가 메일을 그룹장에게 보냈습니다.");
 				// 그룹장에게 신청 메일 보내기
-				groupService.sendMailToGroupMaster(groupIdx,user);
+				groupService.sendMailToGroupMaster(groupIdx,user,master);
 			}
 			else {
 				System.out.println("그룹에 사람이 다 찼음");

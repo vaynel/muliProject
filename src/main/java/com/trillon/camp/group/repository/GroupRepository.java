@@ -78,6 +78,10 @@ public interface GroupRepository {
 			+ "where group_idx=#{groupIdx} ")
 	void DisabledGroup(String groupIdx);
 
+	@Select("select group_master from camping_group "
+			+ "where group_idx = #{groupIdx}")
+	String findMasterBygroupIdx(Integer groupIdx);
+
 
 
 }

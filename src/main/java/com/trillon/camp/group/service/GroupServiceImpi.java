@@ -258,7 +258,7 @@ public class GroupServiceImpi implements GroupSerivce {
 	}
 
 	@Override
-	public void sendMailToGroupMaster(Integer groupIdx, Member user) {
+	public void sendMailToGroupMaster(Integer groupIdx, Member user, Member master) {
 		CampingGroup group = groupRepository.findCampingGroupByGroupIdx(groupIdx);
 		System.out.println(group);
 		Map<String, Object> body = new LinkedHashMap<String, Object>();
@@ -277,8 +277,15 @@ public class GroupServiceImpi implements GroupSerivce {
 		ResponseEntity<String> response =  restTemplate.exchange(request, String.class);
 		String html = response.getBody();
 		System.out.println(html);
-		sender.send("ssp04041@gmail.com", "그룹 신청서.", html);
-//		sender.send(user.getEmail(), "그룹 신청서.", html);
+//		sender.send("ssp04041@gmail.com", "그룹 신청서.", html);
+		sender.send(master.getEmail(), "그룹 신청서.", html);
+		System.out.println(master.getEmail());
+	}
+
+	@Override
+	public String findMasterBygroupIdx(Integer groupIdx) {
+		// TODO Auto-generated method stub
+		return groupRepository.findMasterBygroupIdx(groupIdx);
 	}
 
 }
