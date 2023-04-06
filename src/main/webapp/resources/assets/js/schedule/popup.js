@@ -46,8 +46,7 @@
             body: JSON.stringify(data)
         }).then((response)=>{     
         	console.dir(response);
-        	window.close();
-        	//window.location.href="http://localhost:8080/schedule/calendar";	
+        	window.location.href="http://localhost:8080/schedule/calendar";	
         	
         })      
     }

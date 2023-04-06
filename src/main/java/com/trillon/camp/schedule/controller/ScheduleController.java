@@ -49,7 +49,7 @@ public class ScheduleController {
 
 	}
 
-	
+	@ResponseBody
 	@PostMapping("/addTodo")
 	public String addTodo(@RequestBody Map<String, String> data, HttpSession session) {
 		System.out.println("addTodo page");

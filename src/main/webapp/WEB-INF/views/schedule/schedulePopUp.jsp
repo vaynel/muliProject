@@ -113,7 +113,7 @@ button:hover {
 		시작 시간 <input type="time" name="timeStart" id="startTime" maxlength="20"><br><br>
 	</div>	
 	<div class="button-container">
-		<button type="button" value="확인" id="btnClick" >확인</button>
+		<button type="button" value="확인" id="btnClick" onclick="opener.parent.location.reload();window.close()">확인</button>
 		<button type="button" value="취소" id="btnCan" onclick="window.close();" >취소</button>
 	</div>
 	</div>
