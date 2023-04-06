@@ -38,6 +38,7 @@ public class FileUtilYG {
 			
 			file.setGroupName(fileInfo.getGroupName());
 			file.setGroupIdx(fileInfo.getGroupIdx());
+			file.setBdIdx(fileInfo.getBdIdx());
 			file.setOriginFileName(originFileName);
 			file.setRenameFileName(renameFileName);
 			file.setSavePath(uploadPath);

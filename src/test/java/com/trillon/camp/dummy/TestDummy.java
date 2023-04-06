@@ -55,6 +55,7 @@ public class TestDummy {
 			form.setTell("010-0000-0000");
 			form.setBirth("2000-01-01"); 
 			form.setName("유저"+i);
+			form.setEmail("sss@gmail.com");
 			memberService.insertNewMember(form);
 			
 		}

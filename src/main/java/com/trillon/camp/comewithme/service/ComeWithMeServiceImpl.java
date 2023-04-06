@@ -75,19 +75,27 @@ public class ComeWithMeServiceImpl implements ComeWithMeService{
 		ComeWithMeBoard boardList = comeWithMeRepository.selectBoardByBdIdx(bdIdx);
 		logger.info("groupIdx :" + boardList.getBdIdx());
 		List<FileInfo> files = fileRepository.selectFileWithGroup(bdIdx);
+		for (FileInfo fileInfo : files) {
+			logger.info("이미지 파일->" + fileInfo);
+		}
 		return Map.of("boardList", boardList, "files", files);
 	}
 
 	@Override
 	public int insertBoard(ComeWithMeBoard board, List<MultipartFile> files) {
 		
+		logger.info("files"+ files);
+		// DB에 board넣기
 		comeWithMeRepository.insertBoard(board);
+		
 		int bdIdx = board.getBdIdx();
 		System.out.println(bdIdx);
 		
 		FileInfo fileInfo = new FileInfo();
 		fileInfo.setGroupName("board");
+		fileInfo.setBdIdx(board.getBdIdx());
 		fileInfo.setGroupIdx(board.getBdIdx());
+		fileInfo.setBdIdx(bdIdx);
 		fileUtil.uploadFile(fileInfo, files);
 		System.out.println(files);
 		return bdIdx;

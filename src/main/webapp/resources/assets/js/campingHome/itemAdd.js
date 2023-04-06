@@ -1,7 +1,7 @@
 let token = document.querySelector("meta[name='_csrf']").content;
 let header = document.querySelector("meta[name='_csrf_header']").content;
 
-const form = document.getElementById('form');
+const form = document.getElementById('itemName');
 
 form.addEventListener('submit', async (e)=>{
     e.preventDefault();
@@ -11,7 +11,7 @@ form.addEventListener('submit', async (e)=>{
     }
 
 
-    await fetch("http://localhost:8080/campingHome/board/" + bdIdx,{
+    await fetch("http://localhost:8080/campingHome/board/new" ,{
         method : 'POST',
         headers: {
             'header': header,

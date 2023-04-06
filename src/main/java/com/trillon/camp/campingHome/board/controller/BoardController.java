@@ -5,7 +5,7 @@ import com.trillon.camp.campingHome.board.dto.Reply;
 import com.trillon.camp.campingHome.board.service.BoardService;
 
 
-import com.trillon.camp.campingHome.naverShopping.dto.Item;
+
 import com.trillon.camp.campingHome.naverShopping.service.NaverShoppingSearch;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,13 +14,11 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
+
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.trillon.camp.campingHome.board.dto.BoardForm;
-import com.trillon.camp.campingHome.board.dto.Reply;
-import com.trillon.camp.campingHome.board.service.BoardService;
+
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -61,23 +59,27 @@ public class BoardController {
         return "/campingHome/boards";
     }
 
-    @GetMapping("/board/{bdIdx}") // 게시판 상세페이지 접속
+    @GetMapping("board/{bdIdx}") // 게시판 상세페이지 접속
     public String boardDetail(@PathVariable("bdIdx") int bdIdx,Model model) {
         model.addAllAttributes(boardService.selectBoardByBdIdx(bdIdx));
         Object item = model.getAttribute("item");
 
 
         // 댓글 가져오기
+
         List<Reply> replies = boardService.selectReplyAll(bdIdx);
         model.addAttribute("replies",replies);
         return "/campingHome/boardDetail";
     }
 
-    @PostMapping("/board/{bdIdx}")// 게시판에서 쓴 댓글 저장
+    @PostMapping("board/{bdIdx}")// 게시판에서 쓴 댓글 저장
     @ResponseBody
-    public void saveReply(@PathVariable("bdIdx") int bdIdx, Model model,
-                            @RequestBody Reply reply){
+    public Reply saveReply(@PathVariable int bdIdx, Model model,
+                                @RequestBody Reply reply){
+        reply.setBdIdx(bdIdx);
         boardService.insertReply(reply);
+        //List<Reply> replies = boardService.selectReplyAll(bdIdx);
+        return reply;
     }
 
 

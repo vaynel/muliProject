@@ -49,8 +49,15 @@ public class ComeWithMeController {
 	@GetMapping("comeWithMeList") // 동행인 구인 게시글 목록
 	public String comeWithMeList(Model model, @RequestParam(required = false, defaultValue="1")int page) {
 		System.out.println("comeWithMeList1");
-		System.out.println(comeWithMeService.selectBoardList(page));
+		 Map<String, Object> test = comeWithMeService.selectBoardList(page);
+
 		model.addAllAttributes(comeWithMeService.selectBoardList(page));
+		// 이미지 파일에 관한 정보를 담아야함
+		// 그냥 boardlist에 left join을 3개 시켜서 받아버림
+		
+		
+		
+		
 		return "/comewithme/comeWithMeList";
 	}
 	
