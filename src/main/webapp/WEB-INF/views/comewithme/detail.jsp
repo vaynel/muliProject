@@ -113,7 +113,11 @@
 		</form>
 
 	</div>
-
+	<c:if test="${not empty msg}">
+	<div class="alert alert-danger" role="alert">
+	 	${msg}
+	</div>
+	</c:if>
 
 
 

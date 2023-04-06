@@ -46,8 +46,7 @@
             body: JSON.stringify(data)
         }).then((response)=>{     
         	console.dir(response);
-        	window.close();
-        	//window.location.href="http://localhost:8080/schedule/calendar";	
+        	window.location.href="http://localhost:8080/schedule/calendar";	
         	
         })      
     }
@@ -55,16 +54,18 @@
     function canPage(){
     	window.location.href="http://localhost:8080/schedule/calendar";	
     	
-    }
+    };
     
+
+
+btnClick.addEventListener('click',e=>{
+	PostTest();
+
+});
+
+
+btnCan.addEventListener('click',e=>{
+    canPage();
     
-    btnClick.addEventListener('click',e=>{
-        PostTest();
-        
-        });
-    
-    btnCan.addEventListener('click',e=>{
-    	canPage();
-        
-        });
+});
     

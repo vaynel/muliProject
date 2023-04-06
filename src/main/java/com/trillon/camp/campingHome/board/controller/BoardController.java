@@ -5,7 +5,7 @@ import com.trillon.camp.campingHome.board.dto.Reply;
 import com.trillon.camp.campingHome.board.service.BoardService;
 
 
-
+import com.trillon.camp.campingHome.naverShopping.dto.Item;
 import com.trillon.camp.campingHome.naverShopping.service.NaverShoppingSearch;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 
-
+import javax.servlet.ServletOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.List;
@@ -45,11 +45,16 @@ public class BoardController {
 
     @PostMapping("board/new")// 게시판 등록 버튼을 눌렀을 때 실행되는 메서드
     public String saveFile(@ModelAttribute BoardForm boardForm,
-                            @RequestParam String itemName,
+                            @RequestParam("itemName") List<String> item,
                             @RequestParam("file") List<MultipartFile> files) throws IOException, ParseException {
 
-        boardService.insertBoard(boardForm,itemName,files);
-        
+        System.out.println(item);
+        System.out.println(boardForm);
+        System.out.println(files);
+
+
+        boardService.insertBoard(boardForm,item,files);
+
         return "redirect:/campingHome/boards";
     }
 

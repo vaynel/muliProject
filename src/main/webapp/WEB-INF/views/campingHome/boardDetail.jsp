@@ -14,16 +14,25 @@
     <div id="main">
         <div class="inner">
 
+            <style>
+                @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Stylish&display=swap');
+
+                .container {
+                    display: grid;
+                }
+            </style>
+
             <%@ include file="/WEB-INF/views/include/header.jsp" %>
 
             <!-- Content -->
             <section>
-
                 <header class="main">
-                    <h1>${board.title}</h1>
+                    <!--<h1>${board.title}</h1> -->
+                    <h1 style="font-family: 'Stylish', sans-serif;
+						text-align: center;">캠핑의 집</h1>
+                    <h2 style="font-family: 'Stylish', sans-serif;
+						text-align: center; line-height: 0.1;">Camping Home</h2>
                 </header>
-
-
 
                     <div class="row">
 

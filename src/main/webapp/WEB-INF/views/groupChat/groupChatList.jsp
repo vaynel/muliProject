@@ -29,12 +29,12 @@
 					<button>방생성하기</button>
 				</form> -->
 
-				<div class="row gtr-200">
-					<div class="col-6 col-12-medium">
 					<h3>나의 그룹</h3>
+				<div class="row gtr-200">
+					
 					
 						<c:forEach items="${MyGroup['myGroups']}" var="Group" varStatus="status">
-
+							<div class="col-6 col-12-medium">
 							<div class="box">
 								<c:set var="count" value="${status.count}"></c:set>
 								<c:forEach items="${MyGroup['campingGroup']}" var="campingGroup" varStatus="st">					
@@ -46,16 +46,17 @@
 										</p>
 										<p>GroupMaster : ${campingGroup.groupMaster}</p>
 									</c:if>	
+									
+									
+								</c:forEach>
 									<form action="/group/withdrawGroup?groupIdx=${Group.groupIdx}" method="post">
 										 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 								    	<button class="button small countMember" >그룹 탈퇴</button>
 									</form>
-									
-								</c:forEach>
 								<br>
 							</div>
+							</div>
 						</c:forEach>
-					</div>
 				</div>
 			</div>
 		</div>

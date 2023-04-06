@@ -75,44 +75,44 @@ p, ul, ol { font-size: 16px; font-weight: normal; margin-bottom: 20px; }
 
 
 
-<table class="body-wrap">
+<table class="body-wrap" style="width: 100% !important; height: 100%; background: #f8f8f8;">
     <tr>
-        <td class="container">
+        <td class="container" style="display: block !important; clear: both !important; margin: 0 auto !important; max-width: 580px !important;">
 
-            <table>
+            <table style="width: 100% !important; border-collapse: collapse;">
                 <tr>
-                    <td align="center" class="masthead">
+                    <td align="center" class="masthead" style=" padding: 80px 0; background: #71bc37; color: white;">
 
-                        <h1>새로운 멤버</h1>
+                        <h1 style="font-size: 32px; margin-bottom: 20px; line-height: 1.25; margin: 0 auto !important; max-width: 90%; text-transform: uppercase;" >새로운 멤버</h1>
 
                     </td>
                 </tr>
                 <tr>
-                    <td class="content">
+                    <td class="content" style="background: white; padding: 30px 35px;">
 
-                        <h2> 멤버 추가 신청</h2>
+                        <h2 style="font-size: 28px; margin-bottom: 20px; line-height: 1.25;"> 멤버 추가 신청</h2>
 
-                        <p>
+                        <p style="font-size: 16px; font-weight: normal; margin-bottom: 20px;">
 							${data.userId}님이 ${data.group.groupName}에 멤버 신청을 보냈습니다. 
 						</p>
 						<form action="<%= Code.DOMAIN %>/group/insertNewMemberToGroup" method="get">
 							
                         <table>
                             <tr>
-                                <td align="center">
+                                <td align="center" style="text-align: center;">
                                     <p>
                                     	<input  type="hidden" name="userId" value="${data.userId}"/>
                                     	<input  type="hidden" name="groupIdx" value="${data.groupIdx}"/>
                                     <%-- 	<input  type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> --%>
-                                    	<button type="submit" class="button">멤버 추가 승인</button> 
+                                    	<button style="display: inline-block; color: white; background: #71bc37; border: solid #71bc37; border-width: 10px 20px 8px; font-weight: bold; border-radius: 4px;" type="submit" class="button">멤버 추가 승인</button> 
                               
-                                        <a href="#" class="button">멤버 추가 거절</a>
+                                        <a href="#" style="display: inline-block; color: white; background: #71bc37; border: solid #71bc37; border-width: 10px 20px 8px; font-weight: bold; border-radius: 4px;" type="submit" class="button">멤버 추가 거절</a>
                                     </p>
                                 </td>
                             </tr>
                         </table>
 						</form>
-                        <p> 유저 페이지 : <a href="http://baconipsum.com">USER</a>.</p>
+                        <p style="font-size: 16px; font-weight: normal; margin-bottom: 20px;"> 유저 페이지 : <a  style="color: #71bc37; text-decoration: none;"  href="http://baconipsum.com">USER</a>.</p>
 
                     </td>
                 </tr>
@@ -123,7 +123,7 @@ p, ul, ol { font-size: 16px; font-weight: normal; margin-bottom: 20px; }
     <tr>
         <td class="container">
 
-            <!-- Message start -->
+           <!--  <!-- Message start -->
             <table>
                 <tr>
                     <td class="content footer" align="center">
@@ -131,7 +131,7 @@ p, ul, ol { font-size: 16px; font-weight: normal; margin-bottom: 20px; }
                         <p><a href="mailto:">trillion@multicampus.com</a></p>
                     </td>
                 </tr>
-            </table>
+            </table> -->
 
         </td>
     </tr>

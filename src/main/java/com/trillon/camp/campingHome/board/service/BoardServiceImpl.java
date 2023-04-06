@@ -35,7 +35,7 @@ public class BoardServiceImpl implements BoardService{
      * 게시글 등록
      */
     @Override
-    public int insertBoard(BoardForm boardForm,String itemName ,List<MultipartFile> files) throws ParseException, IOException {
+    public int insertBoard(BoardForm boardForm,List<String> itemName ,List<MultipartFile> files) throws ParseException, IOException {
         boardRepository.insertBoard(boardForm);
         int bdIdx = boardForm.getBdIdx();  // 해당 insert의 bd_idx값
 
@@ -45,9 +45,16 @@ public class BoardServiceImpl implements BoardService{
         fileUtil.uploadFile(fileInfo, files);
 
         //제품등록
-        Item item = shopping.search(itemName);
-        item.setBdIdx(bdIdx);
-        boardRepository.insertItem(item);
+        for (String s : itemName) {
+            System.out.println(s);
+            Item item = shopping.search(s);
+            System.out.println(item);
+            item.setBdIdx(bdIdx);
+            boardRepository.insertItem(item);
+        }
+
+
+
 
         return bdIdx;
     }
@@ -101,7 +108,7 @@ public class BoardServiceImpl implements BoardService{
         int total = boardRepository.countAllBoard();  //총 게시물 수
 
         Paging paging = Paging.builder()
-                .cntPerPage(5)
+                .cntPerPage(6)
                 .currentPage(page)        //현재 페이지는 파라미터로 넘어온 값
                 .total(total)
                 .blockCnt(10)
