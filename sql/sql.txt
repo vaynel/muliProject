@@ -125,7 +125,9 @@ CREATE TABLE `FILE_INFO` (
    `REG_DATE`   timestamp   NULL   DEFAULT now()   COMMENT '파일등록일자',
    `IS_DEL`   bool   NULL   DEFAULT 0   COMMENT '삭제여부',
    `GROUPNAME`   VARCHAR(36)   NOT NULL,
-   `GROUP_IDX`  int   NOT NULL
+   `GROUP_IDX`  int   NOT NULL,
+    bd_idx int,
+    FOREIGN KEY (bd_idx) REFERENCES comewithme_board (bd_idx)
 );
 
 CREATE TABLE reply (
@@ -136,6 +138,17 @@ CREATE TABLE reply (
   PRIMARY KEY (re_idx),
   KEY bd_idx_idx (bd_idx)
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb3;
+
+CREATE TABLE item (
+  item_idx int NOT NULL AUTO_INCREMENT,
+  bd_idx int NOT NULL,
+  itemname varchar(200) NOT NULL,
+  link varchar(200) NOT NULL,
+  image varchar(200) NOT NULL,
+  PRIMARY KEY (item_idx),
+  KEY bd_idx_idx (bd_idx),
+  CONSTRAINT bd_idx FOREIGN KEY (bd_idx) REFERENCES test (bd_idx) ON DELETE CASCADE
+);
 
 commit;
 

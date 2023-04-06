@@ -42,6 +42,9 @@
 						text-align: center;">캠핑의 집</h1>
                     <h2 style="font-family: 'Stylish', sans-serif;
 						text-align: center; line-height: 0.1;">Camping Home</h2>
+
+                    <img src="https://cdn-icons-png.flaticon.com/512/1001/1001371.png" style="cursor:pointer; height:50px; width:50px;  right:100px; top: 400px;" onclick="location.href='/campingHome/board/new';">
+
                 </header>
                 <br>
                 <br>
