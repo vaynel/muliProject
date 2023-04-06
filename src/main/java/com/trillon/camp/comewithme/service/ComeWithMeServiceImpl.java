@@ -84,7 +84,10 @@ public class ComeWithMeServiceImpl implements ComeWithMeService{
 	@Override
 	public int insertBoard(ComeWithMeBoard board, List<MultipartFile> files) {
 		
+		logger.info("files"+ files);
+		// DB에 board넣기
 		comeWithMeRepository.insertBoard(board);
+		
 		int bdIdx = board.getBdIdx();
 		System.out.println(bdIdx);
 		
@@ -92,6 +95,7 @@ public class ComeWithMeServiceImpl implements ComeWithMeService{
 		fileInfo.setGroupName("board");
 		fileInfo.setBdIdx(board.getBdIdx());
 		fileInfo.setGroupIdx(board.getBdIdx());
+		fileInfo.setBdIdx(bdIdx);
 		fileUtil.uploadFile(fileInfo, files);
 		System.out.println(files);
 		return bdIdx;
