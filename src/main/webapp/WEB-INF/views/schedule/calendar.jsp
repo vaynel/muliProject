@@ -184,11 +184,11 @@ $.ajax({
 									
 					<div id='btnBox'>
 					<input type="button" value="일정 추가"
-						onclick="location.href='/schedule/schedulePopUp'">
+						onclick="window.open('/schedule/schedulePopUp', '일정추가', 'width=700, height=800, location=no, status=no,');">
 					</div>
 					<div id='calendar'></div>
 								
-							
+				
 									
 					
 

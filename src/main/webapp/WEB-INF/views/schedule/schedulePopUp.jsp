@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>일정 추가</title>
 <meta id="_csrf" name="_csrf" content="${_csrf.token}"></meta>
 <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"></meta>
-<link rel="stylesheet" href="${context}/resources/assets/css/main.css" />
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
@@ -101,18 +100,9 @@ button:hover {
 </head>
 <body>
 
-<!-- Wrapper -->
-			<div id="wrapper">
 
-				<!-- Main -->
-					<div id="main">
-						<div class="inner">
 
-							<%@ include file="/WEB-INF/views/include/header.jsp" %>
 
-					<!-- Content -->
-
-	<div>
 	<h1>일정 추가하기</h1>
 	<div id="form">
 		일정 이름 <input type="text" name="title" id="title" maxlength="20"><br><br>
@@ -124,18 +114,11 @@ button:hover {
 	</div>	
 	<div class="button-container">
 		<button type="button" value="확인" id="btnClick" >확인</button>
-		<button type="button" value="취소" id="btnCan" >취소</button>
+		<button type="button" value="취소" id="btnCan" onclick="window.close();" >취소</button>
 	</div>
 	</div>
-	</div>
-	
-		</div>
-		</div>
-			<!-- Sidebar -->
-					<%@ include file="/WEB-INF/views/include/sidebar.jsp" %>
 
-			</div>
-		<%@ include file="/WEB-INF/views/include/commonScripts.jsp" %>
+
 	
 	
 </body>
