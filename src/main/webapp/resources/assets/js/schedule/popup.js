@@ -12,33 +12,50 @@
 	let token = document.querySelector("meta[name='_csrf']").content;
     let header = document.querySelector("meta[name='_csrf_header']").content;
     
-function PostTest(){
-    
-    let data = {title : title.value, date : date.value, dateEnd : dateEnd.value, startTime: startTime.value};
-    
-    let response = fetch("http://localhost:8080/schedule/addTodo",{
-        method : 'post',
-        headers: {
-            'header': header,
-            'X-CSRF-Token': token,
-            'Content-Type': 'application/json',
-        },
-                    //redirect:'follow',            
-        body: JSON.stringify(data)
-    }).then((response)=>{        	
-        console.dir(response);
-        window.close();
-        window.location.href="http://localhost:8080/schedule/calendar";	
-    })      
-}
+    function PostTest(){
+    	
+    	if(!title.value)
+		{
+		alert('일정 이름을 입력해 주시기 바랍니다');
+		return 0;
+		}
+    	
+    	if(!date.value)
+		{
+		alert('시작 날짜를 입력해 주시기 바랍니다');
+		return 0;
+		}
+    	
+    	if(!dateEnd.value)
+		{
+		alert('종료 날짜를 입력해 주시기 바랍니다');
+		return 0;
+		}
 
-function canPage(){
-    window.location.href="http://localhost:8080/schedule/calendar";	
-}
+    	
+        let data = {title : title.value, date : date.value, dateEnd : dateEnd.value, startTime: startTime.value};
+        
+        let response = fetch("http://localhost:8080/schedule/addTodo",{
+            method : 'post',
+            headers: {
+                'header': header,
+                'X-CSRF-Token': token,
+                'Content-Type': 'application/json',
+            },
+                      //redirect:'follow',            
+            body: JSON.stringify(data)
+        }).then((response)=>{     
+        	console.dir(response);
+        	window.close();
+        	//window.location.href="http://localhost:8080/schedule/calendar";	
+        	
+        })      
+    }
 
-
-btnClick.addEventListener('click',e=>{
-    PostTest();
+    function canPage(){
+    	window.location.href="http://localhost:8080/schedule/calendar";	
+    	
+    }
     
     });
 

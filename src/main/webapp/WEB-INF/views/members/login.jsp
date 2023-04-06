@@ -6,153 +6,168 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <meta id="_csrf" name="_csrf" content="${_csrf.token}"></meta>
-<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"></meta>
+<meta id="_csrf_header" name="_csrf_header"
+	content="${_csrf.headerName}"></meta>
 <meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css?family=Roboto"
+	rel="stylesheet" type="text/css">
 
 <style>
+@import
+	url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&family=Noto+Serif+JP:wght@200&display=swap')
+	;
 
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&family=Noto+Serif+JP:wght@200&display=swap');
+@font-face {
+    font-family: 'EF_jejudoldam';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-EF@1.0/EF_jejudoldam.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 
-* {
+@font-face {
+    font-family: 'CWDangamAsac-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/CWDangamAsac-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'RixYeoljeongdo_Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2102-01@1.0/RixYeoljeongdo_Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*  body {
+	background-color: #888;
+	background-image: linear-gradient(45deg, #444 25%, transparent 25%, transparent 75%, #444
+		75%, #444),
+		linear-gradient(45deg, #444 25%, transparent 25%, transparent 75%, #444
+		75%, #444);
+	background-position: 0 0, 25px 25px;
+	background-size: 50px 50px;
+}  */
+
+  body {
+	background-color: white;
 	
-	margin: 0;
-	padding: 0;
-	
+	background-position: 0 0, 25px 25px;
+	background-size: 50px 50px;
+}  
+
+.wrapper {
+	text-align: center;
+	margin: auto;
+	margin-top: 15px;
+	width: 420px;
+	height: 530px;
+	border: solid 3px;
+	border-radius: 10%;
+	background: rgba(222, 118, 119, 30);
+}
+
+h1 {
+font-family: 'CWDangamAsac-Bold';
+	margin-top: 120px;
+	font-size: 60px;
+}
+
+input {
+	text-align: left;
+	width: 225px;
+	height: 30px;
+	border: none;
+	border-bottom: solid 3px black;
+	background: rgba(222, 118, 119, 30);
+}
+
+input::placeholder {
+	color: black;
+	font-size: 10px;
+}
+
+.idStyle {
+	padding-top: 19px;
 }
 
 img {
-	width : 400px;
-	height : 200px;
+	width: 250px;
+	height: 250px;
 }
 
-body {
-	font-family: 'Nanum Gothic Coding', monospace;
-	font-family: 'Noto Serif JP', serif;
-	background-image : url('https://img.poipiku.com/user_img02/002382369/008490249_AHMaygEEr.png_640.jpg');
-	background-repeat : no-repeat;
-	background-size : cover;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	min-height: 100vh;
+.psStyle {
+	padding-bottom: 32px;
+	padding-top: 22px;
 }
 
-form {
-	background-color : rgba(255, 255, 255, 0.6);
-	padding: 20px;
-	display: inline-flex;
-	flex-direction: column;
-	align-items: center;
-	border-radius: 8px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-	width: 1000px;
-	height: 600px;
+button {
+	background-color:white;
+ 	position: relative;
+    border: none;
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 15px;
+    font-family: "paybooc-Light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
 }
 
-
-form image {
-	margin-top: 100px;
-	font-size: 4.5rem;
-	color: black;
-	opacity : 0;
-	
+.gooButton {
+	padding-left: 105px;
+	padding-top: 20px;
 }
 
-form input {
-	border: none;
+.title{
 	text-align: center;
-	padding: 10px;
-	margin: 10px;
-	color: black;
-	font-size : 20px;
-	font-color : black;
-	height: 30px;
-	width: 70%;
-	border-radius: 40px;
-	
 }
-
-
-sign-out {
-    color: black;
-    font-size : 4.5rem;
-}
-
-
-
-
-#login {	
-	background : dodgerblue;
-	box-sizing: border-box;
-	height: 50px;
-	width: 50%;
-	cursor: pointer;
-}
-
-#kakao_login {	
-	background : yellow;
-	font-color : black;
-	box-sizing: border-box;
-	height: 50px;
-	width: 50%;
-	cursor: pointer;
-}
-
-#login:hover {
-background : teal;
-}
-
-.speech-bubble {
-	position: relative;
-	background: #fafafa;
-	border-radius: .4em;
-}
-
-.speech-bubble:after {
-	content: '';
-	position: absolute;
-	left: 0;
-	top: 50%;
-	width: 0;
-	height: 0;
-	border: 58px solid transparent;
-	border-right-color: #fafafa;
-	border-left: 0;
-	margin-top: -58px;
-	margin-left: -58px;
-}
-
-
 
 </style>
 
 </head>
 <body>
-
-
-	<img
-		src="https://img.poipiku.com/user_img02/002382369/008490504_nWNItirig.png_640.jpg"
-		>
-		
-	<input type="text" id="userId" placeholder="아이디" required autofocus>
-	<input type="password" id="password" placeholder="비밀번호" required>
+ 	<div class="title">
+	<h1>떠나자</h1>
+	</div> 
 	
-	<button class="btn btn-lg btn-primary btn-block btn-signin"
-		type="button" id="btnClick">로그인</button>
 
-	<div id="g_id_onload" data-client_id="689885454668-12d8lthjkbrfrjae7plunhqc12ctegfv.apps.googleusercontent.com"
-		data-callback="handleCredentialResponse"></div>
-	<div class="g_id_signin" data-type="icon" data-shape="circle"></div>
+	
+	<div class="wrapper">
+
+		
+
+		<img src="${context}/resources/assets/img/campingImg.png">
+		<div class="idStyle">
+			<input type="text" id="userId" placeholder="아이디" required autofocus>
+		</div>
+
+		<div class="psStyle">
+			<input type="password" id="password" placeholder="비밀번호" required>
+		</div>
 
 
-	<button class="btn btn-lg btn-primary btn-block btn-signin"
-		type="button" id="btnSign">회원가입</button>
+		<button class="btn btn-lg btn-primary btn-block btn-signin"
+			type="button" id="btnClick">로그인</button>
 
 
+
+
+		<button class="btn btn-lg btn-primary btn-block btn-signin"
+			type="button" id="btnSign">회원가입</button>
+
+		<div class="gooButton">
+			<div id="g_id_onload"
+				data-client_id="689885454668-12d8lthjkbrfrjae7plunhqc12ctegfv.apps.googleusercontent.com"
+				data-callback="handleCredentialResponse"></div>
+			<div class="g_id_signin"  data-shape="rectangular" data-width="215"
+				data-height="180"></div>
+		</div>
+
+	</div>
 
 </body>
 
-        
+
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <script defer src="${context}/resources/assets/js/member/login.js"></script>
 </html>
