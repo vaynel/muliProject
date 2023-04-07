@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	private final DataSource dataSource;
-	/* private final UserDetailsService userDetailsService; */
+	
 	
 	
 	@Configuration
@@ -42,36 +42,47 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http.headers().frameOptions().sameOrigin();
 		
 		http.authorizeRequests()
-		.antMatchers(HttpMethod.GET,  "/**").permitAll()
-		.antMatchers(HttpMethod.POST,  "/**").permitAll()
 		
 		.antMatchers(HttpMethod.GET,  "/resources/**").permitAll()
 		.antMatchers(HttpMethod.POST,  "/resources/**").permitAll()
 		.antMatchers("/resources/**").permitAll()
 
+		.antMatchers(HttpMethod.GET,  "/comewithme/comeWithMeList").permitAll()
+		.antMatchers(HttpMethod.POST,  "/comewithme/comeWithMeList").permitAll()
+		
+		.antMatchers(HttpMethod.GET,  "/campingHome/boards/").permitAll()
+		.antMatchers(HttpMethod.POST,  "/campingHome/boards/").permitAll()
+		
+		.antMatchers(HttpMethod.GET,  "/campingHome/images/**").permitAll()
+		.antMatchers(HttpMethod.POST,  "/campingHome/images/**").permitAll()
 		
 		.antMatchers(HttpMethod.GET,  "/members/**").permitAll()
 		.antMatchers(HttpMethod.POST,  "/members/**").permitAll()
-		
-		.antMatchers(HttpMethod.GET,  "/sample/admin").permitAll()
+
 		.antMatchers(HttpMethod.GET,  "/index").permitAll()
 		.antMatchers(HttpMethod.GET,  "/elements").permitAll()
 		
-		.antMatchers(HttpMethod.GET,  "/suggest/**").permitAll() 
-		.antMatchers(HttpMethod.POST, "/suggest/**").permitAll()
 		
 		.antMatchers(HttpMethod.GET,  "/schedule/**").hasRole("USER")
 		.antMatchers(HttpMethod.POST, "/schedule/**").hasRole("USER")
 				
-		.antMatchers(HttpMethod.GET,  "/sample/admin").permitAll()
-		.antMatchers(HttpMethod.GET, "/members/signin").permitAll()
-		.antMatchers(HttpMethod.POST, "/mail").permitAll()
-		.antMatchers(HttpMethod.GET, "/comewithme/**").permitAll()
-		.antMatchers(HttpMethod.POST, "/comewithme/**").permitAll()
-		.antMatchers(HttpMethod.GET,  "/members/login").permitAll()
-		.antMatchers(HttpMethod.GET,  "/board/list", "/board/detail", "/board/download").permitAll()
-
-		.antMatchers(HttpMethod.GET,  "/sample/member").hasAuthority("ROLE_MEMBER")
+		.antMatchers(HttpMethod.GET,  "/campingHome/board/new").hasRole("USER")
+		.antMatchers(HttpMethod.POST, "/campingHome/board/new").hasRole("USER")
+		
+		.antMatchers(HttpMethod.GET,  "/groupChat/*").hasRole("USER")
+		.antMatchers(HttpMethod.POST, "/groupChat/*").hasRole("USER")
+		
+		.antMatchers(HttpMethod.GET,  "/group/*").hasRole("USER")
+		.antMatchers(HttpMethod.POST, "/group/*").hasRole("USER")
+		
+		.antMatchers(HttpMethod.GET,  "/suggest/*").hasRole("USER")
+		.antMatchers(HttpMethod.POST, "/suggest/*").hasRole("USER")
+		
+		.antMatchers(HttpMethod.GET,  "/comewithme/comeWithMeCreateBoard").hasRole("USER")
+		.antMatchers(HttpMethod.POST, "/comewithme/comeWithMeCreateBoard").hasRole("USER")
+		
+		.antMatchers(HttpMethod.GET,  "/comewithme/detail").hasRole("USER")
+		.antMatchers(HttpMethod.POST, "/comewithme/detail").hasRole("USER")
 
 		.anyRequest().authenticated();
 		
@@ -79,7 +90,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		
 	  http.formLogin() .loginProcessingUrl("/members/login")
 	  .loginPage("/members/login") .usernameParameter("userId")
-	  //.successHandler(authSuccessHandler) //.failureHandler(authFa ilureHandler)
+
 	 
 	  .permitAll();
 		 
@@ -88,14 +99,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.logoutSuccessUrl("/members/login")
 			.invalidateHttpSession(true);
 		
-		/*
-		 * http.rememberMe() .userDetailsService(userDetailsService)
-		 * .tokenRepository(tokenRepository());
-		 */
-		
+
 		
 		http.csrf().ignoringAntMatchers("/mail");
-//		http.csrf().ignoringAntMatchers("/chat");
+
 
 		http.csrf().ignoringAntMatchers("/members/**");
 	}
@@ -119,8 +126,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	
 
-	
-	
 	
 
 }
