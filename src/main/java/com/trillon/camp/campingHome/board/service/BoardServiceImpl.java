@@ -47,14 +47,13 @@ public class BoardServiceImpl implements BoardService{
         //제품등록
         for (String s : itemName) {
             System.out.println(s);
-            Item item = shopping.search(s);
-            System.out.println(item);
-            item.setBdIdx(bdIdx);
-            boardRepository.insertItem(item);
+            if(s!=null) {
+                Item item = shopping.search(s);
+                System.out.println(item);
+                item.setBdIdx(bdIdx);
+                boardRepository.insertItem(item);
+            }
         }
-
-
-
 
         return bdIdx;
     }
