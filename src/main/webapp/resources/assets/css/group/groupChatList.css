@@ -1,8 +1,15 @@
 @charset "UTF-8";
-p{
+
+p {
 	margin: 0 0 0.5em 0;
 }
-.countMember{
-    text-align: right;
-    float: right;
+
+.countMember {
+	text-align: right;
+	float: right;
+}
+
+.button {
+	padding: 0 1.25em;
+	font-size: 0.9em;
 }

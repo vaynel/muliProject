@@ -9,4 +9,5 @@ public class Answer {
 	private String doNm;
 	private String sigunguNm;
 	private String lctCl;
+	private String page;
 }

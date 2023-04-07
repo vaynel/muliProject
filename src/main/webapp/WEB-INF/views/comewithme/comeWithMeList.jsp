@@ -41,7 +41,7 @@
 					
 					<div class="row" id="1st">
 					<c:forEach items="${boardList}" var="boardList"  varStatus="status">
-						<div class="col-xs-6 col-sm-4" id="g1"  style=" height:600px; box-shadow: 10px 5px 5px gray;">
+						<div class="col-xs-6 col-sm-4 box" id="g1"  style=" height:600px; box-shadow: 7px 3px 3px gray;">
 							<br>
 							<c:if test="${boardList.renameFileName ne null}">
 								<img src="/storage/${boardList.groupName}/${boardList.savePath}${boardList.renameFileName}" style="height:40%; width:100%;" alt="이미지파일">
