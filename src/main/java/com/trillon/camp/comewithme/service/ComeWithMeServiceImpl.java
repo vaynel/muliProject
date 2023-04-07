@@ -1,8 +1,10 @@
 package com.trillon.camp.comewithme.service;
 
-import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,8 +50,8 @@ public class ComeWithMeServiceImpl implements ComeWithMeService{
 			comeWithMeBoard.setCrDate(comeWithMeBoard.getRegDateAsDate());
 		}
 		
-		
-		return Map.of("boardList", comeWithMeRepository.selectBoardList(paging), "paging",paging);
+//		boardList=reverseList(boardList);
+		return Map.of("boardList",boardList, "paging",paging);
 	}
 
 	@Override
@@ -124,6 +126,17 @@ public class ComeWithMeServiceImpl implements ComeWithMeService{
 		return comeWithMeRepository.returnGroupIdxByBdIdx(bdIdx);
 	}
 
+	
+	public static<T> List<T> reverseList(List<T> list)
+    {
+        return list.stream()
+                    .collect(Collectors.collectingAndThen(
+                        Collectors.toCollection(ArrayList::new), lst -> {
+                                                Collections.reverse(lst);
+                                                return lst.stream();
+                                            }
+                    )).collect(Collectors.toCollection(ArrayList::new));
+    }
 	
 	
 	
