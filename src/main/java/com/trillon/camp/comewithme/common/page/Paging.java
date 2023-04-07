@@ -98,7 +98,7 @@ public class Paging {
 		private int total; // 전체 게시물
 		private int cntPerPage; // 페이지당 게시물 수
 		private int blockCnt; // 하단에 표시될 페이지 블록 개수
-		private String sortColumn = "create_date"; // 정렬기준
+		private String sortColumn = "bd_idx"; // 정렬기준
 		private String sortDirection = "desc"; // 정렬 방향
 
 		public Builder sortColumn(String sortColumn) {

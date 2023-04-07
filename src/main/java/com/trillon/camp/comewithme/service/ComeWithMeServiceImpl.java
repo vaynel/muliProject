@@ -50,7 +50,7 @@ public class ComeWithMeServiceImpl implements ComeWithMeService{
 			comeWithMeBoard.setCrDate(comeWithMeBoard.getRegDateAsDate());
 		}
 		
-		boardList=reverseList(boardList);
+//		boardList=reverseList(boardList);
 		return Map.of("boardList",boardList, "paging",paging);
 	}
 
