@@ -149,7 +149,7 @@ $.ajax({
 						
 					});
 					info.event.remove();
-					location.href = "http://localhost:8080/groupChat/chatRoom?roomId="+$('#roomId').val()+"&groupIdx="+$('#groupIdx').val();
+					location.href = "http://localhost:8080/groupChat/groupChat?roomId="+$('#roomId').val()+"&groupIdx="+$('#groupIdx').val();
 				
 					
 					

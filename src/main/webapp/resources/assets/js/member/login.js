@@ -29,7 +29,7 @@ var token = $("meta[name='_csrf']").attr("content");
 						// console.log(url);
 						// location.replace(url);
 						
-						window.location.href="http://localhost:8080/index";	
+						window.location.href="http://localhost:8080/comewithme/comeWithMeList";	
 					}	
 					else{
 						alert('오류');
@@ -88,7 +88,7 @@ var token = $("meta[name='_csrf']").attr("content");
 					}				
 					else if(data === 'successLogin'){
 
-						window.location.href="http://localhost:8080/index";	
+						window.location.href="http://localhost:8080/comewithme/comeWithMeList";	
 					}	
 					else{
 						alert('오류');

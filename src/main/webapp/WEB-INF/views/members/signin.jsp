@@ -15,21 +15,11 @@
   
   <title>회원가입 화면</title>
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 
 
   <style>
-    body {
-      min-height: 100vh;
-
-      background: -webkit-gradient(linear, left bottom, right top, from(#92b5db), to(#1d466c));
-      background: -webkit-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-      background: -moz-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-      background: -o-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
-      background: linear-gradient(to top right, #92b5db 0%, #1d466c 100%);
-    }
+    
 
     .input-form {
     position: fixed; top: 0; right: 0;
@@ -41,7 +31,7 @@
       margin-top: 80px;
       padding: 32px;
 
-      background: #fff;
+      /* background: #fff; */
       -webkit-border-radius: 10px;
       -moz-border-radius: 10px;
       border-radius: 10px;
@@ -49,6 +39,26 @@
       -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
       box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
     }
+    
+    
+    button {
+  
+  margin: 0 10px;
+  font-color: #ffff;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.divStyle1{
+margin-top: 30px;
+margin-left: 180px;
+}
+    
   </style>
 </head>
 <body>
@@ -128,20 +138,15 @@
             </div>
             
 
-          <hr class="mb-4">
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="aggrement" required>
-            <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
-          </div>
-          
+        
           <div class="mb-4"></div>
-          <button class="btn btn-primary btn-lg btn-block" type="button" id="btnSign">가입 완료</button>
+          <div class="divStyle1">
+          <button type="button" id="btnSign">가입 완료</button>
+           <button  type="button" onclick="location.href='http://localhost:8080/members/login'">취소</button>
+		<div>
         </form>
       </div>
     </div>
-    <footer class="my-3 text-center text-small">
-      <p class="mb-1">&copy; 2021 YD</p>
-    </footer>
   </div>
   <script>
     window.addEventListener('load', () => {

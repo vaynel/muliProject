@@ -16,11 +16,10 @@
 
 							<!-- Menu -->
 								<nav id="menu">
-									<header class="major">
+									<header class="major pb-3">
 										<h2>Menu</h2>
 									</header>
 									<ul>
-										<li><a href="/members/myPage">MyPage</a></li>
 										<li><a href="/campingHome/boards/">캠핑의집</a></li>
 										<li><a href="/comewithme/comeWithMeList">같이갈래</a></li>
 										<li><a href="/suggest/select2">장소추천</a></li>
