@@ -83,6 +83,7 @@ public class MemberController {
 		SecurityContextHolder.setContext(context);
 		
 		session.setAttribute("loginId", account.getUserId());
+		session.setAttribute("loginUserName", auth.getName());
 		
 		System.out.println(authentication);
 		System.out.println(context);
@@ -122,6 +123,7 @@ public class MemberController {
 			SecurityContextHolder.setContext(context);
 			
 			session.setAttribute("loginId", account.getUserId());
+			session.setAttribute("loginUserName", member.getName());
 			
 			System.out.println(authentication);
 			System.out.println(context);
@@ -205,6 +207,7 @@ public class MemberController {
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("loginId");
+		session.removeAttribute("loginUserName");
 		SecurityContextHolder.clearContext();
 		System.out.println("로그아웃");
 		return "redirect:/members/login";
