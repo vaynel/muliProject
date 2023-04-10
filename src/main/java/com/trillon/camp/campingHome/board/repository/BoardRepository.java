@@ -5,9 +5,7 @@ import com.trillon.camp.campingHome.board.dto.BoardForm;
 import com.trillon.camp.campingHome.board.dto.Paging;
 import com.trillon.camp.campingHome.board.dto.Reply;
 import com.trillon.camp.campingHome.naverShopping.dto.Item;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -21,7 +19,7 @@ public interface BoardRepository {
      *  게시글 저장
      */
 
-    @Insert("insert into test(title, text, hashtag) values(#{title}, #{text}, #{hashtag})")
+    @Insert("insert into test(title, text) values(#{title}, #{text})")
     @Options(useGeneratedKeys = true, keyProperty = "bdIdx")  // DB에서 증가되는 bd_idx값을 dto에 bd_idx로 넣어준다.
     int insertBoard(BoardForm boardForm); //앞에 데이터 형태 질문
 
@@ -59,12 +57,17 @@ public interface BoardRepository {
     @Select("select count(1) from test")
     int countAllBoard();
 
+    /**
+     * 게시글 수정
+     */
+    @Update("update test set title = #{title}, text= #{text} where bd_idx=#{bdIdx}")
+    void updateBoard(BoardForm boardForm);
 
     /**
      * 게시글 삭제
      */
-    //@delete("delete form test2 where gn_idx = #{gnIdx}")
-    //int deleteBoard(int bdIdx);
+    @Delete("delete from test where bd_idx = #{bdIdx}")
+    void deleteBoard(int bdIdx);
 
 
     /**
@@ -80,9 +83,6 @@ public interface BoardRepository {
      */
     @Select("select * from item where bd_idx=#{bdIdx}")
     List<Item> selectItemAll(int bdIdx);
-
-
-
 
 
     /**

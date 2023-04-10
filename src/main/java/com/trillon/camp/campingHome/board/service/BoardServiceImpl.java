@@ -1,5 +1,6 @@
 package com.trillon.camp.campingHome.board.service;
 
+import com.trillon.camp.campingHome.board.dto.Board;
 import com.trillon.camp.campingHome.board.dto.BoardForm;
 import com.trillon.camp.campingHome.board.dto.Paging;
 import com.trillon.camp.campingHome.board.dto.Reply;
@@ -113,6 +114,16 @@ public class BoardServiceImpl implements BoardService{
                 .blockCnt(10)
                 .build();
         return Map.of("boards",boardRepository.selectBoardList(paging),"paging",paging);
+    }
+
+    @Override
+    public void updateBoard(BoardForm boardForm) {
+        boardRepository.updateBoard(boardForm);
+    }
+
+    @Override
+    public void deleteBoard(int bdIdx) {
+        boardRepository.deleteBoard(bdIdx);
     }
 
 }

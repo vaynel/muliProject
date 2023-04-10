@@ -27,20 +27,36 @@
             <!-- Content -->
             <section>
                 <header class="main">
-                    <!--<h1>${board.title}</h1> -->
-                    <h1 style="font-family: 'Stylish', sans-serif;
-						text-align: center;">캠핑의 집</h1>
                     <h2 style="font-family: 'Stylish', sans-serif;
 						text-align: center; line-height: 0.1;">Camping Home</h2>
+
+                    <div style="display: inline-block;">
+                        <form action="/campingHome/board/modify" method="get">
+                            <input type="hidden" value="${board.bdIdx}" name="bdIdx"/>
+                            <button id="btnModify" class="rightbutton" style="text-align: left">
+                                <img src="https://cdn-icons-png.flaticon.com/512/6996/6996496.png" style="width:50px; height:50px; display: inline-block;">
+                            </button>
+                        </form>
+                    </div>
+
+                    <div style="display: inline-block;">
+                        <form action="/campingHome/board/remove" method="get">
+                            <input type="hidden" value="${boardList.bdIdx}" name="bdIdx">
+                            <button id="btnDel" class="leftbutton">
+                                <img src="https://cdn-icons-png.flaticon.com/512/6996/6996573.png" style="width:50px; height:50px;">
+                            </button>
+                        </form>
+                    </div>
                 </header>
 
                         <div class="container">
                             <br>
                             <br>
                             <div class="row" id="row-1" >
-                                <div class="col-xs-6 col-sm-6"  id="photo-1" style="height:430px; text-align:center;">
+                                <div class="col-xs-6 col-sm-6"  id="left-1" style="height:430px; text-align:center;">
+
                                     <div class="con">
-                                        <div class ="album">
+                                        <div class="album">
 
                                             <div class = "images" id="image">
                                                 <c:forEach items="${files}" var="files">
@@ -50,55 +66,56 @@
 
                                         </div>
 
-                                            <img class="previous" src="https://cdn-icons-png.flaticon.com/512/608/608283.png" style="width:50px; height:50px; z-index:100;
-                                position:absolute; top:350px; right:350px;"/>
-                                            <img class="next" src="https://cdn-icons-png.flaticon.com/512/626/626043.png" style="width:50px; height:50px; z-index:100;
-                                position:absolute; top:350px; right:250px;"/>
+                                        <img class="previous" src="https://cdn-icons-png.flaticon.com/512/2989/2989985.png" style="width:50px; height:50px; z-index:100;
+                                position:absolute; top:190px; right:460px;"/>
+                                        <img class="next" src="https://cdn-icons-png.flaticon.com/512/2989/2989988.png" style="width:50px; height:50px; z-index:100;
+                                position:absolute; top:190px; right:0px;"/>
 
                                     </div>
+
                                 </div>
 
-                            <div class="col-xs-6 col-sm-6" id="title-1" style="height:430px;">
-                                <p style="font-family: 'Stylish', sans-serif;">2023년 4월 5일 20:21</p>
-                                <h1 style="font-family: 'Stylish', sans-serif;
-                      	line-height:0.1;" value=''>${board.title}</h1>
-                                <br>
+                            <div class="col-xs-6 col-sm-6" id="right-1" style="height:430px;">
+                                <div class="row">
+                                    <h3 style="font-family: 'Stylish', sans-serif;
+						text-align: left;">${board.title}</h3>
+                                </div>
 
                                 <div class="row">
+
                                     <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
                                          style="height:30px; width:55px;">
                                     <p style="font-family: 'Stylish', sans-serif;
 						padding:0px 0px 0px 10px;">서수진 · 지리산 대경오토캠핑장</p>
                                 </div>
-                                <h3 style="color:blue; font-family: 'Stylish', sans-serif;
-						line-height:0.1; margin:0px 0px 15px;" value='${board.hashtag}'>#산, #경남, #차박</h3>
+                                <div class="row" style="width:500px; position:relative; left:26px;margin-bottom: 10px " >
+
+                                        <c:forEach items="${item}" var="t">
+                                            <a href = ${t.link}>
+                                                <image src="${t.image}" style="height:100px; width:100px;
+                    object-fit: cover; object-position: top; border-radius: 50%;
+                    position:relative;
+                    margin: 10px 20px 0 20px; float: left" alt="제품상세사진"/>
+                                            </a>
+                                        </c:forEach>
+
+                                </div> <!-- row-3 끝 -->
+                                <div class="row" id="row-2">
+                                    <div class="col-12" id="text-2" style="height:340px;">
+                                        <h2 type="text" name="text" value='${board.text}'style="color:black; font-family: 'Stylish', sans-serif;">${board.text}</h2>
+
+                                    </div>
+                                </div> <!-- row-2 끝 -->
+                                <!-- 제품 상세화면 나오면 좋을듯 -->
 
                                 </div>
                             </div>
 
 
                             <!-- 본문 -->
-                            <div class="row" id="row-2">
-                                <div class="col-12" id="text-2" style="height:340px;">
-                                    <h2 type="text" name="text" value='${board.text}'style="color:black; font-family: 'Stylish', sans-serif;">${board.text}</h2>
 
-                                    <div id="line" style="height:3px; width:100%; background-color:black;"></div>
 
-                                </div>
-                            </div> <!-- row-2 끝 -->
 
-                            <div class="row" id="row-3" style="width:1300px; position:relative; left:26px;">
-                                <div class="col-xl-12" id="ad" style="background-color:#FAEBD7; height:300px; line-height:0.01;">
-                                    <c:forEach items="${item}" var="t">
-                                            <a href = ${t.link}>
-                                            <image src="${t.image}" style="height:270px; width:270px;
-                    object-fit: cover; object-position: top; border-radius: 50%;
-                    position:relative;
-                    margin: 15px 20px 0 20px; float: left" alt="제품상세사진"/>
-                                            </a>
-                                    </c:forEach>
-                                </div>
-                            </div> <!-- row-3 끝 -->
 
 
                         <div>
@@ -108,7 +125,7 @@
                                     <li><a href="/campingHome/userPage">userId 1</a></li>
                                     <input type="hidden" id="bdIdx" value='${board.bdIdx}'/>
                                     <input type="text" id ="context">
-                                    <input type="submit" value="Send Message" class="primary">
+                                    <input type="submit" value="Send" class="primary" style="width: 100px">
                                     <br>
 
                                     <div id="replies">
@@ -144,6 +161,7 @@
 
 <script src="${context}/resources/assets/js/campingHome/reply.js"></script>
 <script src="${context}/resources/assets/js/campingHome/slideShow.js"></script>
+
 
 </body>
 </html>

@@ -23,7 +23,9 @@ public interface BoardService {
 
     Map<String, Object> selectBoardList(int page);
 
+    void updateBoard(BoardForm boardForm);
 
+    void deleteBoard(int bdIdx);
 
 
 }
