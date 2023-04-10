@@ -5,6 +5,9 @@ const btnPrevious = document.querySelector(".previous")
 const btnNext = document.querySelector(".next")
 const images = document.querySelector(".images")
 
+const image = document.getElementById("image");
+const imageNum = image.childElementCount;
+
 function previous(){
     if(imageIndex > 0){
         btnNext.removeAttribute("disabled")
@@ -17,13 +20,13 @@ function previous(){
     }
 }
 function next(){
-    if(imageIndex < 3){
+    if(imageIndex < imageNum-1){
         btnPrevious.removeAttribute("disabled")
         postion -= IMAGE_WIDTH;
         images.style.transform = `translateX(${postion}px)`;
         imageIndex = imageIndex + 1;
     }
-    if(imageIndex == 3){
+    if(imageIndex == imageNum-1){
         btnNext.setAttribute('disabled', 'true')
     }
 }
