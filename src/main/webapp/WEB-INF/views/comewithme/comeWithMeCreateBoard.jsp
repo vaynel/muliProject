@@ -74,12 +74,12 @@
 					<input type="number" placeholder="숫자만 입력해주세요." id="numOfPerson" name="numOfPerson">
 					<br>
 
-					<div class="tr_hashTag_area">
+					<!-- <div class="tr_hashTag_area">
 						<ul id="tag-list"></ul>
 
 						<div class="form-group">
 								<input type="text" id="tag" size="7" placeholder="엔터로 해시태그를 등록해주세요." style="width: 300px;" />
-						</div>
+						</div> -->
 						<div class="col-12">
                             <strong>사진 등록</strong>
                             <input type="file" name="files" id="contract_file" multiple/>
