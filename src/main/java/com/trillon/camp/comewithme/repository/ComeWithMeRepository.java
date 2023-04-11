@@ -30,7 +30,7 @@ public interface ComeWithMeRepository {
 			+ " a left join camping_group b "
 			+ " on a.group_idx = b.group_idx "
 			+ " LEFT JOIN file_info c " 
-			+ " on a.group_idx = c.group_idx "
+			+ " on a.bd_idx = c.bd_idx "
 			+ " where a.is_del = 0 and b.activate = 1 "
 			+ " order by a.${sortColumn} ${sortDirection} limit #{start}, #{cntPerPage}")
 	List<ComeWithMeBoard> selectBoardList(Paging paging);

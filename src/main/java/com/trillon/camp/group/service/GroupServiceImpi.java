@@ -274,12 +274,20 @@ public class GroupServiceImpi implements GroupSerivce {
 				.contentType(MediaType.APPLICATION_JSON)
 				.body(body);
 		
+		
+		System.out.println("request -> " + request);
+//		여기서 문제가 터짐 시큐리티에서 
 		ResponseEntity<String> response =  restTemplate.exchange(request, String.class);
+		
+		System.out.println("response -> " + response.toString());
+		
 		String html = response.getBody();
-		System.out.println(html);
+		
+		System.out.println("html -> "+html);
 //		sender.send("ssp04041@gmail.com", "그룹 신청서.", html);
-		sender.send(master.getEmail(), "그룹 신청서.", html);
 		System.out.println(master.getEmail()+"로 메일 전송");
+		sender.send(master.getEmail(), "그룹 신청서.", html);
+		
 	}
 
 	@Override
