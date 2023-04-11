@@ -3,19 +3,19 @@
 
 <style>
 .leftbutton{
-	position:static;
-	left:0;
-	bottom:0;
+   position:static;
+   left:0;
+   bottom:0;
 }
 .rightbutton{
-	position:static;
-	left:0;
-	bottom:0;
+   position:static;
+   left:0;
+   bottom:0;
 }
 .centerbutton{
-	position:static;
-	left:0;
-	bottom:0;
+   position:static;
+   left:0;
+   bottom:0;
 }
 
 .popup > .title{
@@ -55,7 +55,7 @@
     border-color: #000;
 }
 .content{
-	font-size : large;
+   font-size : large;
 }
 
 </style>
@@ -63,12 +63,12 @@
 <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"></meta>
 
 <body class="dimmed">
-	<div class="popup">
-			<div class="title">
-				<h1>${boardList.title}</h1>
-				<p>작성일 : ${boardList.createDate}</p>
-				<hr>
-			</div>
+   <div class="popup">
+         <div class="title">
+            <h1>${boardList.title}</h1>
+            <p>작성일 : ${boardList.createDate}</p>
+            <hr>
+         </div>
 
 	<div class="content">
 			<div class=" row">
@@ -103,20 +103,20 @@
 			</button>
 		</form>
 
-		<form action="/comewithme/memberInsert" method="post">
-			<input type="hidden" value="${boardList.bdIdx}" name="bdIdx"/> 
-			<input type="hidden" value="${sessionScope.userId}" name="userId"/> 
-			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-			<button type="submit" id="btnMember" class="centerbutton">멤버 추가하기</button>
-		</form>
+      <form action="/comewithme/memberInsert" method="post">
+         <input type="hidden" value="${boardList.bdIdx}" name="bdIdx"/> 
+         <input type="hidden" value="${sessionScope.userId}" name="userId"/> 
+         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+         <button type="submit" id="btnMember" class="centerbutton">멤버 추가하기</button>
+      </form>
 
 
-		<form action="/comewithme/modify" method="get">
-			<input type="hidden" value="${boardList.bdIdx}" name="bdIdx"/>
-			<button id="btnModify" class="rightbutton">
-				<span>수정</span>
-			</button>
-		</form>
+      <form action="/comewithme/modify" method="get">
+         <input type="hidden" value="${boardList.bdIdx}" name="bdIdx"/>
+         <button id="btnModify" class="rightbutton">
+            <span>수정</span>
+         </button>
+      </form>
 
 	</div>
 	
@@ -127,9 +127,8 @@
 	</c:if>
 	</div>
 
-
-	<!-- Scripts -->
-	<%@ include file="/WEB-INF/views/include/commonScripts.jsp"%>
+   <!-- Scripts -->
+   <%@ include file="/WEB-INF/views/include/commonScripts.jsp"%>
 
 </body>
 </html>

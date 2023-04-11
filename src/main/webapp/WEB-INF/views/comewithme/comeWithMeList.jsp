@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/include/head.jsp"%>
+<%@ include file="/WEB-INF/views/include/head2.jsp"%>
+ 
 <!-- head 설정 -->
 <body class="is-preload">
 
@@ -52,8 +53,6 @@
 							<!-- 본문 -->
 							<p style="font-family: 'Stylish', sans-serif;">${boardList.content}</p>
 							<p style="font-family: 'Stylish', sans-serif; line-height : 0.1;">${boardList.crDate} · 모집수 1/${boardList.numOfPerson}</p>
-							<!--해시태그 부분 <p style="color:blue; line-height : 0.1;">#산, #경북, #별빛캠핑장</p> -->
-							
 							<div id="line-to-heart" style="position: absolute; bottom:0; width:94%">
 							<!-- 구분선 -->
 							<div class="line" style="background-color:black; height:2px; width:100%; line-height:0.1; position:relative; bottom:0px;">
