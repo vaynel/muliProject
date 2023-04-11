@@ -48,6 +48,7 @@ public class ComeWithMeServiceImpl implements ComeWithMeService{
 		List<ComeWithMeBoard> boardList = comeWithMeRepository.selectBoardList(paging);
 		for (ComeWithMeBoard comeWithMeBoard : boardList) {
 			comeWithMeBoard.setCrDate(comeWithMeBoard.getRegDateAsDate());
+			System.out.println(comeWithMeBoard.getRenameFileName());
 		}
 		
 //		boardList=reverseList(boardList);
