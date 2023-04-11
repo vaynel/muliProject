@@ -29,10 +29,14 @@ public class MailSender {
 			msg.setRecipients(Message.RecipientType.TO, to);
 			msg.setSubject(subject);
 			msg.setContent(html, "text/html; charset=UTF-8");
-			mailSender.send(msg);
+			System.out.println("mailSender -> "+msg);
+			
 			
 		} catch (MessagingException e) {
 			throw new HandlableException(ErrorCode.FAILED_SEND_EMAIL);
+		}
+		finally {
+			mailSender.send(msg);
 		}
 		
 		

@@ -42,6 +42,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http.headers().frameOptions().sameOrigin();
 		
 		http.authorizeRequests()
+//		.antMatchers(HttpMethod.GET,  "/mail/**").permitAll()
+		.antMatchers(HttpMethod.POST,  "/mail/**").permitAll()
+		
+//		.antMatchers(HttpMethod.GET,  "/mail-template/**").permitAll()
+//		.antMatchers(HttpMethod.GET,  "/mailTemplate/**").permitAll()
+//		.antMatchers(HttpMethod.POST,  "/mail-template/**").permitAll()
+//		.antMatchers(HttpMethod.POST,  "/mailTemplate/**").permitAll()
 		
 		.antMatchers(HttpMethod.GET,  "/resources/**").permitAll()
 		.antMatchers(HttpMethod.POST,  "/resources/**").permitAll()
@@ -101,7 +108,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		
 
 		
-		http.csrf().ignoringAntMatchers("/mail");
+		http.csrf().ignoringAntMatchers("/mail/**");
+		http.csrf().ignoringAntMatchers("/mailTemplate/**");
 
 
 		http.csrf().ignoringAntMatchers("/members/**");
