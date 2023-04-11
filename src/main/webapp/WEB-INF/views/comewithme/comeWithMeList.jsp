@@ -47,7 +47,7 @@
 							</c:if>
 							<br>
 							<!-- 게시글 제목 -->
-							<h3 style="cursor:pointer; font-family: 'Stylish', sans-serif;" onclick="window.open('${context}/comewithme/detail?bdIdx=${boardList.bdIdx}', 'new', 'scrollbars=no, resizable=no width=500 height=550, left=750, top=150');">${boardList.title} ( ${boardList.groupName} ) </h3>
+							<h3 style="cursor:pointer; font-family: 'Stylish', sans-serif;" onclick='window.open("${context}/comewithme/detail?bdIdx=${boardList.bdIdx}", "new", " width=500, height=550, left=750, top=150, status=no, location=no ,scrollbars=no, resizable=no")'>${boardList.title} ( ${boardList.groupName} ) </h3>
 							<%-- <h4 style=" font-family: 'Stylish', sans-serif;">${boardList.groupName}</h4> --%>
 							<!-- 본문 -->
 							<p style="font-family: 'Stylish', sans-serif;">${boardList.content}</p>
