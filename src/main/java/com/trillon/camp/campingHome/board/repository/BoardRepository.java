@@ -90,7 +90,7 @@ public interface BoardRepository {
     @Update("update campinghome_item set itemName = #{itemName}, link= #{link}, image= #{image} where bd_idx=#{bdIdx}")
     void updateItem(Item item);
 
-    @Delete("delete from item where bd_idx = #{bdIdx}")
+    @Delete("delete from campinghome_item where bd_idx = #{bdIdx}")
     void deleteItem(int bdIdx);
 
 
