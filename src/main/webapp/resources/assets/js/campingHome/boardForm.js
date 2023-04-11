@@ -1,8 +1,4 @@
 
-let token = document.querySelector("meta[name='_csrf']").content;
-let header = document.querySelector("meta[name='_csrf_header']").content;
-
-
 const button = document.getElementById('itemButton');
 const form = document.getElementById('form');
 const addItem = document.getElementById('addItem');
@@ -21,12 +17,24 @@ button.addEventListener('click', async (e)=>{
             let newItem = document.createElement('input');
 
             newItem.setAttribute("id","addItems");
-            newItem.setAttribute("name","itemName");
+            newItem.setAttribute("name","addItemName");
             newItem.setAttribute("type","text");
+            newItem.setAttribute("readonly","true");
             newItem.setAttribute("value",item.itemName);
             itemBlock.appendChild(newItem)
 
     document.getElementById('addItem').value = null;
 
 });
+
+const resetButton = document.getElementById('resetItem');
+resetButton.addEventListener('click', async (e)=>{
+    e.preventDefault();
+
+    console.log("resetButton 입성");
+
+    document.getElementById('addItems').remove();
+
+});
+
 

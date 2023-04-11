@@ -84,6 +84,17 @@ public interface BoardRepository {
     @Select("select * from item where bd_idx=#{bdIdx}")
     List<Item> selectItemAll(int bdIdx);
 
+    /**
+     * 해당 게시판 제품 수정
+     */
+    @Update("update item set itemName = #{itemName}, link= #{link}, image= #{image} where bd_idx=#{bdIdx}")
+    void updateItem(Item item);
+
+    @Delete("delete from item where bd_idx = #{bdIdx}")
+    void deleteItem(int bdIdx);
+
+
+
 
     /**
      * 댓글 저장

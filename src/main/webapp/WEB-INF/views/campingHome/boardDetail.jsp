@@ -41,7 +41,7 @@
 
                     <div style="display: inline-block;">
                         <form action="/campingHome/board/remove" method="get">
-                            <input type="hidden" value="${boardList.bdIdx}" name="bdIdx">
+                            <input type="hidden" value="${board.bdIdx}" name="bdIdx">
                             <button id="btnDel" class="leftbutton">
                                 <img src="https://cdn-icons-png.flaticon.com/512/6996/6996573.png" style="width:50px; height:50px;">
                             </button>
@@ -102,8 +102,8 @@
                                 </div> <!-- row-3 끝 -->
                                 <div class="row" id="row-2">
                                     <div class="col-12" id="text-2" style="height:340px;">
-                                        <h2 type="text" name="text" value='${board.text}'style="color:black; font-family: 'Stylish', sans-serif;">${board.text}</h2>
-
+                                        <br>
+                                        <pre type="textarea" name="text" style="color:black; font-family: 'Stylish', sans-serif; font-size: large;">${board.text}</pre>
                                     </div>
                                 </div> <!-- row-2 끝 -->
                                 <!-- 제품 상세화면 나오면 좋을듯 -->

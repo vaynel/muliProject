@@ -5,6 +5,7 @@
 <meta id="_csrf" name="_csrf" content="${_csrf.token}"></meta>
 <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"></meta>
 <link rel="stylesheet" href="${context}/resources/assets/css/CampingHome/itemAdd.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <!-- head 설정 -->
 <body class="is-preload">
@@ -34,9 +35,7 @@
                                style="width:700px;margin-left:15px;">
                         <br>
                         <div class="col-12">
-                            <input type="text" name="text" value="본문을 입력하세요." rows="20" cols="100"
-                                   style="vertical-align:top; width:700px; height : 250px;"
-                            />
+                            <textarea id="text" name="text" value="본문을 입력하세요." rows="20" cols="100" style="vertical-align:top; width:700px; height : 250px;"></textarea>
                         </div>
                         <br>
 
@@ -50,6 +49,8 @@
                             <strong>제품 등록</strong>
                             <input type="text" id="addItem" name="itemName" style="width:550px; display: inline-block;margin-left: 10px;">
                             <input id="itemButton" value="검색" style="display: inline-block; margin-left: 10px;" type="button">
+                            <input id="resetItem" value="아이템 초기화" style="display: inline-block; margin-left: 10px;" type="button">
+
                         </div>
 
                         <div class="col-12" id = "itemBlock">

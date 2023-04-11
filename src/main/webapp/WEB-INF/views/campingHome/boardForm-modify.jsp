@@ -33,15 +33,14 @@
                                style="width:700px; margin-left: 15px">
                         <br>
                         <div class="col-12">
-                            <input type="text" name="text" value="${board.text}" rows="20" cols="100"
-                                   style="vertical-align:top; width:700px; height : 250px;"/>
+                            <textarea name="text"  rows="20" cols="100" style="vertical-align:top; width:700px; height : 250px;">${board.text}</textarea>
                         </div>
                         <br>
 
                         <br>
                         <div class="col-12">
                             <strong>사진 등록</strong>
-                            <input type="file" name="file" value=/>
+                            <input type="file" name="file" multiple/>
                         </div>
                         <br>
 
@@ -49,13 +48,15 @@
                             <strong>제품 등록</strong>
                             <input type="text" id="addItem" name="itemName" style="width:550px; display: inline-block;margin-left: 10px;">
                             <input id="itemButton" value="검색" style="display: inline-block; margin-left: 10px;" type="button">
+                            <input id="resetItem" value="아이템 초기화" style="display: inline-block; margin-left: 10px;" type="button">
+
                         </div>
 
 
                         <div class="col-12" id = "itemBlock">
                             <!--검색으로 추가된 아이템 블럭들이 위치하는곳-->
                             <c:forEach items="${item}" var="t">
-                                <input id="addItems" name="addItemName" type="text" value="${t.itemName}">
+                                <input id="addItems" name="addItemName" type="text" value="${t.itemName}" readonly>
                             </c:forEach>
                         </div>
 
