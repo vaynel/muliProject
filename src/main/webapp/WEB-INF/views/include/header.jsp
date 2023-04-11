@@ -42,7 +42,7 @@ button{
 <header id="header">
 	<h1 class="h1Style pt-2">떠나자</h1>
 	<%
-		String id = (String) session.getAttribute("loginId");
+		String id = (String) session.getAttribute("loginUserName");
 	%>
 	<div class="divStyle pt-2">
 		<%
