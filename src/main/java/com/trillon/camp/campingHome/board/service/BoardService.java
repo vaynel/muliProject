@@ -11,7 +11,7 @@ import java.util.Map;
 
 
 public interface BoardService {
-    int insertBoard(BoardForm boardForm,List<String> itemName,List<MultipartFile> files) throws ParseException, IOException;
+    int insertBoard(BoardForm boardForm,List<String> addItemName,List<MultipartFile> files) throws ParseException, IOException;
 
     int insertReply(Reply reply);
 
@@ -23,7 +23,9 @@ public interface BoardService {
 
     Map<String, Object> selectBoardList(int page);
 
+    void updateBoard(BoardForm boardForm,List<String> addItemName) throws ParseException, IOException;
 
+    void deleteBoard(int bdIdx);
 
 
 }

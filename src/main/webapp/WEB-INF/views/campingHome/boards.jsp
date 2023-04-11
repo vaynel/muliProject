@@ -65,7 +65,6 @@
 
                             <br>
                             <h3 style="font-family: 'Stylish', sans-serif; line-height : 0.1;">서지윤</h3>
-                            <p style="color:blue;">${boards.text}</p>
 
                             <div class="line" style="background-color:black;
 							height:2px; width:100%;

@@ -1,5 +1,6 @@
 package com.trillon.camp.campingHome.board.service;
 
+import com.trillon.camp.campingHome.board.dto.Board;
 import com.trillon.camp.campingHome.board.dto.BoardForm;
 import com.trillon.camp.campingHome.board.dto.Paging;
 import com.trillon.camp.campingHome.board.dto.Reply;
@@ -35,7 +36,7 @@ public class BoardServiceImpl implements BoardService{
      * 게시글 등록
      */
     @Override
-    public int insertBoard(BoardForm boardForm,List<String> itemName ,List<MultipartFile> files) throws ParseException, IOException {
+    public int insertBoard(BoardForm boardForm,List<String> addItemName ,List<MultipartFile> files) throws ParseException, IOException {
         boardRepository.insertBoard(boardForm);
         int bdIdx = boardForm.getBdIdx();  // 해당 insert의 bd_idx값
 
@@ -45,11 +46,9 @@ public class BoardServiceImpl implements BoardService{
         fileUtil.uploadFile(fileInfo, files);
 
         //제품등록
-        for (String s : itemName) {
-            System.out.println(s);
+        for (String s : addItemName) {
             if(s!=null) {
                 Item item = shopping.search(s);
-                System.out.println(item);
                 item.setBdIdx(bdIdx);
                 boardRepository.insertItem(item);
             }
@@ -113,6 +112,50 @@ public class BoardServiceImpl implements BoardService{
                 .blockCnt(10)
                 .build();
         return Map.of("boards",boardRepository.selectBoardList(paging),"paging",paging);
+    }
+
+    @Override
+    public void updateBoard(BoardForm boardForm,List<String> addItemName) throws ParseException, IOException {
+        int bdIdx = boardForm.getBdIdx();
+        boardRepository.updateBoard(boardForm);
+
+
+        int prevItemNum = boardRepository.selectItemAll(bdIdx).size();
+        int nextItemNum = addItemName.size();
+
+
+        // 기존보다 아이템 수가 변경되면 삭제하고 추가하는 과정
+        if(nextItemNum != prevItemNum){
+            boardRepository.deleteItem(bdIdx);
+            for (String s : addItemName) {
+                if(s!=null) {
+                    Item item = shopping.search(s);
+                    item.setBdIdx(bdIdx);
+                    boardRepository.insertItem(item);
+                    System.out.println("새로운 아이템"+item);
+                }
+            }
+        }
+        // 기존과 등록된 아이템 수가 같으면 바로 업데이트 실행
+        else if(nextItemNum == prevItemNum){
+            for (String s : addItemName) {
+                if(s!=null) {
+                    Item item = shopping.search(s);
+                    item.setBdIdx(bdIdx);
+                    boardRepository.updateItem(item);
+                }
+            }
+        }
+
+
+
+
+
+    }
+
+    @Override
+    public void deleteBoard(int bdIdx) {
+        boardRepository.deleteBoard(bdIdx);
     }
 
 }

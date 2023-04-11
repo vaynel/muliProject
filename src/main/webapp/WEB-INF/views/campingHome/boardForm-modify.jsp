@@ -5,8 +5,6 @@
 <meta id="_csrf" name="_csrf" content="${_csrf.token}"></meta>
 <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"></meta>
 <link rel="stylesheet" href="${context}/resources/assets/css/CampingHome/itemAdd.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 <!-- head 설정 -->
 <body class="is-preload">
 
@@ -23,22 +21,23 @@
             <section>
 
                 <header class="main">
-                    <h1>게시글 작성</h1>
+                    <h1>게시글 수정</h1>
                 </header>
 
                 <!-- form -->
-                <form action="${context}/campingHome/board/new" id="form" method="post" enctype="multipart/form-data">
+                <form id="form" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
                     <div calss="row gtr-uniform">
-                        <input type="text" name="title" value="제목을 입력하세요."
-                               style="width:700px;margin-left:15px;">
+                        <input type="text" name="title" value="${board.title}"
+                               style="width:700px; margin-left: 15px">
                         <br>
                         <div class="col-12">
-                            <textarea id="text" name="text" value="본문을 입력하세요." rows="20" cols="100" style="vertical-align:top; width:700px; height : 250px;"></textarea>
+                            <textarea name="text"  rows="20" cols="100" style="vertical-align:top; width:700px; height : 250px;">${board.text}</textarea>
                         </div>
                         <br>
 
+                        <br>
                         <div class="col-12">
                             <strong>사진 등록</strong>
                             <input type="file" name="file" multiple/>
@@ -53,9 +52,14 @@
 
                         </div>
 
+
                         <div class="col-12" id = "itemBlock">
-                        <!--검색으로 추가된 아이템 블럭들이 위치하는곳-->
+                            <!--검색으로 추가된 아이템 블럭들이 위치하는곳-->
+                            <c:forEach items="${item}" var="t">
+                                <input id="addItems" name="addItemName" type="text" value="${t.itemName}" readonly>
+                            </c:forEach>
                         </div>
+
 
                         <div class="col-12">
                             <ul class="actions">

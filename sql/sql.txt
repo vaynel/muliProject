@@ -80,7 +80,7 @@ CREATE TABLE group_member (
     foreign key(room_id) references group_chat_room(room_id)
 );
 
-CREATE TABLE test (
+CREATE TABLE campinghome_board (
   bd_idx int NOT NULL AUTO_INCREMENT,
   TITLE varchar(45) NOT NULL,
   text varchar(100) NOT NULL,
@@ -106,7 +106,7 @@ create table temporary_recommand_date(
     email VARCHAR(70) NOT NULL
 );
 
-CREATE TABLE test2 (
+CREATE TABLE campinghome_imagefile (
   file_idx int NOT NULL AUTO_INCREMENT,
   gn_idx int NOT NULL,
   origin_file_name varchar(100) NOT NULL,
