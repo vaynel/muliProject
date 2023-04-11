@@ -46,7 +46,7 @@ font-family: 'TheJamsil5Bold';
 						
 						</div>
 						<div class="input-group -xsmall">
-							<a class="button ml-1" href="#none" onclick="window.open('${context}/group/newGroupTodo?groupIdx=${groupIdx}', 'new', 'scrollbars=no, resizable=no width=300 height=350, left=750, top=150');">모임생성</a>
+							<a class="button ml-1" href="#none" onclick="window.open('${context}/group/newGroupTodo?groupIdx=${groupIdx}', 'new', 'scrollbars=no, resizable=no width=300 height=300, left=750, top=150');">모임생성</a>
 							<a class="button ml-1" href="/group/recommendDate?groupIdx=${groupIdx}">날짜추천</a>
 							<input type="text" id="msg" class="form-control ml-2" aria-label="Recipient's username" aria-describedby="button-addon2">
 							<span class="input-group-append">

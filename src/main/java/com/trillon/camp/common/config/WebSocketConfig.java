@@ -19,9 +19,9 @@
 //	@Override
 //	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
 //		registry.addHandler(chatHandler, "ws/chat")
-//		.setAllowedOriginPatterns("http://*:8081", "http://*.*.*.*:8081")
+//		.setAllowedOriginPatterns("http://*:8080", "http://*.*.*.*:8080")
 //		.withSockJS()
-//		.setClientLibraryUrl("http://localhost:8081/myapp/js/sock-client.js");
+//		.setClientLibraryUrl("http://localhost:8080/myapp/js/sock-client.js");
 //		
 //	}
 //
