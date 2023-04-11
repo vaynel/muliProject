@@ -49,14 +49,14 @@
                         <div class="col-12" id="items">
                             <strong>제품 등록</strong>
                             <p></p>
-                            <input type="text" id="itemName" name="itemName"/>
+                            <input type="text" id="addItem" name="itemName"/>
                             <a class="button" id="itemButton" value="아이템 추가"></a>
                         </div>
 
                     <div class="col-12">
                         <ul class="actions">
                             <li>
-                                <input type="submit" value="Send Message" class="primary">
+                                <input type="submit" id="submit" value="Send Message" class="primary">
                             </li>
                             <li>
                                 <input type="reset" value="Reset">
