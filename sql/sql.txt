@@ -114,7 +114,7 @@ CREATE TABLE campinghome_imagefile (
   save_path varchar(100) NOT NULL,
   PRIMARY KEY (file_idx,rename_file_name),
   KEY gn_idx_idx (gn_idx),
-  FOREIGN KEY (gn_idx) REFERENCES test (bd_idx)
+  FOREIGN KEY (gn_idx) REFERENCES campinghome_board (bd_idx)
 );
 
 CREATE TABLE `FILE_INFO` (
@@ -130,7 +130,7 @@ CREATE TABLE `FILE_INFO` (
     FOREIGN KEY (bd_idx) REFERENCES comewithme_board (bd_idx)
 );
 
-CREATE TABLE reply (
+CREATE TABLE campinghome_reply (
   re_idx int NOT NULL AUTO_INCREMENT,
   id varchar(45) DEFAULT NULL,
   context varchar(45) NOT NULL,
@@ -139,7 +139,7 @@ CREATE TABLE reply (
   KEY bd_idx_idx (bd_idx)
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb3;
 
-CREATE TABLE item (
+CREATE TABLE campinghome_item (
   item_idx int NOT NULL AUTO_INCREMENT,
   bd_idx int NOT NULL,
   itemname varchar(200) NOT NULL,
@@ -147,7 +147,7 @@ CREATE TABLE item (
   image varchar(200) NOT NULL,
   PRIMARY KEY (item_idx),
   KEY bd_idx_idx (bd_idx),
-  CONSTRAINT bd_idx FOREIGN KEY (bd_idx) REFERENCES test (bd_idx) ON DELETE CASCADE
+  CONSTRAINT bd_idx FOREIGN KEY (bd_idx) REFERENCES campinghome_board (bd_idx) ON DELETE CASCADE
 );
 
 commit;
