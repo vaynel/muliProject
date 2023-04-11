@@ -80,12 +80,12 @@ CREATE TABLE group_member (
     foreign key(room_id) references group_chat_room(room_id)
 );
 
-CREATE TABLE campinghome_board (
-  bd_idx int NOT NULL AUTO_INCREMENT,
-  TITLE varchar(45) NOT NULL,
-  text varchar(100) NOT NULL,
-  HASHTAG varchar(45) NOT NULL,
-  PRIMARY KEY (bd_idx)
+CREATE TABLE `campinghome_board` (
+  `bd_idx` int NOT NULL AUTO_INCREMENT,
+  `TITLE` varchar(45) NOT NULL,
+  `text` varchar(100) NOT NULL,
+  `hsahtag` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`bd_idx`)
 );
 
 create table temporary_recommand_date(
@@ -106,15 +106,15 @@ create table temporary_recommand_date(
     email VARCHAR(70) NOT NULL
 );
 
-CREATE TABLE campinghome_imagefile (
-  file_idx int NOT NULL AUTO_INCREMENT,
-  gn_idx int NOT NULL,
-  origin_file_name varchar(100) NOT NULL,
-  rename_file_name varchar(100) NOT NULL,
-  save_path varchar(100) NOT NULL,
-  PRIMARY KEY (file_idx,rename_file_name),
-  KEY gn_idx_idx (gn_idx),
-  FOREIGN KEY (gn_idx) REFERENCES campinghome_board (bd_idx)
+CREATE TABLE `campinghome_imagefile` (
+  `file_idx` int NOT NULL AUTO_INCREMENT,
+  `gn_idx` int NOT NULL,
+  `origin_file_name` varchar(100) NOT NULL,
+  `rename_file_name` varchar(100) NOT NULL,
+  `save_path` varchar(100) NOT NULL,
+  PRIMARY KEY (`file_idx`,`rename_file_name`),
+  KEY `gn_idx_idx` (`gn_idx`),
+  CONSTRAINT `gn_idx` FOREIGN KEY (`gn_idx`) REFERENCES `campinghome_board` (`bd_idx`) ON DELETE CASCADE
 );
 
 CREATE TABLE `FILE_INFO` (
@@ -130,14 +130,14 @@ CREATE TABLE `FILE_INFO` (
     FOREIGN KEY (bd_idx) REFERENCES comewithme_board (bd_idx)
 );
 
-CREATE TABLE campinghome_reply (
-  re_idx int NOT NULL AUTO_INCREMENT,
-  id varchar(45) DEFAULT NULL,
-  context varchar(45) NOT NULL,
-  bd_idx int NOT NULL,
-  PRIMARY KEY (re_idx),
-  KEY bd_idx_idx (bd_idx)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb3;
+CREATE TABLE `campinghome_reply` (
+  `re_idx` int NOT NULL AUTO_INCREMENT,
+  `id` varchar(45) DEFAULT NULL,
+  `context` varchar(45) NOT NULL,
+  `bd_idx` int NOT NULL,
+  PRIMARY KEY (`re_idx`),
+  KEY `bd_idx_idx` (`bd_idx`)
+)
 
 CREATE TABLE campinghome_item (
   item_idx int NOT NULL AUTO_INCREMENT,
