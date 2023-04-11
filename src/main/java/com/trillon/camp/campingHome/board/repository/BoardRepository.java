@@ -73,7 +73,7 @@ public interface BoardRepository {
     /**
      * 제품 등록
      */
-    @Insert("insert into item(bd_idx,itemname,link,image) values(#{bdIdx},#{itemName},#{link},#{image})")
+    @Insert("insert into campinghome_item(bd_idx,itemname,link,image) values(#{bdIdx},#{itemName},#{link},#{image})")
     @Options(useGeneratedKeys = true, keyProperty = "itemIdx")
     int insertItem(Item item);
 
@@ -81,13 +81,13 @@ public interface BoardRepository {
     /**
      * 해당 게시판 제품 리스트
      */
-    @Select("select * from item where bd_idx=#{bdIdx}")
+    @Select("select * from campinghome_item where bd_idx=#{bdIdx}")
     List<Item> selectItemAll(int bdIdx);
 
     /**
      * 해당 게시판 제품 수정
      */
-    @Update("update item set itemName = #{itemName}, link= #{link}, image= #{image} where bd_idx=#{bdIdx}")
+    @Update("update campinghome_item set itemName = #{itemName}, link= #{link}, image= #{image} where bd_idx=#{bdIdx}")
     void updateItem(Item item);
 
     @Delete("delete from item where bd_idx = #{bdIdx}")
@@ -99,7 +99,7 @@ public interface BoardRepository {
     /**
      * 댓글 저장
      */
-    @Insert("insert into reply(context,bd_Idx) values(#{context},#{bdIdx})")
+    @Insert("insert into campinghome_reply(context,bd_Idx) values(#{context},#{bdIdx})")
     @Options(useGeneratedKeys = true, keyProperty = "reIdx")  // DB에서 증가되는 bd_idx값을 dto에 bd_idx로 넣어준다.
     int insertReply(Reply reply); //앞에 데이터 형태 질문
 
@@ -107,7 +107,7 @@ public interface BoardRepository {
     /**
      * 해당 게시글의 댓글 조회
      */
-    @Select("select * from reply where bd_idx=#{bdIdx}")
+    @Select("select * from campinghome_reply where bd_idx=#{bdIdx}")
     List<Reply> selectReplyAll(int bdIdx);
 
     /**
