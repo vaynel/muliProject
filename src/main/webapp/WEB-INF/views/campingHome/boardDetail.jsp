@@ -86,7 +86,7 @@
                                     <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
                                          style="height:30px; width:55px;">
                                     <p style="font-family: 'Stylish', sans-serif;
-						padding:0px 0px 0px 10px;">서수진 · 지리산 대경오토캠핑장</p>
+						padding:0px 0px 0px 10px;">서지윤 · 지리산 대경오토캠핑장</p>
                                 </div>
                                 <div class="row" style="width:500px; position:relative; left:26px;margin-bottom: 10px " >
 
