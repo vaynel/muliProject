@@ -108,6 +108,8 @@ public class BoardController {
         System.out.println("remove : " + bdIdx);
         boardService.deleteBoard(bdIdx);
         return "redirect:/campingHome/boards";
+
+        
     }
 
 }

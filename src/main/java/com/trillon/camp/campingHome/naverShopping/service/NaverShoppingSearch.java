@@ -34,17 +34,15 @@ public class NaverShoppingSearch {
         public Item search(String query) throws ParseException, IOException {
 
 //        try {
-//            query = URLEncoder.encode(query, "UTF-8");
-//        } catch (UnsupportedEncodingException e) {
-//            throw new RuntimeException("검색어 인코딩 실패",e);
-//        }  질문사항!!!!!!!!!!!
+////            query = URLEncoder.encode(query, "UTF-8");
+////        } catch (UnsupportedEncodingException e) {
+////            throw new RuntimeException("검색어 인코딩 실패",e);
+////        }  질문사항!!!!!!!!!!! -> RestTemplate에서 인코딩을 해주기때문에 이중 인코딩으로 실패한 경우 별도로 인코딩절차 불필요
 
         String apiURL = "https://openapi.naver.com/v1/search/shop?query=" + query;
 
-
             RestTemplate restTemplate = new RestTemplate();
             restTemplate.getMessageConverters().add(0,new StringHttpMessageConverter(StandardCharsets.UTF_8));
-
 
             RequestEntity<Void> req = RequestEntity
                     .get(apiURL)
